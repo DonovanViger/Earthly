@@ -8,20 +8,25 @@ try {
     $pseudo = $_POST['pseudo'];
     $mdp = $_POST['mdp'];
 
-    // Requête SQL pour vérifier les informations de connexion
-    $requete = $db->prepare("SELECT * FROM utilisateurs WHERE pseudo = :pseudo AND mdp = :mdp");
+    // Récupérer le mot de passe haché correspondant au pseudo depuis la base de données
+    $requete = $db->prepare("SELECT mdp FROM utilisateurs WHERE pseudo = :pseudo");
     $requete->bindParam(':pseudo', $pseudo);
-    $requete->bindParam(':mdp', $mdp);
     $requete->execute();
+    $resultat = $requete->fetch(PDO::FETCH_ASSOC);
 
-    // Vérification des résultats de la requête
-    $utilisateur = $requete->fetch(PDO::FETCH_ASSOC);
-    if ($utilisateur) {
-        echo "Connexion réussie. Bienvenue, " . $utilisateur['pseudo'] . "!";
-        // Redirection vers la page d'accueil ou autre page sécurisée
+    // Vérifier si le pseudo existe dans la base de données
+    if ($resultat) {
+        // Comparer le mot de passe saisi par l'utilisateur avec le mot de passe haché stocké
+        if (password_verify($mdp, $resultat['mdp'])) {
+            // Le mot de passe est correct
+            echo "Connexion réussie. Bienvenue, " . $pseudo . "!";
+        } else {
+            // Le mot de passe est incorrect
+            echo "Identifiant ou mot de passe incorrect.";
+        }
     } else {
+        // Le pseudo n'existe pas dans la base de données
         echo "Identifiant ou mot de passe incorrect.";
-        // Redirection vers la page de connexion avec un message d'erreur
     }
 } catch (PDOException $erreur) {
     // En cas d'erreur de connexion à la base de données
