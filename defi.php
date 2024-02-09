@@ -5,7 +5,7 @@ try {
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Requête SQL pour récupérer les défis
-    $requete = $db->query("SELECT * FROM defis ORDER BY ID_Defi");
+    $requete = $db->query("SELECT * FROM defiquotidien ORDER BY ID_Defi");
 
     // Affichage des défis
     echo "<h1>Liste des défis</h1>";
