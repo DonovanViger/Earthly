@@ -13,23 +13,23 @@ $Classements = $requeteClassement->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <html>
-<h2>Mes demandes en cours de traitement</h2>
+<h2>Classement</h2>
     <table>
       <thead>
         <tr>
-          <th scope="col">Date de création</th>
-          <th scope="col">Titre</th>
-          <th scope="col">Tag</th>
-          <th scope="col">Description</th>
-          <th scope="col">Avancement</th>
-          <th scope="col">Statut</th>
+          <th scope="col">N°</th>
+          <th scope="col">Speudo</th>
+          <th scope="col">Points</th>
         </tr>
       </thead>
       <tbody>
         <?php foreach ($Classements as $classement) { ?>
+            <?php
+                $i = $i + 1 ?>
           <tr>
+            <td><?php echo $i?></td>
             <td><?php echo $classement['pseudo']; ?></td>
-            <td><?php echo $demande['point_Utilisateur']; ?></td>
+            <td><?php echo $classement['point_Utilisateur']; ?></td>
 
           </tr>
         <?php } ?>
