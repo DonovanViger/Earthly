@@ -11,7 +11,7 @@ try {
     $dateCreationCompte = date('Y-m-d');
 
     // Hacher le mot de passe
-    $motDePasseHache = $mdp
+    $motDePasseHache = $mdp;
 
     // Préparer et exécuter la requête d'insertion
     $requete = $db->prepare("INSERT INTO utilisateurs (pseudo, mail, mdp, point_Utilisateur, dateConnexion, dateCreationCompte, expPlaneteUtilisateur) VALUES (:pseudo, :email, :mdp, 0, :dateCreationCompte, :dateCreationCompte, 0)");
