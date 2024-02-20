@@ -20,7 +20,7 @@ if (isset($_SESSION['pseudo'])) {
 
 <body>
 
-    <h1>Earthly</h1>
+    <h1><a href="#">Earthly</a></h1>
     <h2>Care for the world</h2>
     <h3>C'est quoi l'application Earthly ?</h3>
 

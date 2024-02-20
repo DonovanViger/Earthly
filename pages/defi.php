@@ -9,6 +9,21 @@ if(!isset($_SESSION['pseudo'])) {
     exit();
 }
 
+?>
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Défis</title>
+</head>
+<body>
+
+<h1><a href="../index.php">Earthly</a></h1>
+
+<?php
+
 try {
     // Connexion à la base de données
     $db = new PDO('mysql:host=localhost;dbname=sae401-2', 'root', '');
@@ -18,7 +33,7 @@ try {
     $requete = $db->query("SELECT * FROM defiquotidien ORDER BY ID_Defi");
 
     // Affichage des défis
-    echo "<h1>Liste des défis</h1>";
+    echo "<h2>Liste des défis</h2>";
     echo "<ul>";
     while ($defi = $requete->fetch(PDO::FETCH_ASSOC)) {
         echo "<li>";
@@ -44,3 +59,6 @@ if (isset($_SESSION['pseudo'])) {
 }
 
 ?>
+
+</body>
+</html>
