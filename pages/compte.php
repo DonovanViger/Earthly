@@ -13,6 +13,8 @@ try {
     $db = new PDO('mysql:host=localhost;dbname=sae401-2', 'root', '');
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+    setlocale(LC_TIME, "fr_FR");
+
     // Récupération des informations de l'utilisateur connecté à partir de la session
     $pseudo = $_SESSION['pseudo'];
 
@@ -38,11 +40,18 @@ try {
 </head>
 <body>
     <h1>Mon compte</h1>
-    <p>Bienvenue, <?php echo $utilisateur['pseudo']; ?>!</p>
+    <h2><?php echo $utilisateur['pseudo']; ?></h2>
     <p>Vos informations :</p>
     <ul>
         <li>Pseudo : <?php echo $utilisateur['pseudo']; ?></li>
         <li>Email : <?php echo $utilisateur['mail']; ?></li>
+        <li>Date de création du compte : <?php echo date("j F Y", strtotime($utilisateur['dateCreationCompte'])); ?></li>
+        <li>Points : <?php echo $utilisateur['point_Utilisateur']; ?></li>
+        <?php if (!empty($utilisateur['ID_parrain'])) : ?>
+            <li>Parrain : <?php echo $utilisateur['ID_parrain']; ?></li>
+        <?php endif; ?>
+        <li>Date de dernière connexion : <?php echo date("j F Y", strtotime($utilisateur['dateConnexion'])); ?></li>
+        <li>Niveau d'expérience sur la planète : <?php echo $utilisateur['expPlaneteUtilisateur']; ?></li>
     </ul>
     <a href="../index.php">Retour à l'accueil</a>
 </body>
