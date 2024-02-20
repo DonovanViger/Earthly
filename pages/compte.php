@@ -54,7 +54,7 @@ try {
         <li>Niveau d'expérience sur la planète : <?php echo $utilisateur['expPlaneteUtilisateur']; ?></li>
     </ul>
 
-    <a href="form/deconnexion.php">Se déconnecter</a>
+    <a href="../form/deconnexion.php">Se déconnecter</a>
 
     <?php
         if (isset($_SESSION['pseudo'])) {
