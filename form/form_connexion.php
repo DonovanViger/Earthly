@@ -21,7 +21,7 @@ try {
     if ($utilisateur) {
         // Crée une variable de session pour l'utilisateur connecté
         $_SESSION['pseudo'] = $pseudo;
-        header("Location: ../index.php"); // Redirige l'utilisateur vers la page d'accueil
+        header("Location: ../pages/compte.php"); // Redirige l'utilisateur vers la page d'accueil
         exit();
     } else {
         echo "Identifiant ou mot de passe incorrect.";
