@@ -8,10 +8,13 @@ session_start(); // Démarre la session (à placer au début de chaque fichier P
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Connexion</title>
 </head>
 
 <body>
+
+    <h1><a href="../index.php">Earthly</a></h1>
+
     <a href="../index.php">Retour à l'index</a>
 
     <h2>Connexion</h2>

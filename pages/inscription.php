@@ -7,6 +7,8 @@
 </head>
 <body>
 
+<h1><a href="../index.php">Earthly</a></h1>
+
 <a href="../index.php">Retour à l'index</a>
 
 <h2>Créer un compte</h2>

@@ -19,44 +19,46 @@ try {
     $utilisateur = $requete->fetch(PDO::FETCH_ASSOC);
 } catch (PDOException $erreur) {
     // En cas d'erreur de connexion à la base de données
-    die("Erreur de connexion à la base de données : ". $erreur->getMessage());
+    die("Erreur de connexion à la base de données : " . $erreur->getMessage());
 }
 // Vérifie si l'utilisateur est connecté
-if(!isset($_SESSION['pseudo'])) {
+if (!isset($_SESSION['pseudo'])) {
     // Redirige l'utilisateur vers la page de connexion s'il n'est pas connecté
     header("Location: connexion.php");
     exit();
 }
-if(isset($_SESSION['pseudo'])) {
+if (isset($_SESSION['pseudo'])) {
     $pseudo = $_SESSION['pseudo'];
-        
-        $db = new PDO('mysql:host=localhost;dbname=sae401-2', 'root', '');
-        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        setlocale(LC_TIME, "fr_FR");
+    $db = new PDO('mysql:host=localhost;dbname=sae401-2', 'root', '');
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $dateConnexion = date("Y-m-d");
+    setlocale(LC_TIME, "fr_FR");
 
-        $query = $db->prepare("UPDATE utilisateurs SET dateConnexion = :dateConnexion WHERE pseudo = :pseudo");
+    $dateConnexion = date("Y-m-d");
 
-        // Liez les paramètres et exécutez la requête
-        $query->bindParam(':dateConnexion', $dateConnexion, PDO::PARAM_STR);
-        $query->bindParam(':pseudo', $pseudo, PDO::PARAM_STR);
-        $query->execute();
+    $query = $db->prepare("UPDATE utilisateurs SET dateConnexion = :dateConnexion WHERE pseudo = :pseudo");
 
-    };
+    // Liez les paramètres et exécutez la requête
+    $query->bindParam(':dateConnexion', $dateConnexion, PDO::PARAM_STR);
+    $query->bindParam(':pseudo', $pseudo, PDO::PARAM_STR);
+    $query->execute();
+};
 ?>
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mon compte</title>
 </head>
+
 <body>
-    <h1>Mon compte</h1>
-    <h2><?php echo $utilisateur['pseudo']; ?></h2>
+    <h1><a href="../index.php">Earthly</a></h1>
+    <h2>Mon compte</h2>
+    <h3><?php echo $utilisateur['pseudo']; ?></h3>
     <p>Vos informations :</p>
     <ul>
         <li>Pseudo : <?php echo $utilisateur['pseudo']; ?></li>
@@ -73,16 +75,17 @@ if(isset($_SESSION['pseudo'])) {
     <a href="../form/deconnexion.php">Se déconnecter</a>
 
     <?php
-        if (isset($_SESSION['pseudo'])) {
-        ?>
-            <li><a href="planet.php">Ma Planète</a></li>
-            <li><a href="defi.php">Mes défis journaliers</a></li>
-            <li><a href="recyclage.php">Carte des poubelles</a></li>
-            <li><a href="compte.php">Mon compte</a></li>
-    </ul>
-<?php
-        }
+    if (isset($_SESSION['pseudo'])) {
+    ?>
+        <li><a href="planet.php">Ma Planète</a></li>
+        <li><a href="defi.php">Mes défis journaliers</a></li>
+        <li><a href="recyclage.php">Carte des poubelles</a></li>
+        <li><a href="compte.php">Mon compte</a></li>
+        </ul>
+    <?php
+    }
 
-?>
+    ?>
 </body>
+
 </html>

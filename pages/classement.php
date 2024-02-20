@@ -21,6 +21,7 @@ $i = 0;
     <title>Mon compte</title>
 </head>
 <body>
+<h1><a href="../index.php">Earthly</a></h1>
 <h2>Classement</h2>
 <table>
     <thead>
