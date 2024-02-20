@@ -40,7 +40,23 @@ if (isset($_SESSION['pseudo'])) {
             <li><a href="pages/compte.php">Mon compte</a></li>
     </ul>
 <?php
-        }
+        $pseudo = $_SESSION['pseudo'];
+        
+        $db = new PDO('mysql:host=localhost;dbname=sae401-2', 'root', '');
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        setlocale(LC_TIME, "fr_FR");
+
+        $dateConnexion = date("Y-m-d");
+
+        $query = $db->prepare("UPDATE utilisateurs SET dateConnexion = :dateConnexion WHERE pseudo = :pseudo");
+
+        // Liez les paramètres et exécutez la requête
+        $query->bindParam(':dateConnexion', $dateConnexion, PDO::PARAM_STR);
+        $query->bindParam(':pseudo', $pseudo, PDO::PARAM_STR);
+        $query->execute();
+
+    }
 
 ?>
 </body>
