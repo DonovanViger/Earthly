@@ -11,7 +11,7 @@
     <a href="index.html">Retour à l'index</a>
 
     <h2>Connexion</h2>
-    <form action="form/connexion.php" method="POST">
+    <form action="form/form_connexion.php" method="POST">
         <label for="pseudo">Pseudo:</label><br>
         <input type="text" id="pseudo" name="pseudo" required><br><br>
         <label for="mdp">Mot de passe:</label><br>
