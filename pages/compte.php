@@ -1,13 +1,5 @@
 <?php
 session_start(); // Démarre la session
-
-// Vérifie si l'utilisateur est connecté
-if(!isset($_SESSION['pseudo'])) {
-    // Redirige l'utilisateur vers la page de connexion s'il n'est pas connecté
-    header("Location: connexion.php");
-    exit();
-}
-
 try {
     // Connexion à la base de données
     $db = new PDO('mysql:host=localhost;dbname=sae401-2', 'root', '');
@@ -29,6 +21,30 @@ try {
     // En cas d'erreur de connexion à la base de données
     die("Erreur de connexion à la base de données : ". $erreur->getMessage());
 }
+// Vérifie si l'utilisateur est connecté
+if(!isset($_SESSION['pseudo'])) {
+    // Redirige l'utilisateur vers la page de connexion s'il n'est pas connecté
+    header("Location: connexion.php");
+    exit();
+}
+if(isset($_SESSION['pseudo'])) {
+    $pseudo = $_SESSION['pseudo'];
+        
+        $db = new PDO('mysql:host=localhost;dbname=sae401-2', 'root', '');
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        setlocale(LC_TIME, "fr_FR");
+
+        $dateConnexion = date("Y-m-d");
+
+        $query = $db->prepare("UPDATE utilisateurs SET dateConnexion = :dateConnexion WHERE pseudo = :pseudo");
+
+        // Liez les paramètres et exécutez la requête
+        $query->bindParam(':dateConnexion', $dateConnexion, PDO::PARAM_STR);
+        $query->bindParam(':pseudo', $pseudo, PDO::PARAM_STR);
+        $query->execute();
+
+    };
 ?>
 
 <!DOCTYPE html>
