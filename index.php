@@ -21,8 +21,15 @@ if(isset($_SESSION['pseudo'])) {
     <h1>Earthly</h1>
     <h2>Care for the world</h2>
     <ul>
-        <li><a href="connexion.php">Se connecter</a></li>
-        <li><a href="inscription.php">Créer un compte</a></li>
+    <?php
+        // Affiche les liens "Se connecter" et "Créer un compte" seulement si l'utilisateur n'est pas connecté
+        if(!isset($_SESSION['pseudo'])) {
+            ?>
+            <li><a href="connexion.php">Se connecter</a></li>
+            <li><a href="inscription.php">Créer un compte</a></li>
+            <?php
+        }
+        ?>
         <li><a href="planet.php">Ma Planète</a></li>
         <li><a href="defi.php">Mes défis journaliers</a></li>
         <li><a href="recyclage.php">Carte des poubelles</a></li>
