@@ -12,10 +12,10 @@ session_start(); // Démarre la session (à placer au début de chaque fichier P
 </head>
 
 <body>
-    <a href="index.php">Retour à l'index</a>
+    <a href="../index.php">Retour à l'index</a>
 
     <h2>Connexion</h2>
-    <form action="form/form_connexion.php" method="POST">
+    <form action="../form/form_connexion.php" method="POST">
         <label for="pseudo">Pseudo:</label><br>
         <input type="text" id="pseudo" name="pseudo" required><br><br>
         <label for="mdp">Mot de passe:</label><br>

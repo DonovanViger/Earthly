@@ -7,10 +7,10 @@
 </head>
 <body>
 
-<a href="index.php">Retour à l'index</a>
+<a href="../index.php">Retour à l'index</a>
 
 <h2>Créer un compte</h2>
-<form action="form/form_inscription.php" method="POST">
+<form action="../form/form_inscription.php" method="POST">
     <label for="pseudo">Pseudo:</label><br>
     <input type="text" id="pseudo" name="pseudo" required><br><br>
     <label for="email">Adresse e-mail:</label><br>
