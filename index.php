@@ -10,7 +10,7 @@ if (isset($_SESSION['pseudo'])) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
