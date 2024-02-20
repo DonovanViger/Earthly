@@ -21,9 +21,10 @@ try {
     echo "<h1>Liste des défis</h1>";
     echo "<ul>";
     while ($defi = $requete->fetch(PDO::FETCH_ASSOC)) {
-        echo "<li>";
+        echo "<div class='defi'>";
         echo "<strong>",$defi['nom'],"</strong>: ", $defi['desc'];
-        echo "</li>";
+        echo "<button>Valider le défi</button>";
+        echo "</div>";
     }
     echo "</ul>";
 } catch (PDOException $erreur) {
