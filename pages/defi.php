@@ -35,11 +35,10 @@ try {
 
 if (isset($_SESSION['pseudo'])) {
 ?>
-    <li><a href="pages/planet.php">Ma Planète</a></li>
-    <li><a href="pages/defi.php">Mes défis journaliers</a></li>
-    <li><a href="pages/recyclage.php">Carte des poubelles</a></li>
-    <li><a href="pages/compte.php">Mon compte</a></li>
-    <li><a href="form/deconnexion.php">Se déconnecter</a></li>
+    <li><a href="planet.php">Ma Planète</a></li>
+    <li><a href="defi.php">Mes défis journaliers</a></li>
+    <li><a href="recyclage.php">Carte des poubelles</a></li>
+    <li><a href="compte.php">Mon compte</a></li>
 </ul>
 <?php
 }
