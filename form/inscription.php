@@ -21,7 +21,8 @@ try {
     $requete->bindParam(':dateCreationCompte', $dateCreationCompte);
     $requete->execute();
 
-    echo "Compte créé avec succès.";
+    echo "<p>Compte créé avec succès.</p>";
+    echo "<a href='../index.php'>Retour à l'index</a>";
 } catch (PDOException $erreur) {
     // En cas d'erreur de connexion à la base de données
     die("Erreur de connexion à la base de données : ". $erreur->getMessage());
