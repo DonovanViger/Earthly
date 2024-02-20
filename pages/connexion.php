@@ -33,4 +33,5 @@ session_start(); // Démarre la session (à placer au début de chaque fichier P
     AH - 1234
     admin - nice
     test - test
+    Ninbanight - mdp1
 -->
