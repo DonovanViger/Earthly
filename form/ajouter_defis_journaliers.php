@@ -1,3 +1,5 @@
+<!-- Faut trouver un moyen pour que ça se fasse une fois par jour -->
+
 <?php
 try {
     // Connexion à la base de données
