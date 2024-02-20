@@ -56,7 +56,6 @@ try {
     <a href="../index.php">Retour à l'accueil</a>
 
     <?php
-        // Affiche les liens "Se connecter" et "Créer un compte" seulement si l'utilisateur n'est pas connecté
         if (isset($_SESSION['pseudo'])) {
         ?>
             <li><a href="pages/planet.php">Ma Planète</a></li>
