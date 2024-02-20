@@ -22,12 +22,6 @@ try {
 }
 
 // Affiche les liens "Se connecter" et "Créer un compte" seulement si l'utilisateur n'est pas connecté
-if (!isset($_SESSION['pseudo'])) {
-?>
-    <li><a href="pages/connexion.php">Se connecter</a></li>
-    <li><a href="pages/inscription.php">Créer un compte</a></li>
-<?php
-}
 
 if (isset($_SESSION['pseudo'])) {
 ?>
