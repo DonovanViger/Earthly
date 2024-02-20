@@ -53,7 +53,8 @@ try {
         <li>Date de dernière connexion : <?php echo date("j F Y", strtotime($utilisateur['dateConnexion'])); ?></li>
         <li>Niveau d'expérience sur la planète : <?php echo $utilisateur['expPlaneteUtilisateur']; ?></li>
     </ul>
-    <a href="../index.php">Retour à l'accueil</a>
+
+    <a href="form/deconnexion.php">Se déconnecter</a>
 
     <?php
         if (isset($_SESSION['pseudo'])) {
