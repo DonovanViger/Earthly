@@ -1,4 +1,6 @@
 <?php
+session_start(); // Démarre la session (à placer au début de chaque fichier PHP où vous utilisez des sessions)
+
 try {
     // Connexion à la base de données
     $db = new PDO('mysql:host=localhost;dbname=sae401-2', 'root', '');
@@ -17,8 +19,10 @@ try {
     // Vérification des résultats de la requête
     $utilisateur = $requete->fetch(PDO::FETCH_ASSOC);
     if ($utilisateur) {
-        echo "Connexion réussie. Bienvenue, " . $utilisateur['pseudo'] . "!";
-        // Redirection vers la page d'accueil ou autre page sécurisée
+        // Crée une variable de session pour l'utilisateur connecté
+        $_SESSION['pseudo'] = $pseudo;
+        header("Location: ../index.php"); // Redirige l'utilisateur vers la page d'accueil
+        exit();
     } else {
         echo "Identifiant ou mot de passe incorrect.";
         // Redirection vers la page de connexion avec un message d'erreur

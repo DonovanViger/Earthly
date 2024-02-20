@@ -1,3 +1,7 @@
+<?php
+session_start(); // Démarre la session (à placer au début de chaque fichier PHP où vous utilisez des sessions)
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -8,7 +12,7 @@
 </head>
 
 <body>
-    <a href="index.html">Retour à l'index</a>
+    <a href="index.php">Retour à l'index</a>
 
     <h2>Connexion</h2>
     <form action="form/form_connexion.php" method="POST">

@@ -6,8 +6,7 @@ if(isset($_SESSION['pseudo'])) {
     $pseudo = $_SESSION['pseudo'];
     echo "Bienvenue, $pseudo!";
     // Affiche le reste de votre contenu pour les utilisateurs connectés
-} else {
-    // Affiche le contenu par défaut pour les utilisateurs non connectés
+}
 ?>
 
 <!DOCTYPE html>

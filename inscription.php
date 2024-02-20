@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<a href="index.html">Retour à l'index</a>
+<a href="index.php">Retour à l'index</a>
 
 <h2>Créer un compte</h2>
 <form action="form/inscription.php" method="POST">
