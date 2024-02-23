@@ -1,0 +1,76 @@
+html,body{
+    margin: 0px;
+    padding: 0px;
+    background-color: #BFEABB;
+}
+
+::-webkit-scrollbar {
+    display: none;
+  }
+
+
+/*Page Classement*/
+
+#h1_classement{
+    text-align: center;
+}
+
+#h2_classement{
+    text-align: center;
+    font-size: 7vh;
+}
+
+#table_classement{
+    margin: 0 auto 1000vh auto;
+}
+
+#table_classement {
+    margin: 0 auto; /* Centrer le tableau horizontalement */
+    border-collapse: collapse; /* Fusionner les bordures de cellules */
+}
+
+#table_classement th,
+#table_classement td {
+    padding: 2vw; /* Ajouter de l'espacement autour du contenu de la cellule */
+}
+
+
+
+
+
+
+
+/*Général pour toute les pages*/
+
+
+footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+.footer-nav {
+    background-color: #1C3326; /* Couleur de fond */
+    padding: 2.5vh; /* Espacement interne */
+    margin: 0px;
+}
+
+/* Style des éléments de la liste */
+.footer-nav li {
+    display: inline; /* Affichage en ligne pour les éléments de la liste */
+    margin:  0 11vh 0 11vh; /* Marge à droite entre chaque élément */
+
+}
+
+/* Style des liens */
+.footer-nav li a {
+    color: #fff; /* Couleur du texte */
+    text-decoration: none; /* Suppression du soulignement */
+    padding: 1vh 3vh; /* Espacement interne */
+    transition: background-color 0.3s ease;
+}
+
+/* Style des liens au survol */
+.footer-nav li a:hover {
+    background-color: #2BBA7C; /* Couleur de fond au survol */
+    border-radius: 5px; /* Arrondi des coins */
+}
