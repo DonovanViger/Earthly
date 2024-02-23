@@ -10,28 +10,27 @@
 </head>
 
 <body>
-
     <?php
-session_start(); // Démarre la session
-try {
-    // Connexion à la base de données
-    $db = new PDO('mysql:host=localhost;dbname=sae401-2', 'root', '');
-    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    session_start(); // Démarre la session
+    try {
+        // Connexion à la base de données
+        $db = new PDO('mysql:host=localhost;dbname=sae401-2', 'root', '');
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    setlocale(LC_TIME, "fr_FR");
+        setlocale(LC_TIME, "fr_FR");
 
-    // Récupération des informations de l'utilisateur connecté à partir de la session
-    $pseudo = $_SESSION['pseudo'];
+        // Récupération des informations de l'utilisateur connecté à partir de la session
+        $pseudo = $_SESSION['pseudo'];
 
-    // Requête SQL pour récupérer les informations de l'utilisateur
-    $requete = $db->prepare("SELECT * FROM utilisateurs WHERE pseudo = :pseudo");
-    $requete->bindParam(':pseudo', $pseudo);
-    $requete->execute();
+        // Requête SQL pour récupérer les informations de l'utilisateur
+        $requete = $db->prepare("SELECT * FROM utilisateurs WHERE pseudo = :pseudo");
+        $requete->bindParam(':pseudo', $pseudo);
+        $requete->execute();
 
-    // Récupération des résultats de la requête
-    $utilisateur = $requete->fetch(PDO::FETCH_ASSOC);
+        // Récupération des résultats de la requête
+        $utilisateur = $requete->fetch(PDO::FETCH_ASSOC);
 
-    // Vérifier si l'utilisateur a une image de profil
+        // Vérifier si l'utilisateur a une image de profil
         $profileImage = $utilisateur['pdp'] ? $utilisateur['pdp'] : '../uploads/default.jpg';
     } catch (PDOException $erreur) {
         // En cas d'erreur de connexion à la base de données
@@ -45,42 +44,35 @@ try {
         exit();
     }
 
-if (isset($_SESSION['pseudo'])) {
-    $pseudo = $_SESSION['pseudo'];
+    if (isset($_SESSION['pseudo'])) {
+        $pseudo = $_SESSION['pseudo'];
 
-    $db = new PDO('mysql:host=localhost;dbname=sae401-2', 'root', '');
-    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $db = new PDO('mysql:host=localhost;dbname=sae401-2', 'root', '');
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    setlocale(LC_TIME, "fr_FR");
+        setlocale(LC_TIME, "fr_FR");
 
-    $dateConnexion = date("Y-m-d");
+        $dateConnexion = date("Y-m-d");
 
-    $query = $db->prepare("UPDATE utilisateurs SET dateConnexion = :dateConnexion WHERE pseudo = :pseudo");
+        $query = $db->prepare("UPDATE utilisateurs SET dateConnexion = :dateConnexion WHERE pseudo = :pseudo");
 
-    // Liez les paramètres et exécutez la requête
-    $query->bindParam(':dateConnexion', $dateConnexion, PDO::PARAM_STR);
-    $query->bindParam(':pseudo', $pseudo, PDO::PARAM_STR);
-    $query->execute();
-};
-?>
-
-
+        // Liez les paramètres et exécutez la requête
+        $query->bindParam(':dateConnexion', $dateConnexion, PDO::PARAM_STR);
+        $query->bindParam(':pseudo', $pseudo, PDO::PARAM_STR);
+        $query->execute();
+    }
+    ?>
     <h1 id="h1_compte"><a href="../index.php">Earthly</a></h1>
     <section id="profil">
     <h2 id="h2_compte"><?php echo $utilisateur['pseudo']; ?></h2>
+    <!-- Affichage de l'image de profil -->
         <div id="image_compte">
     <img src="<?php echo $profileImage; ?>" alt="Image de profil" class="profile-image">
     <form action="../form/changer_image.php" method="post" enctype="multipart/form-data">
-    <label for="nouvelle_image" class="custom-file-upload">
-    <input type="file" id="nouvelle_image" name="nouvelle_image" accept="image/*" required>
-    <!-- Texte facultatif pour personnaliser le bouton -->
-    Sélectionner un fichier
-    </label>
-        <br>
+        <input type="file" name="nouvelle_image" accept="image/*" required>
         <button type="submit">Changer l'image de profil</button>
     </form>
-</div>
-<div id="texte_compte">
+    <h3><?php echo $utilisateur['pseudo']; ?></h3>
     <p>Vos informations :</p>
     <ul>
         <li>Pseudo : <?php echo $utilisateur['pseudo']; ?></li>
@@ -94,19 +86,11 @@ if (isset($_SESSION['pseudo'])) {
         <li>Date de dernière connexion : <?php echo date("j F Y", strtotime($utilisateur['dateConnexion'])); ?></li>
         <li>Niveau d'expérience sur la planète : <?php echo $utilisateur['expPlaneteUtilisateur']; ?></li>
     </ul>
-        </div>
-        </section>
 
-    <div id="deconnexion_compte">
     <a href="../form/deconnexion.php">Se déconnecter</a>
-
-    <?php
-    if (isset($_SESSION['pseudo'])) {
-    ?>
+    <?php if (isset($_SESSION['pseudo'])) : ?>
     <br>
-
     <i onclick="partager()" class="fa-solid fa-share-nodes"></i>
-
     <ul class="footer-nav">
         <li><a href="planet.php">Ma Planète</a></li>
         <li><a href="defi.php">Mes défis journaliers</a></li>
@@ -114,20 +98,14 @@ if (isset($_SESSION['pseudo'])) {
         <li><a href="compte.php">Mon compte</a></li>
         <li><a href="classement.php">Classement</a></li>
     </ul>
-    <?php
-    }
-
-    ?>
-
+    <?php endif; ?>
     <br>
-
     <script>
     function partager() {
         var lien = "localhost/earthly/partage/<?php echo $pseudo ?>";
         console.log(lien);
         alert("Partagez le lien à vos amis : " + lien);
     }
-
     </script>
     </div>
 </body>
