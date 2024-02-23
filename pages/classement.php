@@ -19,10 +19,11 @@ $i = 0;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon compte</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>Classement</title>
 </head>
 <body>
-<h1><a href="../index.php">Earthly</a></h1>
+<h1 id="h1_classement"><a href="../index.php">Earthly</a></h1>
 <h2>Classement</h2>
 <table>
     <thead>
