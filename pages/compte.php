@@ -68,14 +68,10 @@
     <!-- Affichage de l'image de profil -->
         <div id="image_compte">
     <img src="<?php echo $profileImage; ?>" alt="Image de profil" class="profile-image">
-    <form action="../form/changer_image.php" method="post" enctype="multipart/form-data">
-    <label for="nouvelle_image" class="custom-file-upload">
-    <input type="file" id="nouvelle_image" name="nouvelle_image" accept="image/*" required>
-    <!-- Texte facultatif pour personnaliser le bouton -->
-    Sélectionner un fichier
-</label>
-        <button type="submit">Changer l'image de profil</button>
-    </form>
+    <form id="imageForm" action="../form/changer_image.php" method="post" enctype="multipart/form-data">
+    <input id="nouvelle_image" type="file" name="nouvelle_image" accept="image/*" required>
+    <button type="submit">Changer l'image de profil</button>
+</form>
 </div>
 <div id="texte_compte">
     <h3><?php echo $utilisateur['pseudo']; ?></h3>
@@ -113,6 +109,10 @@
         console.log(lien);
         alert("Partagez le lien à vos amis : " + lien);
     }
+
+    document.getElementById('nouvelle_image').onchange = function() {
+        document.getElementById('imageForm').submit();
+    };
     </script>
     </div>
 </body>
