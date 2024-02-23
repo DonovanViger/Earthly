@@ -78,16 +78,43 @@ if (isset($_SESSION['pseudo'])) {
     <?php
     if (isset($_SESSION['pseudo'])) {
     ?>
-        <li><a href="planet.php">Ma Planète</a></li>
-        <li><a href="defi.php">Mes défis journaliers</a></li>
-        <li><a href="recyclage.php">Carte des poubelles</a></li>
-        <li><a href="compte.php">Mon compte</a></li>
-        <li><a href="classement.php">Classement</a></li>
+        <ul class="footer-nav">
+            <li><a href="planet.php">Ma Planète</a></li>
+            <li><a href="defi.php">Mes défis journaliers</a></li>
+            <li><a href="recyclage.php">Carte des poubelles</a></li>
+            <li><a href="compte.php">Mon compte</a></li>
+            <li><a href="classement.php">Classement</a></li>
         </ul>
     <?php
     }
 
     ?>
+
+    <br>
+    <img onclick="partager()" src="../image-partage.jpg" alt="">
+
+    <script>
+        navigator.permissions.query({ name: "clipboard-write" }).then((result) => {
+            if (result.state == "granted" || result.state == "prompt") {
+        }
+    });
+
+        function partager(){
+            var lien = "localhost/earthly/partage/<?php echo $pseudo ?>";
+            alert("Partagez le lien à vos amis : ", lien, "<button onclick='copier()'>Copier</button>");
+        }
+
+        function updateClipboard(lien) {
+            navigator.clipboard.writeText(lien).then(
+            function () {
+                console.log("Tout va bien");
+            }, function () {
+                console.log("Tout va pas bien");
+            },
+        );
+    }
+
+    </script>
 </body>
 
 </html>
