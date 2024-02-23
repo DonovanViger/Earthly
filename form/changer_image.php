@@ -36,6 +36,7 @@ if (isset($_FILES['nouvelle_image'])) {
         $requete->bindParam(':pseudo', $pseudo);
         $requete->execute();
         echo "L'image de profil a été mise à jour avec succès.";
+        header("Location: ../pages/compte.php");
     } else {
         echo "Erreur lors du téléversement de l'image.";
     }
