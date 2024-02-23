@@ -77,6 +77,10 @@ if (isset($_SESSION['pseudo'])) {
     <h1><a href="../index.php">Earthly</a></h1>
     <h2>Mon compte</h2>
     <img src="<?php echo $profileImage; ?>" alt="Image de profil" class="profile-image">
+    <form action="../form/changer_image.php" method="post" enctype="multipart/form-data">
+        <input type="file" name="nouvelle_image" accept="image/*" required>
+        <button type="submit">Changer l'image de profil</button>
+    </form>
     <h3><?php echo $utilisateur['pseudo']; ?></h3>
     <p>Vos informations :</p>
     <ul>
