@@ -94,25 +94,12 @@ if (isset($_SESSION['pseudo'])) {
     <img onclick="partager()" src="../image-partage.jpg" alt="">
 
     <script>
-        navigator.permissions.query({ name: "clipboard-write" }).then((result) => {
-            if (result.state == "granted" || result.state == "prompt") {
-        }
-    });
-
+       
         function partager(){
             var lien = "localhost/earthly/partage/<?php echo $pseudo ?>";
-            alert("Partagez le lien à vos amis : ", lien, "<button onclick='copier()'>Copier</button>");
+            console.log(lien);
+            alert("Partagez le lien à vos amis : "+ lien);
         }
-
-        function updateClipboard(lien) {
-            navigator.clipboard.writeText(lien).then(
-            function () {
-                console.log("Tout va bien");
-            }, function () {
-                console.log("Tout va pas bien");
-            },
-        );
-    }
 
     </script>
 </body>
