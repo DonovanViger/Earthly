@@ -53,6 +53,7 @@ if (isset($_SESSION['pseudo'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="style.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <title>Mon compte</title>
 </head>
 
@@ -89,6 +90,20 @@ if (isset($_SESSION['pseudo'])) {
     }
 
     ?>
+
+    <br>
+
+    <i onclick="partager()" class="fa-solid fa-share-nodes"></i>
+
+    <script>
+       
+        function partager(){
+            var lien = "localhost/earthly/partage/<?php echo $pseudo ?>";
+            console.log(lien);
+            alert("Partagez le lien à vos amis : "+ lien);
+        }
+
+    </script>
 </body>
 
 </html>
