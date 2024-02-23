@@ -8,11 +8,13 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <title>Mon compte</title>
     <style>
-        .profile-image {
-            width: 100px; /* Taille fixe de l'image */
-            height: 100px;
-            border-radius: 50%; /* Pour rendre l'image ronde */
-        }
+    .profile-image {
+        width: 100px;
+        /* Taille fixe de l'image */
+        height: 100px;
+        border-radius: 50%;
+        /* Pour rendre l'image ronde */
+    }
     </style>
 </head>
 
@@ -74,16 +76,20 @@
     <!-- Affichage de l'image de profil -->
     <img src="<?php echo $profileImage; ?>" alt="Image de profil" class="profile-image">
     <!-- Formulaire pour changer l'image de profil -->
-    <form action="../form/changer_image.php" method="post" enctype="multipart/form-data">
-        <input type="file" name="nouvelle_image" accept="image/*" required>
-        <button type="submit">Changer l'image de profil</button>
+    <form id="imageForm" action="../form/changer_image.php" method="post" enctype="multipart/form-data">
+        <input id="nouvelle_image" type="file" name="nouvelle_image" accept="image/*" required>
+        <!--
+            <button type="submit">Changer l'image de profil</button>
+    -->
     </form>
+
     <h3><?php echo $utilisateur['pseudo']; ?></h3>
     <p>Vos informations :</p>
     <ul>
         <li>Pseudo : <?php echo $utilisateur['pseudo']; ?></li>
         <li>Email : <?php echo $utilisateur['mail']; ?></li>
-        <li>Date de création du compte : <?php echo date("j F Y", strtotime($utilisateur['dateCreationCompte'])); ?></li>
+        <li>Date de création du compte : <?php echo date("j F Y", strtotime($utilisateur['dateCreationCompte'])); ?>
+        </li>
         <li>Points : <?php echo $utilisateur['point_Utilisateur']; ?></li>
         <?php if (!empty($utilisateur['ID_parrain'])) : ?>
         <li>Parrain : <?php echo $utilisateur['ID_parrain']; ?></li>
@@ -105,11 +111,15 @@
     <?php endif; ?>
     <br>
     <script>
-        function partager() {
-            var lien = "localhost/earthly/partage/<?php echo $pseudo ?>";
-            console.log(lien);
-            alert("Partagez le lien à vos amis : " + lien);
-        }
+    function partager() {
+        var lien = "localhost/earthly/partage/<?php echo $pseudo ?>";
+        console.log(lien);
+        alert("Partagez le lien à vos amis : " + lien);
+    }
+
+    document.getElementById('nouvelle_image').onchange = function() {
+        document.getElementById('imageForm').submit();
+    };
     </script>
 </body>
 
