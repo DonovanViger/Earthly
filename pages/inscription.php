@@ -22,8 +22,6 @@
             <input type="email" id="email" name="email" required><br><br>
             <label for="mdp">Mot de passe:</label><br>
             <input type="password" id="mdp" name="mdp" required><br><br>
-            <label for="photo">Photo de profil:</label><br>
-            <input type="file" id="photo" name="photo"><br><br>
             <input type="submit" value="Créer un compte">
         </form>
     </fieldset>
