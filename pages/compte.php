@@ -79,9 +79,10 @@ if (isset($_SESSION['pseudo'])) {
     <?php
     if (isset($_SESSION['pseudo'])) {
     ?>
+    <br>
     
     <i onclick="partager()" class="fa-solid fa-share-nodes"></i>
-    
+
         <ul class="footer-nav">
             <li><a href="planet.php">Ma Planète</a></li>
             <li><a href="defi.php">Mes défis journaliers</a></li>
