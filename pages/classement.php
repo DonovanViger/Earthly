@@ -1,4 +1,5 @@
 <?php
+session_start(); // Démarre la session
 
 try {
     $db = new PDO('mysql:host=localhost;dbname=sae401-2', 'root', '');
@@ -18,16 +19,17 @@ $i = 0;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon compte</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>Classement</title>
 </head>
 <body>
-<h1><a href="../index.php">Earthly</a></h1>
+<h1 id="h1_classement"><a href="../index.php">Earthly</a></h1>
 <h2>Classement</h2>
 <table>
     <thead>
         <tr>
             <th scope="col">N°</th>
-            <th scope="col">Speudo</th>
+            <th scope="col">Pseudo</th>
             <th scope="col">Points</th>
         </tr>
     </thead>
@@ -57,11 +59,15 @@ $i = 0;
 
         if (isset($_SESSION['pseudo'])) {
         ?>
+        <footer>
+        <ul class="footer-nav">
             <li><a href="planet.php">Ma Planète</a></li>
             <li><a href="defi.php">Mes défis journaliers</a></li>
             <li><a href="recyclage.php">Carte des poubelles</a></li>
             <li><a href="compte.php">Mon compte</a></li>
-    </ul>
+            <li><a href="classement.php">Classement</a></li>
+        </ul>
+        </footer>
 <?php
         }
 

@@ -14,11 +14,12 @@ try {
     $motDePasseHache = hash('sha256', $mdp);
 
     // Préparer et exécuter la requête d'insertion
-    $requete = $db->prepare("INSERT INTO utilisateurs (pseudo, mail, mdp, point_Utilisateur, dateConnexion, dateCreationCompte, expPlaneteUtilisateur) VALUES (:pseudo, :email, :mdp, 0, :dateCreationCompte, :dateCreationCompte, 0)");
+    $requete = $db->prepare("INSERT INTO utilisateurs (pseudo, mail, mdp, point_Utilisateur, dateConnexion, dateCreationCompte, expPlaneteUtilisateur, pdp) VALUES (:pseudo, :email, :mdp, 0, :dateCreationCompte, :dateCreationCompte, 0, :photo)");
     $requete->bindParam(':pseudo', $pseudo);
     $requete->bindParam(':email', $email);
     $requete->bindParam(':mdp', $motDePasseHache);
     $requete->bindParam(':dateCreationCompte', $dateCreationCompte);
+    $requete->bindParam(':photo', $photoPath);
     $requete->execute();
 
     echo "<p>Compte créé avec succès.</p>";

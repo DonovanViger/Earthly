@@ -1,3 +1,19 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>Earthly | Planète</title>
+</head>
+<body>
+    
+
+
+
+
+
+
 <?php
 
 session_start(); // Démarre la session
@@ -21,12 +37,17 @@ try {
 
         if (isset($_SESSION['pseudo'])) {
         ?>
+        <ul class="footer-nav">
             <li><a href="planet.php">Ma Planète</a></li>
             <li><a href="defi.php">Mes défis journaliers</a></li>
             <li><a href="recyclage.php">Carte des poubelles</a></li>
             <li><a href="compte.php">Mon compte</a></li>
-    </ul>
+            <li><a href="classement.php">Classement</a></li>
+        </ul>
 <?php
         }
 
 ?>
+
+</body>
+</html>
