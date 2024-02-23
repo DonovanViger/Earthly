@@ -69,9 +69,15 @@
         <div id="image_compte">
     <img src="<?php echo $profileImage; ?>" alt="Image de profil" class="profile-image">
     <form action="../form/changer_image.php" method="post" enctype="multipart/form-data">
-        <input type="file" name="nouvelle_image" accept="image/*" required>
+    <label for="nouvelle_image" class="custom-file-upload">
+    <input type="file" id="nouvelle_image" name="nouvelle_image" accept="image/*" required>
+    <!-- Texte facultatif pour personnaliser le bouton -->
+    Sélectionner un fichier
+</label>
         <button type="submit">Changer l'image de profil</button>
     </form>
+</div>
+<div id="texte_compte">
     <h3><?php echo $utilisateur['pseudo']; ?></h3>
     <p>Vos informations :</p>
     <ul>
@@ -86,7 +92,8 @@
         <li>Date de dernière connexion : <?php echo date("j F Y", strtotime($utilisateur['dateConnexion'])); ?></li>
         <li>Niveau d'expérience sur la planète : <?php echo $utilisateur['expPlaneteUtilisateur']; ?></li>
     </ul>
-
+        </div>
+        <div id="deconnexion_compte">
     <a href="../form/deconnexion.php">Se déconnecter</a>
     <?php if (isset($_SESSION['pseudo'])) : ?>
     <br>
