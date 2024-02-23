@@ -13,16 +13,6 @@ try {
     // Hacher le mot de passe
     $motDePasseHache = hash('sha256', $mdp);
 
-    // Vérification et traitement de l'image si elle est téléchargée
-    if(isset($_FILES['photo']) && $_FILES['photo']['error'] === UPLOAD_ERR_OK) {
-        $photoTmpName = $_FILES['photo']['tmp_name'];
-        $photoName = $_FILES['photo']['name'];
-        $photoPath = "../uploads/" . $photoName;
-        move_uploaded_file($photoTmpName, $photoPath);
-    } else {
-        $photoPath = null; // Aucune image téléchargée
-}
-
     // Préparer et exécuter la requête d'insertion
     $requete = $db->prepare("INSERT INTO utilisateurs (pseudo, mail, mdp, point_Utilisateur, dateConnexion, dateCreationCompte, expPlaneteUtilisateur, pdp) VALUES (:pseudo, :email, :mdp, 0, :dateCreationCompte, :dateCreationCompte, 0, :photo)");
     $requete->bindParam(':pseudo', $pseudo);
