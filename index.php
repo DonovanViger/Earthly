@@ -56,6 +56,7 @@ Elle sensibilise en mettant en avant des poubelles intelligentes destinées au r
             <li><a href="pages/defi.php">Mes défis journaliers</a></li>
             <li><a href="pages/recyclage.php">Carte des poubelles</a></li>
             <li><a href="pages/compte.php">Mon compte</a></li>
+            <li><a href="pages/classement.php">Classement</a></li>
     </ul>
 <?php
         $pseudo = $_SESSION['pseudo'];

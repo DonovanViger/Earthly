@@ -25,6 +25,7 @@ try {
             <li><a href="defi.php">Mes défis journaliers</a></li>
             <li><a href="recyclage.php">Carte des poubelles</a></li>
             <li><a href="compte.php">Mon compte</a></li>
+            <li><a href="classement.php">Classement</a></li>
     </ul>
 <?php
         }
