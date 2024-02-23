@@ -1,14 +1,3 @@
-<?php
-session_start(); // Démarre la session (à placer au début de chaque fichier PHP où vous utilisez des sessions)
-
-// Vérifie si l'utilisateur est connecté
-if (isset($_SESSION['pseudo'])) {
-    $pseudo = $_SESSION['pseudo'];
-    echo "Bienvenue, $pseudo!";
-    // Affiche le reste de votre contenu pour les utilisateurs connectés
-}
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -20,6 +9,19 @@ if (isset($_SESSION['pseudo'])) {
 </head>
 
 <body>
+
+<?php
+session_start(); // Démarre la session (à placer au début de chaque fichier PHP où vous utilisez des sessions)
+
+// Vérifie si l'utilisateur est connecté
+if (isset($_SESSION['pseudo'])) {
+    $pseudo = $_SESSION['pseudo'];
+    echo "Bienvenue, $pseudo!";
+    // Affiche le reste de votre contenu pour les utilisateurs connectés
+}
+?>
+
+
 
     <h1><a href="#">Earthly</a></h1>
     <h2>Care for the world</h2>
@@ -54,11 +56,11 @@ Elle sensibilise en mettant en avant des poubelles intelligentes destinées au r
         if (isset($_SESSION['pseudo'])) {
         ?>
         <ul class="footer-nav">
-            <li><a href="planet.php">Ma Planète</a></li>
-            <li><a href="defi.php">Mes défis journaliers</a></li>
-            <li><a href="recyclage.php">Carte des poubelles</a></li>
-            <li><a href="compte.php">Mon compte</a></li>
-            <li><a href="classement.php">Classement</a></li>
+            <li><a href="pages/planet.php">Ma Planète</a></li>
+            <li><a href="pages/defi.php">Mes défis journaliers</a></li>
+            <li><a href="pages/recyclage.php">Carte des poubelles</a></li>
+            <li><a href="pages/compte.php">Mon compte</a></li>
+            <li><a href="pages/classement.php">Classement</a></li>
         </ul>
 <?php
         $pseudo = $_SESSION['pseudo'];
