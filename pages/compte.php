@@ -1,3 +1,16 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <title>Mon compte</title>
+</head>
+
+<body>
+
 <?php
 session_start(); // Démarre la session
 try {
@@ -46,18 +59,7 @@ if (isset($_SESSION['pseudo'])) {
 };
 ?>
 
-<!DOCTYPE html>
-<html lang="fr">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="style.css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
-    <title>Mon compte</title>
-</head>
-
-<body>
     <h1><a href="../index.php">Earthly</a></h1>
     <h2>Mon compte</h2>
     <h3><?php echo $utilisateur['pseudo']; ?></h3>
