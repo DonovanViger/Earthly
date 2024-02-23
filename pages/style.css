@@ -35,9 +35,69 @@ html,body{
 }
 
 
+/*Page Compte*/
+
+.profile-image {
+    width: 20vh;
+    /* Taille fixe de l'image */
+    height: 20vh;
+    border-radius: 50%;
+    /* Pour rendre l'image ronde */
+}
+
+#h1_compte{
+    text-align: center;
+}
+
+#h2_compte{
+    text-align: center;
+    font-size: 2.5vw;
+}
+
+#profil{
+    background-color: #1C3326;
+    padding: 1vh;
+    color: white;
+    height: 55vh;
+}
+
+#image_compte{
+    text-align: center;
+    width: 30vw;
+    height: 30vh;
+    float: left;
+    padding: 2vh;
+    margin-right: 10vw;
+    margin-left: 15vw;
+}
+
+#texte_compte{
+    width: 30vw;
+    float: left;
+    padding: 2vh;
+    font-size: 1.25vw;
+}
+
+.custom-file-upload input[type="file"] {
+    display: none; /* Cacher le champ de sélection de fichier */
+}
+
+.custom-file-upload {
+    display: inline-block;
+    background-color: black; /* Ajoute une couleur de fond */
+    cursor: pointer; /* Change le curseur en une main pour indiquer qu'il est cliquable */
+    /* Optionnel : ajouter une ombre pour un effet de profondeur */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    color: white;
+    padding: 1vh;
+    border-radius: 10px;
+    margin: 3vh;
+}
 
 
-
+#deconnexion_compte{
+    clear: both;
+}
 
 
 /*Général pour toute les pages*/
