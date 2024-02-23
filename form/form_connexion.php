@@ -41,6 +41,28 @@ try {
         echo "Identifiant ou mot de passe incorrect.";
         // Redirection vers la page de connexion avec un message d'erreur
     }
+    $date_actuelle = date('Y-m-d');
+
+        // Vérification si des défis sont sélectionnés pour la journée actuelle
+        $stmt_select_defis = $db->prepare("SELECT defis_journaliers.date, defiquotidien.nom, defiquotidien.desc FROM defis_journaliers INNER JOIN defiquotidien ON defis_journaliers.ID_Defi = defiquotidien.ID_Defi WHERE defis_journaliers.date = :date");
+        $stmt_select_defis->bindParam(':date', $date_actuelle);
+        $stmt_select_defis->execute();
+        $defis_journaliers = $stmt_select_defis->fetchAll(PDO::FETCH_ASSOC);
+        // Si la date du jour correspond à la colonne date de la table defis_journaliers
+        if (!empty($defis_journaliers)) {
+        } else {
+            echo "<a href='defi.php'>Rafraîchir la page pour voir les defis</a>";
+            $requete_defis = $db->query("SELECT * FROM defiquotidien ORDER BY RAND() LIMIT 3");
+            $defis_selectionnes = $requete_defis->fetchAll(PDO::FETCH_ASSOC);
+
+            // Insérer les défis sélectionnés dans la table des défis journaliers
+            $stmt_insert_defis = $db->prepare("INSERT INTO defis_journaliers (ID_Defi, date) VALUES (:id_defi, :date)");
+            foreach ($defis_selectionnes as $defi) {
+                $stmt_insert_defis->bindParam(':id_defi', $defi['ID_Defi']);
+                $stmt_insert_defis->bindParam(':date', $date_actuelle);
+                $stmt_insert_defis->execute();
+            }
+        }
 } catch (PDOException $erreur) {
     // En cas d'erreur de connexion à la base de données
     die("Erreur de connexion à la base de données : ". $erreur->getMessage());
