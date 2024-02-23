@@ -24,8 +24,8 @@ $i = 0;
 </head>
 <body>
 <h1 id="h1_classement"><a href="../index.php">Earthly</a></h1>
-<h2>Classement</h2>
-<table>
+<h2 id="h2_classement">Classement</h2>
+<table id="table_classement">
     <thead>
         <tr>
             <th scope="col">N°</th>
