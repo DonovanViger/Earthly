@@ -3,6 +3,10 @@ html,body{
     padding: 0px;
 }
 
+::-webkit-scrollbar {
+    display: none;
+  }
+
 
 /*Page Classement*/
 
@@ -10,8 +14,9 @@ html,body{
     text-align: center;
 }
 
-
-
+table{
+    margin-bottom: 1000vh;
+}
 
 
 
@@ -20,15 +25,24 @@ html,body{
 
 
 /*Général pour toute les pages*/
+
+
+footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
 .footer-nav {
     background-color: #333; /* Couleur de fond */
     padding: 2.5vh; /* Espacement interne */
+    margin: 0px;
 }
 
 /* Style des éléments de la liste */
 .footer-nav li {
     display: inline; /* Affichage en ligne pour les éléments de la liste */
     margin:  0 11vh 0 11vh; /* Marge à droite entre chaque élément */
+
 }
 
 /* Style des liens */
