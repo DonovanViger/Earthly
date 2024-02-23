@@ -1,4 +1,5 @@
 <?php
+session_start(); // Démarre la session
 
 try {
     $db = new PDO('mysql:host=localhost;dbname=sae401-2', 'root', '');
@@ -61,6 +62,7 @@ $i = 0;
             <li><a href="defi.php">Mes défis journaliers</a></li>
             <li><a href="recyclage.php">Carte des poubelles</a></li>
             <li><a href="compte.php">Mon compte</a></li>
+            <li><a href="classement.php">Classement</a></li>
     </ul>
 <?php
         }
