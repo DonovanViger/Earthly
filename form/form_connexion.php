@@ -21,6 +21,20 @@ try {
     if ($utilisateur) {
         // Crée une variable de session pour l'utilisateur connecté
         $_SESSION['pseudo'] = $pseudo;
+        
+        $db = new PDO('mysql:host=localhost;dbname=sae401-2', 'root', '');
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        setlocale(LC_TIME, "fr_FR");
+
+        $dateConnexion = date("Y-m-d");
+
+        $query = $db->prepare("UPDATE utilisateurs SET dateConnexion = :dateConnexion WHERE pseudo = :pseudo");
+
+        // Liez les paramètres et exécutez la requête
+        $query->bindParam(':dateConnexion', $dateConnexion, PDO::PARAM_STR);
+        $query->bindParam(':pseudo', $pseudo, PDO::PARAM_STR);
+        $query->execute();
         header("Location: ../pages/compte.php"); // Redirige l'utilisateur vers la page d'accueil
         exit();
     } else {
