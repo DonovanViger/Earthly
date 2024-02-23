@@ -39,8 +39,14 @@ if (isset($_FILES['nouvelle_image'])) {
         header("Location: ../pages/compte.php");
     } else {
         echo "Erreur lors du téléversement de l'image.";
+        echo "<button onclick='retour()'>Retour</button>";
     }
 } else {
     echo "Aucune image n'a été téléversée.";
+    echo "<button onclick='retour()'>Retour</button>";
 }
+
+echo '<script> function retour(){
+    ' +  header("location:../pages/compte.php") + '
+}</script>'
 ?>
