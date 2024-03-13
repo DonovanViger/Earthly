@@ -1,7 +1,14 @@
+@font-face {
+    font-family: "Como";
+    src: url("Como-Medium.ttf");
+  }
+
+
 html,body{
     margin: 0px;
     padding: 0px;
     background-color: #BFEABB;
+    font-family: Como, Arial;
 }
 
 ::-webkit-scrollbar {
@@ -79,14 +86,13 @@ html,body{
 }
 
 .custom-file-upload input[type="file"] {
-    display: none; /* Cacher le champ de sélection de fichier */
+    display: none; 
 }
 
 .custom-file-upload {
     display: inline-block;
-    background-color: black; /* Ajoute une couleur de fond */
-    cursor: pointer; /* Change le curseur en une main pour indiquer qu'il est cliquable */
-    /* Optionnel : ajouter une ombre pour un effet de profondeur */
+    background-color: black;
+    cursor: pointer;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     color: white;
     padding: 1vh;
