@@ -30,9 +30,7 @@ try {
 
 
 <h1>Recyclez avec nos poubelles intelligentes</h1>
-
 <h2>Scannez un QR code.</h2>
-<button onclick="camera()">Ouvrir la caméra</button>
 
 <?php
         // Affiche les liens "Se connecter" et "Créer un compte" seulement si l'utilisateur n'est pas connecté
@@ -49,34 +47,5 @@ try {
         }
 
 ?>
-
-<script>
-
-const constraints = video: {
-    width: {
-      min: 1280,
-      max: 1920,
-    },
-    height: {
-      min: 720,
-      max: 1080
-    }
-  }
-
-function camera(constraints) {
-    let stream = null;
-    
-    if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) {
-        try {
-    stream = await navigator.mediaDevices.getUserMedia(constraints);
-  } catch (err) {
-  }
-    }
-}
-
-    
-
-
-</script>
 </body>
 </html>

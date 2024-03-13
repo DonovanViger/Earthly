@@ -98,7 +98,6 @@
     }
     ?>
     <h1 id="h1_compte"><a href="../index.php">Earthly</a></h1>
-    <!-- Bouton pour afficher la pop-up -->
 
     <!-- Contenu de la pop-up s-->
     <div id="overlay"></div> <!-- Overlay pour l'arrière-plan semi-transparent -->
