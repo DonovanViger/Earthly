@@ -5,5 +5,5 @@ ErrorDocument 500 http://localhost/earthly/errors/500.html
 ErrorDocument 504 http://localhost/earthly/errors/504.html
 
 RewriteEngine On
-RewriteRule ^partage/([0-9A-Za-z\-_]+) pages/partage.php?pseudo=$1 [NC,L]
-RewriteRule ^compte pages/compte.php [NC,L]
+RewriteRule ^pages/partage/([0-9A-Za-z\-_]+) pages/partage.php?pseudo=$1 [NC,L]
+RewriteRule ^pages/compte pages/compte.php [NC,L]
