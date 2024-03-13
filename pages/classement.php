@@ -35,14 +35,6 @@ $i = 0;
 <h1 id="h1_classement"><a href="../index.php">Earthly</a></h1>
 <h2 id="h2_classement">Classement</h2>
 <table id="table_classement">
-    <thead>
-        <tr>
-            <th scope="col">N°</th>
-            <th scope="col">Image de profil</th>
-            <th scope="col">Pseudo</th>
-            <th scope="col">Points</th>
-        </tr>
-    </thead>
     <tbody>
         <?php foreach ($Classements as $classement) { ?>
             <?php
@@ -59,7 +51,7 @@ $i = 0;
                     <?php echo $classement['pseudo']; ?>
                 </td>
                 <td>
-                    <?php echo $classement['point_Utilisateur']; ?>
+                    <?php echo $classement['point_Utilisateur']; ?> XP
                 </td>
 
             </tr>
