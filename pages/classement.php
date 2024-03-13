@@ -38,6 +38,7 @@ $i = 0;
     <thead>
         <tr>
             <th scope="col">N°</th>
+            <th scope="col">Image de profil</th>
             <th scope="col">Pseudo</th>
             <th scope="col">Points</th>
         </tr>
