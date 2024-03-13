@@ -65,10 +65,19 @@ html,body{
     background-color: #1C3326;
     padding: 1vh;
     color: white;
-    height: 55vh;
+    height: 60vh;
+}
+
+#compte_bar{
+    width: 80vw;
+    height: 0.25vh;
+    background-color: white;
+    border-radius: 10px;
+    margin: auto;
 }
 
 #image_compte{
+    margin-top: 5vh;
     text-align: center;
     width: 30vw;
     height: 30vh;
@@ -81,7 +90,7 @@ html,body{
 #texte_compte{
     width: 30vw;
     float: left;
-    padding: 2vh;
+    padding-top: 2vh;
     font-size: 1.25vw;
 }
 
@@ -103,8 +112,24 @@ html,body{
 
 #deconnexion_compte{
     clear: both;
+    margin-top: 60vh;
+    text-align: center;
 }
 
+
+#compte_button{
+    border: none;
+    border-radius:5px ;
+    padding: 1vh;
+    width: 15vw;
+    background-color: #1C3326;
+}
+
+
+#compte_button a{
+    text-decoration:none ;
+    color: white;
+}
 
 /*Général pour toutes les pages*/
 

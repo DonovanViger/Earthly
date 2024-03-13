@@ -65,6 +65,7 @@
     <h1 id="h1_compte"><a href="../index.php">Earthly</a></h1>
     <section id="profil">
     <h2 id="h2_compte"><?php echo $utilisateur['pseudo']; ?></h2>
+    <div id="compte_bar"></div>
     <!-- Affichage de l'image de profil -->
         <div id="image_compte">
     <img src="<?php echo $profileImage; ?>" alt="Image de profil" class="profile-image">
@@ -92,7 +93,9 @@
     </ul>
         </div>
         <div id="deconnexion_compte">
+            <button id="compte_button">
     <a href="../form/deconnexion.php">Se déconnecter</a>
+        </button>
     <?php if (isset($_SESSION['pseudo'])) : ?>
     <br>
     <i onclick="partager()" class="fa-solid fa-share-nodes"></i>
