@@ -166,7 +166,7 @@
             <br>
             <script>
             function partager() {
-                var lien = "localhost/earthly/partage/<?php echo $pseudo ?>";
+                var lien = "localhost/earthly/pages/partage.php?pseudo=<?php echo $pseudo ?>";
                 console.log(lien);
                 alert("Partagez le lien à vos amis : " + lien);
             }
