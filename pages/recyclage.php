@@ -32,8 +32,24 @@ try {
 <h1>Recyclez avec nos poubelles intelligentes</h1>
 <h2>Scannez un QR code.</h2>
 
+<?php 
+  if (isset($_GET['poubelle'])) {
+    $poubelle = $_GET['poubelle'];
+    echo "<div>";
+    if ($poubelle == 1) {
+      echo "<p>Vous recyclez vos déchets cartons, plastiques, papiers et métalliques.</p>";
+    } else if ($poubelle == 2) {
+      echo "<p>Vous recyclez vos déchets en verre.</p>";
+    } else if ($poubelle == 3) {
+      echo "<p>Vous jetez vos déchets ordinaires qui ne se recyclent pas.</p>";
+    } else {
+      echo "<p>Cette poubelle n'existe pas dans notre base de donnée</p>";
+    }
+    echo "</div>";
+  }
+?>
+
 <?php
-        // Affiche les liens "Se connecter" et "Créer un compte" seulement si l'utilisateur n'est pas connecté
         if (isset($_SESSION['pseudo'])) {
         ?>
         <ul class="footer-nav">
