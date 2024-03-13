@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="style.css" />
     <title>Classement</title>
+    <style>
+        .avatar {
+            width: 75px; /* Ajustez la taille de l'avatar selon vos besoins */
+            height: 75px; /* Ajustez la taille de l'avatar selon vos besoins */
+            border-radius: 50%; /* Pour créer une image en forme de cercle */
+        }
+    </style>
 </head>
 <body>
     
@@ -18,7 +25,7 @@ try {
     die("Erreur de connexion à la base de données : " . $erreur->getMessage());
 }
 
-$requeteClassement = $db->prepare("SELECT `pseudo`,`point_Utilisateur` FROM `utilisateurs` ORDER BY `point_Utilisateur` DESC LIMIT 10;");
+$requeteClassement = $db->prepare("SELECT `pseudo`,`point_Utilisateur`, IFNULL(`pdp`, '../uploads/default.jpg') AS `pdp` FROM `utilisateurs` ORDER BY `point_Utilisateur` DESC LIMIT 10;");
 $requeteClassement->execute();
 $Classements = $requeteClassement->fetchAll(PDO::FETCH_ASSOC);
 $i = 0;
@@ -43,6 +50,9 @@ $i = 0;
             <tr>
                 <td>
                     <?php echo $i ?>
+                </td>
+                <td>
+                    <img src="<?php echo $classement['pdp']; ?>" alt="Avatar de <?php echo $classement['pseudo']; ?>" class="avatar">
                 </td>
                 <td>
                     <?php echo $classement['pseudo']; ?>
