@@ -3,15 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="style.css" />
     <title>Classement</title>
-    <style>
-        .avatar {
-            width: 75px; /* Ajustez la taille de l'avatar selon vos besoins */
-            height: 75px; /* Ajustez la taille de l'avatar selon vos besoins */
-            border-radius: 50%; /* Pour créer une image en forme de cercle */
-        }
-    </style>
 </head>
 <body>
     
@@ -34,29 +28,26 @@ $i = 0;
 
 <h1 id="h1_classement"><a href="../index.php">Earthly</a></h1>
 <h2 id="h2_classement">Classement</h2>
-<table id="table_classement">
-    <tbody>
-        <?php foreach ($Classements as $classement) { ?>
-            <?php
-            $i = $i + 1 
-            ?>
-            <tr>
-                <td>
-                    <?php echo $i ?>
-                </td>
-                <td>
-                    <img src="<?php echo $classement['pdp']; ?>" alt="Avatar de <?php echo $classement['pseudo']; ?>" class="avatar">
-                </td>
-                <td>
-                    <?php echo $classement['pseudo']; ?>
-                </td>
-                <td>
-                    <?php echo $classement['point_Utilisateur']; ?> XP
-                </td>
 
-            </tr>
-        <?php } ?>
-    </tbody>
+<table id="table_classement" class="table table-hover table-sm w-50 mx-auto">
+  <thead>
+    <tr>
+      <th scope="col" class="text-center align-middle">#</th>
+      <th scope="col" class="text-center align-middle">Avatar</th>
+      <th scope="col" class="text-center align-middle">Pseudo</th>
+      <th scope="col" class="text-center align-middle">XP</th>
+    </tr>
+  </thead>
+  <tbody class="table-group-divider">
+    <?php $i = 0; foreach ($Classements as $classement) { $i++; ?>
+      <tr>
+        <th scope="row" class="text-center align-middle"><?php echo $i; ?></th>
+        <td class="text-center align-middle"><img src="<?php echo $classement['pdp']; ?>" alt="Avatar de <?php echo $classement['pseudo']; ?>" class="avatar"></td>
+        <td class="text-center align-middle"><?php echo $classement['pseudo']; ?></td>
+        <td class="text-center align-middle"><?php echo $classement['point_Utilisateur']; ?> XP</td>
+      </tr>
+    <?php } ?>
+  </tbody>
 </table>
 
 <?php
@@ -77,5 +68,6 @@ $i = 0;
         }
 
 ?>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

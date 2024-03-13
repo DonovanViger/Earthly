@@ -27,20 +27,11 @@ html,body{
     font-size: 7vh;
 }
 
-#table_classement{
-    margin: 0 auto 1000vh auto;
+.avatar {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
 }
-
-#table_classement {
-    margin: 0 auto; /* Centrer le tableau horizontalement */
-    border-collapse: collapse; /* Fusionner les bordures de cellules */
-}
-
-#table_classement th,
-#table_classement td {
-    padding: 2vw; /* Ajouter de l'espacement autour du contenu de la cellule */
-}
-
 
 /*Page Compte*/
 
