@@ -7,6 +7,32 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <title>Mon compte</title>
+    <style>
+        /* Style pour la pop-up */
+        #popup {
+            position: fixed; /* Positionnement fixe pour rester au-dessus de la page */
+            top: 50%; /* Centrage vertical */
+            left: 50%; /* Centrage horizontal */
+            transform: translate(-50%, -50%); /* Centrage exact */
+            background-color: white;
+            padding: 20px;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 9999; /* Empilement au-dessus de tout le reste */
+            display: none; /* Initialement caché */
+        }
+
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
+            z-index: 999; /* Empilement au-dessus de tout le reste, sauf la pop-up */
+            display: none; /* Initialement caché */
+        }
+    </style>
 </head>
 
 <body>
@@ -65,7 +91,6 @@
     <h1 id="h1_compte"><a href="../index.php">Earthly</a></h1>
     <section id="profil">
     <h2 id="h2_compte"><?php echo $utilisateur['pseudo']; ?></h2>
-    <div id="compte_bar"></div>
     <!-- Affichage de l'image de profil -->
         <div id="image_compte">
     <img src="<?php echo $profileImage; ?>" alt="Image de profil" class="profile-image">
@@ -93,9 +118,7 @@
     </ul>
         </div>
         <div id="deconnexion_compte">
-            <button id="compte_button">
     <a href="../form/deconnexion.php">Se déconnecter</a>
-        </button>
     <?php if (isset($_SESSION['pseudo'])) : ?>
     <br>
     <i onclick="partager()" class="fa-solid fa-share-nodes"></i>
@@ -115,10 +138,21 @@
         alert("Partagez le lien à vos amis : " + lien);
     }
 
-    document.getElementById('nouvelle_image').onchange = function() {
-        document.getElementById('imageForm').submit();
-    };
-    </script>
+            document.getElementById('nouvelle_image').onchange = function() {
+                document.getElementById('imageForm').submit();
+            };
+        </script>
+        <script>
+            function afficherPopup() {
+                document.getElementById("popup").style.display = "block";
+                document.getElementById("overlay").style.display = "block";
+            }
+
+            function fermerPopup() {
+                document.getElementById("popup").style.display = "none";
+                document.getElementById("overlay").style.display = "none";
+            }
+        </script>
     </div>
 </body>
 
