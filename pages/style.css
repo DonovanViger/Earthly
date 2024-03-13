@@ -15,6 +15,53 @@ html,body{
     display: none;
   }
 
+/*Page Connexion*/
+
+#h1_connexion{
+    margin: 10vh 0 10vh 0;
+    text-align: center;
+}
+
+#connexion_cadre{
+    text-align: center;
+    color: white;
+    width: 60%;
+    margin: auto;
+    background-color: #1C3326;
+    padding: 7.5vh;
+    border-radius: 30px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+#h2_connexion{
+    font-size: 5vh;
+    margin: 0 0 5vh 0;
+}
+
+#connexion_retour{
+    margin: 5vh auto 0  auto;
+    text-align: center;
+}
+
+#connexion_button_retour{
+    border: none;
+    background-color: #1C3326;
+    border-radius: 10px;
+    padding: 1vh;
+    width: 15vw;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+
+}
+#connexion_retour button a{
+    text-decoration: none;
+    font-size: 3vh;
+    color:white;
+}
+
+
+
+
 
 /*Page Classement*/
 
