@@ -102,8 +102,18 @@
     <!-- Contenu de la pop-up s-->
     <div id="overlay"></div> <!-- Overlay pour l'arrière-plan semi-transparent -->
     <div id="popup">
-        <h3>Bonjour</h3>
-        <p>Ceci est un message de bienvenue.</p>
+        <h3>Paramètres</h3>
+
+        <form action="../form/traitement_modification.php" method="POST">
+            <label for="nouveauPseudo">Pseudo :</label><br>
+            <input type="text" id="nouveauPseudo" name="nouveauPseudo" value="<?php echo $utilisateur['pseudo']; ?>" required><br><br>
+
+            <label for="nouvelleEmail">Adresse e-mail :</label><br>
+            <input type="email" id="nouvelleEmail" name="nouvelleEmail" value="<?php echo $utilisateur['mail']; ?>" required><br><br>
+
+            <input type="submit" value="Modifier">
+        </form>
+
         <button onclick="fermerPopup()">Fermer</button>
     </div>
 
@@ -112,14 +122,14 @@
 
     <section id="profil">
         <!-- Bouton pour afficher la pop-up -->
-        <button onclick="afficherPopup()"><i class="fa-solid fa-gear"></i></button>
+        <button onclick="afficherPopup()" id="compte_settings"><i class="fa-solid fa-gear"></i></button>
 
         <!-- Contenu de la pop-up -->
         <div id="overlay"></div> <!-- Overlay pour l'arrière-plan semi-transparent -->
-        
-    <h2 id="h2_compte"><?php echo $utilisateur['pseudo']; ?></h2>
-    <div id="compte_bar"></div>
-    <!-- Affichage de l'image de profil -->
+
+        <h2 id="h2_compte"><?php echo $utilisateur['pseudo']; ?></h2>
+        <div id="compte_bar"></div>
+        <!-- Affichage de l'image de profil -->
         <div id="image_compte">
             <img src="<?php echo $profileImage; ?>" alt="Image de profil" class="profile-image">
             <form id="imageForm" action="../form/changer_image.php" method="post" enctype="multipart/form-data">
@@ -149,9 +159,28 @@
         </div>
         <div id="deconnexion_compte">
             <button id="compte_button">
-    <a href="../form/deconnexion.php">Se déconnecter</a>
-        </button>
-    <?php if (isset($_SESSION['pseudo'])) : ?>
+                <a href="../form/deconnexion.php">Se déconnecter</a>
+            </button>
+            <br>
+            <script>
+            function partager() {
+                var lien = "localhost/earthly/partage/<?php echo $pseudo ?>";
+                console.log(lien);
+                alert("Partagez le lien à vos amis : " + lien);
+            }
+
+            document.getElementById('nouvelle_image').onchange = function() {
+                document.getElementById('imageForm').submit();
+            };
+            </script>
+            </div>
+        </div>
+    
+            <script src="../script/popup.js"></script>
+
+    
+
+            <?php if (isset($_SESSION['pseudo'])) : ?>
     <br>
     <i onclick="partager()" class="fa-solid fa-share-nodes"></i>
     <ul class="footer-nav">
@@ -162,20 +191,6 @@
         <li><a href="classement.php">Classement</a></li>
     </ul>
     <?php endif; ?>
-    <br>
-    <script>
-    function partager() {
-        var lien = "localhost/earthly/partage/<?php echo $pseudo ?>";
-        console.log(lien);
-        alert("Partagez le lien à vos amis : " + lien);
-    }
-
-            document.getElementById('nouvelle_image').onchange = function() {
-                document.getElementById('imageForm').submit();
-            };
-            </script>
-            <script src="../script/popup.js"></script>
-        </div>
 </body>
 
 </html>

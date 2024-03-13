@@ -21,6 +21,7 @@ try {
     if ($utilisateur) {
         // Crée une variable de session pour l'utilisateur connecté
         $_SESSION['pseudo'] = $pseudo;
+        $_SESSION['mail'] = $utilisateur['mail']; // Ajoute l'adresse e-mail à la variable de session
         
         $db = new PDO('mysql:host=localhost;dbname=sae401-2', 'root', '');
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
