@@ -1,7 +1,14 @@
+@font-face {
+    font-family: "Como";
+    src: url("Como-Medium.ttf");
+  }
+
+
 html,body{
     margin: 0px;
     padding: 0px;
     background-color: #BFEABB;
+    font-family: Como, Arial;
 }
 
 ::-webkit-scrollbar {
@@ -58,10 +65,20 @@ html,body{
     background-color: #1C3326;
     padding: 1vh;
     color: white;
-    height: 55vh;
+    height: 65vh;
+    margin-top: 10vh;
+}
+
+#compte_bar{
+    width: 80vw;
+    height: 0.25vh;
+    background-color: white;
+    border-radius: 10px;
+    margin: auto;
 }
 
 #image_compte{
+    margin-top: 5vh;
     text-align: center;
     width: 30vw;
     height: 30vh;
@@ -74,19 +91,18 @@ html,body{
 #texte_compte{
     width: 30vw;
     float: left;
-    padding: 2vh;
+    padding-top: 2vh;
     font-size: 1.25vw;
 }
 
 .custom-file-upload input[type="file"] {
-    display: none; /* Cacher le champ de sélection de fichier */
+    display: none; 
 }
 
 .custom-file-upload {
     display: inline-block;
-    background-color: black; /* Ajoute une couleur de fond */
-    cursor: pointer; /* Change le curseur en une main pour indiquer qu'il est cliquable */
-    /* Optionnel : ajouter une ombre pour un effet de profondeur */
+    background-color: black;
+    cursor: pointer;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     color: white;
     padding: 1vh;
@@ -97,8 +113,24 @@ html,body{
 
 #deconnexion_compte{
     clear: both;
+    margin-top: 55vh;
+    text-align: center;
 }
 
+
+#compte_button{
+    border: none;
+    border-radius:5px ;
+    padding: 1vh;
+    width: 15vw;
+    background-color: #1C3326;
+}
+
+
+#compte_button a{
+    text-decoration:none ;
+    color: white;
+}
 
 /*Général pour toutes les pages*/
 
