@@ -69,8 +69,10 @@
         <div id="image_compte">
     <img src="<?php echo $profileImage; ?>" alt="Image de profil" class="profile-image">
     <form id="imageForm" action="../form/changer_image.php" method="post" enctype="multipart/form-data">
+    <label for="nouvelle_image" class="custom-file-upload">
     <input id="nouvelle_image" type="file" name="nouvelle_image" accept="image/*" required>
-    <button type="submit">Changer l'image de profil</button>
+    Sélectionner un fichier
+</label>
 </form>
 </div>
 <div id="texte_compte">
