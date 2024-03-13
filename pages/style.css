@@ -38,6 +38,14 @@ html,body{
     margin: 0 0 5vh 0;
 }
 
+#connexion_input_submit{
+    background-color: white;
+    padding: 0.5vh;
+    width: 7.5vw;
+    border: none;
+    border-radius: 10px;
+}
+
 #connexion_retour{
     margin: 5vh auto 0  auto;
     text-align: center;
@@ -60,7 +68,57 @@ html,body{
 }
 
 
+/*Page Inscription*/
 
+#h1_inscription{
+    margin: 5vh 0 10vh 0;
+    text-align: center;
+}
+
+#inscription_cadre{
+    text-align: center;
+    color: white;
+    width: 60%;
+    margin: auto;
+    background-color: #1C3326;
+    padding: 7.5vh;
+    border-radius: 30px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+#h2_inscription{
+    font-size: 5vh;
+    margin: 0 0 5vh 0;
+}
+
+#inscription_input_submit{
+    background-color: white;
+    padding: 0.5vh;
+    width: 7.5vw;
+    border: none;
+    border-radius: 10px;
+}
+
+#inscription_retour{
+    margin: 5vh auto 5vh auto;
+    text-align: center;
+}
+
+#inscription_button_retour{
+    border: none;
+    background-color: #1C3326;
+    border-radius: 10px;
+    padding: 1vh;
+    width: 15vw;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+
+}
+#inscription_retour button a{
+    text-decoration: none;
+    font-size: 3vh;
+    color:white;
+}
 
 
 /*Page Classement*/
