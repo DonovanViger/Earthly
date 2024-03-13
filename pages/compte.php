@@ -161,17 +161,6 @@
             <button id="compte_button">
                 <a href="../form/deconnexion.php">Se déconnecter</a>
             </button>
-            <?php if (isset($_SESSION['pseudo'])) : ?>
-            <br>
-            <i onclick="partager()" class="fa-solid fa-share-nodes"></i>
-            <ul class="footer-nav">
-                <li><a href="planet.php">Ma Planète</a></li>
-                <li><a href="defi.php">Mes défis journaliers</a></li>
-                <li><a href="recyclage.php">Carte des poubelles</a></li>
-                <li><a href="compte.php">Mon compte</a></li>
-                <li><a href="classement.php">Classement</a></li>
-            </ul>
-            <?php endif; ?>
             <br>
             <script>
             function partager() {
