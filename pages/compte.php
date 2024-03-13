@@ -122,7 +122,7 @@
 
     <section id="profil">
         <!-- Bouton pour afficher la pop-up -->
-        <button onclick="afficherPopup()"><i class="fa-solid fa-gear"></i></button>
+        <button onclick="afficherPopup()" id="compte_settings"><i class="fa-solid fa-gear"></i></button>
 
         <!-- Contenu de la pop-up -->
         <div id="overlay"></div> <!-- Overlay pour l'arrière-plan semi-transparent -->
@@ -184,8 +184,24 @@
                 document.getElementById('imageForm').submit();
             };
             </script>
-            <script src="../script/popup.js"></script>
+            </div>
         </div>
+    
+            <script src="../script/popup.js"></script>
+
+    
+
+            <?php if (isset($_SESSION['pseudo'])) : ?>
+    <br>
+    <i onclick="partager()" class="fa-solid fa-share-nodes"></i>
+    <ul class="footer-nav">
+        <li><a href="planet.php">Ma Planète</a></li>
+        <li><a href="defi.php">Mes défis journaliers</a></li>
+        <li><a href="recyclage.php">Carte des poubelles</a></li>
+        <li><a href="compte.php">Mon compte</a></li>
+        <li><a href="classement.php">Classement</a></li>
+    </ul>
+    <?php endif; ?>
 </body>
 
 </html>
