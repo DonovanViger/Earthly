@@ -1,19 +1,3 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="style.css" />
-    <title>Earthly | Partage</title>
-</head>
-<body>
-    
-
-
-
-
-
-
 <?php
 
 session_start(); // Démarre la session
@@ -31,9 +15,46 @@ try {
 } catch (PDOException $erreur) {
     die("Erreur de connexion à la base de données : ". $erreur->getMessage());
 }
+?>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <base href="http://localhost/earthly/pages/">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>Earthly | Partage</title>
+</head>
+<body>
+    
+<?php
+if (isset($_GET['pseudo'])) {
+    $pseudo = $_GET['pseudo'];
+        $query = $db->prepare("SELECT * FROM utilisateurs WHERE pseudo = :pseudo");
+        $query->bindParam(':pseudo', $pseudo, PDO::PARAM_STR);
+        $query->execute();
+        $personne = $query->fetch(PDO::FETCH_ASSOC);
+        $profileImage = $personne['pdp'] ? $personne['pdp'] : '../uploads/default.jpg';
+        echo "<div id='image_compte'>
+        <img src='<?php echo $profileImage; ?>' alt='Image de profil' class='profile-image'>
+    </div>
+    <div id='texte_compte'>
+        <h3>".$personne['pseudo']."</h3>
+        <p>Vos informations :</p>
+        <ul>
+            <li>Pseudo : ".$personne['pseudo']."</li>
+            <li>Email : ".$personne['mail']."</li>
+            <li>Date de création du compte :
+                ".date('j F Y', strtotime($personne['dateCreationCompte']))."
+            </li>
+            <li>Points : ".$personne['point_Utilisateur']."</li>
+            <li>Niveau d\'expérience sur la planète : ".$personne['expPlaneteUtilisateur']."</li>
+        </ul>
+    </div>";
 
-        // Affiche les liens "Se connecter" et "Créer un compte" seulement si l'utilisateur n'est pas connecté
-
+    } else {
+        echo "<p>Aucun compte ne vous a été partagé.</p>";
+    }
 
         if (isset($_SESSION['pseudo'])) {
         ?>

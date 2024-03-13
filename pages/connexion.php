@@ -17,16 +17,6 @@
 session_start(); // Démarre la session (à placer au début de chaque fichier PHP où vous utilisez des sessions)
 ?>
 
-<!DOCTYPE html>
-<html lang="fr">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connexion</title>
-</head>
-
-<body>
 
     <h1 id="h1_connexion"><a href="../index.php">Earthly</a></h1>
 
@@ -42,7 +32,7 @@ session_start(); // Démarre la session (à placer au début de chaque fichier P
         </br>
         <input type="password" id="mdp" name="mdp" required><br><br>
         </br>
-        <input type="submit" value="Se connecter">
+        <input type="submit" value="Se connecter" id="connexion_input_submit">
     </form>
     </div>
 
