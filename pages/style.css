@@ -15,6 +15,111 @@ html,body{
     display: none;
   }
 
+/*Page Connexion*/
+
+#h1_connexion{
+    margin: 10vh 0 10vh 0;
+    text-align: center;
+}
+
+#connexion_cadre{
+    text-align: center;
+    color: white;
+    width: 60%;
+    margin: auto;
+    background-color: #1C3326;
+    padding: 7.5vh;
+    border-radius: 30px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+#h2_connexion{
+    font-size: 5vh;
+    margin: 0 0 5vh 0;
+}
+
+#connexion_input_submit{
+    background-color: white;
+    padding: 0.5vh;
+    width: 7.5vw;
+    border: none;
+    border-radius: 10px;
+}
+
+#connexion_retour{
+    margin: 5vh auto 0  auto;
+    text-align: center;
+}
+
+#connexion_button_retour{
+    border: none;
+    background-color: #1C3326;
+    border-radius: 10px;
+    padding: 1vh;
+    width: 15vw;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+
+}
+#connexion_retour button a{
+    text-decoration: none;
+    font-size: 3vh;
+    color:white;
+}
+
+
+/*Page Inscription*/
+
+#h1_inscription{
+    margin: 5vh 0 10vh 0;
+    text-align: center;
+}
+
+#inscription_cadre{
+    text-align: center;
+    color: white;
+    width: 60%;
+    margin: auto;
+    background-color: #1C3326;
+    padding: 7.5vh;
+    border-radius: 30px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+#h2_inscription{
+    font-size: 5vh;
+    margin: 0 0 5vh 0;
+}
+
+#inscription_input_submit{
+    background-color: white;
+    padding: 0.5vh;
+    width: 7.5vw;
+    border: none;
+    border-radius: 10px;
+}
+
+#inscription_retour{
+    margin: 5vh auto 5vh auto;
+    text-align: center;
+}
+
+#inscription_button_retour{
+    border: none;
+    background-color: #1C3326;
+    border-radius: 10px;
+    padding: 1vh;
+    width: 15vw;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+
+}
+#inscription_retour button a{
+    text-decoration: none;
+    font-size: 3vh;
+    color:white;
+}
+
 
 /*Page Classement*/
 
@@ -27,21 +132,11 @@ html,body{
     font-size: 7vh;
 }
 
-#table_classement{
-    margin: 0 auto 1000vh auto;
-    text-align: center;
+.avatar {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
 }
-
-#table_classement {
-    margin: 0 auto; /* Centrer le tableau horizontalement */
-    border-collapse: collapse; /* Fusionner les bordures de cellules */
-}
-
-#table_classement th,
-#table_classement td {
-    padding: 2vw; /* Ajouter de l'espacement autour du contenu de la cellule */
-}
-
 
 /*Page Compte*/
 
