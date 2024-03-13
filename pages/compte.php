@@ -121,6 +121,8 @@
     <div id="overlay"></div> <!-- Overlay pour l'arrière-plan semi-transparent -->
 
     <section id="profil">
+
+    <i onclick="partager()" class="fa-solid fa-share-nodes" id="compte_share"></i>
         <!-- Bouton pour afficher la pop-up -->
         <button onclick="afficherPopup()" id="compte_settings"><i class="fa-solid fa-gear"></i></button>
 
@@ -178,7 +180,7 @@
     
             <script src="../script/popup.js"></script>
 
-            <i onclick="partager()" class="fa-solid fa-share-nodes"></i>
+            
 
             <?php if (isset($_SESSION['pseudo'])) : ?>
     <footer>
