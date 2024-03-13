@@ -65,7 +65,8 @@ html,body{
     background-color: #1C3326;
     padding: 1vh;
     color: white;
-    height: 60vh;
+    height: 65vh;
+    margin-top: 10vh;
 }
 
 #compte_bar{
@@ -112,7 +113,7 @@ html,body{
 
 #deconnexion_compte{
     clear: both;
-    margin-top: 60vh;
+    margin-top: 55vh;
     text-align: center;
 }
 
