@@ -37,7 +37,8 @@ try {
         $_SESSION['mail'] = $nouvelleEmail;
     }
 
-    echo "Les informations ont été mises à jour avec succès.";
+    header("Location: ../pages/compte.php"); // Redirige l'utilisateur vers la page d'accueil
+    exit();
 
 } catch (PDOException $erreur) {
     // En cas d'erreur de connexion à la base de données
