@@ -18,7 +18,7 @@
         margin-bottom: 10%;
     }
 
-    table{
+    table {
         background-color: #fff;
         border-radius: 10px;
         padding: 20px;
@@ -31,7 +31,7 @@
         /* Ajoute un rembourrage autour du contenu de la cellule */
     }
 
-    .petit{
+    .petit {
         width: 12%;
     }
     </style>
@@ -60,27 +60,28 @@ $i = 0;
     <h2 id="h2_classement">Classement</h2>
 
     <table id="table_classement" class="table-hover w-75 mx-auto">
-  <thead>
-    <tr>
-      <th scope="col" class="text-center align-middle petit">#</th>
-      <th scope="col" class="text-center align-middle petit">Avatar</th>
-      <th scope="col" class="px-5 align-middle">Pseudo</th>
-      <th scope="col" class="text-center align-middle petit">Points</th>
-      <th scope="col" class="text-center align-middle petit">XP Planète</th>
-    </tr>
-  </thead>
-  <tbody class="table-group-divider">
-    <?php $i = 0; foreach ($Classements as $classement) { $i++; ?>
-    <tr>
-      <th scope="row" class="text-center align-middle"><?php echo $i; ?></th>
-      <td class="text-center align-middle"><img src="<?php echo $classement['pdp']; ?>" alt="Avatar de <?php echo $classement['pseudo']; ?>" class="avatar"></td>
-      <td class="px-5 align-middle"><?php echo $classement['pseudo']; ?></td>
-      <td class="text-center align-middle"><?php echo $classement['point_Utilisateur']; ?></td>
-      <td class="text-center align-middle"><?php echo $classement['expPlaneteUtilisateur']; ?> XP</td>
-    </tr>
-    <?php } ?>
-  </tbody>
-</table>
+        <thead>
+            <tr>
+                <th scope="col" class="text-center align-middle petit">#</th>
+                <th scope="col" class="text-center align-middle petit">Avatar</th>
+                <th scope="col" class="px-5 align-middle">Pseudo</th>
+                <th scope="col" class="text-center align-middle petit">Points</th>
+                <th scope="col" class="text-center align-middle petit">XP Planète</th>
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            <?php $i = 0; foreach ($Classements as $classement) { $i++; ?>
+            <tr>
+                <th scope="row" class="text-center align-middle"><?php echo $i; ?></th>
+                <td class="text-center align-middle"><img src="<?php echo $classement['pdp']; ?>"
+                        alt="Avatar de <?php echo $classement['pseudo']; ?>" class="avatar"></td>
+                <td class="px-5 align-middle"><?php echo $classement['pseudo']; ?></td>
+                <td class="text-center align-middle"><?php echo $classement['point_Utilisateur']; ?></td>
+                <td class="text-center align-middle"><?php echo $classement['expPlaneteUtilisateur']; ?> XP</td>
+            </tr>
+            <?php } ?>
+        </tbody>
+    </table>
 
     <?php
         // Affiche les liens "Se connecter" et "Créer un compte" seulement si l'utilisateur n'est pas connecté

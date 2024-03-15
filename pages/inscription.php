@@ -15,7 +15,7 @@
 
 
     <div id="inscription_cadre">
-    <h2 id="h2_inscription">Créer un compte</h2>
+        <h2 id="h2_inscription">Créer un compte</h2>
         <form action="../form/form_inscription.php" method="POST" enctype="multipart/form-data">
             <label for="pseudo">Pseudo:</label><br><br>
             <input type="text" id="pseudo" name="pseudo" required><br><br>
@@ -24,16 +24,17 @@
             <label for="mdp">Mot de passe:</label><br><br>
             <input type="password" id="mdp" name="mdp" required><br><br>
             <label for="photo">Photo de profil:</label><br><br>
-            <input type="file" id="photo" name="photo" accept="image/*" required><br><br>
+            <input type="file" id="photo" name="photo" accept="image/*" required onchange="previewImage(event)"><br><br>
             <br>
+            <div id="image_preview"></div><br>
             <input type="submit" value="Créer un compte" id="inscription_input_submit">
         </form>
-</div>
+    </div>
 
     <div id="inscription_retour">
-    <button id="inscription_button_retour">
-    <a href="../index.php">Retour à l'index</a>
-    </button>
+        <button id="inscription_button_retour">
+            <a href="../index.php">Retour à l'index</a>
+        </button>
     </div>
 
     <!--
@@ -42,6 +43,8 @@
     admin - nice
     test - test
 -->
+
+<script src="../script/previewimage.js"></script>
 
 </body>
 
