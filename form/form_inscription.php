@@ -5,10 +5,15 @@ try {
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Récupération des données du formulaire
-    $pseudo = $_POST['pseudo'];
-    $email = $_POST['email'];
-    $mdp = $_POST['mdp'];
+    $pseudo = $_POST['pseudo'] ?? '';
+    $email = $_POST['email'] ?? '';
+    $mdp = $_POST['mdp'] ?? '';
     $dateCreationCompte = date('Y-m-d');
+
+    // Vérifier si les champs requis sont vides
+    if(empty($pseudo) || empty($email) || empty($mdp)) {
+        throw new Exception("Veuillez remplir tous les champs.");
+    }
 
     // Hacher le mot de passe
     $motDePasseHache = hash('sha256', $mdp);
@@ -19,8 +24,19 @@ try {
     // Initialize $photoPath to NULL
     $photoPath = null;
 
-    // Check if the file was uploaded without errors
-    if (isset($_FILES['photo']) && $_FILES['photo']['error'] === UPLOAD_ERR_OK) {
+    // Check if the cropped photo data is present
+    if (isset($_POST['cropped_photo'])) {
+        // Generate a unique filename for the cropped photo
+        $photoPath = $uploadDirectory . uniqid() . '_cropped.jpg';
+
+        // Decode the base64 encoded image data
+        $croppedImageData = base64_decode(str_replace('data:image/jpeg;base64,', '', $_POST['cropped_photo']));
+
+        // Save the cropped image to the desired directory
+        if (!file_put_contents($photoPath, $croppedImageData)) {
+            throw new Exception("Impossible de sauvegarder l'image recadrée.");
+        }
+    } elseif (isset($_FILES['photo']) && $_FILES['photo']['error'] === UPLOAD_ERR_OK) {
         // Generate a unique filename to prevent overwriting existing files
         $photoPath = $uploadDirectory . uniqid() . '_' . basename($_FILES['photo']['name']);
 
@@ -46,7 +62,7 @@ try {
     // En cas d'erreur de connexion à la base de données
     die("Erreur de connexion à la base de données : ". $erreur->getMessage());
 } catch (Exception $e) {
-    // En cas d'erreur lors du déplacement du fichier téléchargé
+    // En cas d'autres erreurs
     echo $e->getMessage();
 }
 ?>
