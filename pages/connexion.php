@@ -25,10 +25,10 @@ session_start(); // Démarre la session (à placer au début de chaque fichier P
     <div id="connexion_cadre">
     <h2 id="h2_connexion">Connexion</h2>
     <form action="../form/form_connexion.php" method="POST">
-        <label for="pseudo">Pseudo:</label><br>
+        <label for="pseudo">Pseudo:</label>
         </br>
         <input type="text" id="pseudo" name="pseudo" required><br><br>
-        <label for="mdp">Mot de passe:</label><br>
+        <label for="mdp">Mot de passe:</label>
         </br>
         <input type="password" id="mdp" name="mdp" required><br><br>
         </br>

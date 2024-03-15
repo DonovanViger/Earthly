@@ -7,41 +7,6 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <title>Mon compte</title>
-    <style>
-    /* Style pour la pop-up */
-    #popup {
-        position: fixed;
-        /* Positionnement fixe pour rester au-dessus de la page */
-        top: 50%;
-        /* Centrage vertical */
-        left: 50%;
-        /* Centrage horizontal */
-        transform: translate(-50%, -50%);
-        /* Centrage exact */
-        background-color: white;
-        padding: 20px;
-        border: 1px solid #ccc;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        z-index: 9999;
-        /* Empilement au-dessus de tout le reste */
-        display: none;
-        /* Initialement caché */
-    }
-
-    #overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        /* Fond semi-transparent */
-        z-index: 999;
-        /* Empilement au-dessus de tout le reste, sauf la pop-up */
-        display: none;
-        /* Initialement caché */
-    }
-    </style>
 </head>
 
 <body>
@@ -100,21 +65,21 @@
     <h1 id="h1_compte"><a href="../index.php">Earthly</a></h1>
 
     <!-- Contenu de la pop-up s-->
-    <div id="overlay"></div> <!-- Overlay pour l'arrière-plan semi-transparent -->
+    <div id="overlay" onclick="fermerPopup()"></div> <!-- Overlay pour l'arrière-plan semi-transparent -->
     <div id="popup">
-        <h3>Paramètres</h3>
+    <button onclick="fermerPopup()" id="compte_param_button_close"><i class="fa-solid fa-xmark"></i></button>
+        <h3 id="compte_h3_settings">Paramètres</h3>
 
         <form action="../form/traitement_modification.php" method="POST">
-            <label for="nouveauPseudo">Pseudo :</label><br>
+            <label for="nouveauPseudo">Pseudo :  </label>
             <input type="text" id="nouveauPseudo" name="nouveauPseudo" value="<?php echo $utilisateur['pseudo']; ?>" required><br><br>
 
-            <label for="nouvelleEmail">Adresse e-mail :</label><br>
+            <label for="nouvelleEmail">Adresse e-mail :  </label>
             <input type="email" id="nouvelleEmail" name="nouvelleEmail" value="<?php echo $utilisateur['mail']; ?>" required><br><br>
 
-            <input type="submit" value="Modifier">
+            <input type="submit" value="Modifier" id="compte_settings_button_valid">
         </form>
 
-        <button onclick="fermerPopup()">Fermer</button>
     </div>
 
     <!-- Contenu de la pop-up -->
@@ -185,11 +150,11 @@
             <?php if (isset($_SESSION['pseudo'])) : ?>
     <footer>
     <ul class="footer-nav">
+        <li><a href="recyclage.php">Carte des poubelles</a></li>
         <li><a href="planet.php">Ma Planète</a></li>
         <li><a href="defi.php">Mes défis journaliers</a></li>
-        <li><a href="recyclage.php">Carte des poubelles</a></li>
-        <li><a href="compte.php">Mon compte</a></li>
         <li><a href="classement.php">Classement</a></li>
+        <li><a href="compte.php">Mon compte</a></li>
     </ul>
     <footer>
     <?php endif; ?>

@@ -18,8 +18,14 @@ html,body{
 /*Page Connexion*/
 
 #h1_connexion{
-    margin: 10vh 0 10vh 0;
+    margin: 7.5vh 0 6vh 0;
     text-align: center;
+}
+
+#h1_connexion a{
+    text-decoration: none;
+    color: black;
+    font-size: 7.5vh;
 }
 
 #connexion_cadre{
@@ -75,6 +81,12 @@ html,body{
     text-align: center;
 }
 
+#h1_inscription a{
+    text-decoration: none;
+    color: black;
+    font-size: 7.5vh;
+}
+
 #inscription_cadre{
     text-align: center;
     color: white;
@@ -127,6 +139,12 @@ html,body{
     text-align: center;
 }
 
+#h1_classement a{
+    text-decoration: none;
+    color: black;
+    font-size: 7.5vh;
+}
+
 #h2_classement{
     text-align: center;
     font-size: 7vh;
@@ -152,19 +170,26 @@ html,body{
     text-align: center;
 }
 
+#h1_compte a{
+    text-decoration: none;
+    color: black;
+    font-size: 7.5vh;
+}
+
 #h2_compte{
     text-align: center;
     font-size: 2.5vw;
     width: 50vw;
-    margin: 3vh auto 5vh auto;
+    margin: 1vh auto 3vh auto;
 }
 
 #profil{
     background-color: #1C3326;
-    padding: 1vh;
+    padding: 1vh 1vh 3vh 1vh;
     color: white;
     height: 65vh;
     margin-top: 5vh;
+    
 }
 
 #compte_settings{
@@ -181,6 +206,66 @@ html,body{
     cursor: pointer;
 }
 
+#popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 45%;
+    height: 40vh;
+    background-color: white;
+    padding: 5vh;
+    z-index: 9999;
+    display: none;
+    background-color: #1C3326;
+    color: white;
+    text-align: center;
+    border-radius: 30px;
+
+}
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Fond semi-transparent */
+    z-index: 999;
+    /* Empilement au-dessus de tout le reste, sauf la pop-up */
+    display: none;
+    /* Initialement caché */
+}
+
+#compte_param_button_close{
+    border: none;
+    background-color: #1C3326;
+    float: right;
+    margin-top: -1vh;
+}
+
+#compte_param_button_close i{
+    color: #fff;
+    font-size: 4vh;
+    cursor:pointer
+}
+
+#compte_h3_settings{
+    margin-top: 5vh;
+    margin-bottom: 6.5vh;
+    font-size: 4vh;
+}
+
+#compte_settings_button_valid{
+    width: 30%;
+    padding: 1vh;
+    border: none;
+    font-size: 2vh;
+    border-radius: 25px;
+    margin-top: 2.5vh;
+}
+
 #compte_share{
     font-size: 4vh;
     cursor: pointer;
@@ -193,7 +278,7 @@ html,body{
     height: 0.25vh;
     background-color: white;
     border-radius: 10px;
-    margin: auto;
+    margin: 0 auto 0 auto;
 }
 
 #image_compte{
@@ -241,9 +326,11 @@ html,body{
 #compte_button{
     border: none;
     border-radius:5px ;
-    padding: 1vh;
+    padding: 2vh;
     width: 15vw;
     background-color: #1C3326;
+    font-size: 2.5vh;
+    text-transform: bold;
     margin-bottom: 20vh;
 }
 
