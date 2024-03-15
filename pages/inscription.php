@@ -73,6 +73,7 @@
             <label for="mdp">Mot de passe:</label><br><br>
             <input type="password" id="mdp" name="mdp" required><br><br>
             <label for="photo">Photo de profil:</label><br><br>
+            <input type="hidden" id="cropped_photo" name="cropped_photo">
             <input type="file" id="photo" name="photo" accept="image/*" required onchange="previewImage(event)"><br><br>
             <br>
             <div id="image_preview"></div><br>
@@ -118,17 +119,22 @@
         });
 
         document.getElementById('crop_submit_button').addEventListener('click', function() {
-            // Get the cropped image data as a Data URL
-            var croppedDataURL = cropper.getCroppedCanvas().toDataURL();
-            // Add the Data URL as a hidden input in the form
-            var hiddenInput = document.createElement('input');
-            hiddenInput.type = 'hidden';
-            hiddenInput.name = 'cropped_photo';
-            hiddenInput.value = croppedDataURL;
-            document.getElementById('inscription_form').appendChild(hiddenInput);
+            // Get the cropped image data as a Data URL with JPEG format and quality 0.8
+            var croppedDataURL = cropper.getCroppedCanvas().toDataURL('image/jpeg', 0.8);
+
+            // Mettre à jour la source de l'image dans le preview
+            var previewImage = document.getElementById('image_preview').querySelector('img');
+            previewImage.src = croppedDataURL;
+
+            // Mettre à jour la valeur de cropped_photo avec les données de l'image recadrée
+            document.getElementById('cropped_photo').value = croppedDataURL;
+
             // Close the modal
             document.getElementById('crop_modal').style.display = 'none';
         });
+
+
+
 
         // Close the modal when the close button is clicked
         document.getElementsByClassName('close')[0].addEventListener('click', function() {
