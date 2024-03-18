@@ -30,7 +30,6 @@
 
 document.addEventListener('DOMContentLoaded', function () {
             var canvas = document.getElementById('canvas');
-            console.log(canvas);
 
             // Générer un QR code sur le canvas
             new QRCode(canvas, {
@@ -40,16 +39,15 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         });
 
-    // Récupère la vidéo et le canvas
+    document.addEventListener('DOMContentLoaded', () => {
+        
     const video = document.getElementById('video');
     const context = canvas.getContext('2d');
 
-    // Variables pour stocker le flux vidéo et l'intervalle de capture
     let videoStream;
     let captureInterval;
 
-    // Fonction pour démarrer ou arrêter la capture vidéo
-    function toggleCamera() {
+    const toggleCamera = () => {
         if (videoStream) {
             stopCapture();
             document.getElementById('toggleButton').innerText = 'Activer la caméra';
@@ -57,34 +55,27 @@ document.addEventListener('DOMContentLoaded', function () {
             startCapture();
             document.getElementById('toggleButton').innerText = 'Désactiver la caméra';
         }
-    }
+    };
 
-    // Fonction pour démarrer la capture vidéo
-    function startCapture() {
-        navigator.mediaDevices.getUserMedia({
-                video: true
-            })
-            .then(function(stream) {
+    const startCapture = () => {
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(stream => {
                 videoStream = stream;
                 video.srcObject = stream;
-                captureInterval = setInterval(captureAndDecode, 1000); // Capturer et décoder toutes les secondes
+                captureInterval = setInterval(captureAndDecode, 1000);
             })
-            .catch(function(err) {
-                console.log("Erreur lors de l'accès à la webcam: " + err);
-            });
-    }
+            .catch(err => console.log("Erreur lors de l'accès à la webcam: " + err));
+    };
 
-    // Fonction pour arrêter la capture vidéo
-    function stopCapture() {
+    const stopCapture = () => {
         if (videoStream) {
             videoStream.getTracks().forEach(track => track.stop());
             clearInterval(captureInterval);
             videoStream = null;
         }
-    }
+    };
 
-    // Fonction pour extraire les images de la vidéo et détecter les QR codes
-    function captureAndDecode() {
+    const captureAndDecode = () => {
         canvas.width = video.videoWidth;
         canvas.height = video.videoHeight;
         context.drawImage(video, 0, 0, canvas.width, canvas.height);
@@ -93,35 +84,26 @@ document.addEventListener('DOMContentLoaded', function () {
         const code = jsQR(imageData.data, imageData.width, imageData.height);
 
         if (code) {
-            // Si un QR code est trouvé
             const qrData = code.data;
             document.getElementById('result').innerText = "QR Code trouvé : " + qrData;
 
-            // Vérifie si le QR code correspond à un lien URL
             if (isValidUrl(qrData)) {
-                // Arrête la capture vidéo
                 stopCapture();
                 document.getElementById('toggleButton').innerText = 'Activer la caméra';
                 window.open(qrData, '_blank');
 
-                // Affiche un bouton redirigeant vers le site
                 const button = document.createElement('button');
                 button.textContent = 'Visiter le site';
-                button.onclick = function() {
-                    window.open(qrData, '_blank');
-                };
-                document.getElementById('result').innerHTML = ''; // Efface le texte précédent
+                button.onclick = () => window.open(qrData, '_blank');
+                document.getElementById('result').innerHTML = '';
                 document.getElementById('result').appendChild(button);
             }
         }
-    }
+    };
 
-    // Fonction pour vérifier si une chaîne est un lien URL valide
-    function isValidUrl(url) {
-        // Expression régulière pour vérifier si la chaîne est un lien URL valide
-        const urlPattern = /^(http|https):\/\/[\w\-]+(\.[\w\-]+)+([\w\-\.,@?^=%&:/~\+#]*[\w\-\@?^=%&/~\+#])?$/;
-        return urlPattern.test(url);
-    }
+    const isValidUrl = url => /^(http|https):\/\/[\w\-]+(\.[\w\-]+)+([\w\-\.,@?^=%&:/~\+#]*[\w\-\@?^=%&/~\+#])?$/.test(url);
+});
+
     
     </script>
 </body>
