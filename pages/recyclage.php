@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="style.css" />
-    <title>Mon compte</title>
+    <title>Scanneur</title>
 </head>
 
 <body>
@@ -102,27 +102,39 @@
         }
     }
 
-    // Fonction pour extraire les images de la vidéo et détecter les QR codes
-    function captureAndDecode() {
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
-        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+// Fonction pour extraire les images de la vidéo et détecter les QR codes
+// Fonction pour extraire les images de la vidéo et détecter les QR codes
+function captureAndDecode() {
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    context.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-        const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
-        const code = jsQR(imageData.data, imageData.width, imageData.height);
+    const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+    const code = jsQR(imageData.data, imageData.width, imageData.height);
 
-        if (code) {
-            // Si un QR code est trouvé
-            const qrData = code.data;
-            document.getElementById('result').innerText = "QR Code trouvé : " + qrData;
+    if (code) {
+        // Si un QR code est trouvé
+        const qrData = code.data;
+        document.getElementById('result').innerText = "QR Code trouvé : " + qrData;
 
-            // Vérifie si le QR code correspond à un lien URL
-            if (isValidUrl(qrData)) {
-                // Ouvre le lien dans un nouvel onglet
+        // Vérifie si le QR code correspond à un lien URL
+        if (isValidUrl(qrData)) {
+            // Arrête la capture vidéo
+            stopCapture();
+
+            // Affiche un bouton redirigeant vers le site
+            const button = document.createElement('button');
+            button.textContent = 'Visiter le site';
+            button.onclick = function() {
                 window.open(qrData, '_blank');
-            }
+            };
+            document.getElementById('result').innerHTML = ''; // Efface le texte précédent
+            document.getElementById('result').appendChild(button);
         }
     }
+}
+
+
 
     // Fonction pour vérifier si une chaîne est un lien URL valide
     function isValidUrl(url) {
