@@ -149,7 +149,8 @@ html,body{
 
 #h2_classement{
     text-align: center;
-    font-size: 7vh;
+    font-size: 5vh;
+    font-weight: bold;
 }
 
 .avatar {
@@ -307,10 +308,10 @@ html,body{
 
 .custom-file-upload {
     display: inline-block;
-    background-color: black;
+    background-color: white;
     cursor: pointer;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    color: white;
+    color: black;
     padding: 1vh;
     border-radius: 10px;
     margin: 3vh;
@@ -363,10 +364,15 @@ html,body{
     margin: 0;
 }
 
+#defis_ul{
+    margin: 0;
+    padding: 0;
+}
+
 .defi{
     background-color: #1C3326;
     padding: 4vh;
-    margin: 5vh auto 5vh auto;
+    margin: 4vh auto 4vh auto;
     color: #fff;
     text-align: center;
     width: 80%;
@@ -375,6 +381,15 @@ html,body{
 
 #defi_form{
     margin-top: 2vh;
+}
+
+#defis_button{
+    border: none;
+    width: 15vw;
+    padding: 1vh;
+    cursor: pointer;
+    border-radius: 20px;
+    
 }
 
 

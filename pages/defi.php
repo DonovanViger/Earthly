@@ -71,7 +71,7 @@ try {
     if (!empty($defis_journaliers)) {
         // Afficher les défis sélectionnés pour la journée
         echo "<h2 id='defis_h2'>Liste des défis</h2>";
-        echo "<ul>";
+        echo "<ul id='defis_ul'>";
         foreach ($defis_journaliers as $defi) {
             echo "<div class='defi'>";
             echo "<strong>", $defi['nom'], "</strong>: ", $defi['desc'];
@@ -86,7 +86,7 @@ try {
             if (!empty($defiuser)) {
                 echo "Defi Reussi !";
             } else {
-                echo "<button type='submit' name='valider_defi'>Valider le défi</button>";
+                echo "<button type='submit' name='valider_defi' id='defis_button'>Valider le défi</button>";
             }
 
             echo "</form>";
