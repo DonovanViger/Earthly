@@ -108,14 +108,9 @@ try {
     }
     ?>
 
-    <!-- Affiche les liens de navigation -->
-    <ul class="footer-nav">
-    <li><a href="recyclage.php">Carte des poubelles</a></li>
-        <li><a href="planet.php">Ma Planète</a></li>
-        <li><a href="defi.php">Mes défis journaliers</a></li>
-        <li><a href="classement.php">Classement</a></li>
-        <li><a href="compte.php">Mon compte</a></li>
-    </ul>
+<?php
+        include("../form/templates/footer.php")
+    ?>
 
 </body>
 

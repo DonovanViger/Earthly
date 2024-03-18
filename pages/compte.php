@@ -67,15 +67,17 @@
     <!-- Contenu de la pop-up s-->
     <div id="overlay" onclick="fermerPopup()"></div> <!-- Overlay pour l'arrière-plan semi-transparent -->
     <div id="popup">
-    <button onclick="fermerPopup()" id="compte_param_button_close"><i class="fa-solid fa-xmark"></i></button>
+        <button onclick="fermerPopup()" id="compte_param_button_close"><i class="fa-solid fa-xmark"></i></button>
         <h3 id="compte_h3_settings">Paramètres</h3>
 
         <form action="../form/traitement_modification.php" method="POST">
-            <label for="nouveauPseudo">Pseudo :  </label>
-            <input type="text" id="nouveauPseudo" name="nouveauPseudo" value="<?php echo $utilisateur['pseudo']; ?>" required><br><br>
+            <label for="nouveauPseudo">Pseudo : </label>
+            <input type="text" id="nouveauPseudo" name="nouveauPseudo" value="<?php echo $utilisateur['pseudo']; ?>"
+                required><br><br>
 
-            <label for="nouvelleEmail">Adresse e-mail :  </label>
-            <input type="email" id="nouvelleEmail" name="nouvelleEmail" value="<?php echo $utilisateur['mail']; ?>" required><br><br>
+            <label for="nouvelleEmail">Adresse e-mail : </label>
+            <input type="email" id="nouvelleEmail" name="nouvelleEmail" value="<?php echo $utilisateur['mail']; ?>"
+                required><br><br>
 
             <input type="submit" value="Modifier" id="compte_settings_button_valid">
         </form>
@@ -87,7 +89,7 @@
 
     <section id="profil">
 
-    <i onclick="partager()" class="fa-solid fa-share-nodes" id="compte_share"></i>
+        <i onclick="partager()" class="fa-solid fa-share-nodes" id="compte_share"></i>
         <!-- Bouton pour afficher la pop-up -->
         <button onclick="afficherPopup()" id="compte_settings"><i class="fa-solid fa-gear"></i></button>
 
@@ -140,24 +142,16 @@
                 document.getElementById('imageForm').submit();
             };
             </script>
-            </div>
         </div>
-    
-            <script src="../script/popup.js"></script>
+        </div>
 
-            
+        <script src="../script/popup.js"></script>
 
-            <?php if (isset($_SESSION['pseudo'])) : ?>
-    <footer>
-    <ul class="footer-nav">
-        <li><a href="recyclage.php">Carte des poubelles</a></li>
-        <li><a href="planet.php">Ma Planète</a></li>
-        <li><a href="defi.php">Mes défis journaliers</a></li>
-        <li><a href="classement.php">Classement</a></li>
-        <li><a href="compte.php">Mon compte</a></li>
-    </ul>
-    <footer>
-    <?php endif; ?>
+
+
+        <?php
+        include("../form/templates/footer.php")
+    ?>
 </body>
 
 </html>
