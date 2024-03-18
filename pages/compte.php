@@ -108,6 +108,19 @@
                 </label>
             </form>
         </div>
+        <?php
+        if ($utilisateur['point_Planete'] < 1000) {
+            $niv = 1;
+        } else if ($utilisateur['point_Planete'] < 2000) {
+            $niv = 2;
+        } else if ($utilisateur['point_Planete'] < 4000) {
+            $niv = 3;
+        } else if ($utilisateur['point_Planete'] < 8000) {
+            $niv = 4;
+        } else  {
+            $niv = 5;
+        } 
+        ?>
         <div id="texte_compte">
             <h3><?php echo $utilisateur['pseudo']; ?></h3>
             <p>Vos informations :</p>
@@ -122,7 +135,7 @@
                         echo $formatter->format($dateCreationCompte); 
                     ?>
                 </li>
-                <li>Points : <?php echo $utilisateur['point_Planete']; ?></li>
+                <li>Points : <?php echo $utilisateur['point_Planete']; ?> (Planète niveau <?php echo $niv; ?>)</li>
                 <?php if (!empty($utilisateur['ID_parrain'])) : ?>
                 <li>Parrain : <?php echo $utilisateur['ID_parrain']; ?></li>
                 <?php endif; ?>
@@ -135,13 +148,15 @@
                     ?>
                 </li>
 
-                <li>Niveau d'expérience sur la planète : <?php echo $utilisateur['exp_Utilisateur']; ?></li>
+                <li>Expérience du compte : <?php echo $utilisateur['exp_Utilisateur']; ?></li>
             </ul>
         </div>
         <div id="deconnexion_compte">
             <button id="compte_button">
                 <a href="../form/deconnexion.php">Se déconnecter</a>
             </button>
+            
+
             <br>
             <script>
             function partager() {
@@ -155,7 +170,25 @@
             };
             </script>
         </div>
+        
+        <div class="succes">
+            <h2>Succès</h2>
+            <div class="succes2">
+            <?php
+            $requete_succes = $db->prepare("SELECT * FROM succes");
+            $requete_succes->execute();
+            $succes = $requete_succes->fetchAll(PDO::FETCH_ASSOC);
+            foreach ($succes as $suc) {
+                echo "<div class='succes_numero'>";
+                echo "<h3>".$suc['nom']."</h3><br>";
+                echo "<p>".$suc['desc']."</p><br></div>";
+            }
+            ?>
+            </div>
         </div>
+
+        </section>
+
 
         <script src="../script/popup.js"></script>
 

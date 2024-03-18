@@ -343,6 +343,30 @@ html,body{
     color: white;
 }
 
+.succes {
+    border: none;
+    border-radius:5px ;
+    padding: 2vh;
+    width: 15vw;
+    background-color: #1C3326;
+    font-size: 2.5vh;
+    text-transform: bold;
+    margin-bottom: 20vh;
+    text-align: center;
+    width: 97vw;
+}
+
+.succes2 {
+    display: flex;
+    flex-direction: row;
+}
+
+.succes_numero {
+    display: flex;
+    flex-direction: column;
+    width: 32vw;
+}
+
 /*Page défis*/
 
 #defis_h1{
