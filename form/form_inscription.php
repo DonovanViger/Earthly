@@ -47,7 +47,7 @@ try {
     }
 
     // Préparer et exécuter la requête d'insertion avec le chemin de l'image
-    $requete = $db->prepare("INSERT INTO utilisateurs (pseudo, mail, mdp, point_Utilisateur, dateConnexion, dateCreationCompte, expPlaneteUtilisateur, pdp) VALUES (:pseudo, :email, :mdp, 0, :dateCreationCompte, :dateCreationCompte, 0, :photo)");
+    $requete = $db->prepare("INSERT INTO utilisateurs (pseudo, mail, mdp, point_Planete, dateConnexion, dateCreationCompte, exp_Utilisateur, pdp) VALUES (:pseudo, :email, :mdp, 0, :dateCreationCompte, :dateCreationCompte, 0, :photo)");
     $requete->bindParam(':pseudo', $pseudo);
     $requete->bindParam(':email', $email);
     $requete->bindParam(':mdp', $motDePasseHache);

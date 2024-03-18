@@ -361,13 +361,19 @@ html,body{
 #defis_h2{
     text-align: center;
     font-size: 5vh;
-    margin: 0;
+    margin: 0 0 5vh 0;
 }
 
+
 #defis_ul{
-    margin: 0;
-    padding: 0;
+    margin: 0 auto 15vh auto;
+    padding: 2vh;
+    background: rgb(130,214,123);
+    background: linear-gradient(230deg, rgba(130,214,123,1) 0%, rgba(71,195,60,1) 100%);
+    width: 90%;
+    border-radius: 10px;
 }
+
 
 .defi{
     background-color: #1C3326;
@@ -431,3 +437,9 @@ footer {
     margin-block-end:0px;
 }
 
+/* Styke page planete */
+
+iframe{
+    width: 100vw;
+    height: 100vh;
+}
