@@ -51,6 +51,6 @@ try {
 
 <?php
         include("../form/templates/footer.php")
-    ?>
+?>
 </body>
 </html>
