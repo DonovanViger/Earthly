@@ -87,7 +87,9 @@
             </ul>
         </div>
 
-            
+        <?php
+        include("../form/templates/footer.php")
+    ?> 
 
 
 </body>
