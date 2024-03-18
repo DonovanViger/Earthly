@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="style.css" />
     <title>Mon compte</title>
 </head>
+
 <body>
     <?php
     session_start(); // Démarre la session
@@ -28,8 +30,12 @@
     <h1>Recyclez avec nos poubelles intelligentes</h1>
     <h2>Scannez un QR code.</h2>
 
-    <!-- Ajoutez cet élément pour afficher la vidéo de la webcam -->
-    <video id="videoElement" autoplay></video>
+    <video id="video" width="400" height="300" autoplay></video>
+    <canvas id="canvas" style="display: none;"></canvas>
+    <div id="result"></div>
+
+    <!-- Bouton pour activer/désactiver la caméra -->
+    <button id="toggleButton" onclick="toggleCamera()">Activer/Désactiver la caméra</button>
 
     <?php 
     if (isset($_GET['poubelle'])) {
@@ -50,41 +56,81 @@
 
     <?php include("../form/templates/footer.php"); ?>
 
-    <script src="jsQR.js"></script>
+    <script src="../node_modules/jsqr/dist/jsQR.js"></script>
     <script>
-    navigator.mediaDevices.getUserMedia({ video: true })
-        .then(function(stream) {
-            var video = document.getElementById('videoElement'); // Récupère l'élément vidéo par son ID
-            video.srcObject = stream;
-            video.play();
+    // Récupère la vidéo et le canvas
+    const video = document.getElementById('video');
+    const canvas = document.getElementById('canvas');
+    const context = canvas.getContext('2d');
 
-            function captureAndDecode() {
-                var canvas = document.createElement('canvas');
-                var context = canvas.getContext('2d');
-                var video = document.querySelector('video');
+    // Variables pour stocker le flux vidéo et l'intervalle de capture
+    let videoStream;
+    let captureInterval;
 
-                canvas.width = video.videoWidth;
-                canvas.height = video.videoHeight;
-                context.drawImage(video, 0, 0, canvas.width, canvas.height);
+    // Fonction pour démarrer ou arrêter la capture vidéo
+    function toggleCamera() {
+        if (videoStream) {
+            stopCapture();
+            document.getElementById('toggleButton').innerText = 'Activer la caméra';
+        } else {
+            startCapture();
+            document.getElementById('toggleButton').innerText = 'Désactiver la caméra';
+        }
+    }
 
-                var imageData = context.getImageData(0, 0, canvas.width, canvas.height);
-                var code = jsQR(imageData.data, imageData.width, imageData.height);
+    // Fonction pour démarrer la capture vidéo
+    function startCapture() {
+        navigator.mediaDevices.getUserMedia({
+                video: true
+            })
+            .then(function(stream) {
+                videoStream = stream;
+                video.srcObject = stream;
+                captureInterval = setInterval(captureAndDecode, 1000); // Capturer et décoder toutes les secondes
+            })
+            .catch(function(err) {
+                console.log("Erreur lors de l'accès à la webcam: " + err);
+            });
+    }
 
-                if (code) {
-                    console.log("Code QR trouvé :", code);
-                    // Affichez le code QR trouvé sur la page
-                    // Par exemple :
-                    // document.getElementById("qr_result").innerText = code.data;
-                } else {
-                    console.log("Aucun code QR trouvé");
-                }
+    // Fonction pour arrêter la capture vidéo
+    function stopCapture() {
+        if (videoStream) {
+            videoStream.getTracks().forEach(track => track.stop());
+            clearInterval(captureInterval);
+            videoStream = null;
+        }
+    }
+
+    // Fonction pour extraire les images de la vidéo et détecter les QR codes
+    function captureAndDecode() {
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+        const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+        const code = jsQR(imageData.data, imageData.width, imageData.height);
+
+        if (code) {
+            // Si un QR code est trouvé
+            const qrData = code.data;
+            document.getElementById('result').innerText = "QR Code trouvé : " + qrData;
+
+            // Vérifie si le QR code correspond à un lien URL
+            if (isValidUrl(qrData)) {
+                // Ouvre le lien dans un nouvel onglet
+                window.open(qrData, '_blank');
             }
+        }
+    }
 
-            setInterval(captureAndDecode, 1000); // Exécutez la fonction captureAndDecode à intervalles réguliers
-        })
-        .catch(function(err) {
-            console.log("Erreur lors de l'accès à la webcam: " + err);
-        });
+    // Fonction pour vérifier si une chaîne est un lien URL valide
+    function isValidUrl(url) {
+        // Expression régulière pour vérifier si la chaîne est un lien URL valide
+        const urlPattern = /^(http|https):\/\/[\w\-]+(\.[\w\-]+)+([\w\-\.,@?^=%&:/~\+#]*[\w\-\@?^=%&/~\+#])?$/;
+        return urlPattern.test(url);
+    }
     </script>
 </body>
+
 </html>
