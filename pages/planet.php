@@ -8,8 +8,7 @@
 </head>
 <body>
     
-
-
+<div class="sketchfab-embed-wrapper"> <iframe title="Stylized planet" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/789725db86f547fc9163b00f302c3e70/embed?autostart=1&preload=1"> </iframe> </div>
 
 
 
