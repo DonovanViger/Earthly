@@ -114,15 +114,27 @@
             <ul>
                 <li>Pseudo : <?php echo $utilisateur['pseudo']; ?></li>
                 <li>Email : <?php echo $utilisateur['mail']; ?></li>
-                <li>Date de création du compte :
-                    <?php echo date("j F Y", strtotime($utilisateur['dateCreationCompte'])); ?>
+                <li>Date de création du compte : 
+                    <?php 
+                        $dateCreationCompte = new DateTime($utilisateur['dateCreationCompte']);
+                        $formatter = new IntlDateFormatter('fr_FR', IntlDateFormatter::FULL, IntlDateFormatter::NONE);
+                        $formatter->setPattern('dd MMMM yyyy');
+                        echo $formatter->format($dateCreationCompte); 
+                    ?>
                 </li>
                 <li>Points : <?php echo $utilisateur['point_Utilisateur']; ?></li>
                 <?php if (!empty($utilisateur['ID_parrain'])) : ?>
                 <li>Parrain : <?php echo $utilisateur['ID_parrain']; ?></li>
                 <?php endif; ?>
-                <li>Date de dernière connexion : <?php echo date("j F Y", strtotime($utilisateur['dateConnexion'])); ?>
+                <li>Date de dernière connexion :
+                    <?php 
+                        $dateDerniereConnexion = new DateTime($utilisateur['dateConnexion']);
+                        $formatter = new IntlDateFormatter('fr_FR', IntlDateFormatter::FULL, IntlDateFormatter::NONE);
+                        $formatter->setPattern('dd MMMM yyyy');
+                        echo $formatter->format($dateDerniereConnexion); 
+                    ?>
                 </li>
+
                 <li>Niveau d'expérience sur la planète : <?php echo $utilisateur['expPlaneteUtilisateur']; ?></li>
             </ul>
         </div>
