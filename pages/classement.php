@@ -66,7 +66,6 @@ $i = 0;
                 <th scope="col" class="text-center align-middle petit">Avatar</th>
                 <th scope="col" class="px-5 align-middle">Pseudo</th>
                 <th scope="col" class="text-center align-middle petit">Points</th>
-                <th scope="col" class="text-center align-middle petit">XP Planète</th>
             </tr>
         </thead>
         <tbody class="table-group-divider">
@@ -77,7 +76,6 @@ $i = 0;
                         alt="Avatar de <?php echo $classement['pseudo']; ?>" class="avatar"></td>
                 <td class="px-5 align-middle"><?php echo $classement['pseudo']; ?></td>
                 <td class="text-center align-middle"><?php echo $classement['point_Planete']; ?></td>
-                <td class="text-center align-middle"><?php echo $classement['exp_Utilisateur']; ?> XP</td>
             </tr>
             <?php } ?>
         </tbody>
