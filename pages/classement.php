@@ -49,7 +49,7 @@ try {
     die("Erreur de connexion à la base de données : " . $erreur->getMessage());
 }
 
-$requeteClassement = $db->prepare("SELECT `pseudo`,`expPlaneteUtilisateur`,`point_Utilisateur`, IFNULL(`pdp`, '../uploads/default.jpg') AS `pdp` FROM `utilisateurs` ORDER BY `point_Utilisateur` DESC LIMIT 10;");
+$requeteClassement = $db->prepare("SELECT `pseudo`,`exp_Utilisateur`,`point_Planete`, IFNULL(`pdp`, '../uploads/default.jpg') AS `pdp` FROM `utilisateurs` ORDER BY `point_Planete` DESC LIMIT 10;");
 $requeteClassement->execute();
 $Classements = $requeteClassement->fetchAll(PDO::FETCH_ASSOC);
 $i = 0;
@@ -76,8 +76,8 @@ $i = 0;
                 <td class="text-center align-middle"><img src="<?php echo $classement['pdp']; ?>"
                         alt="Avatar de <?php echo $classement['pseudo']; ?>" class="avatar"></td>
                 <td class="px-5 align-middle"><?php echo $classement['pseudo']; ?></td>
-                <td class="text-center align-middle"><?php echo $classement['point_Utilisateur']; ?></td>
-                <td class="text-center align-middle"><?php echo $classement['expPlaneteUtilisateur']; ?> XP</td>
+                <td class="text-center align-middle"><?php echo $classement['point_Planete']; ?></td>
+                <td class="text-center align-middle"><?php echo $classement['exp_Utilisateur']; ?> XP</td>
             </tr>
             <?php } ?>
         </tbody>

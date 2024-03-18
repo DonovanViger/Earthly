@@ -122,7 +122,7 @@
                         echo $formatter->format($dateCreationCompte); 
                     ?>
                 </li>
-                <li>Points : <?php echo $utilisateur['point_Utilisateur']; ?></li>
+                <li>Points : <?php echo $utilisateur['point_Planete']; ?></li>
                 <?php if (!empty($utilisateur['ID_parrain'])) : ?>
                 <li>Parrain : <?php echo $utilisateur['ID_parrain']; ?></li>
                 <?php endif; ?>
@@ -135,7 +135,7 @@
                     ?>
                 </li>
 
-                <li>Niveau d'expérience sur la planète : <?php echo $utilisateur['expPlaneteUtilisateur']; ?></li>
+                <li>Niveau d'expérience sur la planète : <?php echo $utilisateur['exp_Utilisateur']; ?></li>
             </ul>
         </div>
         <div id="deconnexion_compte">

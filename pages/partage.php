@@ -77,13 +77,13 @@
         <div id="texte_compte">
             <ul>
                 <li>Pseudo : <?php echo $utilisateur['pseudo']; ?></li>
-                <li>Points : <?php echo $utilisateur['point_Utilisateur']; ?></li>
+                <li>Points : <?php echo $utilisateur['point_Planete']; ?></li>
                 <?php if (!empty($utilisateur['ID_parrain'])) : ?>
                 <li>Parrain : <?php echo $utilisateur['ID_parrain']; ?></li>
                 <?php endif; ?>
                 <li>Date de dernière connexion : <?php echo date("j F Y", strtotime($utilisateur['dateConnexion'])); ?>
                 </li>
-                <li>Niveau d'expérience sur la planète : <?php echo $utilisateur['expPlaneteUtilisateur']; ?></li>
+                <li>Niveau d'expérience sur la planète : <?php echo $utilisateur['exp_Utilisateur']; ?></li>
             </ul>
         </div>
 
