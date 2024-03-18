@@ -64,19 +64,19 @@ try {
 
 <body>
 
-    <h1><a href="../index.php">Earthly</a></h1>
+    <h1 id="defis_h1"><a href="../index.php">Earthly</a></h1>
 
     <?php
     // Si des défis sont sélectionnés pour la journée actuelle
     if (!empty($defis_journaliers)) {
         // Afficher les défis sélectionnés pour la journée
-        echo "<h2>Liste des défis</h2>";
+        echo "<h2 id='defis_h2'>Liste des défis</h2>";
         echo "<ul>";
         foreach ($defis_journaliers as $defi) {
             echo "<div class='defi'>";
             echo "<strong>", $defi['nom'], "</strong>: ", $defi['desc'];
             // Afficher le bouton pour valider le défi dans un formulaire
-            echo "<form method='POST' action='defi.php'>";
+            echo "<form method='POST' action='defi.php' id='defi_form'>";
             echo "<input type='hidden' name='id_defi' value='" . $defi['ID_Defi'] . "'>";
             $id_defi = $defi['ID_Defi'];
             $sql = "SELECT * FROM `utilisateursdefiquotidien` WHERE `ID_Utilisateur` = $id_utilisateur AND `ID_Defi` = $id_defi AND `dateObtention` = '$date_actuelle'";
