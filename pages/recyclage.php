@@ -27,16 +27,20 @@
     }
     ?>
 
-    <h1>Recyclez avec nos poubelles intelligentes</h1>
-    <h2>Scannez un QR code.</h2>
+    <h1 id="recyclage_h1"><a href="../index.php">Earthly</a></h1>
+    <div id="recyclage_box">
+    <h2 id="recyclage_h2">Scannez un QR code</h2>
 
-    <video id="video" width="400" height="300" autoplay></video>
-    <canvas id="canvas" style="display: none;"></canvas>
+    <div id="recyclage_video">
+    <video id="video" width="500" height="400" autoplay></video>
+  </div>
     <div id="result"></div>
 
     <!-- Bouton pour activer/désactiver la caméra -->
+    <div id="recyclage_button_box">
     <button id="toggleButton" onclick="toggleCamera()">Activer/Désactiver la caméra</button>
-
+  </div>
+  
     <?php 
     if (isset($_GET['poubelle'])) {
         $poubelle = $_GET['poubelle'];
@@ -54,6 +58,7 @@
     }
     ?>
 
+  </div>
     <?php include("../form/templates/footer.php"); ?>
 
     <script src="../node_modules/jsqr/dist/jsQR.js"></script>
