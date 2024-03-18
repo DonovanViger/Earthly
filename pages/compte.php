@@ -108,6 +108,19 @@
                 </label>
             </form>
         </div>
+        <?php
+        if ($utilisateur['point_Planete'] < 1000) {
+            $niv = 1;
+        } else if ($utilisateur['point_Planete'] < 2000) {
+            $niv = 2;
+        } else if ($utilisateur['point_Planete'] < 4000) {
+            $niv = 3;
+        } else if ($utilisateur['point_Planete'] < 8000) {
+            $niv = 4;
+        } else  {
+            $niv = 5;
+        } 
+        ?>
         <div id="texte_compte">
             <h3><?php echo $utilisateur['pseudo']; ?></h3>
             <p>Vos informations :</p>
@@ -122,7 +135,7 @@
                         echo $formatter->format($dateCreationCompte); 
                     ?>
                 </li>
-                <li>Points : <?php echo $utilisateur['point_Planete']; ?></li>
+                <li>Points : <?php echo $utilisateur['point_Planete']; ?> (Planète niveau <?php echo $niv; ?>)</li>
                 <?php if (!empty($utilisateur['ID_parrain'])) : ?>
                 <li>Parrain : <?php echo $utilisateur['ID_parrain']; ?></li>
                 <?php endif; ?>
@@ -135,7 +148,7 @@
                     ?>
                 </li>
 
-                <li>Niveau d'expérience sur la planète : <?php echo $utilisateur['exp_Utilisateur']; ?></li>
+                <li>Expérience du compte : <?php echo $utilisateur['exp_Utilisateur']; ?></li>
             </ul>
         </div>
         <div id="deconnexion_compte">
@@ -155,6 +168,11 @@
             };
             </script>
         </div>
+        </div>
+
+        <div class="succes">
+            <?php
+            ?>
         </div>
 
         <script src="../script/popup.js"></script>
