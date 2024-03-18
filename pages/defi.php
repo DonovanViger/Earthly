@@ -40,7 +40,7 @@ try {
             $stmt_update_defi->bindParam(':id_defi', $_POST['id_defi']);
             $stmt_update_defi->bindParam(':date_obtention', $date_actuelle);
             $stmt_update_defi->execute();
-            $stmt_update_score = $db->prepare("UPDATE utilisateurs INNER JOIN utilisateursdefiquotidien ON utilisateurs.ID_Utilisateur = utilisateursdefiquotidien.ID_Utilisateur INNER JOIN defiquotidien ON utilisateursdefiquotidien.ID_Defi = defiquotidien.ID_Defi SET utilisateurs.point_Utilisateur = utilisateurs.point_Utilisateur + defiquotidien.point WHERE utilisateurs.pseudo = :pseudo");
+            $stmt_update_score = $db->prepare("UPDATE utilisateurs INNER JOIN utilisateursdefiquotidien ON utilisateurs.ID_Utilisateur = utilisateursdefiquotidien.ID_Utilisateur INNER JOIN defiquotidien ON utilisateursdefiquotidien.ID_Defi = defiquotidien.ID_Defi SET utilisateurs.point_Planete = utilisateurs.point_Planete + defiquotidien.point WHERE utilisateurs.pseudo = :pseudo");
             $stmt_update_score->bindParam(':pseudo', $_SESSION['pseudo']);
             $stmt_update_score->execute();
 
