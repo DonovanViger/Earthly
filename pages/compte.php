@@ -155,6 +155,8 @@
             <button id="compte_button">
                 <a href="../form/deconnexion.php">Se déconnecter</a>
             </button>
+            
+
             <br>
             <script>
             function partager() {
@@ -168,12 +170,22 @@
             };
             </script>
         </div>
-        </div>
-
+        
         <div class="succes">
+            <h2>Succès</h2>
             <?php
+            $requete_succes = $db->prepare("SELECT * FROM succes");
+            $requete_succes->execute();
+            $succes = $requete_succes->fetchAll(PDO::FETCH_ASSOC);
+            foreach ($succes as $suc) {
+                echo "<h3>".$suc['nom']."</h3><br>";
+                echo "<p>".$suc['desc']."</p><br>";
+            }
             ?>
         </div>
+
+        </section>
+
 
         <script src="../script/popup.js"></script>
 
