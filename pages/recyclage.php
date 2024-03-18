@@ -9,75 +9,39 @@
 </head>
 
 <body>
-    <?php
-    session_start(); // Démarre la session
-
-    // Vérifie si l'utilisateur est connecté
-    if(!isset($_SESSION['pseudo'])) {
-        // Redirige l'utilisateur vers la page de connexion s'il n'est pas connecté
-        header("Location: connexion.php");
-        exit();
-    }
-
-    try {
-        $db = new PDO('mysql:host=localhost;dbname=sae401-2', 'root', '');
-        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    } catch (PDOException $erreur) {
-        die("Erreur de connexion à la base de données : ". $erreur->getMessage());
-    }
-    ?>
-
     <h1>Recyclez avec nos poubelles intelligentes</h1>
     <h2>Scannez un QR code.</h2>
+
+    <canvas id="canvas"></canvas>
 
     <video id="video" width="400" height="300" autoplay></video>
     <div id="result"></div>
 
-    <!-- Bouton pour activer/désactiver la caméra -->
     <button id="toggleButton" onclick="toggleCamera()">Activer la caméra</button>
-
-    <!-- Bouton pour générer le QR code -->
-    <button id="generateQR" onclick="generateQR()">Générer QR code</button>
-
-    <!-- Conteneur pour le QR code généré -->
-    <canvas id="canvas"></canvas>
-
-
-    <?php 
-    if (isset($_GET['poubelle'])) {
-        $poubelle = $_GET['poubelle'];
-        echo "<div>";
-        if ($poubelle == 1) {
-            echo "<p>Vous recyclez vos déchets cartons, plastiques, papiers et métalliques.</p>";
-        } else if ($poubelle == 2) {
-            echo "<p>Vous recyclez vos déchets en verre.</p>";
-        } else if ($poubelle == 3) {
-            echo "<p>Vous jetez vos déchets ordinaires qui ne se recyclent pas.</p>";
-        } else {
-            echo "<p>Cette poubelle n'existe pas dans notre base de données</p>";
-        }
-        echo "</div>";
-    }
-    ?>
+    <button id="generateQR">Générer QR code</button>
 
     <?php include("../form/templates/footer.php"); ?>
 
     <script src="../node_modules/jsqr/dist/jsQR.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="bundle.js"></script>
     <script>
 
-    const QRCode = require('qrcode');
-    var canvas = document.getElementById('canvas');
-    console.log(canvas);
+document.addEventListener('DOMContentLoaded', function () {
+            var canvas = document.getElementById('canvas');
+            console.log(canvas);
 
-    QRCode.toCanvas(canvas, 'sample text', function(error) {
-        if (error) console.error(error)
-        console.log('success!');
-    })
+            // Générer un QR code sur le canvas
+            new QRCode(canvas, {
+                text: 'sample text',
+                width: 150,
+                height: 150
+            });
+        });
 
     // Récupère la vidéo et le canvas
     const video = document.getElementById('video');
-    const canvas = document.getElementById('canvas');
     const context = canvas.getContext('2d');
 
     // Variables pour stocker le flux vidéo et l'intervalle de capture
@@ -158,6 +122,7 @@
         const urlPattern = /^(http|https):\/\/[\w\-]+(\.[\w\-]+)+([\w\-\.,@?^=%&:/~\+#]*[\w\-\@?^=%&/~\+#])?$/;
         return urlPattern.test(url);
     }
+    
     </script>
 </body>
 
