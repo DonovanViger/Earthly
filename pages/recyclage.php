@@ -35,7 +35,10 @@
     <div id="result"></div>
 
     <!-- Bouton pour activer/désactiver la caméra -->
-    <button id="toggleButton" onclick="toggleCamera()">Activer/Désactiver la caméra</button>
+    <button id="toggleButton" onclick="toggleCamera()">Activer la caméra</button>
+
+    <!-- Bouton pour générer le QR code -->
+    <button id="generateQR" onclick="generateQR()">Générer QR code</button>
 
     <?php 
     if (isset($_GET['poubelle'])) {
@@ -57,6 +60,7 @@
     <?php include("../form/templates/footer.php"); ?>
 
     <script src="../node_modules/jsqr/dist/jsQR.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
     // Récupère la vidéo et le canvas
     const video = document.getElementById('video');
@@ -102,45 +106,63 @@
         }
     }
 
-// Fonction pour extraire les images de la vidéo et détecter les QR codes
-// Fonction pour extraire les images de la vidéo et détecter les QR codes
-function captureAndDecode() {
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
-    context.drawImage(video, 0, 0, canvas.width, canvas.height);
+    // Fonction pour extraire les images de la vidéo et détecter les QR codes
+    function captureAndDecode() {
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        context.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-    const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
-    const code = jsQR(imageData.data, imageData.width, imageData.height);
+        const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+        const code = jsQR(imageData.data, imageData.width, imageData.height);
 
-    if (code) {
-        // Si un QR code est trouvé
-        const qrData = code.data;
-        document.getElementById('result').innerText = "QR Code trouvé : " + qrData;
+        if (code) {
+            // Si un QR code est trouvé
+            const qrData = code.data;
+            document.getElementById('result').innerText = "QR Code trouvé : " + qrData;
 
-        // Vérifie si le QR code correspond à un lien URL
-        if (isValidUrl(qrData)) {
-            // Arrête la capture vidéo
-            stopCapture();
-
-            // Affiche un bouton redirigeant vers le site
-            const button = document.createElement('button');
-            button.textContent = 'Visiter le site';
-            button.onclick = function() {
+            // Vérifie si le QR code correspond à un lien URL
+            if (isValidUrl(qrData)) {
+                // Arrête la capture vidéo
+                stopCapture();
+                document.getElementById('toggleButton').innerText = 'Activer la caméra';
                 window.open(qrData, '_blank');
-            };
-            document.getElementById('result').innerHTML = ''; // Efface le texte précédent
-            document.getElementById('result').appendChild(button);
+
+                // Affiche un bouton redirigeant vers le site
+                const button = document.createElement('button');
+                button.textContent = 'Visiter le site';
+                button.onclick = function() {
+                    window.open(qrData, '_blank');
+                };
+                document.getElementById('result').innerHTML = ''; // Efface le texte précédent
+                document.getElementById('result').appendChild(button);
+            }
         }
     }
-}
-
-
 
     // Fonction pour vérifier si une chaîne est un lien URL valide
     function isValidUrl(url) {
         // Expression régulière pour vérifier si la chaîne est un lien URL valide
         const urlPattern = /^(http|https):\/\/[\w\-]+(\.[\w\-]+)+([\w\-\.,@?^=%&:/~\+#]*[\w\-\@?^=%&/~\+#])?$/;
         return urlPattern.test(url);
+    }
+
+    // Fonction pour générer le QR code et mettre à jour la base de données
+    function generateQR() {
+        $.ajax({
+            url: '../form/generate_qr_and_update_db.php',
+            method: 'POST',
+            data: {
+                userId: $_SESSION['user_id'],
+            }, // Exemple de données à envoyer (l'identifiant de l'utilisateur)
+            success: function(response) {
+                // Traitez la réponse si nécessaire
+                console.log(response);
+            },
+            error: function(xhr, status, error) {
+                // Traitez les erreurs si nécessaire
+                console.error(error);
+            }
+        });
     }
     </script>
 </body>
