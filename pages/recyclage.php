@@ -31,6 +31,9 @@
     <!-- Ajoutez cet élément pour afficher la vidéo de la webcam -->
     <video id="videoElement" autoplay></video>
 
+    <!-- Ajoutez un bouton pour activer/désactiver la caméra -->
+    <button id="toggleButton">Activer/Désactiver la caméra</button>
+
     <?php 
     if (isset($_GET['poubelle'])) {
         $poubelle = $_GET['poubelle'];
@@ -52,39 +55,33 @@
 
     <script src="jsQR.js"></script>
     <script>
-    navigator.mediaDevices.getUserMedia({ video: true })
-        .then(function(stream) {
-            var video = document.getElementById('videoElement'); // Récupère l'élément vidéo par son ID
-            video.srcObject = stream;
-            video.play();
+    var videoStream;
 
-            function captureAndDecode() {
-                var canvas = document.createElement('canvas');
-                var context = canvas.getContext('2d');
-                var video = document.querySelector('video');
+    // Fonction pour activer/désactiver la caméra
+    function toggleCamera() {
+        var video = document.getElementById('videoElement');
 
-                canvas.width = video.videoWidth;
-                canvas.height = video.videoHeight;
-                context.drawImage(video, 0, 0, canvas.width, canvas.height);
+        // Si la caméra est déjà active, arrêtez le flux vidéo et définissez la source sur null
+        if (videoStream) {
+            videoStream.getTracks().forEach(track => track.stop());
+            video.srcObject = null;
+            videoStream = null;
+        } else {
+            // Sinon, activez la caméra
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(function(stream) {
+                    video.srcObject = stream;
+                    video.play();
+                    videoStream = stream;
+                })
+                .catch(function(err) {
+                    console.log("Erreur lors de l'accès à la webcam: " + err);
+                });
+        }
+    }
 
-                var imageData = context.getImageData(0, 0, canvas.width, canvas.height);
-                var code = jsQR(imageData.data, imageData.width, imageData.height);
-
-                if (code) {
-                    console.log("Code QR trouvé :", code);
-                    // Affichez le code QR trouvé sur la page
-                    // Par exemple :
-                    // document.getElementById("qr_result").innerText = code.data;
-                } else {
-                    console.log("Aucun code QR trouvé");
-                }
-            }
-
-            setInterval(captureAndDecode, 1000); // Exécutez la fonction captureAndDecode à intervalles réguliers
-        })
-        .catch(function(err) {
-            console.log("Erreur lors de l'accès à la webcam: " + err);
-        });
+    // Associez la fonction toggleCamera au clic sur le bouton
+    document.getElementById('toggleButton').addEventListener('click', toggleCamera);
     </script>
 </body>
 </html>
