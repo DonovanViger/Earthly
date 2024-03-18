@@ -34,8 +34,8 @@
     <canvas id="canvas" style="display: none;"></canvas>
     <div id="result"></div>
 
-    <!-- Ajoutez un bouton pour activer/désactiver la caméra -->
-    <button id="toggleButton">Activer/Désactiver la caméra</button>
+    <!-- Bouton pour activer/désactiver la caméra -->
+    <button id="toggleButton" onclick="toggleCamera()">Activer/Désactiver la caméra</button>
 
     <?php 
     if (isset($_GET['poubelle'])) {
@@ -56,7 +56,7 @@
 
     <?php include("../form/templates/footer.php"); ?>
 
-    <script src="jsQR.js"></script>
+    <script src="../node_modules/jsqr/dist/jsQR.js"></script>
     <script>
     // Récupère la vidéo et le canvas
     const video = document.getElementById('video');
@@ -67,6 +67,17 @@
     let videoStream;
     let captureInterval;
 
+    // Fonction pour démarrer ou arrêter la capture vidéo
+    function toggleCamera() {
+        if (videoStream) {
+            stopCapture();
+            document.getElementById('toggleButton').innerText = 'Activer la caméra';
+        } else {
+            startCapture();
+            document.getElementById('toggleButton').innerText = 'Désactiver la caméra';
+        }
+    }
+
     // Fonction pour démarrer la capture vidéo
     function startCapture() {
         navigator.mediaDevices.getUserMedia({
@@ -75,6 +86,7 @@
             .then(function(stream) {
                 videoStream = stream;
                 video.srcObject = stream;
+                captureInterval = setInterval(captureAndDecode, 1000); // Capturer et décoder toutes les secondes
             })
             .catch(function(err) {
                 console.log("Erreur lors de l'accès à la webcam: " + err);
@@ -86,6 +98,7 @@
         if (videoStream) {
             videoStream.getTracks().forEach(track => track.stop());
             clearInterval(captureInterval);
+            videoStream = null;
         }
     }
 
@@ -99,21 +112,24 @@
         const code = jsQR(imageData.data, imageData.width, imageData.height);
 
         if (code) {
-            // Afficher le résultat du QR code sur la page
-            document.getElementById('result').innerText = "QR Code trouvé : " + code.data;
+            // Si un QR code est trouvé
+            const qrData = code.data;
+            document.getElementById('result').innerText = "QR Code trouvé : " + qrData;
+
+            // Vérifie si le QR code correspond à un lien URL
+            if (isValidUrl(qrData)) {
+                // Ouvre le lien dans un nouvel onglet
+                window.open(qrData, '_blank');
+            }
         }
     }
 
-    // Démarrer la capture vidéo lorsque la page est chargée
-    window.onload = function() {
-        startCapture();
-        captureInterval = setInterval(captureAndDecode, 1000); // Capturer et décoder toutes les secondes
-    };
-
-    // Arrêter la capture vidéo lorsque la fenêtre est fermée ou que l'utilisateur quitte la page
-    window.onbeforeunload = function() {
-        stopCapture();
-    };
+    // Fonction pour vérifier si une chaîne est un lien URL valide
+    function isValidUrl(url) {
+        // Expression régulière pour vérifier si la chaîne est un lien URL valide
+        const urlPattern = /^(http|https):\/\/[\w\-]+(\.[\w\-]+)+([\w\-\.,@?^=%&:/~\+#]*[\w\-\@?^=%&/~\+#])?$/;
+        return urlPattern.test(url);
+    }
     </script>
 </body>
 
