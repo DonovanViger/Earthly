@@ -38,7 +38,7 @@
     <button id="toggleButton" onclick="toggleCamera()">Activer la caméra</button>
 
     <!-- Bouton pour générer le QR code -->
-    <button id="generateQR" onclick="generateQR()">Générer QR code</button>
+    <button id="generateQR">Générer QR code</button>
 
     <?php 
     if (isset($_GET['poubelle'])) {
@@ -59,9 +59,29 @@
 
     <?php include("../form/templates/footer.php"); ?>
 
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.4.4/dist/qrcode.min.js"></script>
     <script src="../node_modules/jsqr/dist/jsQR.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+    // Fonction pour générer le QR code et mettre à jour la base de données
+    function generateQR() {
+        // Récupérer l'identifiant de l'utilisateur
+        var userId = <?php echo $_SESSION['user_id']; ?>;
+
+        // Générer les données à inclure dans le QR code (par exemple, l'URL avec l'identifiant de l'utilisateur)
+        var qrData = "https://example.com/user?id=" + userId;
+
+        // Créer le QR code avec les données
+        var qrCode = new QRCode(document.getElementById("qrCodeContainer"), {
+            text: qrData,
+            width: 200,
+            height: 200,
+            colorDark: "#000000",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
+        });
+    }
+
     // Récupère la vidéo et le canvas
     const video = document.getElementById('video');
     const canvas = document.getElementById('canvas');
@@ -144,25 +164,6 @@
         // Expression régulière pour vérifier si la chaîne est un lien URL valide
         const urlPattern = /^(http|https):\/\/[\w\-]+(\.[\w\-]+)+([\w\-\.,@?^=%&:/~\+#]*[\w\-\@?^=%&/~\+#])?$/;
         return urlPattern.test(url);
-    }
-
-    // Fonction pour générer le QR code et mettre à jour la base de données
-    function generateQR() {
-        $.ajax({
-            url: '../form/generate_qr_and_update_db.php',
-            method: 'POST',
-            data: {
-                userId: $_SESSION['user_id'],
-            }, // Exemple de données à envoyer (l'identifiant de l'utilisateur)
-            success: function(response) {
-                // Traitez la réponse si nécessaire
-                console.log(response);
-            },
-            error: function(xhr, status, error) {
-                // Traitez les erreurs si nécessaire
-                console.error(error);
-            }
-        });
     }
     </script>
 </body>
