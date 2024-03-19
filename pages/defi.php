@@ -60,18 +60,24 @@ try {
             } else {
                 $id_succes = 16;
             } 
-            $stmt_update_succes = $db->prepare("SELECT ID_UtilisateurSucces FROM utilisateursucces INNER JOIN utilisateurs ON utilisateurs.ID_Utilisateur = utilisateursucces.ID_Utilisateur INNER JOIN succes ON succes.ID_Succes = utilisateursucces.ID_Succes WHERE utilisateursucces.ID_Succes = :id_succes");
+            $stmt_update_succes = $db->prepare("SELECT ID_UtilisateurSucces FROM utilisateursucces INNER JOIN utilisateurs ON utilisateurs.ID_Utilisateur = utilisateursucces.ID_Utilisateur INNER JOIN succes ON succes.ID_Succes = utilisateursucces.ID_Succes WHERE utilisateursucces.ID_Succes = :id_succes AND utilisateurs.ID_Utilisateur = :id_utilisateur");
             $stmt_update_succes->bindParam(':id_succes', $id_succes);
+            $stmt_update_succes->bindParam(':id_utilisateur', $_SESSION['user_id']);
             $stmt_update_succes->execute(); 
             $succesuser = $stmt_update_succes->fetch();
             if (empty($succesuser)) {
                 echo "<script>console.log('Pas de progression')</script>";
                 $stmt_update_defi = $db->prepare("INSERT INTO utilisateursucces (ID_Utilisateur, ID_Succes, progression) VALUES (:id_utilisateur, :id_succes, 1)");
-                $stmt_update_defi->bindParam(':id_utilisateur', $_SESSION['pseudo']);
+                $stmt_update_defi->bindParam(':id_utilisateur', $_SESSION['user_id']);
                 $stmt_update_defi->bindParam(':id_succes', $id_succes);
                 $stmt_update_defi->execute();
+            } else if (isset($succesuser["5"])) {
+                echo "<script>console.log('Progression 1 fini')</script>";
             } else {
-                echo "<script>console.log('Progression')</script>";
+                echo "<script>console.log('Progression 1 continuer')</script>";
+                /* $stmt_update_succes = $db->prepare("UPDATE utilisateursucces INNER JOIN utilisateursdefiquotidien ON utilisateurs.ID_Utilisateur = utilisateursdefiquotidien.ID_Utilisateur INNER JOIN defiquotidien ON utilisateursdefiquotidien.ID_Defi = defiquotidien.ID_Defi SET utilisateurs.point_Planete = utilisateurs.point_Planete + defiquotidien.point, utilisateurs.exp_Utilisateur = utilisateurs.exp_Utilisateur + defiquotidien.point WHERE utilisateurs.pseudo = :pseudo");
+                $stmt_update_succes->bindParam(':pseudo', $_SESSION['pseudo']);
+                $stmt_update_succes->execute(); */
             }
 
         }
