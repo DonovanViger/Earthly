@@ -425,49 +425,6 @@ html,body{
 
 /*Page Recyclage*/
 
-#recyclage_h1{
-    text-align: center;
-}
-
-#recyclage_h1 a{
-    color: black;
-    text-decoration: none;
-    font-size: 7vh;
-}
-
-#recyclage_h2{
-    color: white;
-}
-
-#recyclage_box{
-    background-color: #1C3326;
-    padding: 2vh 5vh 2vh 5vh;
-    width: 80vw;
-    border-radius: 10px;
-    margin: auto;
-    margin-bottom: 15vh;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
-
-#recyclage_video{
-   text-align: center;
-}
-
-#recyclage_button_box{
-    width: 50%;
-    margin: auto;
-    text-align: center;
-    font-family: Como;
-}
-
-.button{
-    border: none;
-    padding: 1vh;
-    border-radius:10px;
-
-}
-
-
 /*Général pour toutes les pages*/
 
 /* Style général du footer */
@@ -500,15 +457,9 @@ footer {
     visibility: hidden; /* Cache tous les liens */
 }
 
-/* Style du lien actif */
-.footer-nav li.active a {
-    visibility: visible; /* Affiche uniquement le lien actif */
-    color: #fff; /* Blanc pour le lien actif */
-}
-
 /* Style des icônes actives */
-.footer-nav li.active i {
-    color: #fff; /* Blanc pour l'icône du lien actif */
+.nav .nav-link.active i {
+    color: #FFCE54; /* Noir pour l'icône du lien actif */
 }
 
 /* Style du bouton flottant */
