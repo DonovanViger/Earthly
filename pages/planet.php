@@ -18,7 +18,7 @@ try {
 
 // Requête SQL pour récupérer les informations de l'utilisateur
 $requete = $db->prepare("SELECT * FROM utilisateurs WHERE pseudo = :pseudo");
-$requete->bindParam(':pseudo', $pseudo);
+$requete->bindParam(':pseudo', $_SESSION['pseudo']);
 $requete->execute();
 
 // Récupération des résultats de la requête
