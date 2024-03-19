@@ -11,13 +11,13 @@
             </a>
         </div>
         <div class="nav-slot">
-            <a href="../pages/planet.php" class="nav-link" id="planet">
-                <i class="fa-solid fa-earth-europe"></i>
+            <a href="../pages/recyclage.php" class="nav-link" id="recyclage">
+                <i class="fa-solid fa-qrcode"></i>
             </a>
         </div>
         <div class="nav-slot curve">
-            <a href="../pages/recyclage.php" class="floating-button" id="recyclage">
-                <i class="fa-solid fa-qrcode"></i>
+            <a href="../pages/planet.php" class="floating-button" id="planet">
+                <i class="fa-solid fa-earth-europe"></i>
             </a>
         </div>
         <div class="nav-slot">
