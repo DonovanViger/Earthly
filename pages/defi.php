@@ -22,6 +22,9 @@ try {
     $defi_suppression = $db->prepare("DELETE FROM defis_journaliers WHERE date != :date");
     $defi_suppression->bindParam(':date', $date_actuelle);
     $defi_suppression->execute();
+    $defi_utilisateur_suppression = $db->prepare("DELETE FROM utilisateursdefiquotidien WHERE dateObtention != :date");
+    $defi_utilisateur_suppression->bindParam(':date', $date_actuelle);
+    $defi_utilisateur_suppression->execute();
     $defis_journaliers = $stmt_select_defis->fetchAll(PDO::FETCH_ASSOC);
 
     // Récupération de l'ID de l'utilisateur associé à son pseudo
