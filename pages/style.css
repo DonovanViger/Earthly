@@ -1,10 +1,11 @@
 @font-face {
     font-family: "Como";
     src: url("Como-Medium.ttf");
-  }
+}
 
 
-html,body{
+html,
+body {
     margin: 0px;
     padding: 0px;
     background-color: #BFEABB;
@@ -13,22 +14,22 @@ html,body{
 
 ::-webkit-scrollbar {
     display: none;
-  }
+}
 
 /*Page Connexion*/
 
-#h1_connexion{
+#h1_connexion {
     margin: 7.5vh 0 6vh 0;
     text-align: center;
 }
 
-#h1_connexion a{
+#h1_connexion a {
     text-decoration: none;
     color: black;
     font-size: 7.5vh;
 }
 
-#connexion_cadre{
+#connexion_cadre {
     text-align: center;
     color: white;
     width: 60%;
@@ -39,12 +40,12 @@ html,body{
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-#h2_connexion{
+#h2_connexion {
     font-size: 5vh;
     margin: 0 0 5vh 0;
 }
 
-#connexion_input_submit{
+#connexion_input_submit {
     background-color: white;
     padding: 0.5vh;
     width: 7.5vw;
@@ -52,12 +53,12 @@ html,body{
     border-radius: 10px;
 }
 
-#connexion_retour{
-    margin: 5vh auto 0  auto;
+#connexion_retour {
+    margin: 5vh auto 0 auto;
     text-align: center;
 }
 
-#connexion_button_retour{
+#connexion_button_retour {
     border: none;
     background-color: #1C3326;
     border-radius: 10px;
@@ -67,27 +68,28 @@ html,body{
 
 
 }
-#connexion_retour button a{
+
+#connexion_retour button a {
     text-decoration: none;
     font-size: 3vh;
-    color:white;
+    color: white;
 }
 
 
 /*Page Inscription*/
 
-#h1_inscription{
+#h1_inscription {
     margin: 5vh 0 10vh 0;
     text-align: center;
 }
 
-#h1_inscription a{
+#h1_inscription a {
     text-decoration: none;
     color: black;
     font-size: 7.5vh;
 }
 
-#inscription_cadre{
+#inscription_cadre {
     text-align: center;
     color: white;
     width: 60%;
@@ -98,12 +100,12 @@ html,body{
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-#h2_inscription{
+#h2_inscription {
     font-size: 5vh;
     margin: 0 0 5vh 0;
 }
 
-#inscription_input_submit{
+#inscription_input_submit {
     background-color: white;
     padding: 0.5vh;
     width: 7.5vw;
@@ -111,12 +113,12 @@ html,body{
     border-radius: 10px;
 }
 
-#inscription_retour{
+#inscription_retour {
     margin: 5vh auto 5vh auto;
     text-align: center;
 }
 
-#inscription_button_retour{
+#inscription_button_retour {
     border: none;
     background-color: #1C3326;
     border-radius: 10px;
@@ -126,28 +128,29 @@ html,body{
 
 
 }
-#inscription_retour button a{
+
+#inscription_retour button a {
     text-decoration: none;
     font-size: 3vh;
-    color:white;
+    color: white;
 }
 
 
 /*Page Classement*/
 
-#h1_classement{
+#h1_classement {
     text-align: center;
     margin-top: 5vh;
     font-weight: bold;
 }
 
-#h1_classement a{
+#h1_classement a {
     text-decoration: none;
     color: black;
     font-size: 7.5vh;
 }
 
-#h2_classement{
+#h2_classement {
     text-align: center;
     font-size: 5vh;
     font-weight: bold;
@@ -169,33 +172,33 @@ html,body{
     /* Pour rendre l'image ronde */
 }
 
-#h1_compte{
+#h1_compte {
     text-align: center;
 }
 
-#h1_compte a{
+#h1_compte a {
     text-decoration: none;
     color: black;
     font-size: 7.5vh;
 }
 
-#h2_compte{
+#h2_compte {
     text-align: center;
     font-size: 2.5vw;
     width: 50vw;
     margin: 1vh auto 3vh auto;
 }
 
-#profil{
+#profil {
     background-color: #1C3326;
     padding: 1vh 1vh 3vh 1vh;
     color: white;
     height: 65vh;
     margin-top: 5vh;
-    
+
 }
 
-#compte_settings{
+#compte_settings {
     float: right;
     background-color: #1C3326;
     border: none;
@@ -203,7 +206,7 @@ html,body{
     padding-top: 2vh;
 }
 
-#compte_settings i{
+#compte_settings i {
     color: white;
     font-size: 4vh;
     cursor: pointer;
@@ -241,26 +244,26 @@ html,body{
     /* Initialement caché */
 }
 
-#compte_param_button_close{
+#compte_param_button_close {
     border: none;
     background-color: #1C3326;
     float: right;
     margin-top: -1vh;
 }
 
-#compte_param_button_close i{
+#compte_param_button_close i {
     color: #fff;
     font-size: 4vh;
-    cursor:pointer
+    cursor: pointer
 }
 
-#compte_h3_settings{
+#compte_h3_settings {
     margin-top: 5vh;
     margin-bottom: 6.5vh;
     font-size: 4vh;
 }
 
-#compte_settings_button_valid{
+#compte_settings_button_valid {
     width: 30%;
     padding: 1vh;
     border: none;
@@ -269,14 +272,14 @@ html,body{
     margin-top: 2.5vh;
 }
 
-#compte_share{
+#compte_share {
     font-size: 4vh;
     cursor: pointer;
-    margin-left:1.5vw ;
+    margin-left: 1.5vw;
     margin-top: 2vh;
 }
 
-#compte_bar{
+#compte_bar {
     width: 80vw;
     height: 0.25vh;
     background-color: white;
@@ -284,7 +287,7 @@ html,body{
     margin: 0 auto 0 auto;
 }
 
-#image_compte{
+#image_compte {
     margin-top: 5vh;
     text-align: center;
     width: 30vw;
@@ -295,7 +298,7 @@ html,body{
     margin-left: 15vw;
 }
 
-#texte_compte{
+#texte_compte {
     width: 30vw;
     float: left;
     padding-top: 2vh;
@@ -303,7 +306,7 @@ html,body{
 }
 
 .custom-file-upload input[type="file"] {
-    display: none; 
+    display: none;
 }
 
 .custom-file-upload {
@@ -318,7 +321,7 @@ html,body{
 }
 
 
-#deconnexion_compte{
+#deconnexion_compte {
     clear: both;
     margin-top: 55vh;
     text-align: center;
@@ -326,9 +329,9 @@ html,body{
 }
 
 
-#compte_button{
+#compte_button {
     border: none;
-    border-radius:5px ;
+    border-radius: 5px;
     padding: 2vh;
     width: 15vw;
     background-color: #1C3326;
@@ -338,14 +341,14 @@ html,body{
 }
 
 
-#compte_button a{
-    text-decoration:none ;
+#compte_button a {
+    text-decoration: none;
     color: white;
 }
 
 .succes {
     border: none;
-    border-radius:5px ;
+    border-radius: 5px;
     padding: 2vh;
     width: 15vw;
     background-color: #1C3326;
@@ -373,37 +376,37 @@ html,body{
 
 /*Page défis*/
 
-#defis_h1{
+#defis_h1 {
     text-align: center;
     margin: 5vh 0 0 0;
     padding: 0;
 }
 
-#defis_h1 a{
+#defis_h1 a {
     text-decoration: none;
     color: black;
     font-size: 7.5vh;
 }
 
 
-#defis_h2{
+#defis_h2 {
     text-align: center;
     font-size: 5vh;
     margin: 0 0 5vh 0;
 }
 
 
-#defis_ul{
+#defis_ul {
     margin: 0 auto 15vh auto;
     padding: 2vh;
-    background: rgb(130,214,123);
-    background: linear-gradient(230deg, rgba(130,214,123,1) 0%, rgba(71,195,60,1) 100%);
+    background: rgb(130, 214, 123);
+    background: linear-gradient(230deg, rgba(130, 214, 123, 1) 0%, rgba(71, 195, 60, 1) 100%);
     width: 90%;
     border-radius: 10px;
 }
 
 
-.defi{
+.defi {
     background-color: #1C3326;
     padding: 4vh;
     margin: 4vh auto 4vh auto;
@@ -413,17 +416,17 @@ html,body{
     border-radius: 10px;
 }
 
-#defi_form{
+#defi_form {
     margin-top: 2vh;
 }
 
-#defis_button{
+#defis_button {
     border: none;
     width: 15vw;
     padding: 1vh;
     cursor: pointer;
     border-radius: 20px;
-    
+
 }
 
 
@@ -437,7 +440,8 @@ footer {
     position: fixed;
     bottom: 0;
     width: 100%;
-    background-color: #fff;
+    background-color: #FFEFE1;
+    color:#1C3326;
     padding: 15px 0;
     text-align: center;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
@@ -447,6 +451,7 @@ footer {
 .footer-nav li {
     display: inline-block;
     margin: 0 15px;
+    color: #1C3326;
 }
 
 /* Style des icônes */
@@ -458,12 +463,13 @@ footer {
 .footer-nav li a {
     color: #888;
     text-decoration: none;
-    visibility: hidden; /* Cache tous les liens */
+    visibility: hidden;
+    /* Cache tous les liens */
 }
 
 /* Style des icônes actives */
 .nav .nav-link.active i {
-    color: #FFCE54; /* Noir pour l'icône du lien actif */
+    color: #2BBA7C;
 }
 
 /* Style du bouton flottant */
@@ -473,15 +479,18 @@ footer {
     height: 50px;
     line-height: 3;
     text-align: center;
-    color: #FFCE54;
+    color: #FFEFE1;
     border-radius: 50%;
     bottom: 35px;
-    background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+    background: rgb(43,186,124);
+    background: linear-gradient(90deg, rgba(43,186,124,1) 28%, rgba(109,199,104,1) 100%);
     box-shadow: 0 10px 6px -6px #777;
     z-index: 1;
     transition: 0.3s all;
-    left: 50%; /* Positionne le bouton à 50% de la largeur de l'écran */
-    transform: translateX(-50%); /* Le recentre en fonction de sa propre largeur */
+    left: 50%;
+    /* Positionne le bouton à 50% de la largeur de l'écran */
+    transform: translateX(-50%);
+    /* Le recentre en fonction de sa propre largeur */
 }
 
 .floating-button:hover {
@@ -499,19 +508,28 @@ footer {
 .nav-slot {
     display: inline-block;
     vertical-align: top;
-    width: 20%; /* ou une valeur appropriée */
+    width: 20%;
+    /* ou une valeur appropriée */
     text-align: center;
 }
 
+.nav {
+    --bs-nav-link-padding-x: 1rem;
+    --bs-nav-link-padding-y: 0.5rem;
+    --bs-nav-link-font-weight: ;
+    --bs-nav-link-color: #1C3326;
+    --bs-nav-link-hover-color: #338664;
+    --bs-nav-link-disabled-color: #2BBA7C;
+}
 
 /* Styke page planete */
 
-iframe{
+iframe {
     width: 100vw;
     height: 100vh;
 }
 
-.sketchfab-embed-wrapper{
+.sketchfab-embed-wrapper {
     width: 100vw;
     height: 100vh;
 }
