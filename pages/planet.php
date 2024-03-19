@@ -10,7 +10,23 @@
 </head>
 <body>
 
-<div class="sketchfab-embed-wrapper"> <iframe title="lvl5" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/da58575a4b5d48a5b39b399e56e023f1/embed?autospin=0.05&autostart=1&dnt=1"> </iframe> </div>
+<?php
+        if ($utilisateur['point_Planete'] < 1000) {
+            $niv = 1;
+        } else if ($utilisateur['point_Planete'] < 3000) {
+            $niv = 2;
+        } else if ($utilisateur['point_Planete'] < 7000) {
+            $niv = 3;
+        } else if ($utilisateur['point_Planete'] < 15000) {
+            $niv = 4;
+        } else  {
+            $niv = 5;
+            ?>
+            <div class="sketchfab-embed-wrapper"> <iframe title="lvl5" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/da58575a4b5d48a5b39b399e56e023f1/embed?autospin=0.05&autostart=1&dnt=1"> </iframe> </div>
+                <?php
+        } 
+        ?>
+
 
 
 
