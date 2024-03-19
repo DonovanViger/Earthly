@@ -174,7 +174,7 @@
             <h2>Succès</h2>
             <div class="succes2">
                 <?php
-            $requete_succes = $db->prepare("SELECT * FROM succes");
+            $requete_succes = $db->prepare("SELECT * FROM `succes` ORDER BY `triageSucces`");
             $requete_succes->execute();
             $succes = $requete_succes->fetchAll(PDO::FETCH_ASSOC);
             foreach ($succes as $suc) {
