@@ -479,6 +479,10 @@ footer {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
+footer i {
+    color:#fff;
+}
+
 .footer-nav {
     background-color: #1C3326; /* Couleur de fond */
     display: flex; /* Utilisation de flexbox */
