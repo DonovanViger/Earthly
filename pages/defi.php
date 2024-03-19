@@ -51,14 +51,24 @@ try {
             $stmt_update_score->execute();
             if ($id_defi == 1) {
                 $id_succes = 2;
+                $id_succes2 = 4;
+                $id_succes3 = 5;
             } else if ($id_defi == 2) {
                 $id_succes = 8;
+                $id_succes2 = 9;
+                $id_succes3 = 10;
             } else if ($id_defi == 3) {
                 $id_succes = 11;
+                $id_succes2 = 12;
+                $id_succes3 = 13;
             } else if ($id_defi == 4) {
                 $id_succes = 3;
+                $id_succes2 = 6;
+                $id_succes3 = 7;
             } else {
                 $id_succes = 16;
+                $id_succes2 = 2;
+                $id_succes3 = 2;
             } 
             $stmt_update_succes = $db->prepare("SELECT ID_UtilisateurSucces FROM utilisateursucces INNER JOIN utilisateurs ON utilisateurs.ID_Utilisateur = utilisateursucces.ID_Utilisateur INNER JOIN succes ON succes.ID_Succes = utilisateursucces.ID_Succes WHERE utilisateursucces.ID_Succes = :id_succes AND utilisateurs.ID_Utilisateur = :id_utilisateur");
             $stmt_update_succes->bindParam(':id_succes', $id_succes);
@@ -71,6 +81,14 @@ try {
                 $stmt_update_defi->bindParam(':id_utilisateur', $_SESSION['user_id']);
                 $stmt_update_defi->bindParam(':id_succes', $id_succes);
                 $stmt_update_defi->execute();
+                $stmt_update_defi2 = $db->prepare("INSERT INTO utilisateursucces (ID_Utilisateur, ID_Succes, progression) VALUES (:id_utilisateur, :id_succes, 1)");
+                $stmt_update_defi2->bindParam(':id_utilisateur', $_SESSION['user_id']);
+                $stmt_update_defi2->bindParam(':id_succes', $id_succes2);
+                $stmt_update_defi2->execute();
+                $stmt_update_defi3 = $db->prepare("INSERT INTO utilisateursucces (ID_Utilisateur, ID_Succes, progression) VALUES (:id_utilisateur, :id_succes, 1)");
+                $stmt_update_defi3->bindParam(':id_utilisateur', $_SESSION['user_id']);
+                $stmt_update_defi3->bindParam(':id_succes', $id_succes3);
+                $stmt_update_defi3->execute();
             } else if (isset($succesuser["5"])) {
                 echo "<script>console.log('Progression 1 fini')</script>";
             } else {
