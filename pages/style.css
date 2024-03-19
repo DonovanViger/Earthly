@@ -358,13 +358,17 @@ html,body{
 
 .succes2 {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
     flex-direction: row;
 }
 
 .succes_numero {
     display: flex;
     flex-direction: column;
-    width: 32vw;
+    width: 25vw;
+    background-color: #585858;
+    margin: 5vh 0;
 }
 
 /*Page défis*/
