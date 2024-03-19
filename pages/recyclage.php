@@ -38,7 +38,7 @@
 
     <!-- Bouton pour activer/désactiver la caméra -->
     <div id="recyclage_button_box">
-        <button id="toggleButton">Activer/Désactiver la caméra</button>
+        <button class="button" id="toggleButton">Activer/Désactiver la caméra</button>
     </div>
 
     <?php 

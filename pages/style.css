@@ -453,6 +453,20 @@ html,body{
    text-align: center;
 }
 
+#recyclage_button_box{
+    width: 50%;
+    margin: auto;
+    text-align: center;
+    font-family: Como;
+}
+
+.button{
+    border: none;
+    padding: 1vh;
+    border-radius:10px;
+
+}
+
 
 /*Général pour toutes les pages*/
 
