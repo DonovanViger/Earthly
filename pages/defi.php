@@ -70,7 +70,7 @@ try {
                 $id_succes2 = 2;
                 $id_succes3 = 2;
             } 
-            $stmt_update_succes = $db->prepare("SELECT ID_UtilisateurSucces FROM utilisateursucces INNER JOIN utilisateurs ON utilisateurs.ID_Utilisateur = utilisateursucces.ID_Utilisateur INNER JOIN succes ON succes.ID_Succes = utilisateursucces.ID_Succes WHERE utilisateursucces.ID_Succes = :id_succes AND utilisateurs.ID_Utilisateur = :id_utilisateur");
+            $stmt_update_succes = $db->prepare("SELECT * FROM utilisateursucces INNER JOIN utilisateurs ON utilisateurs.ID_Utilisateur = utilisateursucces.ID_Utilisateur INNER JOIN succes ON succes.ID_Succes = utilisateursucces.ID_Succes WHERE utilisateursucces.ID_Succes = :id_succes AND utilisateurs.ID_Utilisateur = :id_utilisateur");
             $stmt_update_succes->bindParam(':id_succes', $id_succes);
             $stmt_update_succes->bindParam(':id_utilisateur', $_SESSION['user_id']);
             $stmt_update_succes->execute(); 
@@ -89,7 +89,7 @@ try {
                 $stmt_update_defi3->bindParam(':id_utilisateur', $_SESSION['user_id']);
                 $stmt_update_defi3->bindParam(':id_succes', $id_succes3);
                 $stmt_update_defi3->execute();
-            } else if (isset($succesuser["5"])) {
+            } else if ($succesuser[4] != "0000-00-00") {
                 echo "<script>console.log('Progression 1 fini')</script>";
             } else {
                 echo "<script>console.log('Progression 1 continuer')</script>";
