@@ -110,11 +110,11 @@
         <?php
         if ($utilisateur['point_Planete'] < 1000) {
             $niv = 1;
-        } else if ($utilisateur['point_Planete'] < 2000) {
+        } else if ($utilisateur['point_Planete'] < 3000) {
             $niv = 2;
-        } else if ($utilisateur['point_Planete'] < 4000) {
+        } else if ($utilisateur['point_Planete'] < 7000) {
             $niv = 3;
-        } else if ($utilisateur['point_Planete'] < 8000) {
+        } else if ($utilisateur['point_Planete'] < 15000) {
             $niv = 4;
         } else  {
             $niv = 5;
