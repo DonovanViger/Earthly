@@ -171,20 +171,25 @@
         </div>
 
         <div class="succes">
-            <h2>Succès</h2>
-            <div class="succes2">
+            <h2 class="p-5">Succès</h2>
+            <div class="row">
                 <?php
-            $requete_succes = $db->prepare("SELECT * FROM `succes` ORDER BY `triageSucces`");
-            $requete_succes->execute();
-            $succes = $requete_succes->fetchAll(PDO::FETCH_ASSOC);
-            foreach ($succes as $suc) {
-                echo "<div class='succes_numero'>";
-                echo "<h3>".$suc['nom']."</h3><br>";
-                echo "<p>".$suc['desc']."</p><br></div>";
-            }
+        $requete_succes = $db->prepare("SELECT * FROM `succes` ORDER BY `triageSucces`");
+        $requete_succes->execute();
+        $succes = $requete_succes->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($succes as $suc) {
             ?>
+                <div class="col-lg-4">
+                    <!-- Sur les grands écrans (lg), il y aura trois succès par ligne. Sur les écrans moyens (md), il y en aura deux par ligne. -->
+                    <div class='succes_numero'>
+                        <h3><?php echo $suc['nom']; ?></h3><br>
+                        <p><?php echo $suc['desc']; ?></p><br>
+                    </div>
+                </div>
+                <?php } ?>
             </div>
         </div>
+
 
     </section>
 

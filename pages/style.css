@@ -347,31 +347,44 @@ body {
 }
 
 .succes {
-    border: none;
-    border-radius: 5px;
-    padding: 2vh;
-    width: 15vw;
+    margin: 60px;
     background-color: #1C3326;
-    font-size: 2.5vh;
-    text-transform: bold;
-    margin-bottom: 20vh;
-    text-align: center;
-    width: 97vw;
-}
-
-.succes2 {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    flex-direction: row;
+    border-radius: 10px;
 }
 
 .succes_numero {
-    display: flex;
-    flex-direction: column;
-    width: 25vw;
-    background-color: #585858;
-    margin: 5vh 0;
+    margin: 20px;
+    padding: 30px 40px;
+    color: #1C3326;
+    background-color: #fff;
+    border-radius: 10px;
+    transition: transform 0.3s ease; /* Ajout de la transition pour l'effet hover */
+}
+
+.succes_numero:hover {
+    transform: scale(1.05); /* Légèrement agrandir sur hover */
+}
+
+.succes h2 {
+    font-size: 2.5rem;
+}
+
+
+@media screen and (max-Width:700px){
+    .succes {
+        margin: 0px; /* Réduit la marge pour les petits écrans */
+        padding: 0; /* Supprime le rembourrage pour éviter le débordement sur les petits écrans */
+        background-color: #1C3326;
+    }
+    
+    .succes_numero {
+        margin: 15px;
+        padding: 20px; /* Réduit le rembourrage pour les petits écrans */
+        color: #1C3326;
+        background-color: #fff;
+        overflow: hidden;
+    }
+    
 }
 
 /*Page défis*/
