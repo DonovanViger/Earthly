@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="style.css" />
     <title>Scanneur</title>
 </head>
@@ -29,19 +30,11 @@
     }
     ?>
 
-    <h1>Recyclez avec nos poubelles intelligentes</h1>
-    <h2>Scannez un QR code.</h2>
-
     <canvas id="canvas" style="display:none;"></canvas>
-    <div id="recyclage_video">
-        <video id="video" width="500" height="400" autoplay></video>
+    <div id="recyclage_video" style="width: 100vw; height: 100vh; overflow: hidden;">
+        <video id="video" width="100%" height="100%" autoplay style="object-fit: cover;"></video>
     </div>
     <div id="result"></div>
-
-    <!-- Bouton pour activer/désactiver la caméra -->
-    <div id="recyclage_button_box">
-        <button class="button" id="toggleButton">Activer/Désactiver la caméra</button>
-    </div>
 
     <?php 
     if (isset($_GET['poubelle'])) {
@@ -68,7 +61,6 @@
     <script src="bundle.js"></script>
     <script>
     document.addEventListener('DOMContentLoaded', () => {
-
         const video = document.getElementById('video');
         const canvas = document.getElementById('canvas');
         const context = canvas.getContext('2d');
@@ -76,28 +68,20 @@
         let videoStream;
         let captureInterval;
 
-        const toggleCamera = () => {
-        if (videoStream) {
-            stopCapture();
-            document.getElementById('toggleButton').innerText = 'Activer la caméra';
-        } else {
-            startCapture();
-            document.getElementById('toggleButton').innerText = 'Désactiver la caméra';
-        }
-    };
-
-    document.getElementById('toggleButton').addEventListener('click', toggleCamera);
-
         const startCapture = () => {
             navigator.mediaDevices.getUserMedia({
-                    video: true
+                    video: {
+                        facingMode: 'environment' // Utiliser la caméra arrière
+                    }
                 })
                 .then(stream => {
                     videoStream = stream;
                     video.srcObject = stream;
                     captureInterval = setInterval(captureAndDecode, 1000);
+                    video.style.transform =
+                    'scaleX(-1)'; // Inverse la vidéo horizontalement pour la rendre miroir
                 })
-                .catch(err => console.log("Erreur lors de l'accès à la webcam: " + err));
+                .catch(err => console.log("Erreur lors de l'accès à la caméra arrière: " + err));
         };
 
         const stopCapture = () => {
@@ -136,9 +120,12 @@
 
         const isValidUrl = url =>
             /^(http|https):\/\/[\w\-]+(\.[\w\-]+)+([\w\-\.,@?^=%&:/~\+#]*[\w\-\@?^=%&/~\+#])?$/.test(url);
+
+        // Appel de la fonction startCapture au chargement de la page
+        startCapture();
     });
     </script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
 </body>
