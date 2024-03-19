@@ -30,6 +30,8 @@
     }
     ?>
 
+    <button id="captureButton" class="btn btn-primary">Prendre une photo</button>
+    <img id="capturedImage" src="" alt="Image capturée" style="display:none; max-width:100%;">
     <canvas id="canvas" style="display:none;"></canvas>
     <div id="recyclage_video" style="width: 100vw; height: 100vh; overflow: hidden;">
         <video id="video" width="100%" height="100%" autoplay style="object-fit: cover;"></video>
@@ -65,6 +67,46 @@
         const canvas = document.getElementById('canvas');
         const context = canvas.getContext('2d');
 
+        // Fonction pour capturer une photo
+        const capturePhoto = () => {
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+            // Affichage de l'image capturée en dessous du bouton de capture de photo
+            const capturedImage = document.getElementById('capturedImage');
+            capturedImage.src = canvas.toDataURL(); // Convertit le contenu du canevas en URL de données
+            capturedImage.style.display = 'block'; // Affiche l'image
+
+            const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+            const code = jsQR(imageData.data, imageData.width, imageData.height);
+
+            if (code) {
+                const qrData = code.data;
+                document.getElementById('result').innerText = "QR Code trouvé : " + qrData;
+
+                if (isValidUrl(qrData)) {
+                    stopCapture();
+                    window.open(qrData, '_blank');
+
+                    const button = document.createElement('button');
+                    button.textContent = 'Visiter le site';
+                    button.onclick = () => window.open(qrData, '_blank');
+                    document.getElementById('result').innerHTML = '';
+                    document.getElementById('result').appendChild(button);
+                }
+            } else {
+                document.getElementById('result').innerText =
+                    "Aucun QR Code trouvé dans la photo.";
+            }
+        };
+
+        // Événement de clic sur le bouton de capture de photo
+        const captureButton = document.getElementById('captureButton');
+        captureButton.addEventListener('click', () => {
+            capturePhoto();
+        });
+
         let videoStream;
         let captureInterval;
 
@@ -79,7 +121,7 @@
                     video.srcObject = stream;
                     captureInterval = setInterval(captureAndDecode, 1000);
                     video.style.transform =
-                    'scaleX(-1)'; // Inverse la vidéo horizontalement pour la rendre miroir
+                        'scaleX(-1)'; // Inverse la vidéo horizontalement pour la rendre miroir
                 })
                 .catch(err => console.log("Erreur lors de l'accès à la caméra arrière: " + err));
         };
@@ -106,7 +148,6 @@
 
                 if (isValidUrl(qrData)) {
                     stopCapture();
-                    document.getElementById('toggleButton').innerText = 'Activer la caméra';
                     window.open(qrData, '_blank');
 
                     const button = document.createElement('button');
@@ -119,7 +160,8 @@
         };
 
         const isValidUrl = url =>
-            /^(http|https):\/\/[\w\-]+(\.[\w\-]+)+([\w\-\.,@?^=%&:/~\+#]*[\w\-\@?^=%&/~\+#])?$/.test(url);
+            /^(http|https):\/\/[\w\-]+(\.[\w\-]+)+([\w\-\.,@?^=%&:/~\+#]*[\w\-\@?^=%&/~\+#])?$/
+            .test(url);
 
         // Appel de la fonction startCapture au chargement de la page
         startCapture();
