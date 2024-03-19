@@ -66,6 +66,10 @@ try {
             $succesuser = $stmt_update_succes->fetch();
             if (empty($succesuser)) {
                 echo "<script>console.log('Pas de progression')</script>";
+                $stmt_update_defi = $db->prepare("INSERT INTO utilisateursucces (ID_Utilisateur, ID_Succes, progression) VALUES (:id_utilisateur, :id_succes, 1)");
+                $stmt_update_defi->bindParam(':id_utilisateur', $_SESSION['pseudo']);
+                $stmt_update_defi->bindParam(':id_succes', $id_succes);
+                $stmt_update_defi->execute();
             } else {
                 echo "<script>console.log('Progression')</script>";
             }
