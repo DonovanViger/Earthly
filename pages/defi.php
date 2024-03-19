@@ -49,9 +49,26 @@ try {
             $stmt_update_score = $db->prepare("UPDATE utilisateurs INNER JOIN utilisateursdefiquotidien ON utilisateurs.ID_Utilisateur = utilisateursdefiquotidien.ID_Utilisateur INNER JOIN defiquotidien ON utilisateursdefiquotidien.ID_Defi = defiquotidien.ID_Defi SET utilisateurs.point_Planete = utilisateurs.point_Planete + defiquotidien.point, utilisateurs.exp_Utilisateur = utilisateurs.exp_Utilisateur + defiquotidien.point WHERE utilisateurs.pseudo = :pseudo");
             $stmt_update_score->bindParam(':pseudo', $_SESSION['pseudo']);
             $stmt_update_score->execute();
-            /* $stmt_update_score = $db->prepare("SELECT ID_UtilisateurSucces FROM utilisateursucces INNER JOIN utilisateurs ON utilisateurs.ID_Utilisateur = utilisateursucces.ID_Utilisateur");
-            $stmt_update_score->bindParam(':pseudo', $_SESSION['pseudo']);
-            $stmt_update_score->execute(); */
+            if ($id_defi == 1) {
+                $id_succes = 2;
+            } else if ($id_defi == 2) {
+                $id_succes = 8;
+            } else if ($id_defi == 3) {
+                $id_succes = 11;
+            } else if ($id_defi == 4) {
+                $id_succes = 3;
+            } else {
+                $id_succes = 16;
+            } 
+            $stmt_update_succes = $db->prepare("SELECT ID_UtilisateurSucces FROM utilisateursucces INNER JOIN utilisateurs ON utilisateurs.ID_Utilisateur = utilisateursucces.ID_Utilisateur INNER JOIN succes ON succes.ID_Succes = utilisateursucces.ID_Succes WHERE utilisateursucces.ID_Succes = :id_succes");
+            $stmt_update_succes->bindParam(':id_succes', $id_succes);
+            $stmt_update_succes->execute(); 
+            $succesuser = $stmt_update_succes->fetch();
+            if (empty($succesuser)) {
+                echo "<script>console.log('Pas de progression')</script>";
+            } else {
+                echo "<script>console.log('Progression')</script>";
+            }
 
         }
 
