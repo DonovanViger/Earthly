@@ -9,8 +9,8 @@
     <title>Earthly | Planète</title>
 </head>
 <body>
-    
-<div class="sketchfab-embed-wrapper"> <iframe title="lvl5" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/da58575a4b5d48a5b39b399e56e023f1/embed?autospin=1&autostart=1&camera=0&preload=1&ui_hint=0&dnt=1"> </iframe> </div>
+
+<div class="sketchfab-embed-wrapper"> <iframe title="lvl5" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/da58575a4b5d48a5b39b399e56e023f1/embed?autospin=0.05&autostart=1&dnt=1"> </iframe> </div>
 
 
 
