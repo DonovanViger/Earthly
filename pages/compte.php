@@ -36,17 +36,17 @@
         $profileImage = $utilisateur['pdp'] ? $utilisateur['pdp'] : '../uploads/default.jpg';
     } catch (PDOException $erreur) {
         // En cas d'erreur de connexion à la base de données
-        die("Erreur de connexion à la base de données : " . $erreur->getMessage());
+        die ("Erreur de connexion à la base de données : " . $erreur->getMessage());
     }
 
     // Vérifie si l'utilisateur est connecté
-    if (!isset($_SESSION['pseudo'])) {
+    if (!isset ($_SESSION['pseudo'])) {
         // Redirige l'utilisateur vers la page de connexion s'il n'est pas connecté
         header("Location: connexion.php");
         exit();
     }
 
-    if (isset($_SESSION['pseudo'])) {
+    if (isset ($_SESSION['pseudo'])) {
         $pseudo = $_SESSION['pseudo'];
 
         $db = new PDO('mysql:host=localhost;dbname=sae401-2', 'root', '');
@@ -55,7 +55,7 @@
         setlocale(LC_TIME, "fr_FR");
 
         $dateConnexion = date("Y-m-d");
-        
+
         $query = $db->prepare("UPDATE utilisateurs SET dateConnexion = :dateConnexion WHERE pseudo = :pseudo");
 
         // Liez les paramètres et exécutez la requête
@@ -85,6 +85,8 @@
         </form>
 
     </div>
+</div>
+</div>
 
     <section id="profil">
 
@@ -100,12 +102,33 @@
         <!-- Affichage de l'image de profil -->
         <div id="image_compte">
             <img src="<?php echo $profileImage; ?>" alt="Image de profil" class="profile-image">
+            <!-- Section des badges -->
+            <div id="badgeContainer">
+                <div class="badgeSlot" id="badgeSlot1" onclick="openBadgePopup(1)"></div>
+                <div class="badgeSlot" id="badgeSlot2" onclick="openBadgePopup(2)"></div>
+                <div class="badgeSlot" id="badgeSlot3" onclick="openBadgePopup(3)"></div>
+                <div class="badgeSlot" id="badgeSlot4" onclick="openBadgePopup(4)"></div>
+                <div class="badgeSlot" id="badgeSlot5" onclick="openBadgePopup(5)"></div>
+                <div class="badgeSlot" id="badgeSlot6" onclick="openBadgePopup(6)"></div>
+            </div>
+
+            <!-- Popup de sélection de badge -->
+            <div id="badgePopup" class="popup">
+                <div class="popup-content">
+                    <span class="close" onclick="closeBadgePopup()">&times;</span>
+                    <!-- Contenu du popup ici -->
+                    <div id="badgeOptions">
+                        <!-- Les options de badges seront chargées ici via JavaScript -->
+                    </div>
+                </div>
+            </div>
             <form id="imageForm" action="../form/changer_image.php" method="post" enctype="multipart/form-data">
                 <label for="nouvelle_image" class="custom-file-upload">
                     <input id="nouvelle_image" type="file" name="nouvelle_image" accept="image/*" required>
                     Changer l'image de profil
                 </label>
             </form>
+
         </div>
         <?php
         if ($utilisateur['point_Planete'] < 1000) {
@@ -116,9 +139,9 @@
             $niv = 3;
         } else if ($utilisateur['point_Planete'] < 15000) {
             $niv = 4;
-        } else  {
+        } else {
             $niv = 5;
-        } 
+        }
         ?>
         <div id="texte_compte">
             <h3><?php echo $utilisateur['pseudo']; ?></h3>
@@ -127,23 +150,23 @@
                 <li>Pseudo : <?php echo $utilisateur['pseudo']; ?></li>
                 <li>Email : <?php echo $utilisateur['mail']; ?></li>
                 <li>Date de création du compte :
-                    <?php 
-                        $dateCreationCompte = new DateTime($utilisateur['dateCreationCompte']);
-                        $formatter = new IntlDateFormatter('fr_FR', IntlDateFormatter::FULL, IntlDateFormatter::NONE);
-                        $formatter->setPattern('dd MMMM yyyy');
-                        echo $formatter->format($dateCreationCompte); 
+                    <?php
+                    $dateCreationCompte = new DateTime($utilisateur['dateCreationCompte']);
+                    $formatter = new IntlDateFormatter('fr_FR', IntlDateFormatter::FULL, IntlDateFormatter::NONE);
+                    $formatter->setPattern('dd MMMM yyyy');
+                    echo $formatter->format($dateCreationCompte);
                     ?>
                 </li>
                 <li>Points : <?php echo $utilisateur['point_Planete']; ?> (Planète niveau <?php echo $niv; ?>)</li>
-                <?php if (!empty($utilisateur['ID_parrain'])) : ?>
-                <li>Parrain : <?php echo $utilisateur['ID_parrain']; ?></li>
+                <?php if (!empty ($utilisateur['ID_parrain'])): ?>
+                                    <li>Parrain : <?php echo $utilisateur['ID_parrain']; ?></li>
                 <?php endif; ?>
                 <li>Date de dernière connexion :
-                    <?php 
-                        $dateDerniereConnexion = new DateTime($utilisateur['dateConnexion']);
-                        $formatter = new IntlDateFormatter('fr_FR', IntlDateFormatter::FULL, IntlDateFormatter::NONE);
-                        $formatter->setPattern('dd MMMM yyyy');
-                        echo $formatter->format($dateDerniereConnexion); 
+                    <?php
+                    $dateDerniereConnexion = new DateTime($utilisateur['dateConnexion']);
+                    $formatter = new IntlDateFormatter('fr_FR', IntlDateFormatter::FULL, IntlDateFormatter::NONE);
+                    $formatter->setPattern('dd MMMM yyyy');
+                    echo $formatter->format($dateDerniereConnexion);
                     ?>
                 </li>
 
@@ -163,10 +186,21 @@
                 console.log(lien);
                 alert("Partagez le lien à vos amis : " + lien);
             }
+            // Fonction pour ouvrir le popup de sélection de badge
+            function openBadgePopup(slotNumber) {
+                // Code pour charger les options de badge en fonction du slotNumber ici
+                // Exemple: Vous pouvez utiliser une requête AJAX pour charger les badges disponibles
+                // Une fois les badges chargés, mettez à jour le contenu du popup
 
-            document.getElementById('nouvelle_image').onchange = function() {
-                document.getElementById('imageForm').submit();
-            };
+                // Afficher le popup
+                document.getElementById('badgePopup').style.display = 'block';
+            }
+
+            // Fonction pour fermer le popup de sélection de badge
+            function closeBadgePopup() {
+                // Masquer le popup
+                document.getElementById('badgePopup').style.display = 'none';
+            }
             </script>
         </div>
 
@@ -174,18 +208,18 @@
             <h2 class="p-5">Succès</h2>
             <div class="row">
                 <?php
-        $requete_succes = $db->prepare("SELECT * FROM `succes` ORDER BY `triageSucces`");
-        $requete_succes->execute();
-        $succes = $requete_succes->fetchAll(PDO::FETCH_ASSOC);
-        foreach ($succes as $suc) {
-            ?>
-                <div class="col-lg-4">
-                    <!-- Sur les grands écrans (lg), il y aura trois succès par ligne. Sur les écrans moyens (md), il y en aura deux par ligne. -->
-                    <div class='succes_numero'>
-                        <h3><?php echo $suc['nom']; ?></h3><br>
-                        <p><?php echo $suc['desc']; ?></p><br>
-                    </div>
-                </div>
+                $requete_succes = $db->prepare("SELECT * FROM `succes` ORDER BY `triageSucces`");
+                $requete_succes->execute();
+                $succes = $requete_succes->fetchAll(PDO::FETCH_ASSOC);
+                foreach ($succes as $suc) {
+                    ?>
+                                    <div class="col-lg-4">
+                                        <!-- Sur les grands écrans (lg), il y aura trois succès par ligne. Sur les écrans moyens (md), il y en aura deux par ligne. -->
+                                        <div class='succes_numero'>
+                                            <h3><?php echo $suc['nom']; ?></h3><br>
+                                            <p><?php echo $suc['desc']; ?></p><br>
+                                        </div>
+                                    </div>
                 <?php } ?>
             </div>
         </div>
@@ -201,8 +235,8 @@
 
 
     <?php
-        include("../form/templates/footer.php")
-    ?>
+    include ("../form/templates/footer.php")
+        ?>
 </body>
 
 </html>

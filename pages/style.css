@@ -92,11 +92,11 @@ body {
     font-weight: bold;
     font-size: 1.75vh;
     background-color: #FFEFE1;
-    color: #1c322527;
+    color: #1c322596;
 }
 
 #connexion_form{
-    height: 22.5vh;
+    height: 23vh;
 }
 
 #connexion_contour_button{
@@ -148,7 +148,7 @@ body {
 #connexion_button_mdp{
     text-align: center;
     font-size: 1.25vh;
-    color:white;
+    color: #FFEFE1;
 }
 
 
@@ -444,6 +444,55 @@ body {
 .succes h2 {
     font-size: 2.5rem;
 }
+/* Style pour le popup */
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
+    z-index: 9999; /* Assure que le popup est au-dessus de tout */
+    overflow: auto; /* Permet de faire défiler le contenu du popup si nécessaire */
+}
+
+.popup-content {
+    background-color: #fefefe; /* Couleur de fond du popup */
+    margin: 20% auto; /* Centre le popup verticalement et horizontalement */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px; /* Largeur maximale du popup */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Style pour les badges */
+.badgeSlot {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    background-color: #00000000;
+    border: 2px solid #000000;
+    border-radius: 50%;
+    margin: 10px;
+    cursor: pointer;
+}
+
+
 
 
 @media screen and (max-Width:700px){
