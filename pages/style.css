@@ -584,6 +584,13 @@ footer {
     --bs-nav-link-disabled-color: #2BBA7C;
 }
 
+.image-text {
+    display: block;
+    margin-top: 5px; /* Ajustez cette valeur selon vos besoins */
+    font-size: 0.8rem; /* Ajustez la taille du texte selon vos besoins */
+}
+
+
 /* Style page planete */
 
 iframe {

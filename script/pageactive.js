@@ -9,19 +9,19 @@ document.addEventListener("DOMContentLoaded", function() {
     var imagePath;
     switch(currentPage) {
         case "defi.php":
-            imagePath = "../img/nav bar/Defis blanc.png";
+            imagePath = "../img/navbar/Defis blanc.png";
             break;
         case "recyclage.php":
-            imagePath = "../img/nav bar/Scanner blanc.png";
+            imagePath = "../img/navbar/Scanner blanc.png";
             break;
         case "planet.php":
-            imagePath = "../img/nav bar/home_blanc.png";
+            imagePath = "../img/navbar/home_blanc.png";
             break;
         case "classement.php":
-            imagePath = "../img/nav bar/Classement blanc.png";
+            imagePath = "../img/navbar/Classement blanc.png";
             break;
         case "compte.php":
-            imagePath = "../img/nav bar/Profil blanc.png";
+            imagePath = "../img/navbar/Profil blanc.png";
             break;
         default:
             // Chemin d'image par défaut si la page n'est pas reconnue
