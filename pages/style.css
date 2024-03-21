@@ -3,13 +3,18 @@
     src: url("Como-Medium.ttf");
 }
 
+@font-face {
+    font-family: "Arial-Rounded";
+    src: url("Aial-Rounded.ttf");
+}
+
 
 html,
 body {
     margin: 0px;
     padding: 0px;
-    background-color: #BFEABB;
-    font-family: Como, Arial;
+    background-color: #1C3326;
+    font-family: Arial-Rounded, Arial;
 }
 
 ::-webkit-scrollbar {
@@ -18,40 +23,90 @@ body {
 
 /*Page Connexion*/
 
+#connection_div_patern {
+    background-image: url("../uploads/patern_light_green.svg");
+    background-size: cover; /* Ajuste la taille de l'image pour remplir complètement le conteneur */ /* Change la couleur de fond */
+    padding-top: 10vh;
+    height: 150vh;
+    opacity: 1;
+}
+
+
 #h1_connexion {
-    margin: 7.5vh 0 6vh 0;
+    margin: 0 0 1vh 0;
     text-align: center;
 }
 
 #h1_connexion a {
     text-decoration: none;
-    color: black;
-    font-size: 7.5vh;
+    font-size: 3.5vh;
+    color: #A9FFA4;
+    font-weight: bold;
+}
+
+#connexion_logo_contour{
+    width: 75%;
+    margin: 0 auto 5vh auto;
+    text-align: center;
+
+}
+
+#connexion_logo{
+    width: 45vw;
+    height: 5vh;
 }
 
 #connexion_cadre {
     text-align: center;
     color: white;
-    width: 60%;
+    width: 90%;
     margin: auto;
-    background-color: #1C3326;
-    padding: 7.5vh;
-    border-radius: 30px;
+    background-color: #A9FFA4;
+    padding: 2vh;
+    border-radius: 15px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 #h2_connexion {
-    font-size: 5vh;
-    margin: 0 0 5vh 0;
+    font-size: 3vh;
+    margin: 0 0 3vh 0;
+    color: #2BBA7C;
+    font-weight: bolder;
+}
+
+.connexion_input_area{
+    width: 75vw;
+    padding: 2vh;
+    height: 5vh;
+    border: none;
+    border-radius: 15px;
+    font-weight: bold;
+    font-size: 1.75vh;
+    background-color: #FFEFE1;
+    color: #1c322572;
+}
+
+#connexion_form{
+    height: 15vh;
+}
+
+#connexion_contour_button{
+    width: 60vw;
+    margin: 4vh auto 0 auto;
+    text-align: center;
 }
 
 #connexion_input_submit {
-    background-color: white;
-    padding: 0.5vh;
-    width: 7.5vw;
+    background-color: #A9FFA4;
+    padding: 1.5vh;
+    width: 60vw;
     border: none;
-    border-radius: 10px;
+    border-radius: 50px;
+    font-size: 1.75vh;
+    font-weight: bold;
+    color: #1C3326;
 }
+
 
 #connexion_retour {
     margin: 5vh auto 0 auto;
@@ -73,6 +128,18 @@ body {
     text-decoration: none;
     font-size: 3vh;
     color: white;
+}
+
+#connexion_div_mdp{
+    width: 50%;
+    text-align: center;
+    margin: 0.5vh auto 0 auto;
+}
+
+#connexion_button_mdp{
+    text-align: center;
+    font-size: 1.25vh;
+    color:white;
 }
 
 

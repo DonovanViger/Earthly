@@ -22,29 +22,29 @@ session_start(); // Démarre la session (à placer au début de chaque fichier P
 ?>
 
 
-    <h1 id="h1_connexion"><a href="../index.php">Earthly</a></h1>
+<div id="connection_div_patern">
+    <h1 id="h1_connexion"><a href="../index.php">BON RETOUR SUR </a></h1>
+    <div id="connexion_logo_contour">
+    <img  id="connexion_logo" src="../uploads/Logo-earthly-text+baseline.svg">
+</div>
 
 
 
     <div id="connexion_cadre">
         <h2 id="h2_connexion">Connexion</h2>
-        <form action="../form/form_connexion.php" method="POST">
-            <label for="pseudo">Pseudo:</label>
+        <form action="../form/form_connexion.php" method="POST" id="connexion_form">
+            <input type="text" id="pseudo" name="pseudo" required class="connexion_input_area" placeholder="Pseudo"><br><br>
+            <input type="password" id="mdp" name="mdp" required class="connexion_input_area" placeholder="Mot de passe"><br><br>
             </br>
-            <input type="text" id="pseudo" name="pseudo" required><br><br>
-            <label for="mdp">Mot de passe:</label>
-            </br>
-            <input type="password" id="mdp" name="mdp" required><br><br>
-            </br>
-            <input type="submit" value="Se connecter" id="connexion_input_submit">
         </form>
     </div>
-
-    <div id="connexion_retour">
-        <button id="connexion_button_retour">
-            <a href="../index.php">Retour à l'index</a>
-        </button>
-    </div>
+    <div id="connexion_contour_button">
+    <input type="submit" value="Se connecter" id="connexion_input_submit">
+</div>
+<div id="connexion_div_mdp">
+<a href="http://localhost/Earthly/Earthly/pages/connexion.php" id="connexion_button_mdp">Mot de passe oublié ?</a>
+</div>
+</div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
