@@ -17,8 +17,8 @@
                 <span class="image-text">Recyclage</span>
             </a>
         </div>
-        <div class="nav-slot curve">
-            <a href="../pages/planet.php" class="floating-button" id="planet">
+        <div class="nav-slot">
+            <a href="../pages/planet.php" class="nav-link" id="planet">
                 <img src="../img/nav bar/home_noir.png" class="footer-image planet-icon" data-image="3.png">
             </a>
         </div>
