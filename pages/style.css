@@ -520,31 +520,16 @@ footer {
     position: fixed;
     bottom: 0;
     width: 100%;
-    background-color: #FFEFE1;
+    background-color: #2BBA7C;
     color:#1C3326;
     padding: 15px 0;
     text-align: center;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
-/* Style des éléments de la liste */
-.footer-nav li {
-    display: inline-block;
-    margin: 0 15px;
-    color: #1C3326;
-}
-
-/* Style des icônes */
-.footer-nav li i {
-    color: #888;
-}
-
-/* Style des liens */
-.footer-nav li a {
-    color: #888;
-    text-decoration: none;
-    visibility: hidden;
-    /* Cache tous les liens */
+.nav img{
+    width: 35px;
+    height: 35px;
 }
 
 /* Style des icônes actives */
@@ -552,32 +537,29 @@ footer {
     color: #2BBA7C;
 }
 
-/* Style du bouton flottant */
-.floating-button {
-    position: fixed;
-    width: 50px;
-    height: 50px;
-    line-height: 3;
+
+/* Centrage du menu */
+.nav {
+    justify-content: center;
+}
+
+/* Style des slots du menu */
+.nav-slot {
+    display: inline-block;
+    vertical-align: top;
+    width: 20%;
+    /* ou une valeur appropriée */
     text-align: center;
-    color: #FFEFE1;
-    border-radius: 50%;
-    bottom: 35px;
-    background: rgb(43,186,124);
-    background: linear-gradient(90deg, rgba(43,186,124,1) 28%, rgba(109,199,104,1) 100%);
-    box-shadow: 0 10px 6px -6px #777;
-    z-index: 1;
-    transition: 0.3s all;
-    left: 50%;
-    /* Positionne le bouton à 50% de la largeur de l'écran */
-    transform: translateX(-50%);
-    /* Le recentre en fonction de sa propre largeur */
 }
 
-.floating-button:hover {
-    bottom: 40px;
-    transition: 0.3s all;
+.nav {
+    --bs-nav-link-padding-x: 1rem;
+    --bs-nav-link-padding-y: 0.5rem;
+    --bs-nav-link-font-weight: ;
+    --bs-nav-link-color: #1C3326;
+    --bs-nav-link-hover-color: #338664;
+    --bs-nav-link-disabled-color: #2BBA7C;
 }
-
 
 /* Centrage du menu */
 .nav {
