@@ -22,29 +22,33 @@ session_start(); // Démarre la session (à placer au début de chaque fichier P
 ?>
 
 
-    <h1 id="h1_connexion"><a href="../index.php">Earthly</a></h1>
+<div id="connection_div_patern">
+    <h1 id="h1_connexion"><a href="../index.php">BON RETOUR SUR </a></h1>
+    <div id="connexion_logo_contour">
+    <img  id="connexion_logo" src="../uploads/Logo-earthly-text+baseline.svg">
+</div>
 
 
 
     <div id="connexion_cadre">
-        <h2 id="h2_connexion">Connexion</h2>
-        <form action="../form/form_connexion.php" method="POST">
-            <label for="pseudo">Pseudo:</label>
-            </br>
-            <input type="text" id="pseudo" name="pseudo" required><br><br>
-            <label for="mdp">Mot de passe:</label>
-            </br>
-            <input type="password" id="mdp" name="mdp" required><br><br>
-            </br>
-            <input type="submit" value="Se connecter" id="connexion_input_submit">
-        </form>
-    </div>
+    <svg xmlns="http://www.w3.org/2000/svg" fill="#2BBA7C" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-2 h-2" id="connexion_user_svg">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+        </svg>
 
-    <div id="connexion_retour">
-        <button id="connexion_button_retour">
-            <a href="../index.php">Retour à l'index</a>
-        </button>
+        <h2 id="h2_connexion">Connexion</h2>
+        <form action="../form/form_connexion.php" method="POST" id="connexion_form">
+            <input type="text" id="pseudo" name="pseudo" required class="connexion_input_area" placeholder="Pseudo"><br><br>
+            <input type="password" id="mdp" name="mdp" required class="connexion_input_area" placeholder="Mot de passe"><br><br>
+            </br>
     </div>
+    <div id="connexion_contour_button">
+    <input type="submit" value="Se connecter" id="connexion_input_submit">
+</div>
+</form>
+<div id="connexion_div_mdp">
+<a href="http://localhost/Earthly/Earthly/pages/connexion.php" id="connexion_button_mdp">Mot de passe oublié ?</a>
+</div>
+</div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">

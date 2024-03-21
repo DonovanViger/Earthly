@@ -3,13 +3,18 @@
     src: url("Como-Medium.ttf");
 }
 
+@font-face {
+    font-family: "Arial-Rounded";
+    src: url("Aial-Rounded.ttf");
+}
+
 
 html,
 body {
     margin: 0px;
     padding: 0px;
-    background-color: #BFEABB;
-    font-family: Como, Arial;
+    background-color: #1C3326;
+    font-family: Arial-Rounded, Arial;
 }
 
 ::-webkit-scrollbar {
@@ -18,40 +23,99 @@ body {
 
 /*Page Connexion*/
 
+#connection_div_patern {
+    background-image: url("../uploads/patern_light_green.svg");
+    background-size: cover; /* Ajuste la taille de l'image pour remplir complètement le conteneur */ /* Change la couleur de fond */
+    padding-top: 10vh;
+    height: 150vh;
+    opacity: 1;
+}
+
+
 #h1_connexion {
-    margin: 7.5vh 0 6vh 0;
+    margin: 0 0 1vh 0;
     text-align: center;
 }
 
 #h1_connexion a {
     text-decoration: none;
-    color: black;
-    font-size: 7.5vh;
+    font-size: 3.5vh;
+    color: #A9FFA4;
+    font-weight: bold;
+}
+
+#connexion_logo_contour{
+    width: 75%;
+    margin: 0 auto 5vh auto;
+    text-align: center;
+
+}
+
+#connexion_logo{
+    width: 45vw;
+    height: 5vh;
 }
 
 #connexion_cadre {
     text-align: center;
     color: white;
-    width: 60%;
+    width: 90%;
     margin: auto;
-    background-color: #1C3326;
-    padding: 7.5vh;
-    border-radius: 30px;
+    background-color: #A9FFA4;
+    padding: 2vh;
+    border-radius: 15px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 #h2_connexion {
-    font-size: 5vh;
-    margin: 0 0 5vh 0;
+    font-size: 3vh;
+    margin: 0.5vh 0 3vh 4vw;
+    color: #2BBA7C;
+    font-weight: bolder;
+    float: left;
+}
+
+#connexion_user_svg{
+    margin-left: 5vw;
+    width: 10vw;
+    height: 4vh;
+    color: #2BBA7C;
+    float: left;
+}
+
+.connexion_input_area{
+    width: 75vw;
+    padding: 2vh;
+    height: 5vh;
+    border: none;
+    border-radius: 15px;
+    font-weight: bold;
+    font-size: 1.75vh;
+    background-color: #FFEFE1;
+    color: #1c322596;
+}
+
+#connexion_form{
+    height: 23vh;
+}
+
+#connexion_contour_button{
+    width: 60vw;
+    margin: 4vh auto 0 auto;
+    text-align: center;
 }
 
 #connexion_input_submit {
-    background-color: white;
-    padding: 0.5vh;
-    width: 7.5vw;
+    background-color: #A9FFA4;
+    padding: 1.5vh;
+    width: 60vw;
     border: none;
-    border-radius: 10px;
+    border-radius: 50px;
+    font-size: 1.75vh;
+    font-weight: bold;
+    color: #1C3326;
 }
+
 
 #connexion_retour {
     margin: 5vh auto 0 auto;
@@ -73,6 +137,18 @@ body {
     text-decoration: none;
     font-size: 3vh;
     color: white;
+}
+
+#connexion_div_mdp{
+    width: 50%;
+    text-align: center;
+    margin: 0.5vh auto 0 auto;
+}
+
+#connexion_button_mdp{
+    text-align: center;
+    font-size: 1.25vh;
+    color: #FFEFE1;
 }
 
 
@@ -498,35 +574,22 @@ body {
 
 /* Style général du footer */
 footer {
+    font-weight: bolder;
     font-size: 1.1rem;
     position: fixed;
     bottom: 0;
     width: 100%;
-    background-color: #FFEFE1;
-    color:#1C3326;
+    background-color: #2BBA7C;
+    color: #1C3326;
     padding: 15px 0;
     text-align: center;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* Style des éléments de la liste */
-.footer-nav li {
-    display: inline-block;
-    margin: 0 15px;
-    color: #1C3326;
-}
-
-/* Style des icônes */
-.footer-nav li i {
-    color: #888;
-}
-
-/* Style des liens */
-.footer-nav li a {
-    color: #888;
-    text-decoration: none;
-    visibility: hidden;
-    /* Cache tous les liens */
+/* Style des icônes de navigation */
+.nav img {
+    width: 40px;
+    height: 40px;
 }
 
 /* Style des icônes actives */
@@ -534,55 +597,43 @@ footer {
     color: #2BBA7C;
 }
 
-/* Style du bouton flottant */
-.floating-button {
-    position: fixed;
-    width: 50px;
-    height: 50px;
-    line-height: 3;
-    text-align: center;
-    color: #FFEFE1;
-    border-radius: 50%;
-    bottom: 35px;
-    background: rgb(43,186,124);
-    background: linear-gradient(90deg, rgba(43,186,124,1) 28%, rgba(109,199,104,1) 100%);
-    box-shadow: 0 10px 6px -6px #777;
-    z-index: 1;
-    transition: 0.3s all;
-    left: 50%;
-    /* Positionne le bouton à 50% de la largeur de l'écran */
-    transform: translateX(-50%);
-    /* Le recentre en fonction de sa propre largeur */
-}
-
-.floating-button:hover {
-    bottom: 40px;
-    transition: 0.3s all;
-}
-
-
-/* Centrage du menu */
+/* Centrage du menu de navigation */
 .nav {
+    display: flex;
     justify-content: center;
 }
 
-/* Style des slots du menu */
+/* Style des slots du menu de navigation */
 .nav-slot {
-    display: inline-block;
-    vertical-align: top;
-    width: 20%;
-    /* ou une valeur appropriée */
+    flex: 1;
     text-align: center;
 }
 
-.nav {
-    --bs-nav-link-padding-x: 1rem;
-    --bs-nav-link-padding-y: 0.5rem;
-    --bs-nav-link-font-weight: ;
-    --bs-nav-link-color: #1C3326;
-    --bs-nav-link-hover-color: #338664;
-    --bs-nav-link-disabled-color: #2BBA7C;
+/* Style des liens du menu de navigation */
+.nav-link {
+    padding: 0.5rem 1rem;
+    font-weight: bold;
+    color: #1C3326;
 }
+
+/* Style des liens du menu de navigation au survol */
+.nav-link:hover {
+    color: #1C3326;
+}
+
+/* Style des liens du menu de navigation désactivés */
+.nav-link:disabled {
+    color: #2BBA7C;
+}
+
+/* Style du texte accompagnant les images */
+.image-text {
+    display: block;
+    margin-top: 5px;
+    font-size: 0.8rem;
+}
+
+
 
 /* Style page planete */
 
