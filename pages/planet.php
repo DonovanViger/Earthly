@@ -40,6 +40,9 @@ $utilisateur = $requete->fetch(PDO::FETCH_ASSOC);
 
 <?php
         if ($utilisateur['point_Planete'] < 1000) {
+            ?>
+            <div class="sketchfab-embed-wrapper"> <iframe title="lvl1" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/2af6d5ca9b3b42d9ae3019f7d8791e6c/embed?autospin=0.05&autostart=1"> </iframe> </div>
+            <?php
             $niv = 1;
         } else if ($utilisateur['point_Planete'] < 3000) {
             ?>
