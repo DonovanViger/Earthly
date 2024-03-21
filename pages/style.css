@@ -525,6 +525,7 @@ body {
 
 /* Style général du footer */
 footer {
+    font-weight: bolder;
     font-size: 1.1rem;
     position: fixed;
     bottom: 0;
