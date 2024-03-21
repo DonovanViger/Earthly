@@ -19,7 +19,7 @@
         </div>
         <div class="nav-slot curve">
             <a href="../pages/planet.php" class="floating-button" id="planet">
-                <img src="../img/nav bar/home noir.svg" class="footer-image" data-image="3.png">
+                <img src="../img/nav bar/home_noir.png" class="footer-image" data-image="3.png">
             </a>
         </div>
         <div class="nav-slot">

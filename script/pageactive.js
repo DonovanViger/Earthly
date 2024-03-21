@@ -3,25 +3,25 @@ document.addEventListener("DOMContentLoaded", function() {
     var currentPage = window.location.pathname.split("/").pop();
 
     // Récupération de l'élément img du footer
-    var footerImage = document.querySelector("footer img");
+    var footerImage = document.querySelector("footer a[href*='" + currentPage + "'] .footer-image");
 
     // Définir le chemin de l'image en fonction de la page actuelle
     var imagePath;
     switch(currentPage) {
         case "defi.php":
-            imagePath = "../img/navbar/Defis blanc.png";
+            imagePath = "../img/nav bar/Defis blanc.png";
             break;
         case "recyclage.php":
-            imagePath = "../img/navbar/Scanner blanc.png";
+            imagePath = "../img/nav bar/Scanner blanc.png";
             break;
         case "planet.php":
-            imagePath = "../img/navbar/home_blanc.png";
+            imagePath = "../img/nav bar/home_blanc.png";
             break;
         case "classement.php":
-            imagePath = "../img/navbar/Classement blanc.png";
+            imagePath = "../img/nav bar/Classement blanc.png";
             break;
         case "compte.php":
-            imagePath = "../img/navbar/Profil blanc.png";
+            imagePath = "../img/nav bar/Profil blanc.png";
             break;
         default:
             // Chemin d'image par défaut si la page n'est pas reconnue
