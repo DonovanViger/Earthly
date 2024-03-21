@@ -31,16 +31,20 @@ session_start(); // Démarre la session (à placer au début de chaque fichier P
 
 
     <div id="connexion_cadre">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="#2BBA7C" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-2 h-2" id="connexion_user_svg">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+        </svg>
+
         <h2 id="h2_connexion">Connexion</h2>
         <form action="../form/form_connexion.php" method="POST" id="connexion_form">
             <input type="text" id="pseudo" name="pseudo" required class="connexion_input_area" placeholder="Pseudo"><br><br>
             <input type="password" id="mdp" name="mdp" required class="connexion_input_area" placeholder="Mot de passe"><br><br>
             </br>
-        </form>
     </div>
     <div id="connexion_contour_button">
     <input type="submit" value="Se connecter" id="connexion_input_submit">
 </div>
+</form>
 <div id="connexion_div_mdp">
 <a href="http://localhost/Earthly/Earthly/pages/connexion.php" id="connexion_button_mdp">Mot de passe oublié ?</a>
 </div>
