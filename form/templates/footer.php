@@ -5,16 +5,16 @@
         ?>
 <footer>
     <div class="nav">
-        <div class="nav-slot round-top-left">
-            <a href="../pages/defi.php" class="nav-link" id="defi">
-                <img src="../img/nav bar/Defis noir.png" class="footer-image" data-image="1.png">
-                <span class="image-text">Défis</span>
-            </a>
-        </div>
         <div class="nav-slot">
             <a href="../pages/recyclage.php" class="nav-link" id="recyclage">
                 <img src="../img/nav bar/Scanner noir.png" class="footer-image" data-image="2.png">
                 <span class="image-text">Recyclage</span>
+            </a>
+        </div>
+        <div class="nav-slot round-top-left">
+            <a href="../pages/defi.php" class="nav-link" id="defi">
+                <img src="../img/nav bar/Defis noir.png" class="footer-image" data-image="1.png">
+                <span class="image-text">Défis</span>
             </a>
         </div>
         <div class="nav-slot">
