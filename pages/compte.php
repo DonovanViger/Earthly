@@ -55,7 +55,7 @@
         setlocale(LC_TIME, "fr_FR");
 
         $dateConnexion = date("Y-m-d");
-
+        
         $query = $db->prepare("UPDATE utilisateurs SET dateConnexion = :dateConnexion WHERE pseudo = :pseudo");
 
         // Liez les paramètres et exécutez la requête

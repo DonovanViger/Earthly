@@ -42,10 +42,19 @@ $utilisateur = $requete->fetch(PDO::FETCH_ASSOC);
         if ($utilisateur['point_Planete'] < 1000) {
             $niv = 1;
         } else if ($utilisateur['point_Planete'] < 3000) {
+            ?>
+            <div class="sketchfab-embed-wrapper"> <iframe title="lvl2" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/caee053f40084feda87bc36ec68954a9/embed?autospin=0.05&autostart=1&ui_hint=0"> </iframe> </div>
+            <?php
             $niv = 2;
         } else if ($utilisateur['point_Planete'] < 7000) {
+            ?>
+            <div class="sketchfab-embed-wrapper"> <iframe title="lvl3" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/ccdded613db848cb82ec33e1c1d6661a/embed?autospin=0.05&autostart=1&ui_hint=0"> </iframe> </div>
+            <?php
             $niv = 3;
         } else if ($utilisateur['point_Planete'] < 15000) {
+            ?>
+            <div class="sketchfab-embed-wrapper"> <iframe title="lvl4" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/121a52bc2afc464382365e2c0080a5b6/embed?autospin=0.05&autostart=1&ui_hint=0"> </iframe> </div>
+            <?php
             $niv = 4;
         } else  {
             $niv = 5;
