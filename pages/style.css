@@ -92,11 +92,11 @@ body {
     font-weight: bold;
     font-size: 1.75vh;
     background-color: #FFEFE1;
-    color: #1c322527;
+    color: #1c322596;
 }
 
 #connexion_form{
-    height: 22.5vh;
+    height: 23vh;
 }
 
 #connexion_contour_button{
@@ -148,7 +148,7 @@ body {
 #connexion_button_mdp{
     text-align: center;
     font-size: 1.25vh;
-    color:white;
+    color: #FFEFE1;
 }
 
 
