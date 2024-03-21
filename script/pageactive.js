@@ -1,16 +1,35 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // Récupérer le chemin de la page actuelle
-    var path = window.location.pathname;
+    // Récupération du nom de la page actuelle
+    var currentPage = window.location.pathname.split("/").pop();
 
-    // Supprimer le chemin du répertoire parent si présent
-    path = path.split('/').pop();
+    // Récupération de l'élément img du footer
+    var footerImage = document.querySelector("footer a[href*='" + currentPage + "'] .footer-image");
 
-    // Récupérer l'ID de l'élément correspondant à la page actuelle
-    var pageId = path.split('.')[0]; // Supprime l'extension du fichier
+    // Définir le chemin de l'image en fonction de la page actuelle
+    var imagePath;
+    switch(currentPage) {
+        case "defi.php":
+            imagePath = "../img/nav bar/Defis blanc.png";
+            break;
+        case "recyclage.php":
+            imagePath = "../img/nav bar/Scanner blanc.png";
+            break;
+        case "planet.php":
+            imagePath = "../img/nav bar/home_blanc.png";
+            break;
+        case "classement.php":
+            imagePath = "../img/nav bar/Classement blanc.png";
+            break;
+        case "compte.php":
+            imagePath = "../img/nav bar/Profil blanc.png";
+            break;
+        default:
+            // Chemin d'image par défaut si la page n'est pas reconnue
+            imagePath = "../img/footer/default.png";
+    }
 
-    // Ajouter la classe "active" à l'élément correspondant dans le menu de navigation
-    var activeElement = document.getElementById(pageId);
-    if (activeElement) {
-        activeElement.classList.add("active");
+    // Remplacer l'image du footer par celle correspondant à la page actuelle
+    if (footerImage) {
+        footerImage.src = imagePath;
     }
 });
