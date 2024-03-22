@@ -464,11 +464,7 @@ body {
 
 .popup-content {
     background-color: #fefefe; /* Couleur de fond du popup */
-    margin: 20% auto; /* Centre le popup verticalement et horizontalement */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    max-width: 600px; /* Largeur maximale du popup */
+    width: 100%;
 }
 
 .close {
@@ -485,16 +481,37 @@ body {
     cursor: pointer;
 }
 
-/* Style pour les badges */
+#badgeContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Deux colonnes */
+    grid-gap: 20px; /* Espacement entre les colonnes */
+    justify-content: center; /* Centre les éléments horizontalement */
+}
+
 .badgeSlot {
-    display: inline-block;
-    width: 50px;
-    height: 50px;
-    background-color: #00000000;
-    border: 2px solid #000000;
-    border-radius: 50%;
-    margin: 10px;
-    cursor: pointer;
+    width: 50px; /* Largeur des éléments */
+    height: 50px; /* Hauteur des éléments */
+    background-color: transparent;
+    border: 2px solid #000; /* Bordure pour former un cercle */
+    border-radius: 50%; /* Rend les éléments circulaires */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px; /* Espacement en bas de chaque élément */
+}
+
+/* Style pour les trois premiers éléments */
+#badgeSlot1,
+#badgeSlot2,
+#badgeSlot3 {
+    grid-row: 1; /* Première ligne */
+}
+
+/* Style pour les trois derniers éléments */
+#badgeSlot4,
+#badgeSlot5,
+#badgeSlot6 {
+    grid-row: 2; /* Deuxième ligne */
 }
 
 #comptetitre {

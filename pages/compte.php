@@ -111,28 +111,7 @@
                 <div class="badgeSlot" id="badgeSlot5" onclick="openBadgePopup(5)"></div>
                 <div class="badgeSlot" id="badgeSlot6" onclick="openBadgePopup(6)"></div>
             </div>
-
-            <!-- Popup de sélection de badge -->
-            <div id="badgePopup" class="popup">
-                <div class="popup-content">
-                    <span class="close" onclick="closeBadgePopup()">&times;</span>
-                    <?php $requete_succes_utilisateur = $db->prepare("SELECT s.ID_succes, s.pds FROM succes s INNER JOIN utilisateursucces us ON s.ID_succes = us.ID_Succes WHERE us.ID_Utilisateur = :id_utilisateur AND dateObtention = 00-00-0000");
-                    $requete_succes_utilisateur->bindParam(':id_utilisateur', $id_utilisateur);
-                    $requete_succes_utilisateur->execute();
-
-                    // Récupérer les résultats de la requête
-                    $succes_utilisateur = $requete_succes_utilisateur->fetchAll(PDO::FETCH_ASSOC);
-
-                    // Afficher les succès de l'utilisateur
-                    foreach ($succes_utilisateur as $succes) {
-                        echo "<img src='" . $succes['pds'] . "' alt='" . $succes['nom'] . "'>";
-                    } 
-                    ?>
-                    <div id="badgeOptions">
-                        <!-- Les options de badges seront chargées ici via JavaScript -->
-                    </div>
-                </div>
-            </div>
+            
             <form id="imageForm" action="../form/changer_image.php" method="post" enctype="multipart/form-data">
                 <label for="nouvelle_image" class="custom-file-upload">
                     <input id="nouvelle_image" type="file" name="nouvelle_image" accept="image/*" onchange="submitForm()" required>
