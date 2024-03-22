@@ -1,0 +1,653 @@
+@font-face {
+    font-family: "Como";
+    src: url("Como-Medium.ttf");
+}
+
+@font-face {
+    font-family: "Arial-Rounded";
+    src: url("Aial-Rounded.ttf");
+}
+
+
+html,
+body {
+    margin: 0px;
+    padding: 0px;
+    background-color: #1C3326;
+    font-family: Arial-Rounded, Arial;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+/*Page Connexion*/
+
+#connection_div_patern {
+    background-image: url("../uploads/patern_light_green.svg");
+    background-size: cover; /* Ajuste la taille de l'image pour remplir complètement le conteneur */ /* Change la couleur de fond */
+    padding-top: 10vh;
+    height: 150vh;
+    opacity: 1;
+}
+
+
+#h1_connexion {
+    margin: 0 0 1vh 0;
+    text-align: center;
+}
+
+#h1_connexion a {
+    text-decoration: none;
+    font-size: 3.5vh;
+    color: #A9FFA4;
+    font-weight: bold;
+}
+
+#connexion_logo_contour{
+    width: 75%;
+    margin: 0 auto 5vh auto;
+    text-align: center;
+
+}
+
+#connexion_logo{
+    width: 45vw;
+    height: 5vh;
+}
+
+#connexion_cadre {
+    text-align: center;
+    color: white;
+    width: 90%;
+    margin: auto;
+    background-color: #A9FFA4;
+    padding: 2vh;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+#h2_connexion {
+    font-size: 3vh;
+    margin: 0.5vh 0 3vh 4vw;
+    color: #2BBA7C;
+    font-weight: bolder;
+    float: left;
+}
+
+#connexion_user_svg{
+    margin-left: 5vw;
+    width: 10vw;
+    height: 4vh;
+    color: #2BBA7C;
+    float: left;
+}
+
+.connexion_input_area{
+    width: 75vw;
+    padding: 2vh;
+    height: 5vh;
+    border: none;
+    border-radius: 15px;
+    font-weight: bold;
+    font-size: 1.75vh;
+    background-color: #FFEFE1;
+    color: #1c322596;
+}
+
+#connexion_form{
+    height: 23vh;
+}
+
+#connexion_contour_button{
+    width: 60vw;
+    margin: 4vh auto 0 auto;
+    text-align: center;
+}
+
+#connexion_input_submit {
+    background-color: #A9FFA4;
+    padding: 1.5vh;
+    width: 60vw;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.75vh;
+    font-weight: bold;
+    color: #1C3326;
+}
+
+
+#connexion_retour {
+    margin: 5vh auto 0 auto;
+    text-align: center;
+}
+
+#connexion_button_retour {
+    border: none;
+    background-color: #1C3326;
+    border-radius: 10px;
+    padding: 1vh;
+    width: 15vw;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+
+}
+
+#connexion_retour button a {
+    text-decoration: none;
+    font-size: 3vh;
+    color: white;
+}
+
+#connexion_div_mdp{
+    width: 50%;
+    text-align: center;
+    margin: 0.5vh auto 0 auto;
+}
+
+#connexion_button_mdp{
+    text-align: center;
+    font-size: 1.25vh;
+    color: #FFEFE1;
+}
+
+
+/*Page Inscription*/
+
+#h1_inscription {
+    margin: 5vh 0 10vh 0;
+    text-align: center;
+}
+
+#h1_inscription a {
+    text-decoration: none;
+    color: black;
+    font-size: 7.5vh;
+}
+
+#inscription_cadre {
+    text-align: center;
+    color: white;
+    width: 60%;
+    margin: auto;
+    background-color: #1C3326;
+    padding: 7.5vh;
+    border-radius: 30px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+#h2_inscription {
+    font-size: 5vh;
+    margin: 0 0 5vh 0;
+}
+
+#inscription_input_submit {
+    background-color: white;
+    padding: 0.5vh;
+    width: 7.5vw;
+    border: none;
+    border-radius: 10px;
+}
+
+#inscription_retour {
+    margin: 5vh auto 5vh auto;
+    text-align: center;
+}
+
+#inscription_button_retour {
+    border: none;
+    background-color: #1C3326;
+    border-radius: 10px;
+    padding: 1vh;
+    width: 15vw;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+
+}
+
+#inscription_retour button a {
+    text-decoration: none;
+    font-size: 3vh;
+    color: white;
+}
+
+
+/*Page Classement*/
+
+#h1_classement {
+    text-align: center;
+    margin-top: 5vh;
+    font-weight: bold;
+}
+
+#h1_classement a {
+    text-decoration: none;
+    color: black;
+    font-size: 7.5vh;
+}
+
+#h2_classement {
+    text-align: center;
+    font-size: 5vh;
+    font-weight: bold;
+}
+
+.avatar {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+}
+
+/*Page Compte*/
+
+.profile-image {
+    width: 20vh;
+    /* Taille fixe de l'image */
+    height: 20vh;
+    border-radius: 50%;
+    /* Pour rendre l'image ronde */
+}
+
+#h1_compte {
+    text-align: center;
+}
+
+#h1_compte a {
+    text-decoration: none;
+    color: black;
+    font-size: 7.5vh;
+}
+
+#h2_compte {
+    text-align: center;
+    font-size: 2.5vw;
+    width: 50vw;
+    margin: 1vh auto 3vh auto;
+}
+
+#profil {
+    background-color: #1C3326;
+    padding: 1vh 1vh 3vh 1vh;
+    color: white;
+    height: 65vh;
+    margin-top: 5vh;
+
+}
+
+#compte_settings {
+    float: right;
+    background-color: #1C3326;
+    border: none;
+    padding-right: 2vw;
+    padding-top: 2vh;
+}
+
+#compte_settings i {
+    color: white;
+    font-size: 4vh;
+    cursor: pointer;
+}
+
+#popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 45%;
+    height: 40vh;
+    background-color: white;
+    padding: 5vh;
+    z-index: 9999;
+    display: none;
+    background-color: #1C3326;
+    color: white;
+    text-align: center;
+    border-radius: 30px;
+
+}
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Fond semi-transparent */
+    z-index: 999;
+    /* Empilement au-dessus de tout le reste, sauf la pop-up */
+    display: none;
+    /* Initialement caché */
+}
+
+#compte_param_button_close {
+    border: none;
+    background-color: #1C3326;
+    float: right;
+    margin-top: -1vh;
+}
+
+#compte_param_button_close i {
+    color: #fff;
+    font-size: 4vh;
+    cursor: pointer
+}
+
+#compte_h3_settings {
+    margin-top: 5vh;
+    margin-bottom: 6.5vh;
+    font-size: 4vh;
+}
+
+#compte_settings_button_valid {
+    width: 30%;
+    padding: 1vh;
+    border: none;
+    font-size: 2vh;
+    border-radius: 25px;
+    margin-top: 2.5vh;
+}
+
+#compte_share {
+    font-size: 4vh;
+    cursor: pointer;
+    margin-left: 1.5vw;
+    margin-top: 2vh;
+}
+
+#compte_bar {
+    width: 80vw;
+    height: 0.25vh;
+    background-color: white;
+    border-radius: 10px;
+    margin: 0 auto 0 auto;
+}
+
+#image_compte {
+    margin-top: 5vh;
+    text-align: center;
+    width: 30vw;
+    height: 30vh;
+    float: left;
+    padding: 2vh;
+    margin-right: 10vw;
+    margin-left: 15vw;
+}
+
+#texte_compte {
+    width: 30vw;
+    float: left;
+    padding-top: 2vh;
+    font-size: 1.25vw;
+}
+
+.custom-file-upload input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    display: inline-block;
+    background-color: white;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    color: black;
+    padding: 1vh;
+    border-radius: 10px;
+    margin: 3vh;
+}
+
+
+#deconnexion_compte {
+    clear: both;
+    margin-top: 55vh;
+    text-align: center;
+    width: 100%;
+}
+
+
+#compte_button {
+    border: none;
+    border-radius: 5px;
+    padding: 2vh;
+    width: 15vw;
+    background-color: #1C3326;
+    font-size: 2.5vh;
+    text-transform: bold;
+    margin-bottom: 20vh;
+}
+
+
+#compte_button a {
+    text-decoration: none;
+    color: white;
+}
+
+.succes {
+    margin: 60px;
+    background-color: #1C3326;
+    border-radius: 10px;
+}
+
+.succes_numero {
+    margin: 20px;
+    padding: 30px 40px;
+    color: #1C3326;
+    background-color: #fff;
+    border-radius: 10px;
+    transition: transform 0.3s ease; /* Ajout de la transition pour l'effet hover */
+}
+
+.succes_numero:hover {
+    transform: scale(1.05); /* Légèrement agrandir sur hover */
+}
+
+.succes h2 {
+    font-size: 2.5rem;
+}
+/* Style pour le popup */
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
+    z-index: 9999; /* Assure que le popup est au-dessus de tout */
+    overflow: auto; /* Permet de faire défiler le contenu du popup si nécessaire */
+}
+
+.popup-content {
+    background-color: #fefefe; /* Couleur de fond du popup */
+    margin: 20% auto; /* Centre le popup verticalement et horizontalement */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px; /* Largeur maximale du popup */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Style pour les badges */
+.badgeSlot {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    background-color: #00000000;
+    border: 2px solid #000000;
+    border-radius: 50%;
+    margin: 10px;
+    cursor: pointer;
+}
+
+
+
+
+@media screen and (max-Width:700px){
+    .succes {
+        margin: 0px; /* Réduit la marge pour les petits écrans */
+        padding: 0; /* Supprime le rembourrage pour éviter le débordement sur les petits écrans */
+        background-color: #1C3326;
+    }
+    
+    .succes_numero {
+        margin: 15px;
+        padding: 20px; /* Réduit le rembourrage pour les petits écrans */
+        color: #1C3326;
+        background-color: #fff;
+        overflow: hidden;
+    }
+    
+}
+
+/*Page défis*/
+
+#defis_h1 {
+    text-align: center;
+    margin: 5vh 0 0 0;
+    padding: 0;
+}
+
+#defis_h1 a {
+    text-decoration: none;
+    color: black;
+    font-size: 7.5vh;
+}
+
+
+#defis_h2 {
+    text-align: center;
+    font-size: 5vh;
+    margin: 0 0 5vh 0;
+}
+
+
+#defis_ul {
+    margin: 0 auto 15vh auto;
+    padding: 2vh;
+    background: rgb(130, 214, 123);
+    background: linear-gradient(230deg, rgba(130, 214, 123, 1) 0%, rgba(71, 195, 60, 1) 100%);
+    width: 90%;
+    border-radius: 10px;
+}
+
+
+.defi {
+    background-color: #1C3326;
+    padding: 4vh;
+    margin: 4vh auto 4vh auto;
+    color: #fff;
+    text-align: center;
+    width: 80%;
+    border-radius: 10px;
+}
+
+#defi_form {
+    margin-top: 2vh;
+}
+
+#defis_button {
+    border: none;
+    width: 15vw;
+    padding: 1vh;
+    cursor: pointer;
+    border-radius: 20px;
+
+}
+
+
+/*Page Recyclage*/
+
+/*Général pour toutes les pages*/
+
+/* Style général du footer */
+footer {
+    font-weight: bolder;
+    font-size: 12px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #2BBA7C;
+    color: #1C3326;
+    padding: 15px 0;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Style des icônes de navigation */
+.nav img {
+    width: 26px;
+    height: 26px;
+}
+
+/* Style des icônes actives */
+.nav .nav-link.active i {
+    color: #2BBA7C;
+}
+
+/* Centrage du menu de navigation */
+.nav {
+    display: flex;
+    justify-content: center;
+}
+
+/* Style des slots du menu de navigation */
+.nav-slot {
+    flex: 1;
+    text-align: center;
+}
+
+/* Style des liens du menu de navigation */
+.nav-link {
+    padding: 0.5rem 1rem;
+    font-weight: bold;
+    color: #1C3326;
+}
+
+/* Style des liens du menu de navigation au survol */
+.nav-link:hover {
+    color: #1C3326;
+}
+
+/* Style des liens du menu de navigation désactivés */
+.nav-link:disabled {
+    color: #2BBA7C;
+}
+
+/* Style du texte accompagnant les images */
+.image-text {
+    display: block;
+    margin-top: 5px;
+    font-size: 0.8rem;
+}
+
+/* Style spécifique des icônes de planète dans le footer */
+footer .planet-icon {
+    height: 60px;
+    width: 60px;
+}
+
+
+/* Style page planete */
+
+iframe {
+    width: 100vw;
+    height: 100vh;
+}
+
+.sketchfab-embed-wrapper {
+    width: 100vw;
+    height: 100vh;
+}
