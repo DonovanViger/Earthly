@@ -588,8 +588,8 @@ footer {
 
 /* Style des icônes de navigation */
 .nav img {
-    width: 26px;
-    height: 26px;
+    width: 24px;
+    height: 24px;
 }
 
 /* Style des icônes actives */
@@ -611,7 +611,7 @@ footer {
 
 /* Style des liens du menu de navigation */
 .nav-link {
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 0.4rem;
     font-weight: bold;
     color: #1C3326;
 }
@@ -635,8 +635,9 @@ footer {
 
 /* Style spécifique des icônes de planète dans le footer */
 footer .planet-icon {
-    height: 60px;
-    width: 60px;
+    height: 55px;
+    width: 55px;
+    margin-top: -10%;
 }
 
 
