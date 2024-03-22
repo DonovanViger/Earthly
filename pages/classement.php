@@ -44,6 +44,10 @@
             font-size: 32px;
             /* Ajustez cette valeur selon vos besoins */
         }
+
+        .ahah {
+            margin-top: -5px;
+        }
     </style>
 </head>
 
@@ -64,14 +68,21 @@
     $Classements = $requeteClassement->fetchAll(PDO::FETCH_ASSOC);
     ?>
 
-    <h1 id="h1_classement"><a href="../index.php">Earthly</a></h1>
-    <h2 id="h2_classement">Classement</h2>
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6 pt-5 pb-1 px-5">
+                <img src="../img/LAEDERBOARD.svg" alt="" srcset="">
+                <img src="../img/a.svg" alt="" srcset="" class="px-2 ahah">
+            </div>
+        </div>
+    </div>
+
 
     <div class="container">
         <?php foreach ($Classements as $key => $classement) { ?>
             <div class="row user-card mx-3 my-4" id="<?php if ($key == 0) echo 'un';
-                                                                        elseif ($key == 1) echo 'deux';
-                                                                        elseif ($key == 2) echo 'trois'; ?>">
+                                                        elseif ($key == 1) echo 'deux';
+                                                        elseif ($key == 2) echo 'trois'; ?>">
                 <div class="col-1 text-center align-self-center placement-large"><?php echo $key + 1; ?></div>
                 <div class="col-4 text-center align-self-center">
                     <img src="<?php echo $classement['pdp']; ?>" alt="Avatar de <?php echo $classement['pseudo']; ?>" class="user-avatar">
