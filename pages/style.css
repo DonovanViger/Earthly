@@ -178,21 +178,25 @@ body {
     margin-bottom: 5vh;
 }
 
+#inscription_cadre_overall{
+    text-align: center;
+}
+
 #inscription_cadre {
     text-align: center;
     color: white;
-    width: 90%;
     margin: auto;
+    width: 85%;
     background-color: #2BBA7C;
     padding: 2vh;
-    border-radius: 30px;
+    border-radius: 15px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 
 #h2_inscription {
     font-size: 3vh;
-    margin: 0.5vh 0 3vh 4vw;
+    margin: 0.5vh 0 1vh 4vw;
     color: #A9FFA4;
     font-weight: bolder;
     float: left;
@@ -219,14 +223,18 @@ body {
 }
 
 #inscription_files_box{
-    width: 90vw;
+    width: 85vw;
     text-align: center;
     color: white;
-    margin: auto;
+    margin: 5vh auto 0 auto;
     background-color: #A9FFA4;
     padding: 2vh;
-    border-radius: 30px;
+    border-radius: 15px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+#inscription_h2_files{
+    color: #1C3326;
 }
 
 #inscription_input_submit {

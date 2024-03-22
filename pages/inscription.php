@@ -79,15 +79,16 @@
             <input type="password" id="mdp" name="mdp" required placeholder="Mot de passe" class="inscription_input_area"><br><br>
             </div>
             <div id="inscription_files_box">
-            <h2>Votre photo de profil</h2>
+            <h2 id="inscription_h2_files">Votre photo de profil</h2>
             <input type="hidden" id="cropped_photo" name="cropped_photo">
             <input type="file" id="photo" name="photo" accept="image/*" required onchange="previewImage(event)"><br><br>
             <div id="image_preview"></div><br>
             <button type="button" id="crop_button">Recadrer</button>
+            </div>
             <!-- Bouton pour ouvrir la boîte de dialogue de recadrage -->
             <input type="submit" value="Créer un compte" id="inscription_input_submit">
         </form>
-</div>
+
 
 
     <!-- Modal de recadrage -->
