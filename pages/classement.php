@@ -10,80 +10,61 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
     <title>Classement</title>
     <style>
-    #table_classement {
-        border-collapse: separate;
-        /* Sépare les bordures des cellules */
-        border-spacing: 2px;
-        /* Ajoute de l'espace entre les cellules */
-        margin-top: 3%;
-        margin-bottom: 10%;
-    }
+        .user-card {
+            border-radius: 15px;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #2BBA7C;
+            color: #FFEFE1;
+        }
 
-    table {
-        background-color: #fff;
-        border-radius: 10px;
-        padding: 20px;
-        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    }
+        .user-avatar {
+            width: 59px;
+            border-radius: 50%;
+        }
 
-    #table_classement th,
-    #table_classement td {
-        padding: 1.5%;
-        /* Ajoute un rembourrage autour du contenu de la cellule */
-    }
-
-    .petit {
-        width: 12%;
-    }
+        .points-col {
+            border-left: 2px solid #FFFFFF;
+            border-radius: 1px;
+        }
     </style>
 </head>
 
 <body>
 
     <?php
-session_start(); // Démarre la session
+    session_start(); // Démarre la session
 
-try {
-    $db = new PDO('mysql:host=localhost;dbname=sae401-2', 'root', '');
-    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $erreur) {
-    die("Erreur de connexion à la base de données : " . $erreur->getMessage());
-}
+    try {
+        $db = new PDO('mysql:host=localhost;dbname=sae401-2', 'root', '');
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch (PDOException $erreur) {
+        die("Erreur de connexion à la base de données : " . $erreur->getMessage());
+    }
 
-$requeteClassement = $db->prepare("SELECT `pseudo`,`exp_Utilisateur`,`point_Planete`, IFNULL(`pdp`, '../uploads/default.jpg') AS `pdp` FROM `utilisateurs` ORDER BY `point_Planete` DESC LIMIT 10;");
-$requeteClassement->execute();
-$Classements = $requeteClassement->fetchAll(PDO::FETCH_ASSOC);
-$i = 0;
-?>
-
+    $requeteClassement = $db->prepare("SELECT `pseudo`,`exp_Utilisateur`,`point_Planete`, IFNULL(`pdp`, '../uploads/default.jpg') AS `pdp` FROM `utilisateurs` ORDER BY `point_Planete` DESC LIMIT 10;");
+    $requeteClassement->execute();
+    $Classements = $requeteClassement->fetchAll(PDO::FETCH_ASSOC);
+    ?>
 
     <h1 id="h1_classement"><a href="../index.php">Earthly</a></h1>
     <h2 id="h2_classement">Classement</h2>
 
-    <table id="table_classement" class="table-hover w-75 mx-auto">
-        <thead>
-            <tr>
-                <th scope="col" class="text-center align-middle petit">#</th>
-                <th scope="col" class="text-center align-middle petit">Avatar</th>
-                <th scope="col" class="px-5 align-middle">Pseudo</th>
-                <th scope="col" class="text-center align-middle petit">Points</th>
-            </tr>
-        </thead>
-        <tbody class="table-group-divider">
-            <?php $i = 0; foreach ($Classements as $classement) { $i++; ?>
-            <tr>
-                <th scope="row" class="text-center align-middle"><?php echo $i; ?></th>
-                <td class="text-center align-middle"><img src="<?php echo $classement['pdp']; ?>"
-                        alt="Avatar de <?php echo $classement['pseudo']; ?>" class="avatar"></td>
-                <td class="px-5 align-middle"><?php echo $classement['pseudo']; ?></td>
-                <td class="text-center align-middle"><?php echo $classement['point_Planete']; ?></td>
-            </tr>
-            <?php } ?>
-        </tbody>
-    </table>
+    <div class="container">
+        <?php foreach ($Classements as $key => $classement) { ?>
+            <div class="row user-card m-3">
+                <div class="col-1 text-center align-self-center"><?php echo $key + 1; ?></div>
+                <div class="col-4 text-center align-self-center">
+                    <img src="<?php echo $classement['pdp']; ?>" alt="Avatar de <?php echo $classement['pseudo']; ?>" class="user-avatar">
+                </div>
+                <div class="col-4 align-self-center"><?php echo $classement['pseudo']; ?></div>
+                <div class="col-3 points-col text-center align-self-center"><?php echo $classement['point_Planete']; ?>pts</div>
+            </div>
+        <?php } ?>
+    </div>
 
     <?php
-        include("../form/templates/footer.php")
+    include("../form/templates/footer.php")
     ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
