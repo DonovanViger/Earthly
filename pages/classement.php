@@ -68,6 +68,7 @@
     $Classements = $requeteClassement->fetchAll(PDO::FETCH_ASSOC);
     ?>
 
+    <div id="classement_div_patern">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-6 pt-5 pb-1 px-5">
@@ -92,11 +93,13 @@
         </div>
     <?php } ?>
 </div>
+    </div>
 
 
     <?php
     include("../form/templates/footer.php")
     ?>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
 </body>
