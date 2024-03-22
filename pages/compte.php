@@ -35,17 +35,17 @@
         $profileImage = $utilisateur['pdp'] ? $utilisateur['pdp'] : '../uploads/default.jpg';
     } catch (PDOException $erreur) {
         // En cas d'erreur de connexion à la base de données
-        die("Erreur de connexion à la base de données : " . $erreur->getMessage());
+        die ("Erreur de connexion à la base de données : " . $erreur->getMessage());
     }
 
     // Vérifie si l'utilisateur est connecté
-    if (!isset($_SESSION['pseudo'])) {
+    if (!isset ($_SESSION['pseudo'])) {
         // Redirige l'utilisateur vers la page de connexion s'il n'est pas connecté
         header("Location: connexion.php");
         exit();
     }
 
-    if (isset($_SESSION['pseudo'])) {
+    if (isset ($_SESSION['pseudo'])) {
         $pseudo = $_SESSION['pseudo'];
         $id_utilisateur = $_SESSION['user_id'];
 
@@ -131,26 +131,56 @@
                     <div class="col-md-6">
                         <img src="<?php echo $profileImage; ?>" alt="Image de profil" class="profile-image">
                         <div class="row">
-                            <div class="col-4">
-                                <div class="badgeSlot" id="badgeSlot1" onclick="openBadgePopup(1)"></div>
-                            </div>
-                            <div class="col-4">
-                                <div class="badgeSlot" id="badgeSlot2" onclick="openBadgePopup(2)"></div>
-                            </div>
-                            <div class="col-4">
-                                <div class="badgeSlot" id="badgeSlot3" onclick="openBadgePopup(3)"></div>
-                            </div>
-                        </div>
-                        <div class="row mt-2">
-                            <div class="col-4">
-                                <div class="badgeSlot" id="badgeSlot4" onclick="openBadgePopup(4)"></div>
-                            </div>
-                            <div class="col-4">
-                                <div class="badgeSlot" id="badgeSlot5" onclick="openBadgePopup(5)"></div>
-                            </div>
-                            <div class="col-4">
-                                <div class="badgeSlot" id="badgeSlot6" onclick="openBadgePopup(6)"></div>
-                            </div>
+                            <?php for ($i = 1; $i <= 6; $i++): ?>
+                                    <div class="col-4">
+                                        <div class="badgeSlot" id="badgeSlot<?php echo $i; ?>">
+                                            <?php
+                                            // Logique pour récupérer les images des succès pour chaque slot
+                                            // Par exemple, vous pouvez exécuter une requête SQL pour chaque slot
+                                            // et récupérer le succès avec la meilleure progression pour chaque groupe de succès
+                                        
+                                            // Déterminer le groupe en fonction de la valeur de $i
+                                            switch ($i) {
+                                                case 1:
+                                                    $group = 'A%';
+                                                    break;
+                                                case 2:
+                                                    $group = 'B%';
+                                                    break;
+                                                case 3:
+                                                    $group = 'C%';
+                                                    break;
+                                                case 4:
+                                                    $group = 'D%';
+                                                    break;
+                                                case 5:
+                                                    $group = 'E%';
+                                                    break;
+                                                case 6:
+                                                    $group = 'F%';
+                                                    break;
+                                                default:
+                                                    $group = ''; // Gérer les valeurs par défaut si nécessaire
+                                                    break;
+                                            }
+
+                                            // Exemple de requête SQL pour récupérer le succès pour chaque slot
+                                            $query_slot = $db->prepare("SELECT pds FROM `utilisateursucces` JOIN `succes` ON utilisateursucces.ID_Succes = succes.ID_succes WHERE utilisateursucces.ID_Utilisateur = :userID AND succes.triageSucces LIKE :group AND dateObtention != 00-00-0000 ORDER BY succes.maxProgression DESC LIMIT 1");
+                                            $query_slot->bindParam(':userID', $utilisateur['ID_Utilisateur']);
+                                            $query_slot->bindParam(':group', $group);
+                                            $query_slot->execute();
+                                            $slot_success = $query_slot->fetch(PDO::FETCH_ASSOC);
+
+                                            // Affichage de l'image du succès ou une image par défaut
+                                            if ($slot_success) {
+                                                echo '<img src="' . $slot_success['pds'] . '" alt="Badge Slot ' . $i . '">';
+                                            } else {
+                                                echo '';
+                                            }
+                                            ?>
+                                        </div>
+                                    </div>
+                            <?php endfor; ?>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -158,27 +188,27 @@
                             <div class="progress-bar" role="progressbar" style="width: <?php echo $utilisateur['exp_Utilisateur']; ?>%;" aria-valuenow="<?php echo $utilisateur['exp_Utilisateur']; ?>" aria-valuemin="0" aria-valuemax="100"><?php echo $utilisateur['exp_Utilisateur']; ?>%</div>
                         </div>
                         <p class="mt-3">Date de création du compte : <?php
-                                                                        $dateCreationCompte = $utilisateur['dateCreationCompte'];
+                        $dateCreationCompte = $utilisateur['dateCreationCompte'];
 
-                                                                        echo $dateCreationCompte;
-                                                                        ?></p>
+                        echo $dateCreationCompte;
+                        ?></p>
                         <p>Points : <?php
-                                    if ($utilisateur['point_Planete'] < 1000) {
-                                        $niv = 1;
-                                    } else if ($utilisateur['point_Planete'] < 3000) {
-                                        $niv = 2;
-                                    } else if ($utilisateur['point_Planete'] < 7000) {
-                                        $niv = 3;
-                                    } else if ($utilisateur['point_Planete'] < 15000) {
-                                        $niv = 4;
-                                    } else {
-                                        $niv = 5;
-                                    }
-                                    echo $utilisateur['point_Planete'];
+                        if ($utilisateur['point_Planete'] < 1000) {
+                            $niv = 1;
+                        } else if ($utilisateur['point_Planete'] < 3000) {
+                            $niv = 2;
+                        } else if ($utilisateur['point_Planete'] < 7000) {
+                            $niv = 3;
+                        } else if ($utilisateur['point_Planete'] < 15000) {
+                            $niv = 4;
+                        } else {
+                            $niv = 5;
+                        }
+                        echo $utilisateur['point_Planete'];
 
-                                    ?> (Planète niveau <?php echo $niv; ?>)</p>
-                        <?php if (!empty($utilisateur['ID_parrain'])) : ?>
-                            <p>Parrain : <?php echo $utilisateur['ID_parrain']; ?></p>
+                        ?> (Planète niveau <?php echo $niv; ?>)</p>
+                        <?php if (!empty ($utilisateur['ID_parrain'])): ?>
+                                                    <p>Parrain : <?php echo $utilisateur['ID_parrain']; ?></p>
                         <?php endif; ?>
                     </div>
                 </div>
@@ -224,22 +254,22 @@
             $requete_succes->execute();
             $succes = $requete_succes->fetchAll(PDO::FETCH_ASSOC);
             foreach ($succes as $suc) {
-            ?>
-                <div class="col-lg-4">
-                    <!-- Sur les grands écrans (lg), il y aura trois succès par ligne. Sur les écrans moyens (md), il y en aura deux par ligne. -->
-                    <div class='succes_numero'>
-                        <h3><?php echo $suc['nom']; ?></h3><br>
-                        <p><?php echo $suc['desc']; ?></p><br>
-                    </div>
-                </div>
+                ?>
+                                        <div class="col-lg-4">
+                                            <!-- Sur les grands écrans (lg), il y aura trois succès par ligne. Sur les écrans moyens (md), il y en aura deux par ligne. -->
+                                            <div class='succes_numero'>
+                                                <h3><?php echo $suc['nom']; ?></h3><br>
+                                                <p><?php echo $suc['desc']; ?></p><br>
+                                            </div>
+                                        </div>
             <?php } ?>
         </div>
     </div>
 
 
     <?php
-    include("../form/templates/footer.php")
-    ?>
+    include ("../form/templates/footer.php")
+        ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
