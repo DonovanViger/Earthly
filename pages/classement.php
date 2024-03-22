@@ -17,7 +17,6 @@
             background-size: 325%;
         }
 
-
         .user-card {
             border-radius: 15px;
             padding: 18px;
@@ -84,12 +83,12 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-6 pt-5 pb-1 px-5">
-                <img src="../img/LAEDERBOARD.svg" alt="" srcset="">
-                <img src="../img/a.svg" alt="" srcset="" class="px-2 ahah">
+                <img src="../img/LAEDERBOARD.svg" alt="Tableau de classement" class="img-fluid">
+                <a href="../index.php"><img src="../img/a.svg" alt="Lettre A" class="px-2 ahah"></a>
+                <p>TOP 10</p>
             </div>
         </div>
     </div>
-
 
     <div class="container">
         <?php foreach ($Classements as $key => $classement) { ?>
@@ -107,7 +106,6 @@
     </div>
 
     <div class="scroll w-100"></div>
-
 
     <?php
     include("../form/templates/footer.php")
