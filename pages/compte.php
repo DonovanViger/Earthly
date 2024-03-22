@@ -63,8 +63,10 @@
         $query->execute();
     }
     ?>
-    <h1 id="h1_compte"><a href="../index.php">Earthly</a></h1>
-
+    <div id="comptetitre">
+                <img src="../img/nav bar/Profil blanc.png" class="header-image" data-image="5.png" style="max-width: 50px;">
+    <h1 id="h1_compte"><a href="../index.php" style="color:#2BBA7C;font-size:30px">Mon compte</a></h1>
+    </div>
     <!-- Contenu de la pop-up s-->
     <div id="overlay" onclick="fermerPopup()"></div> <!-- Overlay pour l'arrière-plan semi-transparent -->
     <div id="popup">
