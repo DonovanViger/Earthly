@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
     <title>Classement</title>
     <style>
+
         body {
             background-color: #1c3326;
             background-image: url("../pack-icon/pattern/download.svg");
