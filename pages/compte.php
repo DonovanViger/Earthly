@@ -8,6 +8,24 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="style.css" />
     <title>Mon compte</title>
+    <style>
+        h1{
+            font-size: 2rem;
+        }
+
+        h1 a{
+            color: #2BBA7C;
+            text-decoration: none;
+        }
+
+        .boite {
+            background-color: #2BBA7C;
+        }
+
+        .pseudo {
+            color: #FFEFE1;
+        }
+    </style>
 </head>
 
 <body>
@@ -66,7 +84,7 @@
     ?>
     <div id="comptetitre">
         <img src="../img/COMPTE.svg" class="header-image" data-image="5.png" style="max-width: 50px;">
-        <h1 id="h1_compte"><a href="../index.php">Mon compte</a></h1>
+        <h1 class="px-3"><a href="../index.php">Mon compte</a></h1>
     </div>
     <!-- Contenu de la pop-up s-->
     <div id="overlay" onclick="fermerPopup()"></div> <!-- Overlay pour l'arrière-plan semi-transparent -->
@@ -111,10 +129,10 @@
     </div>
 
         <div class="container mt-4 text-dark">
-            <div class="rounded p-4 bg-light">
+            <div class="rounded p-4 boite">
                 <div class="row">
                     <div class="col-md-6">
-                        <h2 class="mb-3"><?php echo $utilisateur['pseudo']; ?></h2>
+                        <h2 class="mb-3 pseudo"><?php echo $utilisateur['pseudo']; ?></h2>
                     </div>
                     <div class="col-md-6 text-md-end">
                         <button class="btn btn-primary" onclick="partager()"><i class="fa-solid fa-share-nodes"></i> Partager</button>
@@ -226,7 +244,6 @@
             foreach ($succes as $suc) {
             ?>
                 <div class="col-lg-4">
-                    <!-- Sur les grands écrans (lg), il y aura trois succès par ligne. Sur les écrans moyens (md), il y en aura deux par ligne. -->
                     <div class='succes_numero'>
                         <h3><?php echo $suc['nom']; ?></h3><br>
                         <p><?php echo $suc['desc']; ?></p><br>
