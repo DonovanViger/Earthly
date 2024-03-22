@@ -151,24 +151,14 @@
                 <li>Email : <?php echo $utilisateur['mail']; ?></li>
                 <li>Date de création du compte :
                     <?php
-                    $dateCreationCompte = new DateTime($utilisateur['dateCreationCompte']);
-                    $formatter = new IntlDateFormatter('fr_FR', IntlDateFormatter::FULL, IntlDateFormatter::NONE);
-                    $formatter->setPattern('dd MMMM yyyy');
-                    echo $formatter->format($dateCreationCompte);
+                    $dateCreationCompte = $utilisateur['dateCreationCompte'];
+                    echo $dateCreationCompte;
                     ?>
                 </li>
                 <li>Points : <?php echo $utilisateur['point_Planete']; ?> (Planète niveau <?php echo $niv; ?>)</li>
                 <?php if (!empty ($utilisateur['ID_parrain'])): ?>
                                     <li>Parrain : <?php echo $utilisateur['ID_parrain']; ?></li>
                 <?php endif; ?>
-                <li>Date de dernière connexion :
-                    <?php
-                    $dateDerniereConnexion = new DateTime($utilisateur['dateConnexion']);
-                    $formatter = new IntlDateFormatter('fr_FR', IntlDateFormatter::FULL, IntlDateFormatter::NONE);
-                    $formatter->setPattern('dd MMMM yyyy');
-                    echo $formatter->format($dateDerniereConnexion);
-                    ?>
-                </li>
 
                 <li>Expérience du compte : <?php echo $utilisateur['exp_Utilisateur']; ?></li>
             </ul>
