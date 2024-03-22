@@ -35,10 +35,9 @@
 
     /* Contenu de la fenêtre de recadrage */
     .modal-content {
-        background-color: #fefefe;
-        margin: 15% auto;
-        padding: 20px;
-        border: 1px solid #888;
+        background-color: #1C3326;
+        margin: 5% auto;
+        padding: 5vh;
         width: 80%;
         /* Largeur de la fenêtre de recadrage */
     }
@@ -47,7 +46,7 @@
     .close {
         color: #aaa;
         float: right;
-        font-size: 28px;
+        font-size: 5vh;
         font-weight: bold;
     }
 
@@ -86,7 +85,9 @@
             <button type="button" id="crop_button">Recadrer</button>
             </div>
             <!-- Bouton pour ouvrir la boîte de dialogue de recadrage -->
+            <div id="inscription_box_button">
             <input type="submit" value="Créer un compte" id="inscription_input_submit">
+        </div>
         </form>
 
 
