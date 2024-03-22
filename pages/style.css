@@ -403,13 +403,6 @@ body {
 }
 
 #image_compte {
-    margin-top: 5vh;
-    text-align: center;
-    width: 30vw;
-    height: 30vh;
-    float: left;
-    padding: 2vh;
-    margin-right: 10vw;
     margin-left: 15vw;
 }
 
@@ -529,6 +522,11 @@ body {
     border-radius: 50%;
     margin: 10px;
     cursor: pointer;
+}
+
+#comptetitre {
+    display: flex;
+    margin: 50px 50px 0px 50px;
 }
 
 

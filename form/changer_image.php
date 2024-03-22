@@ -37,8 +37,11 @@ if (isset($_FILES['nouvelle_image'])) {
         $requete->execute();
         echo "L'image de profil a été mise à jour avec succès.";
         header("Location: ../pages/compte.php");
+        exit(); // Ajout de l'exit après la redirection pour éviter l'exécution supplémentaire du code
     } else {
+        // Affiche un message d'erreur et enregistre-le dans le journal d'erreurs
         echo "Erreur lors du téléversement de l'image.";
+        error_log("Erreur lors du téléversement de l'image: " . $_FILES['nouvelle_image']['error']);
         echo "<button onclick='retour()'>Retour</button>";
     }
 } else {
@@ -46,7 +49,6 @@ if (isset($_FILES['nouvelle_image'])) {
     echo "<button onclick='retour()'>Retour</button>";
 }
 
-echo '<script> function retour(){
-    ' +  header("location:../pages/compte.php") + '
-}</script>'
+// Script JavaScript pour le bouton retour
+echo '<script> function retour(){ window.location.href = "../pages/compte.php"; }</script>';
 ?>

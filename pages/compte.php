@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="style.css" />
     <title>Mon compte</title>
 </head>
@@ -36,18 +35,19 @@
         $profileImage = $utilisateur['pdp'] ? $utilisateur['pdp'] : '../uploads/default.jpg';
     } catch (PDOException $erreur) {
         // En cas d'erreur de connexion à la base de données
-        die ("Erreur de connexion à la base de données : " . $erreur->getMessage());
+        die("Erreur de connexion à la base de données : " . $erreur->getMessage());
     }
 
     // Vérifie si l'utilisateur est connecté
-    if (!isset ($_SESSION['pseudo'])) {
+    if (!isset($_SESSION['pseudo'])) {
         // Redirige l'utilisateur vers la page de connexion s'il n'est pas connecté
         header("Location: connexion.php");
         exit();
     }
 
-    if (isset ($_SESSION['pseudo'])) {
+    if (isset($_SESSION['pseudo'])) {
         $pseudo = $_SESSION['pseudo'];
+        $id_utilisateur = $_SESSION['user_id'];
 
         $db = new PDO('mysql:host=localhost;dbname=sae401-2', 'root', '');
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -64,8 +64,10 @@
         $query->execute();
     }
     ?>
-    <h1 id="h1_compte"><a href="../index.php">Earthly</a></h1>
-
+    <div id="comptetitre">
+                <img src="../img/nav bar/Profil blanc.png" class="header-image" data-image="5.png" style="max-width: 50px;">
+    <h1 id="h1_compte"><a href="../index.php" style="color:#2BBA7C;font-size:30px">Mon compte</a></h1>
+    </div>
     <!-- Contenu de la pop-up s-->
     <div id="overlay" onclick="fermerPopup()"></div> <!-- Overlay pour l'arrière-plan semi-transparent -->
     <div id="popup">
@@ -74,19 +76,17 @@
 
         <form action="../form/traitement_modification.php" method="POST">
             <label for="nouveauPseudo">Pseudo : </label>
-            <input type="text" id="nouveauPseudo" name="nouveauPseudo" value="<?php echo $utilisateur['pseudo']; ?>"
-                required><br><br>
+            <input type="text" id="nouveauPseudo" name="nouveauPseudo" value="<?php echo $utilisateur['pseudo']; ?>" required><br><br>
 
             <label for="nouvelleEmail">Adresse e-mail : </label>
-            <input type="email" id="nouvelleEmail" name="nouvelleEmail" value="<?php echo $utilisateur['mail']; ?>"
-                required><br><br>
+            <input type="email" id="nouvelleEmail" name="nouvelleEmail" value="<?php echo $utilisateur['mail']; ?>" required><br><br>
 
             <input type="submit" value="Modifier" id="compte_settings_button_valid">
         </form>
 
     </div>
-</div>
-</div>
+    </div>
+    </div>
 
     <section id="profil">
 
@@ -96,8 +96,10 @@
 
         <!-- Contenu de la pop-up -->
         <div id="overlay"></div> <!-- Overlay pour l'arrière-plan semi-transparent -->
-
-        <h2 id="h2_compte"><?php echo $utilisateur['pseudo']; ?></h2>
+        <div id="image_compte">
+            <img src="<?php echo $profileImage; ?>" alt="Image de profil" style="width: 50px;height: 50px;">
+        </div>
+        <h2 id="h2_compte" style="font-size:24px;"><?php echo $utilisateur['pseudo']; ?></h2>
         <div id="compte_bar"></div>
         <!-- Affichage de l'image de profil -->
         <div id="image_compte">
@@ -116,7 +118,18 @@
             <div id="badgePopup" class="popup">
                 <div class="popup-content">
                     <span class="close" onclick="closeBadgePopup()">&times;</span>
-                    <!-- Contenu du popup ici -->
+                    <?php $requete_succes_utilisateur = $db->prepare("SELECT s.ID_succes, s.pds FROM succes s INNER JOIN utilisateursucces us ON s.ID_succes = us.ID_Succes WHERE us.ID_Utilisateur = :id_utilisateur AND dateObtention = 00-00-0000");
+                    $requete_succes_utilisateur->bindParam(':id_utilisateur', $id_utilisateur);
+                    $requete_succes_utilisateur->execute();
+
+                    // Récupérer les résultats de la requête
+                    $succes_utilisateur = $requete_succes_utilisateur->fetchAll(PDO::FETCH_ASSOC);
+
+                    // Afficher les succès de l'utilisateur
+                    foreach ($succes_utilisateur as $succes) {
+                        echo "<img src='" . $succes['pds'] . "' alt='" . $succes['nom'] . "'>";
+                    } 
+                    ?>
                     <div id="badgeOptions">
                         <!-- Les options de badges seront chargées ici via JavaScript -->
                     </div>
@@ -124,10 +137,11 @@
             </div>
             <form id="imageForm" action="../form/changer_image.php" method="post" enctype="multipart/form-data">
                 <label for="nouvelle_image" class="custom-file-upload">
-                    <input id="nouvelle_image" type="file" name="nouvelle_image" accept="image/*" required>
+                    <input id="nouvelle_image" type="file" name="nouvelle_image" accept="image/*" onchange="submitForm()" required>
                     Changer l'image de profil
                 </label>
             </form>
+
 
         </div>
         <?php
@@ -151,24 +165,14 @@
                 <li>Email : <?php echo $utilisateur['mail']; ?></li>
                 <li>Date de création du compte :
                     <?php
-                    $dateCreationCompte = new DateTime($utilisateur['dateCreationCompte']);
-                    $formatter = new IntlDateFormatter('fr_FR', IntlDateFormatter::FULL, IntlDateFormatter::NONE);
-                    $formatter->setPattern('dd MMMM yyyy');
-                    echo $formatter->format($dateCreationCompte);
+                    $dateCreationCompte = $utilisateur['dateCreationCompte'];
+                    echo $dateCreationCompte;
                     ?>
                 </li>
                 <li>Points : <?php echo $utilisateur['point_Planete']; ?> (Planète niveau <?php echo $niv; ?>)</li>
                 <?php if (!empty ($utilisateur['ID_parrain'])): ?>
-                                    <li>Parrain : <?php echo $utilisateur['ID_parrain']; ?></li>
+                                        <li>Parrain : <?php echo $utilisateur['ID_parrain']; ?></li>
                 <?php endif; ?>
-                <li>Date de dernière connexion :
-                    <?php
-                    $dateDerniereConnexion = new DateTime($utilisateur['dateConnexion']);
-                    $formatter = new IntlDateFormatter('fr_FR', IntlDateFormatter::FULL, IntlDateFormatter::NONE);
-                    $formatter->setPattern('dd MMMM yyyy');
-                    echo $formatter->format($dateDerniereConnexion);
-                    ?>
-                </li>
 
                 <li>Expérience du compte : <?php echo $utilisateur['exp_Utilisateur']; ?></li>
             </ul>
@@ -181,26 +185,26 @@
 
             <br>
             <script>
-            function partager() {
-                var lien = "localhost/earthly/pages/partage.php?pseudo=<?php echo $pseudo ?>";
-                console.log(lien);
-                alert("Partagez le lien à vos amis : " + lien);
-            }
-            // Fonction pour ouvrir le popup de sélection de badge
-            function openBadgePopup(slotNumber) {
-                // Code pour charger les options de badge en fonction du slotNumber ici
-                // Exemple: Vous pouvez utiliser une requête AJAX pour charger les badges disponibles
-                // Une fois les badges chargés, mettez à jour le contenu du popup
+                function partager() {
+                    var lien = "localhost/earthly/pages/partage.php?pseudo=<?php echo $pseudo ?>";
+                    console.log(lien);
+                    alert("Partagez le lien à vos amis : " + lien);
+                }
+                // Fonction pour ouvrir le popup de sélection de badge
+                function openBadgePopup(slotNumber) {
+                    // Code pour charger les options de badge en fonction du slotNumber ici
+                    // Exemple: Vous pouvez utiliser une requête AJAX pour charger les badges disponibles
+                    // Une fois les badges chargés, mettez à jour le contenu du popup
 
-                // Afficher le popup
-                document.getElementById('badgePopup').style.display = 'block';
-            }
+                    // Afficher le popup
+                    document.getElementById('badgePopup').style.display = 'block';
+                }
 
-            // Fonction pour fermer le popup de sélection de badge
-            function closeBadgePopup() {
-                // Masquer le popup
-                document.getElementById('badgePopup').style.display = 'none';
-            }
+                // Fonction pour fermer le popup de sélection de badge
+                function closeBadgePopup() {
+                    // Masquer le popup
+                    document.getElementById('badgePopup').style.display = 'none';
+                }
             </script>
         </div>
 
@@ -231,10 +235,15 @@
         include("../form/templates/footer.php")
     ?>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
     <script src="../script/popup.js"></script>
+    <script>
+        function submitForm() {
+            document.getElementById('imageForm').submit();
+        }
+    </script>
+
 </body>
 
 </html>
