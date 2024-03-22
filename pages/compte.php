@@ -106,14 +106,14 @@
             <img src="<?php echo $profileImage; ?>" alt="Image de profil" class="profile-image">
             <!-- Section des badges -->
             <div id="badgeContainer">
-                <div class="badgeSlot" id="badgeSlot1" onclick="openBadgePopup(1)"></div>
-                <div class="badgeSlot" id="badgeSlot2" onclick="openBadgePopup(2)"></div>
-                <div class="badgeSlot" id="badgeSlot3" onclick="openBadgePopup(3)"></div>
-                <div class="badgeSlot" id="badgeSlot4" onclick="openBadgePopup(4)"></div>
-                <div class="badgeSlot" id="badgeSlot5" onclick="openBadgePopup(5)"></div>
-                <div class="badgeSlot" id="badgeSlot6" onclick="openBadgePopup(6)"></div>
+                <div class="badgeSlot" id="badgeSlot1"></div>
+                <div class="badgeSlot" id="badgeSlot2"></div>
+                <div class="badgeSlot" id="badgeSlot3"></div>
+                <div class="badgeSlot" id="badgeSlot4"></div>
+                <div class="badgeSlot" id="badgeSlot5"></div>
+                <div class="badgeSlot" id="badgeSlot6"></div>
             </div>
-            
+
             <form id="imageForm" action="../form/changer_image.php" method="post" enctype="multipart/form-data">
                 <label for="nouvelle_image" class="custom-file-upload">
                     <input id="nouvelle_image" type="file" name="nouvelle_image" accept="image/*" onchange="submitForm()" required>
@@ -168,21 +168,6 @@
                     var lien = "localhost/earthly/pages/partage.php?pseudo=<?php echo $pseudo ?>";
                     console.log(lien);
                     alert("Partagez le lien à vos amis : " + lien);
-                }
-                // Fonction pour ouvrir le popup de sélection de badge
-                function openBadgePopup(slotNumber) {
-                    // Code pour charger les options de badge en fonction du slotNumber ici
-                    // Exemple: Vous pouvez utiliser une requête AJAX pour charger les badges disponibles
-                    // Une fois les badges chargés, mettez à jour le contenu du popup
-
-                    // Afficher le popup
-                    document.getElementById('badgePopup').style.display = 'block';
-                }
-
-                // Fonction pour fermer le popup de sélection de badge
-                function closeBadgePopup() {
-                    // Masquer le popup
-                    document.getElementById('badgePopup').style.display = 'none';
                 }
             </script>
         </div>
