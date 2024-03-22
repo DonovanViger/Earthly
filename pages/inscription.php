@@ -62,34 +62,33 @@
 
 <body>
 
-    <h1 id="h1_inscription"><a href="../index.php">Earthly</a></h1>
-
+<div id="inscription_div_patern">
+    <h1 id="h1_inscription"><a href="../index.php">BIENVENUE SUR</a></h1>
+    <div id="inscription_logo_contour">
+        <img id="connexion_logo" src="../uploads/Logo-earthly-text+baseline.svg">
+    </div>
 
     <div id="inscription_cadre">
-        <h2 id="h2_inscription">Créer un compte</h2>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="#A9FFA4" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-2 h-2" id="inscription_user_svg">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+        </svg>
+        <h2 id="h2_inscription">Inscription</h2>
         <form action="../form/form_inscription.php" method="POST" enctype="multipart/form-data" id="inscription_form">
-            <label for="pseudo">Pseudo:</label><br><br>
-            <input type="text" id="pseudo" name="pseudo" required><br><br>
-            <label for="email">Adresse e-mail:</label><br><br>
-            <input type="email" id="email" name="email" required><br><br>
-            <label for="mdp">Mot de passe:</label><br><br>
-            <input type="password" id="mdp" name="mdp" required><br><br>
-            <label for="photo">Photo de profil:</label><br><br>
+        <input type="email" id="email" name="email" required placeholder="Adresse mail" class="inscription_input_area"><br><br>
+            <input type="text" id="pseudo" name="pseudo" required placeholder="Pseudonyme" class="inscription_input_area"><br><br>
+            <input type="password" id="mdp" name="mdp" required placeholder="Mot de passe" class="inscription_input_area"><br><br>
+            </div>
+            <div id="inscription_files_box">
+            <h2>Votre photo de profil</h2>
             <input type="hidden" id="cropped_photo" name="cropped_photo">
             <input type="file" id="photo" name="photo" accept="image/*" required onchange="previewImage(event)"><br><br>
-            <br>
             <div id="image_preview"></div><br>
             <button type="button" id="crop_button">Recadrer</button>
             <!-- Bouton pour ouvrir la boîte de dialogue de recadrage -->
             <input type="submit" value="Créer un compte" id="inscription_input_submit">
         </form>
-    </div>
+</div>
 
-    <div id="inscription_retour">
-        <button id="inscription_button_retour">
-            <a href="../index.php">Retour à l'index</a>
-        </button>
-    </div>
 
     <!-- Modal de recadrage -->
     <div id="crop_modal" class="modal">
@@ -101,6 +100,8 @@
             <button id="crop_submit_button">Valider le recadrage</button>
         </div>
     </div>
+
+</div>
 
     <script src="../script/previewimage.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.js"
