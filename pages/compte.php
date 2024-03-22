@@ -96,8 +96,10 @@
 
         <!-- Contenu de la pop-up -->
         <div id="overlay"></div> <!-- Overlay pour l'arrière-plan semi-transparent -->
-
-        <h2 id="h2_compte"><?php echo $utilisateur['pseudo']; ?></h2>
+        <div id="image_compte">
+            <img src="<?php echo $profileImage; ?>" alt="Image de profil" style="width: 50px;height: 50px;">
+        </div>
+        <h2 id="h2_compte" style="font-size:24px;"><?php echo $utilisateur['pseudo']; ?></h2>
         <div id="compte_bar"></div>
         <!-- Affichage de l'image de profil -->
         <div id="image_compte">
