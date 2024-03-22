@@ -106,35 +106,14 @@
             <img src="<?php echo $profileImage; ?>" alt="Image de profil" class="profile-image">
             <!-- Section des badges -->
             <div id="badgeContainer">
-                <div class="badgeSlot" id="badgeSlot1" onclick="openBadgePopup(1)"></div>
-                <div class="badgeSlot" id="badgeSlot2" onclick="openBadgePopup(2)"></div>
-                <div class="badgeSlot" id="badgeSlot3" onclick="openBadgePopup(3)"></div>
-                <div class="badgeSlot" id="badgeSlot4" onclick="openBadgePopup(4)"></div>
-                <div class="badgeSlot" id="badgeSlot5" onclick="openBadgePopup(5)"></div>
-                <div class="badgeSlot" id="badgeSlot6" onclick="openBadgePopup(6)"></div>
+                <div class="badgeSlot" id="badgeSlot1"></div>
+                <div class="badgeSlot" id="badgeSlot2"></div>
+                <div class="badgeSlot" id="badgeSlot3"></div>
+                <div class="badgeSlot" id="badgeSlot4"></div>
+                <div class="badgeSlot" id="badgeSlot5"></div>
+                <div class="badgeSlot" id="badgeSlot6"></div>
             </div>
 
-            <!-- Popup de sélection de badge -->
-            <div id="badgePopup" class="popup">
-                <div class="popup-content">
-                    <span class="close" onclick="closeBadgePopup()">&times;</span>
-                    <?php $requete_succes_utilisateur = $db->prepare("SELECT s.ID_succes, s.pds FROM succes s INNER JOIN utilisateursucces us ON s.ID_succes = us.ID_Succes WHERE us.ID_Utilisateur = :id_utilisateur AND dateObtention = 00-00-0000");
-                    $requete_succes_utilisateur->bindParam(':id_utilisateur', $id_utilisateur);
-                    $requete_succes_utilisateur->execute();
-
-                    // Récupérer les résultats de la requête
-                    $succes_utilisateur = $requete_succes_utilisateur->fetchAll(PDO::FETCH_ASSOC);
-
-                    // Afficher les succès de l'utilisateur
-                    foreach ($succes_utilisateur as $succes) {
-                        echo "<img src='" . $succes['pds'] . "' alt='" . $succes['nom'] . "'>";
-                    } 
-                    ?>
-                    <div id="badgeOptions">
-                        <!-- Les options de badges seront chargées ici via JavaScript -->
-                    </div>
-                </div>
-            </div>
             <form id="imageForm" action="../form/changer_image.php" method="post" enctype="multipart/form-data">
                 <label for="nouvelle_image" class="custom-file-upload">
                     <input id="nouvelle_image" type="file" name="nouvelle_image" accept="image/*" onchange="submitForm()" required>
@@ -189,21 +168,6 @@
                     var lien = "localhost/earthly/pages/partage.php?pseudo=<?php echo $pseudo ?>";
                     console.log(lien);
                     alert("Partagez le lien à vos amis : " + lien);
-                }
-                // Fonction pour ouvrir le popup de sélection de badge
-                function openBadgePopup(slotNumber) {
-                    // Code pour charger les options de badge en fonction du slotNumber ici
-                    // Exemple: Vous pouvez utiliser une requête AJAX pour charger les badges disponibles
-                    // Une fois les badges chargés, mettez à jour le contenu du popup
-
-                    // Afficher le popup
-                    document.getElementById('badgePopup').style.display = 'block';
-                }
-
-                // Fonction pour fermer le popup de sélection de badge
-                function closeBadgePopup() {
-                    // Masquer le popup
-                    document.getElementById('badgePopup').style.display = 'none';
                 }
             </script>
         </div>
