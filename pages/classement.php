@@ -9,6 +9,14 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
     <title>Classement</title>
     <style>
+        body {
+            background-color: #1c3326;
+            background-image: url("../pack-icon/pattern/download.svg");
+            background-repeat: repeat;
+            background-size: 325%;
+        }
+
+
         .user-card {
             border-radius: 15px;
             padding: 18px;
@@ -48,6 +56,10 @@
         .ahah {
             margin-top: -5px;
         }
+
+        .scroll {
+            height: 125px;
+        }
     </style>
 </head>
 
@@ -79,19 +91,21 @@
 
 
     <div class="container">
-    <?php foreach ($Classements as $key => $classement) { ?>
-        <div class="row user-card mx-3 my-4" id="<?php if ($key == 0) echo 'un';
-                                                    elseif ($key == 1) echo 'deux';
-                                                    elseif ($key == 2) echo 'trois'; ?>">
-            <div class="col-1 text-center align-self-center placement-large"><?php echo $key + 1; ?></div>
-            <div class="col-3 text-center align-self-center">
-                <img src="<?php echo $classement['pdp']; ?>" alt="Avatar de <?php echo $classement['pseudo']; ?>" class="user-avatar" onerror="this.onerror=null;this.src='../uploads/default.jpg';">
+        <?php foreach ($Classements as $key => $classement) { ?>
+            <div class="row user-card mx-3 my-4" id="<?php if ($key == 0) echo 'un';
+                                                        elseif ($key == 1) echo 'deux';
+                                                        elseif ($key == 2) echo 'trois'; ?>">
+                <div class="col-1 text-center align-self-center placement-large"><?php echo $key + 1; ?></div>
+                <div class="col-3 text-center align-self-center">
+                    <img src="<?php echo $classement['pdp']; ?>" alt="Avatar de <?php echo $classement['pseudo']; ?>" class="user-avatar" onerror="this.onerror=null;this.src='../uploads/default.jpg';">
+                </div>
+                <div class="col-5 align-self-center"><?php echo $classement['pseudo']; ?></div>
+                <div class="col-3 points-col text-center align-self-center"><?php echo $classement['point_Planete']; ?>pts</div>
             </div>
-            <div class="col-5 align-self-center"><?php echo $classement['pseudo']; ?></div>
-            <div class="col-3 points-col text-center align-self-center"><?php echo $classement['point_Planete']; ?>pts</div>
-        </div>
-    <?php } ?>
-</div>
+        <?php } ?>
+    </div>
+
+    <div class="scroll w-100"></div>
 
 
     <?php
