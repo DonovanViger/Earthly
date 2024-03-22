@@ -28,7 +28,6 @@ body {
     background-size: cover; /* Ajuste la taille de l'image pour remplir complètement le conteneur */ /* Change la couleur de fond */
     padding-top: 10vh;
     height: 150vh;
-    opacity: 1;
 }
 
 
@@ -213,6 +212,12 @@ body {
 
 
 /*Page Classement*/
+
+#classement_div_patern{
+    background-image: url("../uploads/pattern.svg");
+    background-size: cover; /* Ajuste la taille de l'image pour remplir complètement le conteneur */ /* Change la couleur de fond */
+    height: 150vh;
+}
 
 #h1_classement {
     text-align: center;
