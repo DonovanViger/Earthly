@@ -88,42 +88,33 @@
     </div>
     </div>
 
-    <!-- Popup de sélection de badge -->
-    <div id="badgePopup" class="popup">
-        <div class="popup-content">
-            <span class="close" onclick="closeBadgePopup()">&times;</span>
-            <?php $requete_succes_utilisateur = $db->prepare("SELECT s.ID_succes, s.pds FROM succes s INNER JOIN utilisateursucces us ON s.ID_succes = us.ID_Succes WHERE us.ID_Utilisateur = :id_utilisateur AND dateObtention = 00-00-0000");
-            $requete_succes_utilisateur->bindParam(':id_utilisateur', $id_utilisateur);
-            $requete_succes_utilisateur->execute();
+            <!-- Popup de sélection de badge -->
+            <div id="badgePopup" class="popup">
+                <div class="popup-content">
+                    <span class="close" onclick="closeBadgePopup()">&times;</span>
+                    <?php $requete_succes_utilisateur = $db->prepare("SELECT s.ID_succes, s.pds FROM succes s INNER JOIN utilisateursucces us ON s.ID_succes = us.ID_Succes WHERE us.ID_Utilisateur = :id_utilisateur AND dateObtention = 00-00-0000");
+                    $requete_succes_utilisateur->bindParam(':id_utilisateur', $id_utilisateur);
+                    $requete_succes_utilisateur->execute();
 
-            // Récupérer les résultats de la requête
-            $succes_utilisateur = $requete_succes_utilisateur->fetchAll(PDO::FETCH_ASSOC);
+                    // Récupérer les résultats de la requête
+                    $succes_utilisateur = $requete_succes_utilisateur->fetchAll(PDO::FETCH_ASSOC);
 
-            // Afficher les succès de l'utilisateur
-            foreach ($succes_utilisateur as $succes) {
-                echo "<img src='" . $succes['pds'] . "' alt='" . $succes['nom'] . "'>";
-            }
-            ?>
-            <div id="badgeOptions">
-                <!-- Les options de badges seront chargées ici via JavaScript -->
-            </div>
-        </div>
-    </div>
-
-        <div class="container mt-4 text-dark">
-            <div class="rounded p-4 bg-light">
-                <div class="row">
-                    <div class="col-md-6">
-                        <h2 class="mb-3"><?php echo $utilisateur['pseudo']; ?></h2>
+                    // Afficher les succès de l'utilisateur
+                    foreach ($succes_utilisateur as $succes) {
+                        echo "<img src='" . $succes['pds'] . "' alt='" . $succes['nom'] . "'>";
+                    } 
+                    ?>
+                    <div id="badgeOptions">
+                        <!-- Les options de badges seront chargées ici via JavaScript -->
                     </div>
-                    <div class="col-md-6 text-md-end">
-                        <button class="btn btn-primary" onclick="partager()"><i class="fa-solid fa-share-nodes"></i> Partager</button>
-                        <form id="imageForm" action="../form/changer_image.php" method="post" enctype="multipart/form-data">
-                            <label for="nouvelle_image" class="custom-file-upload">
-                                <input id="nouvelle_image" type="file" name="nouvelle_image" accept="image/*" onchange="submitForm()" required>
-                                Changer l'image de profil
-                            </label>
-                        </form>
+                </div>
+            </div>
+            <form id="imageForm" action="../form/changer_image.php" method="post" enctype="multipart/form-data">
+                <label for="nouvelle_image" class="custom-file-upload">
+                    <input id="nouvelle_image" type="file" name="nouvelle_image" accept="image/*" onchange="submitForm()" required>
+                    Changer l'image de profil
+                </label>
+            </form>
 
                     </div>
                 </div>
@@ -191,30 +182,30 @@
 
 
 
-        <br>
-        <script>
-            function partager() {
-                var lien = "localhost/earthly/pages/partage.php?pseudo=<?php echo $pseudo ?>";
-                console.log(lien);
-                alert("Partagez le lien à vos amis : " + lien);
-            }
-            // Fonction pour ouvrir le popup de sélection de badge
-            function openBadgePopup(slotNumber) {
-                // Code pour charger les options de badge en fonction du slotNumber ici
-                // Exemple: Vous pouvez utiliser une requête AJAX pour charger les badges disponibles
-                // Une fois les badges chargés, mettez à jour le contenu du popup
+            <br>
+            <script>
+                function partager() {
+                    var lien = "localhost/earthly/pages/partage.php?pseudo=<?php echo $pseudo ?>";
+                    console.log(lien);
+                    alert("Partagez le lien à vos amis : " + lien);
+                }
+                // Fonction pour ouvrir le popup de sélection de badge
+                function openBadgePopup(slotNumber) {
+                    // Code pour charger les options de badge en fonction du slotNumber ici
+                    // Exemple: Vous pouvez utiliser une requête AJAX pour charger les badges disponibles
+                    // Une fois les badges chargés, mettez à jour le contenu du popup
 
-                // Afficher le popup
-                document.getElementById('badgePopup').style.display = 'block';
-            }
+                    // Afficher le popup
+                    document.getElementById('badgePopup').style.display = 'block';
+                }
 
-            // Fonction pour fermer le popup de sélection de badge
-            function closeBadgePopup() {
-                // Masquer le popup
-                document.getElementById('badgePopup').style.display = 'none';
-            }
-        </script>
-    </div>
+                // Fonction pour fermer le popup de sélection de badge
+                function closeBadgePopup() {
+                    // Masquer le popup
+                    document.getElementById('badgePopup').style.display = 'none';
+                }
+            </script>
+        </div>
 
     <div class="succes">
         <h2 class="p-5">Succès</h2>

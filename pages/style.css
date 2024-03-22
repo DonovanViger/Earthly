@@ -1,11 +1,11 @@
 @font-face {
     font-family: "Como";
-    src: url("Como-Medium.ttf");
+    src: url("../font/Como-Medium.ttf");
 }
 
 @font-face {
     font-family: "Arial-Rounded";
-    src: url("Aial-Rounded.ttf");
+    src: url("../font/Arial-Rounded.ttf");
 }
 
 
@@ -14,7 +14,7 @@ body {
     margin: 0px;
     padding: 0px;
     background-color: #1C3326;
-    font-family: Arial-Rounded, Arial;
+    font-family: Arial-Rounded;
 }
 
 ::-webkit-scrollbar {
@@ -153,31 +153,80 @@ body {
 
 /*Page Inscription*/
 
+
+#inscription_div_patern{
+    background-image: url("../uploads/pattern.svg");
+    background-size: cover; /* Ajuste la taille de l'image pour remplir complètement le conteneur */ /* Change la couleur de fond */
+    height: 150vh;
+    background-color: #1C3326;
+    font-family: Arial-Rounded;
+    padding-top: 8vh;
+}
 #h1_inscription {
-    margin: 5vh 0 10vh 0;
     text-align: center;
+    font-weight: bolder;
 }
 
 #h1_inscription a {
     text-decoration: none;
-    color: black;
-    font-size: 7.5vh;
+    color: #A9FFA4;
+    font-size: 3vh;
+}
+
+#inscription_logo_contour{
+    text-align: center;
+    margin-bottom: 5vh;
 }
 
 #inscription_cadre {
     text-align: center;
     color: white;
-    width: 60%;
+    width: 90%;
     margin: auto;
-    background-color: #1C3326;
-    padding: 7.5vh;
+    background-color: #2BBA7C;
+    padding: 2vh;
     border-radius: 30px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
+
 #h2_inscription {
-    font-size: 5vh;
-    margin: 0 0 5vh 0;
+    font-size: 3vh;
+    margin: 0.5vh 0 3vh 4vw;
+    color: #A9FFA4;
+    font-weight: bolder;
+    float: left;
+}
+
+#inscription_user_svg{
+    margin-left: 5vw;
+    width: 10vw;
+    height: 4vh;
+    color: #A9FFA4;
+    float: left;
+}
+
+.inscription_input_area{
+    width: 75vw;
+    padding: 2vh;
+    height: 5vh;
+    border: none;
+    border-radius: 15px;
+    font-weight: bold;
+    font-size: 1.75vh;
+    background-color: #FFEFE1;
+    color: #1c322596;
+}
+
+#inscription_files_box{
+    width: 90vw;
+    text-align: center;
+    color: white;
+    margin: auto;
+    background-color: #A9FFA4;
+    padding: 2vh;
+    border-radius: 30px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 #inscription_input_submit {
@@ -188,21 +237,6 @@ body {
     border-radius: 10px;
 }
 
-#inscription_retour {
-    margin: 5vh auto 5vh auto;
-    text-align: center;
-}
-
-#inscription_button_retour {
-    border: none;
-    background-color: #1C3326;
-    border-radius: 10px;
-    padding: 1vh;
-    width: 15vw;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-
-
-}
 
 #inscription_retour button a {
     text-decoration: none;
@@ -457,11 +491,7 @@ body {
 
 .popup-content {
     background-color: #fefefe; /* Couleur de fond du popup */
-    margin: 20% auto; /* Centre le popup verticalement et horizontalement */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    max-width: 600px; /* Largeur maximale du popup */
+    width: 100%;
 }
 
 .close {
@@ -478,16 +508,37 @@ body {
     cursor: pointer;
 }
 
-/* Style pour les badges */
+#badgeContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Deux colonnes */
+    grid-gap: 20px; /* Espacement entre les colonnes */
+    justify-content: center; /* Centre les éléments horizontalement */
+}
+
 .badgeSlot {
-    display: inline-block;
-    width: 50px;
-    height: 50px;
-    background-color: #00000000;
-    border: 2px solid #000000;
-    border-radius: 50%;
-    margin: 10px;
-    cursor: pointer;
+    width: 50px; /* Largeur des éléments */
+    height: 50px; /* Hauteur des éléments */
+    background-color: transparent;
+    border: 2px solid #000; /* Bordure pour former un cercle */
+    border-radius: 50%; /* Rend les éléments circulaires */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px; /* Espacement en bas de chaque élément */
+}
+
+/* Style pour les trois premiers éléments */
+#badgeSlot1,
+#badgeSlot2,
+#badgeSlot3 {
+    grid-row: 1; /* Première ligne */
+}
+
+/* Style pour les trois derniers éléments */
+#badgeSlot4,
+#badgeSlot5,
+#badgeSlot6 {
+    grid-row: 2; /* Deuxième ligne */
 }
 
 #comptetitre {
