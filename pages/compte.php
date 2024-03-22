@@ -48,6 +48,7 @@
 
     if (isset ($_SESSION['pseudo'])) {
         $pseudo = $_SESSION['pseudo'];
+        $id_utilisateur = $_SESSION['user_id'];
 
         $db = new PDO('mysql:host=localhost;dbname=sae401-2', 'root', '');
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -116,7 +117,18 @@
             <div id="badgePopup" class="popup">
                 <div class="popup-content">
                     <span class="close" onclick="closeBadgePopup()">&times;</span>
-                    <!-- Contenu du popup ici -->
+                    <?php $requete_succes_utilisateur = $db->prepare("SELECT s.ID_succes, s.pds FROM succes s INNER JOIN utilisateursucces us ON s.ID_succes = us.ID_Succes WHERE us.ID_Utilisateur = :id_utilisateur AND dateObtention = 00-00-0000");
+                    $requete_succes_utilisateur->bindParam(':id_utilisateur', $id_utilisateur);
+                    $requete_succes_utilisateur->execute();
+
+                    // Récupérer les résultats de la requête
+                    $succes_utilisateur = $requete_succes_utilisateur->fetchAll(PDO::FETCH_ASSOC);
+
+                    // Afficher les succès de l'utilisateur
+                    foreach ($succes_utilisateur as $succes) {
+                        echo "<img src='" . $succes['pds'] . "' alt='" . $succes['nom'] . "'>";
+                    } 
+                    ?>
                     <div id="badgeOptions">
                         <!-- Les options de badges seront chargées ici via JavaScript -->
                     </div>
@@ -157,7 +169,7 @@
                 </li>
                 <li>Points : <?php echo $utilisateur['point_Planete']; ?> (Planète niveau <?php echo $niv; ?>)</li>
                 <?php if (!empty ($utilisateur['ID_parrain'])): ?>
-                                    <li>Parrain : <?php echo $utilisateur['ID_parrain']; ?></li>
+                                        <li>Parrain : <?php echo $utilisateur['ID_parrain']; ?></li>
                 <?php endif; ?>
 
                 <li>Expérience du compte : <?php echo $utilisateur['exp_Utilisateur']; ?></li>
@@ -203,13 +215,13 @@
                 $succes = $requete_succes->fetchAll(PDO::FETCH_ASSOC);
                 foreach ($succes as $suc) {
                     ?>
-                                    <div class="col-lg-4">
-                                        <!-- Sur les grands écrans (lg), il y aura trois succès par ligne. Sur les écrans moyens (md), il y en aura deux par ligne. -->
-                                        <div class='succes_numero'>
-                                            <h3><?php echo $suc['nom']; ?></h3><br>
-                                            <p><?php echo $suc['desc']; ?></p><br>
+                                        <div class="col-lg-4">
+                                            <!-- Sur les grands écrans (lg), il y aura trois succès par ligne. Sur les écrans moyens (md), il y en aura deux par ligne. -->
+                                            <div class='succes_numero'>
+                                                <h3><?php echo $suc['nom']; ?></h3><br>
+                                                <p><?php echo $suc['desc']; ?></p><br>
+                                            </div>
                                         </div>
-                                    </div>
                 <?php } ?>
             </div>
         </div>
@@ -218,8 +230,8 @@
     </section>
 
     <?php
-        include("../form/templates/footer.php")
-    ?>
+    include ("../form/templates/footer.php")
+        ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
