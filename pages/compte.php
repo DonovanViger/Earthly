@@ -65,8 +65,8 @@
     }
     ?>
     <div id="comptetitre">
-                <img src="../img/nav bar/Profil blanc.png" class="header-image" data-image="5.png" style="max-width: 50px;">
-    <h1 id="h1_compte"><a href="../index.php" style="color:#2BBA7C;font-size:30px">Mon compte</a></h1>
+        <img src="../img/COMPTE.svg" class="header-image" data-image="5.png" style="max-width: 50px;">
+        <h1 id="h1_compte"><a href="../index.php">Mon compte</a></h1>
     </div>
     <!-- Contenu de la pop-up s-->
     <div id="overlay" onclick="fermerPopup()"></div> <!-- Overlay pour l'arrière-plan semi-transparent -->
@@ -88,151 +88,157 @@
     </div>
     </div>
 
-    <section id="profil">
+    <!-- Popup de sélection de badge -->
+    <div id="badgePopup" class="popup">
+        <div class="popup-content">
+            <span class="close" onclick="closeBadgePopup()">&times;</span>
+            <?php $requete_succes_utilisateur = $db->prepare("SELECT s.ID_succes, s.pds FROM succes s INNER JOIN utilisateursucces us ON s.ID_succes = us.ID_Succes WHERE us.ID_Utilisateur = :id_utilisateur AND dateObtention = 00-00-0000");
+            $requete_succes_utilisateur->bindParam(':id_utilisateur', $id_utilisateur);
+            $requete_succes_utilisateur->execute();
 
-        <i onclick="partager()" class="fa-solid fa-share-nodes" id="compte_share"></i>
-        <!-- Bouton pour afficher la pop-up -->
-        <button onclick="afficherPopup()" id="compte_settings"><i class="fa-solid fa-gear"></i></button>
+            // Récupérer les résultats de la requête
+            $succes_utilisateur = $requete_succes_utilisateur->fetchAll(PDO::FETCH_ASSOC);
 
-        <!-- Contenu de la pop-up -->
-        <div id="overlay"></div> <!-- Overlay pour l'arrière-plan semi-transparent -->
-        <div id="image_compte">
-            <img src="<?php echo $profileImage; ?>" alt="Image de profil" style="width: 50px;height: 50px;">
-        </div>
-        <h2 id="h2_compte" style="font-size:24px;"><?php echo $utilisateur['pseudo']; ?></h2>
-        <div id="compte_bar"></div>
-        <!-- Affichage de l'image de profil -->
-        <div id="image_compte">
-            <img src="<?php echo $profileImage; ?>" alt="Image de profil" class="profile-image">
-            <!-- Section des badges -->
-            <div id="badgeContainer">
-                <div class="badgeSlot" id="badgeSlot1" onclick="openBadgePopup(1)"></div>
-                <div class="badgeSlot" id="badgeSlot2" onclick="openBadgePopup(2)"></div>
-                <div class="badgeSlot" id="badgeSlot3" onclick="openBadgePopup(3)"></div>
-                <div class="badgeSlot" id="badgeSlot4" onclick="openBadgePopup(4)"></div>
-                <div class="badgeSlot" id="badgeSlot5" onclick="openBadgePopup(5)"></div>
-                <div class="badgeSlot" id="badgeSlot6" onclick="openBadgePopup(6)"></div>
+            // Afficher les succès de l'utilisateur
+            foreach ($succes_utilisateur as $succes) {
+                echo "<img src='" . $succes['pds'] . "' alt='" . $succes['nom'] . "'>";
+            }
+            ?>
+            <div id="badgeOptions">
+                <!-- Les options de badges seront chargées ici via JavaScript -->
             </div>
+        </div>
+    </div>
 
-            <!-- Popup de sélection de badge -->
-            <div id="badgePopup" class="popup">
-                <div class="popup-content">
-                    <span class="close" onclick="closeBadgePopup()">&times;</span>
-                    <?php $requete_succes_utilisateur = $db->prepare("SELECT s.ID_succes, s.pds FROM succes s INNER JOIN utilisateursucces us ON s.ID_succes = us.ID_Succes WHERE us.ID_Utilisateur = :id_utilisateur AND dateObtention = 00-00-0000");
-                    $requete_succes_utilisateur->bindParam(':id_utilisateur', $id_utilisateur);
-                    $requete_succes_utilisateur->execute();
+        <div class="container mt-4 text-dark">
+            <div class="rounded p-4 bg-light">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2 class="mb-3"><?php echo $utilisateur['pseudo']; ?></h2>
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                        <button class="btn btn-primary" onclick="partager()"><i class="fa-solid fa-share-nodes"></i> Partager</button>
+                        <form id="imageForm" action="../form/changer_image.php" method="post" enctype="multipart/form-data">
+                            <label for="nouvelle_image" class="custom-file-upload">
+                                <input id="nouvelle_image" type="file" name="nouvelle_image" accept="image/*" onchange="submitForm()" required>
+                                Changer l'image de profil
+                            </label>
+                        </form>
 
-                    // Récupérer les résultats de la requête
-                    $succes_utilisateur = $requete_succes_utilisateur->fetchAll(PDO::FETCH_ASSOC);
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <img src="<?php echo $profileImage; ?>" alt="Image de profil" class="profile-image">
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="badgeSlot" id="badgeSlot1" onclick="openBadgePopup(1)"></div>
+                            </div>
+                            <div class="col-4">
+                                <div class="badgeSlot" id="badgeSlot2" onclick="openBadgePopup(2)"></div>
+                            </div>
+                            <div class="col-4">
+                                <div class="badgeSlot" id="badgeSlot3" onclick="openBadgePopup(3)"></div>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-4">
+                                <div class="badgeSlot" id="badgeSlot4" onclick="openBadgePopup(4)"></div>
+                            </div>
+                            <div class="col-4">
+                                <div class="badgeSlot" id="badgeSlot5" onclick="openBadgePopup(5)"></div>
+                            </div>
+                            <div class="col-4">
+                                <div class="badgeSlot" id="badgeSlot6" onclick="openBadgePopup(6)"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="progress mt-3">
+                            <div class="progress-bar" role="progressbar" style="width: <?php echo $utilisateur['exp_Utilisateur']; ?>%;" aria-valuenow="<?php echo $utilisateur['exp_Utilisateur']; ?>" aria-valuemin="0" aria-valuemax="100"><?php echo $utilisateur['exp_Utilisateur']; ?>%</div>
+                        </div>
+                        <p class="mt-3">Date de création du compte : <?php
+                                                                        $dateCreationCompte = $utilisateur['dateCreationCompte'];
 
-                    // Afficher les succès de l'utilisateur
-                    foreach ($succes_utilisateur as $succes) {
-                        echo "<img src='" . $succes['pds'] . "' alt='" . $succes['nom'] . "'>";
-                    } 
-                    ?>
-                    <div id="badgeOptions">
-                        <!-- Les options de badges seront chargées ici via JavaScript -->
+                                                                        echo $dateCreationCompte;
+                                                                        ?></p>
+                        <p>Points : <?php
+                                    if ($utilisateur['point_Planete'] < 1000) {
+                                        $niv = 1;
+                                    } else if ($utilisateur['point_Planete'] < 3000) {
+                                        $niv = 2;
+                                    } else if ($utilisateur['point_Planete'] < 7000) {
+                                        $niv = 3;
+                                    } else if ($utilisateur['point_Planete'] < 15000) {
+                                        $niv = 4;
+                                    } else {
+                                        $niv = 5;
+                                    }
+                                    echo $utilisateur['point_Planete'];
+
+                                    ?> (Planète niveau <?php echo $niv; ?>)</p>
+                        <?php if (!empty($utilisateur['ID_parrain'])) : ?>
+                            <p>Parrain : <?php echo $utilisateur['ID_parrain']; ?></p>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
-            <form id="imageForm" action="../form/changer_image.php" method="post" enctype="multipart/form-data">
-                <label for="nouvelle_image" class="custom-file-upload">
-                    <input id="nouvelle_image" type="file" name="nouvelle_image" accept="image/*" onchange="submitForm()" required>
-                    Changer l'image de profil
-                </label>
-            </form>
-
-
-        </div>
-        <?php
-        if ($utilisateur['point_Planete'] < 1000) {
-            $niv = 1;
-        } else if ($utilisateur['point_Planete'] < 3000) {
-            $niv = 2;
-        } else if ($utilisateur['point_Planete'] < 7000) {
-            $niv = 3;
-        } else if ($utilisateur['point_Planete'] < 15000) {
-            $niv = 4;
-        } else {
-            $niv = 5;
-        }
-        ?>
-        <div id="texte_compte">
-            <h3><?php echo $utilisateur['pseudo']; ?></h3>
-            <p>Vos informations :</p>
-            <ul>
-                <li>Pseudo : <?php echo $utilisateur['pseudo']; ?></li>
-                <li>Email : <?php echo $utilisateur['mail']; ?></li>
-                <li>Date de création du compte :
-                    <?php
-                    $dateCreationCompte = $utilisateur['dateCreationCompte'];
-                    echo $dateCreationCompte;
-                    ?>
-                </li>
-                <li>Points : <?php echo $utilisateur['point_Planete']; ?> (Planète niveau <?php echo $niv; ?>)</li>
-                <?php if (!empty ($utilisateur['ID_parrain'])): ?>
-                                        <li>Parrain : <?php echo $utilisateur['ID_parrain']; ?></li>
-                <?php endif; ?>
-
-                <li>Expérience du compte : <?php echo $utilisateur['exp_Utilisateur']; ?></li>
-            </ul>
-        </div>
-        <div id="deconnexion_compte">
-            <button id="compte_button">
-                <a href="../form/deconnexion.php">Se déconnecter</a>
-            </button>
-
-
-            <br>
-            <script>
-                function partager() {
-                    var lien = "localhost/earthly/pages/partage.php?pseudo=<?php echo $pseudo ?>";
-                    console.log(lien);
-                    alert("Partagez le lien à vos amis : " + lien);
-                }
-                // Fonction pour ouvrir le popup de sélection de badge
-                function openBadgePopup(slotNumber) {
-                    // Code pour charger les options de badge en fonction du slotNumber ici
-                    // Exemple: Vous pouvez utiliser une requête AJAX pour charger les badges disponibles
-                    // Une fois les badges chargés, mettez à jour le contenu du popup
-
-                    // Afficher le popup
-                    document.getElementById('badgePopup').style.display = 'block';
-                }
-
-                // Fonction pour fermer le popup de sélection de badge
-                function closeBadgePopup() {
-                    // Masquer le popup
-                    document.getElementById('badgePopup').style.display = 'none';
-                }
-            </script>
         </div>
 
-        <div class="succes">
-            <h2 class="p-5">Succès</h2>
-            <div class="row">
-                <?php
-                $requete_succes = $db->prepare("SELECT * FROM `succes` ORDER BY `triageSucces`");
-                $requete_succes->execute();
-                $succes = $requete_succes->fetchAll(PDO::FETCH_ASSOC);
-                foreach ($succes as $suc) {
-                    ?>
-                                    <div class="col-lg-4">
-                                        <!-- Sur les grands écrans (lg), il y aura trois succès par ligne. Sur les écrans moyens (md), il y en aura deux par ligne. -->
-                                        <div class='succes_numero'>
-                                            <h3><?php echo $suc['nom']; ?></h3><br>
-                                            <p><?php echo $suc['desc']; ?></p><br>
-                                        </div>
-                                    </div>
-                <?php } ?>
-            </div>
+        <button id="compte_button">
+            <a href="../form/deconnexion.php">Se déconnecter</a>
+        </button>
+
+
+
+        <br>
+        <script>
+            function partager() {
+                var lien = "localhost/earthly/pages/partage.php?pseudo=<?php echo $pseudo ?>";
+                console.log(lien);
+                alert("Partagez le lien à vos amis : " + lien);
+            }
+            // Fonction pour ouvrir le popup de sélection de badge
+            function openBadgePopup(slotNumber) {
+                // Code pour charger les options de badge en fonction du slotNumber ici
+                // Exemple: Vous pouvez utiliser une requête AJAX pour charger les badges disponibles
+                // Une fois les badges chargés, mettez à jour le contenu du popup
+
+                // Afficher le popup
+                document.getElementById('badgePopup').style.display = 'block';
+            }
+
+            // Fonction pour fermer le popup de sélection de badge
+            function closeBadgePopup() {
+                // Masquer le popup
+                document.getElementById('badgePopup').style.display = 'none';
+            }
+        </script>
+    </div>
+
+    <div class="succes">
+        <h2 class="p-5">Succès</h2>
+        <div class="row">
+            <?php
+            $requete_succes = $db->prepare("SELECT * FROM `succes` ORDER BY `triageSucces`");
+            $requete_succes->execute();
+            $succes = $requete_succes->fetchAll(PDO::FETCH_ASSOC);
+            foreach ($succes as $suc) {
+            ?>
+                <div class="col-lg-4">
+                    <!-- Sur les grands écrans (lg), il y aura trois succès par ligne. Sur les écrans moyens (md), il y en aura deux par ligne. -->
+                    <div class='succes_numero'>
+                        <h3><?php echo $suc['nom']; ?></h3><br>
+                        <p><?php echo $suc['desc']; ?></p><br>
+                    </div>
+                </div>
+            <?php } ?>
         </div>
+    </div>
 
-
-    </section>
 
     <?php
-        include("../form/templates/footer.php")
+    include("../form/templates/footer.php")
     ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
