@@ -308,11 +308,8 @@ body {
 /*Page Compte*/
 
 .profile-image {
-    width: 20vh;
-    /* Taille fixe de l'image */
-    height: 20vh;
+    width: 60px;
     border-radius: 50%;
-    /* Pour rendre l'image ronde */
 }
 
 #h1_compte {

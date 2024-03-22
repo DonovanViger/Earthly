@@ -53,6 +53,15 @@
     }
     ?>
 
+    <div style="position:absolute;left:0px;top:0px;width:100vw;height:100vh;">
+        <div style="display:flex;justify-content:center;align-items:center;width:100vw;height:100vh;">
+            <svg width="300" height="300">
+                <rect width="300" height="300" stroke="white" stroke-width="10" rx="50" ry="50" fill-opacity="0" />
+            </svg>
+        </div>
+    </div>
+
+
     <?php include("../form/templates/footer.php"); ?>
 
     <script src="../node_modules/jsqr/dist/jsQR.js"></script>
