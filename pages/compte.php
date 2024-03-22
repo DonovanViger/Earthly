@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="style.css" />
     <title>Mon compte</title>
 </head>
@@ -36,17 +35,17 @@
         $profileImage = $utilisateur['pdp'] ? $utilisateur['pdp'] : '../uploads/default.jpg';
     } catch (PDOException $erreur) {
         // En cas d'erreur de connexion à la base de données
-        die ("Erreur de connexion à la base de données : " . $erreur->getMessage());
+        die("Erreur de connexion à la base de données : " . $erreur->getMessage());
     }
 
     // Vérifie si l'utilisateur est connecté
-    if (!isset ($_SESSION['pseudo'])) {
+    if (!isset($_SESSION['pseudo'])) {
         // Redirige l'utilisateur vers la page de connexion s'il n'est pas connecté
         header("Location: connexion.php");
         exit();
     }
 
-    if (isset ($_SESSION['pseudo'])) {
+    if (isset($_SESSION['pseudo'])) {
         $pseudo = $_SESSION['pseudo'];
 
         $db = new PDO('mysql:host=localhost;dbname=sae401-2', 'root', '');
@@ -74,19 +73,17 @@
 
         <form action="../form/traitement_modification.php" method="POST">
             <label for="nouveauPseudo">Pseudo : </label>
-            <input type="text" id="nouveauPseudo" name="nouveauPseudo" value="<?php echo $utilisateur['pseudo']; ?>"
-                required><br><br>
+            <input type="text" id="nouveauPseudo" name="nouveauPseudo" value="<?php echo $utilisateur['pseudo']; ?>" required><br><br>
 
             <label for="nouvelleEmail">Adresse e-mail : </label>
-            <input type="email" id="nouvelleEmail" name="nouvelleEmail" value="<?php echo $utilisateur['mail']; ?>"
-                required><br><br>
+            <input type="email" id="nouvelleEmail" name="nouvelleEmail" value="<?php echo $utilisateur['mail']; ?>" required><br><br>
 
             <input type="submit" value="Modifier" id="compte_settings_button_valid">
         </form>
 
     </div>
-</div>
-</div>
+    </div>
+    </div>
 
     <section id="profil">
 
@@ -124,10 +121,11 @@
             </div>
             <form id="imageForm" action="../form/changer_image.php" method="post" enctype="multipart/form-data">
                 <label for="nouvelle_image" class="custom-file-upload">
-                    <input id="nouvelle_image" type="file" name="nouvelle_image" accept="image/*" required>
+                    <input id="nouvelle_image" type="file" name="nouvelle_image" accept="image/*" onchange="submitForm()" required>
                     Changer l'image de profil
                 </label>
             </form>
+
 
         </div>
         <?php
@@ -156,8 +154,8 @@
                     ?>
                 </li>
                 <li>Points : <?php echo $utilisateur['point_Planete']; ?> (Planète niveau <?php echo $niv; ?>)</li>
-                <?php if (!empty ($utilisateur['ID_parrain'])): ?>
-                                    <li>Parrain : <?php echo $utilisateur['ID_parrain']; ?></li>
+                <?php if (!empty($utilisateur['ID_parrain'])) : ?>
+                    <li>Parrain : <?php echo $utilisateur['ID_parrain']; ?></li>
                 <?php endif; ?>
 
                 <li>Expérience du compte : <?php echo $utilisateur['exp_Utilisateur']; ?></li>
@@ -171,26 +169,26 @@
 
             <br>
             <script>
-            function partager() {
-                var lien = "localhost/earthly/pages/partage.php?pseudo=<?php echo $pseudo ?>";
-                console.log(lien);
-                alert("Partagez le lien à vos amis : " + lien);
-            }
-            // Fonction pour ouvrir le popup de sélection de badge
-            function openBadgePopup(slotNumber) {
-                // Code pour charger les options de badge en fonction du slotNumber ici
-                // Exemple: Vous pouvez utiliser une requête AJAX pour charger les badges disponibles
-                // Une fois les badges chargés, mettez à jour le contenu du popup
+                function partager() {
+                    var lien = "localhost/earthly/pages/partage.php?pseudo=<?php echo $pseudo ?>";
+                    console.log(lien);
+                    alert("Partagez le lien à vos amis : " + lien);
+                }
+                // Fonction pour ouvrir le popup de sélection de badge
+                function openBadgePopup(slotNumber) {
+                    // Code pour charger les options de badge en fonction du slotNumber ici
+                    // Exemple: Vous pouvez utiliser une requête AJAX pour charger les badges disponibles
+                    // Une fois les badges chargés, mettez à jour le contenu du popup
 
-                // Afficher le popup
-                document.getElementById('badgePopup').style.display = 'block';
-            }
+                    // Afficher le popup
+                    document.getElementById('badgePopup').style.display = 'block';
+                }
 
-            // Fonction pour fermer le popup de sélection de badge
-            function closeBadgePopup() {
-                // Masquer le popup
-                document.getElementById('badgePopup').style.display = 'none';
-            }
+                // Fonction pour fermer le popup de sélection de badge
+                function closeBadgePopup() {
+                    // Masquer le popup
+                    document.getElementById('badgePopup').style.display = 'none';
+                }
             </script>
         </div>
 
@@ -202,14 +200,14 @@
                 $requete_succes->execute();
                 $succes = $requete_succes->fetchAll(PDO::FETCH_ASSOC);
                 foreach ($succes as $suc) {
-                    ?>
-                                    <div class="col-lg-4">
-                                        <!-- Sur les grands écrans (lg), il y aura trois succès par ligne. Sur les écrans moyens (md), il y en aura deux par ligne. -->
-                                        <div class='succes_numero'>
-                                            <h3><?php echo $suc['nom']; ?></h3><br>
-                                            <p><?php echo $suc['desc']; ?></p><br>
-                                        </div>
-                                    </div>
+                ?>
+                    <div class="col-lg-4">
+                        <!-- Sur les grands écrans (lg), il y aura trois succès par ligne. Sur les écrans moyens (md), il y en aura deux par ligne. -->
+                        <div class='succes_numero'>
+                            <h3><?php echo $suc['nom']; ?></h3><br>
+                            <p><?php echo $suc['desc']; ?></p><br>
+                        </div>
+                    </div>
                 <?php } ?>
             </div>
         </div>
@@ -218,13 +216,18 @@
     </section>
 
     <?php
-        include("../form/templates/footer.php")
+    include("../form/templates/footer.php")
     ?>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
     <script src="../script/popup.js"></script>
+    <script>
+        function submitForm() {
+            document.getElementById('imageForm').submit();
+        }
+    </script>
+
 </body>
 
 </html>
