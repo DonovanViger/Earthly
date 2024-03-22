@@ -160,7 +160,7 @@ body {
     height: 150vh;
     background-color: #1C3326;
     font-family: Arial-Rounded;
-    padding-top: 8vh;
+    padding-top: 4vh;
 }
 #h1_inscription {
     text-align: center;
@@ -226,7 +226,7 @@ body {
     width: 85vw;
     text-align: center;
     color: white;
-    margin: 5vh auto 0 auto;
+    margin: 5vh auto 5vh auto;
     background-color: #A9FFA4;
     padding: 2vh;
     border-radius: 15px;
@@ -237,21 +237,41 @@ body {
     color: #1C3326;
 }
 
-#inscription_input_submit {
-    background-color: white;
-    padding: 0.5vh;
-    width: 7.5vw;
-    border: none;
+#image_preview img{
     border-radius: 10px;
 }
 
 
-#inscription_retour button a {
-    text-decoration: none;
-    font-size: 3vh;
-    color: white;
+#crop_button{
+    width: 75vw;
+    border: none;
+    background-color: #1C3326;
+    color: #A9FFA4;
+    border-radius: 15px;
+    padding: 1.5vh;
 }
 
+#crop_submit_button{
+    border: none;
+    background-color: #1C3326;
+    margin-top: 2vh;
+    color: #A9FFA4;
+    font-size: 3vh;
+}
+#inscription_box_button{
+    width: 50vw;
+    text-align: center;
+    margin: auto;
+}
+
+#inscription_box_button input{
+    background-color: #2BBA7C;
+    color: #FFEFE1;
+    border: none;
+    padding: 2vh;
+    width: 50vw;
+    border-radius: 50px;
+}
 
 /*Page Classement*/
 
