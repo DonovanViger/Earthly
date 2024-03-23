@@ -85,7 +85,7 @@
             <div class="col-md-6 pt-5 pb-1 px-5">
                 <img src="../img/LAEDERBOARD.svg" alt="Tableau de classement" class="img-fluid">
                 <a href="../index.php"><img src="../img/a.svg" alt="Lettre A" class="px-2 ahah"></a>
-                <p>TOP 10</p>
+                <p id="classement_paragraph_top">TOP 10</p>
             </div>
         </div>
     </div>

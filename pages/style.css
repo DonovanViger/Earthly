@@ -305,6 +305,71 @@ body {
     border-radius: 50%;
 }
 
+#classement_paragraph_top{
+    color: #A9FFA4;
+}
+
+/*Page Planète*/
+
+
+#planet_overall{
+    position:absolute;
+    left: 0px;
+    top: 0px;
+    width: 100vw;
+    height: 0;
+}
+#planet_box_logo{
+    margin-top: 2.5vh;
+    text-align: center;
+    height: 0;
+}
+
+#planet_logo{
+    width: 35vw;
+    height: 20vh;
+
+}
+
+.sketchfab-embed-wrapper{
+    margin-top: -4.95vh;
+}
+
+
+#planet_annotation{
+    width: 85%;
+    height: 25vh;
+    text-align: center;
+    margin: 65vh auto 0 auto;
+    background-color: #ffffff49;
+    padding: 2vh;
+    border-radius: 15px;
+}
+
+#planet_h2_annotation{
+    background-color: #2BBA7C;
+    padding: 0.5vh 1vh;
+    border-radius: 20px;
+    width: 27.5vw;
+    font-size: 2.5vh;
+    margin: auto;
+    color: white;
+}
+
+#planet_h3_annotation{
+    margin-top: 2vh;
+    color: white;
+    font-size: 2.25vh;
+    text-align: left;
+    width: 57.5vw;
+}
+#planet_points_vert{
+    color: #A9FFA4;
+}
+
+
+
+
 /*Page Compte*/
 
 .profile-image {
@@ -648,6 +713,64 @@ body {
 
 
 /*Page Recyclage*/
+
+#recyclage_overall{
+    position:absolute;
+    left: 0px;
+    top: 0px;
+    width: 100vw;
+    height: 100vh;
+}
+
+#recyclage_svg{
+    margin: auto;
+    text-align: center;
+    width: 100vw;
+    height: 65vh;
+}
+
+#recyclage_annotation{
+    width: 85%;
+    height: 25vh;
+    text-align: center;
+    margin: auto;
+    background-color: #ffffff49;
+    padding: 2vh;
+    border-radius: 15px;
+
+}
+
+#recyclage_h2_annotation{
+    font-size: 2.5vh;
+    color:#FFEFE1
+}
+
+#recyclage_trait{
+    width: 65%;
+    height: 0.4vh;
+    border-radius: 10px;
+    background-color: #FFEFE1;
+    margin: 2vh auto 2vh auto;
+}
+
+#recyclage_annotation_warning{
+    width: 45vw;
+    height: 5vh;
+    margin: auto;
+}
+
+#recyclage_warning{
+    float: left;
+}
+
+#recyclage_warning_h3{
+    text-align: left;
+    margin-left: 3vw;
+    color: #A9FFA4;
+    float: left;
+    font-size: 1.55vh;
+    width: 35vw;
+}
 
 /*Général pour toutes les pages*/
 

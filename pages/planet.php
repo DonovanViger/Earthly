@@ -38,6 +38,31 @@ $utilisateur = $requete->fetch(PDO::FETCH_ASSOC);
 </head>
 <body>
 
+<div id="planet_overall">
+<div id="planet_box_logo">
+<img src="../uploads/Logo-earthly-text.svg" alt="logo_earthly" id="planet_logo">
+</div>
+<div id="planet_annotation">
+    <?php
+    if ($utilisateur['point_Planete'] < 1000){
+        echo "<h2 id='planet_h2_annotation'>NIVEAU 1</h2>";
+        echo "<h3 id='planet_h3_annotation'>Plus que "."<strong id='planet_points_vert'>".(1000-$utilisateur['point_Planete'])."</strong>"." points d'expérience avant le niveau 2 !</h3>";
+    } else if ($utilisateur['point_Planete'] < 3000){
+        echo "<h2 id='planet_h2_annotation'>NIVEAU 2</h2>";
+        echo "<h3 id='planet_h3_annotation'>Plus que "."<strong id='planet_points_vert'>".(3000-$utilisateur['point_Planete'])."</strong>"." points d'expérience avant le niveau 3 !</h3>";
+    } else if ($utilisateur['point_Planete'] < 7000){
+        echo "<h2 id='planet_h2_annotation'>NIVEAU 3</h2>";
+        echo "<h3 id='planet_h3_annotation'>Plus que "."<strong id='planet_points_vert'>".(7000-$utilisateur['point_Planete'])."</strong>"." points d'expérience avant le niveau 4 !</h3>";
+    } else if ($utilisateur['point_Planete'] < 15000){
+        echo "<h2 id='planet_h2_annotation'>NIVEAU 4</h2>";
+        echo "<h3 id='planet_h3_annotation'>Plus que "."<strong id='planet_points_vert'>".(15000-$utilisateur['point_Planete'])."</strong>"." points d'expérience avant le niveau 5 !</h3>";
+    } else {
+        echo "<h2 id='planet_h2_annotation'>NIVEAU 5</h2>";
+        echo "<h3 id='planet_h3_annotation'>Bravo, votre planète est au niveau maximal avec un total de "."<strong id='planet_points_vert'>".(1000-$utilisateur['point_Planete'])."</strong>"." points d'expérience !</h3>";
+    }
+    ?>
+    </div>
+</div>
 <?php
         if ($utilisateur['point_Planete'] < 1000) {
             ?>
