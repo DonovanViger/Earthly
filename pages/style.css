@@ -773,7 +773,7 @@ body {
 #success_overall{
     background-image: url("../uploads/pattern.svg");
     background-size: cover; /* Ajuste la taille de l'image pour remplir complètement le conteneur */ /* Change la couleur de fond */
-    height: 150vh;
+    height: 200vh;
     padding-top: 10vh;
 }
 
@@ -805,6 +805,33 @@ body {
     padding: 3vh 2vh 2vh 2vh;
 }
 
+#succes_box2{
+    width: 85%;
+    background-color: #A9FFA4;
+    color: #A9FFA4;
+    border-radius: 15px;
+    margin: 5vh auto;
+    padding: 3vh 2vh 2vh 2vh;
+}
+
+#succes_box3{
+    width: 83%;
+    border: #2BBA7C 0.5vh solid;
+    color: #A9FFA4;
+    border-radius: 15px;
+    margin: 5vh auto;
+    padding: 3vh 2vh 2vh 2vh;
+}
+
+#succes_box4{
+    width: 85%;
+    background-color:#BFEABB ;
+    color: #A9FFA4;
+    border-radius: 15px;
+    margin: 5vh auto;
+    padding: 3vh 2vh 2vh 2vh;
+}
+
 #success_svg_trophy{
     width: 10vw;
     height: 5vh;
@@ -819,14 +846,46 @@ body {
     float: left;
 }
 
+#success_h2_2{
+    color: #1C3326;
+    width: 80%;
+    margin: 0 auto 2vh auto;
+    float: left;
+}
+
+#success_h2_3{
+    color: white;
+    width: 80%;
+    margin: 0 auto 2vh auto;
+    float: left;
+}
+
+
 .success_box_1{
     clear: both;
-    height: 7.5vh;
-    width: 90%;
+    width: 85%;
     background-color: #FFEFE1;
     border-radius: 15px;
     margin: 2.5vh auto;
-    padding: 2vh 1vh;
+    padding: 2vh 2vh;
+}
+
+.success_box_2{
+    clear: both;
+    width: 85%;
+    background-color: #1C3326;
+    border-radius: 15px;
+    margin: 2.5vh auto;
+    padding: 2vh 2vh;
+}
+
+.success_box_3{
+    clear: both;
+    width: 85%;
+    background-color: #2BBA7C;
+    border-radius: 15px;
+    margin: 2.5vh auto;
+    padding: 2vh 2vh;
 }
 
 .success_h3_darkgreen{
@@ -834,9 +893,20 @@ body {
     margin: 0;
 }
 
+.success_h3_lightgreen{
+    color: #A9FFA4;
+    margin: 0;
+}
+
 .succes_strong_green{
     color:#2BBA7C;
 }
+
+.succes_strong_lightergreen{
+    color:#BFEABB;
+}
+
+
 
 /*Page Recyclage*/
 
