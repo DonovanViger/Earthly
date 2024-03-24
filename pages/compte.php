@@ -172,30 +172,51 @@
                             </div>
                         </div>
                     </div>
+
+                    <?php
+                        // Les points de l'utilisateur (remplacez cela par vos données)
+                        $pointsUtilisateur = $utilisateur['point_Planete'];
+
+                        // Calcul du niveau en fonction des points
+                        if ($pointsUtilisateur < 1000) {
+                            $niveauActuel = 1;
+                            $pointsNiveauSuivant = 1000;
+                        } elseif ($pointsUtilisateur < 3000) {
+                            $niveauActuel = 2;
+                            $pointsNiveauSuivant = 3000;
+                        } elseif ($pointsUtilisateur < 7000) {
+                            $niveauActuel = 3;
+                            $pointsNiveauSuivant = 7000;
+                        } elseif ($pointsUtilisateur < 15000) {
+                            $niveauActuel = 4;
+                            $pointsNiveauSuivant = 15000;
+                        } else {
+                            $niveauActuel = 5;
+                            $pointsNiveauSuivant = null; // Pas de niveau suivant car c'est le dernier niveau
+                        }
+
+                        $progression = ($pointsUtilisateur / $pointsNiveauSuivant) * 100;
+
+                        ?>
+
+
                     <div class="col-md-6">
                         <div class="progress mt-3">
-                            <div class="progress-bar" role="progressbar" style="width: <?php echo $utilisateur['exp_Utilisateur']; ?>%;" aria-valuenow="<?php echo $utilisateur['exp_Utilisateur']; ?>" aria-valuemin="0" aria-valuemax="100"><?php echo $utilisateur['exp_Utilisateur']; ?>%</div>
+                            <div class="progress-bar bg-success" role="progressbar" style="width: <?= $progression ?>%;" aria-valuenow="<?= $progression ?>" aria-valuemin="0" aria-valuemax="100"><?= $progression ?>%</div>
                         </div>
                         <p class="mt-3">Date de création du compte : <?php
                                                                         $dateCreationCompte = $utilisateur['dateCreationCompte'];
 
                                                                         echo $dateCreationCompte;
                                                                         ?></p>
+                        
+                    
+                        
                         <p>Points : <?php
-                                    if ($utilisateur['point_Planete'] < 1000) {
-                                        $niv = 1;
-                                    } else if ($utilisateur['point_Planete'] < 3000) {
-                                        $niv = 2;
-                                    } else if ($utilisateur['point_Planete'] < 7000) {
-                                        $niv = 3;
-                                    } else if ($utilisateur['point_Planete'] < 15000) {
-                                        $niv = 4;
-                                    } else {
-                                        $niv = 5;
-                                    }
-                                    echo $utilisateur['point_Planete'];
 
-                                    ?> (Planète niveau <?php echo $niv; ?>)</p>
+                                    echo $pointsUtilisateur;
+
+                                    ?> (Planète niveau <?php echo $niveauActuel; ?>)</p>
                         <?php if (!empty($utilisateur['ID_parrain'])) : ?>
                             <p>Parrain : <?php echo $utilisateur['ID_parrain']; ?></p>
                         <?php endif; ?>
