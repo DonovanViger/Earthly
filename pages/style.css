@@ -150,6 +150,37 @@ body {
     color: #FFEFE1;
 }
 
+/*Page erreur connexion*/
+
+#erreur_connexion_box{
+    width: 80%;
+    height: 25vh;
+    margin: 30vh auto;
+    background-color: #A9FFA4;
+    color: #1C3326;
+    text-align: center;
+    padding: 2vh;
+    border-radius: 15px;
+}
+
+#erreur_connexion_para{
+    margin-top: 7.5vh;
+    font-size: 2.5vh;
+}
+
+#erreur_button_form{
+    width: 75%;
+    border: none;
+    border-radius: 10px;
+    padding: 1vh;
+    background-color: #FFEFE1;
+}
+
+#erreur_button_form a{
+    text-decoration: none;
+    color: #1C3326;
+    font-size: 2.25vh;
+}
 
 /*Page Inscription*/
 
@@ -340,7 +371,7 @@ body {
     width: 85%;
     height: 25vh;
     text-align: center;
-    margin: 65vh auto 0 auto;
+    margin: 62.5vh auto 0 auto;
     background-color: #ffffff49;
     padding: 2vh;
     border-radius: 15px;
@@ -367,7 +398,32 @@ body {
     color: #A9FFA4;
 }
 
+.progress{
+    height: 1.5vh;
+}
 
+.progress-bar{
+    background-color: #A9FFA4;
+    height: 1.5vh;
+}
+
+#planet_h3_annotation_ex{
+    margin: 0;
+    float: left;
+    text-align: left;
+    width: 50%;
+    font-size: 2vh;
+    color: #A9FFA4;
+}
+
+#planet_h3_annotation_lv{
+    margin: 0;
+    float: right;
+    text-align: right;
+    font-size: 2vh;
+    width: 50%;
+    color: #fff;
+}
 
 
 /*Page Compte*/
@@ -711,6 +767,76 @@ body {
 
 }
 
+
+/*Page succès*/
+
+#success_overall{
+    background-image: url("../uploads/pattern.svg");
+    background-size: cover; /* Ajuste la taille de l'image pour remplir complètement le conteneur */ /* Change la couleur de fond */
+    height: 150vh;
+    padding-top: 10vh;
+}
+
+#success_title_box{
+    margin-bottom:5vh ;
+}
+
+#success_svg_retour{
+    width: 7.5vw;
+    height: 5vh;
+    float: left;
+    margin-left: 5vw;
+}
+
+#success_h1{
+    width: 50%;
+    margin: auto;
+    color: #A9FFA4;
+    font-size: 4.5vh;
+    text-align: center;
+}
+
+#succes_box1{
+    width: 85%;
+    background-color: #2BBA7C;
+    color: #A9FFA4;
+    border-radius: 15px;
+    margin: auto;
+    padding: 3vh 2vh 2vh 2vh;
+}
+
+#success_svg_trophy{
+    width: 10vw;
+    height: 5vh;
+    float: left;
+    margin-left: 5vw;
+}
+
+#success_h2_1{
+    color: #A9FFA4;
+    width: 80%;
+    margin: 0 auto 2vh auto;
+    float: left;
+}
+
+.success_box_1{
+    clear: both;
+    height: 7.5vh;
+    width: 90%;
+    background-color: #FFEFE1;
+    border-radius: 15px;
+    margin: 2.5vh auto;
+    padding: 2vh 1vh;
+}
+
+.success_h3_darkgreen{
+    color: #1C3326;
+    margin: 0;
+}
+
+.succes_strong_green{
+    color:#2BBA7C;
+}
 
 /*Page Recyclage*/
 
