@@ -26,6 +26,14 @@
         .pseudo {
             color: #FFEFE1;
         }
+
+        .profil_page{
+            background-color: #2BBA7C;
+        }
+
+        .badges{
+            margin-top: -20px;
+        }
     </style>
 </head>
 
@@ -129,26 +137,21 @@
         </div>
     </div>
 
-        <div class="container mt-4 text-dark">
-            <div class="rounded p-4 bg-light">
+        <div class="container mt-4">
+            <div class="rounded p-4 profil_page">
                 <div class="row">
-                    <div class="col-md-6">
-                        <h2 class="mb-3"><?php echo $utilisateur['pseudo']; ?></h2>
+                    <div class="col-3">
+                        <img src="<?php echo $profileImage; ?>" alt="Image de profil" class="profile-image">
                     </div>
-                    <div class="col-md-6 text-md-end">
-                        <button class="btn btn-primary" onclick="partager()"><i class="fa-solid fa-share-nodes"></i> Partager</button>
-                        <form id="imageForm" action="../form/changer_image.php" method="post" enctype="multipart/form-data">
-                            <label for="nouvelle_image" class="custom-file-upload">
-                                <input id="nouvelle_image" type="file" name="nouvelle_image" accept="image/*" onchange="submitForm()" required>
-                                Changer l'image de profil
-                            </label>
-                        </form>
-
+                    <div class="col-7">
+                        <h2 class="mb-3 pseudo"><?php echo $utilisateur['pseudo']; ?></h2>
+                    </div>
+                    <div class="col-2 text-md-end">
+                        <button class="btn" onclick="partager()"><i class="fa-solid fa-share-nodes"></i></button>
                     </div>
                 </div>
                 <div class="row mt-3">
-                    <div class="col-md-6">
-                        <img src="<?php echo $profileImage; ?>" alt="Image de profil" class="profile-image">
+                    <div class="col-6 offset-3 badges">
                         <div class="row">
                             <div class="col-4">
                                 <div class="badgeSlot" id="badgeSlot1" onclick="openBadgePopup(1)"></div>
@@ -172,47 +175,65 @@
                             </div>
                         </div>
                     </div>
+
+                    <?php
+                        // Les points de l'utilisateur (remplacez cela par vos données)
+                        $pointsUtilisateur = $utilisateur['point_Planete'];
+
+                        // Calcul du niveau en fonction des points
+                        if ($pointsUtilisateur < 1000) {
+                            $niveauActuel = 1;
+                            $pointsNiveauSuivant = 1000;
+                        } elseif ($pointsUtilisateur < 3000) {
+                            $niveauActuel = 2;
+                            $pointsNiveauSuivant = 3000;
+                        } elseif ($pointsUtilisateur < 7000) {
+                            $niveauActuel = 3;
+                            $pointsNiveauSuivant = 7000;
+                        } elseif ($pointsUtilisateur < 15000) {
+                            $niveauActuel = 4;
+                            $pointsNiveauSuivant = 15000;
+                        } else {
+                            $niveauActuel = 5;
+                            $pointsNiveauSuivant = null; // Pas de niveau suivant car c'est le dernier niveau
+                        }
+
+                        $progression = ($pointsUtilisateur / $pointsNiveauSuivant) * 100;
+
+                        ?>
+
+
                     <div class="col-md-6">
                         <div class="progress mt-3">
-                            <div class="progress-bar" role="progressbar" style="width: <?php echo $utilisateur['exp_Utilisateur']; ?>%;" aria-valuenow="<?php echo $utilisateur['exp_Utilisateur']; ?>" aria-valuemin="0" aria-valuemax="100"><?php echo $utilisateur['exp_Utilisateur']; ?>%</div>
+                            <div class="progress-bar bg-success" role="progressbar" style="width: <?= $progression ?>%;" aria-valuenow="<?= $progression ?>" aria-valuemin="0" aria-valuemax="100"><?= $progression ?>%</div>
                         </div>
-                        <p class="mt-3">Date de création du compte : <?php
+                        <div class="row mt-4">
+                        <div class="col-6">
+                        <p>Membre depuis le <?php
                                                                         $dateCreationCompte = $utilisateur['dateCreationCompte'];
 
                                                                         echo $dateCreationCompte;
                                                                         ?></p>
-                        <p>Points : <?php
-                                    if ($utilisateur['point_Planete'] < 1000) {
-                                        $niv = 1;
-                                    } else if ($utilisateur['point_Planete'] < 3000) {
-                                        $niv = 2;
-                                    } else if ($utilisateur['point_Planete'] < 7000) {
-                                        $niv = 3;
-                                    } else if ($utilisateur['point_Planete'] < 15000) {
-                                        $niv = 4;
-                                    } else {
-                                        $niv = 5;
-                                    }
-                                    echo $utilisateur['point_Planete'];
-
-                                    ?> (Planète niveau <?php echo $niv; ?>)</p>
-                        <?php if (!empty($utilisateur['ID_parrain'])) : ?>
-                            <p>Parrain : <?php echo $utilisateur['ID_parrain']; ?></p>
-                        <?php endif; ?>
+                        </div>
+                        <div class="col-4 offset-2">
+                        <p>Planète niveau <?php echo $niveauActuel; ?></p>
+                    </div>
+                    </div>
                     </div>
                 </div>
             </div>
         </div>
 
+        <form id="imageForm" action="../form/changer_image.php" method="post" enctype="multipart/form-data">
+                            <label for="nouvelle_image" class="custom-file-upload">
+                                <input id="nouvelle_image" type="file" name="nouvelle_image" accept="image/*" onchange="submitForm()" required>
+                                Changer l'image de profil
+                            </label>
+        </form>
+
     <button id="compte_button">
         <a href="../form/deconnexion.php">Se déconnecter</a>
     </button>
-
-    <label for="nouvelle_image" class="custom-file-upload">
-        <input id="nouvelle_image" type="file" name="nouvelle_image" accept="image/*" onchange="submitForm()" required>
-        Changer l'image de profil
-    </label>
-    </form>
 
 
 
