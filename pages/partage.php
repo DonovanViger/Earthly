@@ -22,11 +22,11 @@
         setlocale(LC_TIME, "fr_FR");
 
         // Récupération des informations de l'utilisateur connecté à partir de la session
-        $pseudoAutre = $_GET['pseudo'];
+        $idAutre = $_GET['idpartage'];
 
         // Requête SQL pour récupérer les informations de l'utilisateur
-        $requete = $db->prepare("SELECT * FROM utilisateurs WHERE pseudo = :pseudo");
-        $requete->bindParam(':pseudo', $pseudoAutre);
+        $requete = $db->prepare("SELECT * FROM utilisateurs WHERE ID_Utilisateur = :id_utilisateur");
+        $requete->bindParam(':id_utilisateur', $idAutre);
         $requete->execute();
 
         // Récupération des résultats de la requête

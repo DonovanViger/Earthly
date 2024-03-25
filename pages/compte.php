@@ -120,6 +120,7 @@
 
         // Récupération des informations de l'utilisateur connecté à partir de la session
         $pseudo = $_SESSION['pseudo'];
+        $user_id = $_SESSION['user_id'];
 
         // Requête SQL pour récupérer les informations de l'utilisateur
         $requete = $db->prepare("SELECT * FROM utilisateurs WHERE pseudo = :pseudo");
@@ -484,7 +485,7 @@
         });
 
         function partager() {
-            var lien = "localhost/earthly/pages/partage.php?pseudo=<?php echo $pseudo ?>";
+            var lien = "localhost/earthly/pages/partage.php?idpartage=<?php echo $user_id ?>";
             console.log(lien);
             alert("Partagez le lien à vos amis : " + lien);
         }
