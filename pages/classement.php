@@ -267,10 +267,27 @@ if (isset($_GET['partage'])){
 
 </div>
 
+<script>
+    function partager() {
+            var lien = "localhost/earthly/pages/partage.php?idpartage=<?php echo $id_partage ?>";
+            console.log(lien);
+            alert("Partagez le lien à vos amis : " + lien);
+        }
+
+var partage_classement = document.getElementsByClassName("partage_classement");
+document.body.addEventListener('click', function (e) {
+    if (!e.target.classList.contains('partage_click')) {
+        partage_classement[0].innerHTML="";
+        partage_classement[0].style.width="0";
+        partage_classement[0].style.height="0";
+    }
+});
+</script>
+
 <?php 
 }
 
-    $requeteClassement = $db->prepare("SELECT `pseudo`,`exp_Utilisateur`,`point_Planete`, IFNULL(`pdp`, '../uploads/default.jpg') AS `pdp` FROM `utilisateurs` ORDER BY `point_Planete` DESC LIMIT 10;");
+    $requeteClassement = $db->prepare("SELECT `ID_Utilisateur`,`pseudo`,`exp_Utilisateur`,`point_Planete`, IFNULL(`pdp`, '../uploads/default.jpg') AS `pdp` FROM `utilisateurs` ORDER BY `point_Planete` DESC LIMIT 10;");
     $requeteClassement->execute();
     $Classements = $requeteClassement->fetchAll(PDO::FETCH_ASSOC);
     ?>
@@ -301,26 +318,21 @@ if (isset($_GET['partage'])){
 
         </div>
     <?php
-    include("../form/templates/footer.php")
+    include("../form/templates/footer.php");
+    echo "<script>var classements = ".json_encode($Classements).";</script>"; 
+    
     ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
     <script>
-        
-        function partager() {
-            var lien = "localhost/earthly/pages/partage.php?idpartage=<?php echo $id_partage ?>";
-            console.log(lien);
-            alert("Partagez le lien à vos amis : " + lien);
+        var usercard = document.getElementsByClassName("user-card");
+        for ( let i = 0; i<classements.length; i++){
+            usercard[i].addEventListener('click', function () {
+                console.log(this); 
+                console.log("classement.php?partage="+classements[i].ID_Utilisateur);
+                window.location.assign("classement.php?partage="+classements[i].ID_Utilisateur);
+            });
         }
-
-        var partage_classement = document.getElementsByClassName("partage_classement");
-        document.body.addEventListener('click', function (e) {
-            if (!e.target.classList.contains('partage_click')) {
-                partage_classement[0].innerHTML="";
-                partage_classement[0].style.width="0";
-                partage_classement[0].style.height="0";
-            }
-        });
 
     </script>
 </body>
