@@ -1,3 +1,14 @@
+<?php
+session_start(); // Démarre la session
+
+// Vérifie si l'utilisateur est connecté
+if (!isset($_SESSION['pseudo'])) {
+    // Redirige l'utilisateur vers la page de connexion s'il n'est pas connecté
+    header("Location: connexion.php");
+    exit();
+}
+
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -7,6 +18,30 @@
     <title>Earthly | Succès</title>
 </head>
 <body>
+    <?php
+    $db = new PDO('mysql:host=localhost;dbname=sae401-2', 'root', '');
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $select_succes_user = $db->prepare("SELECT ID_Succes, dateObtention FROM utilisateursucces where ID_Utilisateur=:id_utilisateur");
+    $select_succes_user->bindParam(':id_utilisateur', $_SESSION['user_id']);
+    $select_succes_user->execute();
+    $succesuser = $select_succes_user->fetchAll();
+    $tableau = [1 => "", 2 => "", 3 => "", 4 => "", 5 => "", 6 => "", 7 => "", 8 => "", 9 => "", 10 => "", 14 => "", 15 => "", 16 => "", 17 => "", 18 => "", 19 => "", 20 => "", 21 => "", ];
+
+    echo "<script> console.table(".json_encode($succesuser).");</script>";
+    echo "<script> console.table(".json_encode($tableau).");</script>";
+
+    $nn = 1;
+    foreach ($succesuser as $succesnumber) {
+        echo "<script> console.log(".json_encode($succesnumber[1]).");</script>";
+        if ($succesnumber[1] != "0000-00-00"){
+            $tableau[$nn]="oui";
+        }
+        $nn++;
+    }
+
+    echo "<script> console.table(".json_encode($tableau).");</script>";
+    ?>
 
     <div id="success_overall">
         <div id="success_title_box">
@@ -21,7 +56,10 @@
     <div id="succes_box1">
     <img src="../img/trophy.svg" alt="trophy" id="success_svg_trophy">
     <h2 id="success_h2_1">Petite branche</h2>
-    <div id="success_number"></div>
+    <div id="success_number">
+        <?php 
+        ?>
+    </div>
 
     <div class="success_box_1">
         <h3 class="success_h3_darkgreen">Petite branche <strong class="succes_strong_green">I</strong></h3>
