@@ -328,8 +328,6 @@ document.body.addEventListener('click', function (e) {
         var usercard = document.getElementsByClassName("user-card");
         for ( let i = 0; i<classements.length; i++){
             usercard[i].addEventListener('click', function () {
-                console.log(this); 
-                console.log("classement.php?partage="+classements[i].ID_Utilisateur);
                 window.location.assign("classement.php?partage="+classements[i].ID_Utilisateur);
             });
         }

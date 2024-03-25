@@ -135,16 +135,39 @@
 <body>
     <?php
     session_start(); // Démarre la session
-    try {
-        // Connexion à la base de données
+    setlocale(LC_TIME, "fr_FR");
+
+    if (isset ($_SESSION['pseudo'])) {
+        $pseudo = $_SESSION['pseudo'];
+        $user_id = $_SESSION['user_id'];
+
         $db = new PDO('mysql:host=localhost;dbname=sae401-2', 'root', '');
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         setlocale(LC_TIME, "fr_FR");
 
-        // Récupération des informations de l'utilisateur connecté à partir de la session
-        $pseudo = $_SESSION['pseudo'];
-        $user_id = $_SESSION['user_id'];
+        $dateConnexion = date("Y-m-d");
+
+        $query = $db->prepare("UPDATE utilisateurs SET dateConnexion = :dateConnexion WHERE ID_Utilisateur = :id_utilisateur");
+        // Liez les paramètres et exécutez la requête
+        $query->bindParam(':dateConnexion', $dateConnexion, PDO::PARAM_STR);
+        $query->bindParam(':id_utilisateur', $user_id);
+        $query->execute();
+
+        // Vérifier d'abord si l'utilisateur a déjà obtenu le succès avec l'ID 1
+        $requete_verif_succes_1 = $db->prepare("SELECT COUNT(*) FROM utilisateursucces WHERE ID_Utilisateur = :id_utilisateur AND ID_Succes = 1");
+        $requete_verif_succes_1->bindParam(':id_utilisateur', $user_id);
+        $requete_verif_succes_1->execute();
+        $count_succes_1 = $requete_verif_succes_1->fetchColumn();
+
+        // Si l'utilisateur n'a pas déjà obtenu le succès avec l'ID 1
+        if ($count_succes_1 == 0) {
+            // Insérer une nouvelle entrée dans la table "utilisateursucces"
+            $requete_insert_succes_1 = $db->prepare("INSERT INTO utilisateursucces (ID_Utilisateur, ID_Succes, progression, dateObtention) VALUES (:id_utilisateur, 1, 1, NOW())");
+            $requete_insert_succes_1->bindParam(':id_utilisateur', $user_id);
+            $requete_insert_succes_1->execute();
+        }
+    }
 
         // Requête SQL pour récupérer les informations de l'utilisateur
         $requete = $db->prepare("SELECT * FROM utilisateurs WHERE ID_Utilisateur = :id_utilisateur");
@@ -157,50 +180,30 @@
         // Vérifier si l'utilisateur a une image de profil
         $profileImage = $utilisateur['pdp'] ? $utilisateur['pdp'] : '../uploads/default.jpg';
         $titreUtilisateur = $utilisateur['titreUtilisateur'] ? $utilisateur['titreUtilisateur'] : 'Jeune branche';
-    } catch (PDOException $erreur) {
-        // En cas d'erreur de connexion à la base de données
-        die ("Erreur de connexion à la base de données : " . $erreur->getMessage());
-    }
 
-    // Vérifie si l'utilisateur est connecté
-    if (!isset ($_SESSION['pseudo'])) {
-        // Redirige l'utilisateur vers la page de connexion s'il n'est pas connecté
-        header("Location: connexion.php");
-        exit();
-    }
-
-    if (isset ($_SESSION['pseudo'])) {
-        $pseudo = $_SESSION['pseudo'];
-        $id_utilisateur = $_SESSION['user_id'];
-
-        $db = new PDO('mysql:host=localhost;dbname=sae401-2', 'root', '');
-        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-        setlocale(LC_TIME, "fr_FR");
-
-        $dateConnexion = date("Y-m-d");
-
-        $query = $db->prepare("UPDATE utilisateurs SET dateConnexion = :dateConnexion WHERE pseudo = :pseudo");
-
-        // Liez les paramètres et exécutez la requête
-        $query->bindParam(':dateConnexion', $dateConnexion, PDO::PARAM_STR);
-        $query->bindParam(':pseudo', $pseudo, PDO::PARAM_STR);
-        $query->execute();
-
-        // Vérifier d'abord si l'utilisateur a déjà obtenu le succès avec l'ID 1
-        $requete_verif_succes_1 = $db->prepare("SELECT COUNT(*) FROM utilisateursucces WHERE ID_Utilisateur = :id_utilisateur AND ID_Succes = 1");
-        $requete_verif_succes_1->bindParam(':id_utilisateur', $id_utilisateur);
-        $requete_verif_succes_1->execute();
-        $count_succes_1 = $requete_verif_succes_1->fetchColumn();
-
-        // Si l'utilisateur n'a pas déjà obtenu le succès avec l'ID 1
-        if ($count_succes_1 == 0) {
-            // Insérer une nouvelle entrée dans la table "utilisateursucces"
-            $requete_insert_succes_1 = $db->prepare("INSERT INTO utilisateursucces (ID_Utilisateur, ID_Succes, progression, dateObtention) 
-                                            VALUES (:id_utilisateur, 1, 1, NOW())");
-            $requete_insert_succes_1->bindParam(':id_utilisateur', $id_utilisateur);
-            $requete_insert_succes_1->execute();
+            
+        // Vérifie si l'utilisateur est connecté
+        if (!isset ($_SESSION['pseudo'])) {
+            // Redirige l'utilisateur vers la page de connexion s'il n'est pas connecté
+            header("Location: connexion.php");
+            exit();
         }
+
+
+
+    if (isset($_SESSION['pseudo']) && isset($_GET['titre'])) {
+        
+        $select_titres_user = $db->prepare("SELECT nom FROM succes INNER JOIN utilisateursucces ON utilisateursucces.ID_Succes = succes.ID_Succes WHERE utilisateursucces.ID_Utilisateur = :iduser AND utilisateursucces.dateObtention != '0000-00-00'");
+        $select_titres_user->bindParam(':iduser', $user_id);
+        $select_titres_user->execute();
+        $titres = $select_titres_user->fetchAll(PDO::FETCH_ASSOC);
+        $nouveauTitre = json_encode($titres[$_GET['titre']]['nom']);
+        echo "<script> console.log(".$nouveauTitre.")</script>";
+        
+        $query = $db->prepare("UPDATE utilisateurs SET titreUtilisateur = :titreUtilisateur WHERE ID_Utilisateur = :id_utilisateur");
+        $query->bindParam(':titreUtilisateur', $nouveauTitre);
+        $query->bindParam(':id_utilisateur', $user_id);
+        $query->execute();
     }
     ?>
     <div class="container mt-5">
@@ -282,7 +285,7 @@
                                         WHERE us.ID_Utilisateur = :id_utilisateur AND s.triageSucces LIKE :group AND us.dateObtention != 00-00-0000
                                         ORDER BY CAST(SUBSTRING(s.triageSucces, 2) AS UNSIGNED) DESC
                                         LIMIT 1");
-                                                    $requete_succes->bindParam(':id_utilisateur', $id_utilisateur);
+                                                    $requete_succes->bindParam(':id_utilisateur', $user_id);
                                                     $requete_succes->bindParam(':group', $group);
                                                     $requete_succes->execute();
 
@@ -572,20 +575,22 @@
         </script>
         <?php
     $select_titres_user = $db->prepare("SELECT nom FROM succes INNER JOIN utilisateursucces ON utilisateursucces.ID_Succes = succes.ID_Succes WHERE utilisateursucces.ID_Utilisateur = :iduser AND utilisateursucces.dateObtention != '0000-00-00'");
-    $select_titres_user->bindParam(':iduser', $id_utilisateur);
+    $select_titres_user->bindParam(':iduser', $user_id);
     $select_titres_user->execute();
     $titres = $select_titres_user->fetchAll(PDO::FETCH_ASSOC);
     echo "<script> var titres = ".json_encode($titres)."</script>";
+    echo "<script> var titreUtilisateur = '".$titreUtilisateur."'</script>";
         ?>
         <script>
-            console.table(titres);
         function titrechoose(){
             var titrechoose = document.getElementById('titrechoose');
-            titrechoose.innerHTML="<select name='titre' id='titre'>";
+            titrechoose.innerHTML=titreUtilisateur;
             for (let i=0; i<titres.length; i++) {
-            titrechoose.innerHTML+="<option value="+i+">"+titres[i].nom+"</option>";
+                titrechoose.innerHTML+="<button value="+i+" onclick='titrechoose2(value)'>"+titres[i].nom+"</option>";
             }
-            titrechoose.innerHTML+="</select>";
+        }
+        function titrechoose2(value){
+                window.location.assign("compte.php?titre="+value);
         }
     </script>
 </body>
