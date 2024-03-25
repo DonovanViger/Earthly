@@ -43,6 +43,7 @@
 
         .parametres {
             margin-bottom: 20vh;
+            width: 85%;
         }
 
         /* Style pour le séparateur */
@@ -321,7 +322,7 @@
                 <a href="#" class="list-group-item list-group-item-action">Paramètre 3</a>
             </div>
             <!-- Séparateur -->
-            <div class="separator"></div>
+            <div class="separator my-3"></div>
             <!-- Confidentialité -->
             <a class="list-group-item list-group-item-action main-category">
                 <div class="row">
@@ -342,7 +343,7 @@
                 <a href="#" class="list-group-item list-group-item-action">Paramètre B</a>
             </div>
             <!-- Séparateur -->
-            <div class="separator"></div>
+            <div class="separator my-3"></div>
             <!-- Mot de passe -->
             <a class="list-group-item list-group-item-action">
                 <div class="row">
@@ -358,7 +359,7 @@
                 </div>
             </a>
             <!-- Séparateur -->
-            <div class="separator"></div>
+            <div class="separator my-3"></div>
             <!-- Pseudo -->
             <a class="list-group-item list-group-item-action">
                 <div class="row">
@@ -374,7 +375,7 @@
                 </div>
             </a>
             <!-- Séparateur -->
-            <div class="separator"></div>
+            <div class="separator my-3"></div>
             <!-- Modifier la photo -->
             <a class="list-group-item list-group-item-action main-category">
                 <div class="row">
@@ -400,6 +401,7 @@
                     </label>
                 </form>
             </div>
+            <div class="separator my-3"></div>
         </div>
     </div>
 
