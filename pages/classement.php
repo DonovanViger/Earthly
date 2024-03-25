@@ -79,6 +79,8 @@
     $requeteClassement->execute();
     $Classements = $requeteClassement->fetchAll(PDO::FETCH_ASSOC);
     ?>
+
+    <div id="classement_div_patern">
 <div id="classement_title_box">
                 <img src="../img/LAEDERBOARD.svg" alt="Tableau de classement" id="classement_svg_leader">
                 <a href="../index.php"><img src="../img/a.svg" alt="Lettre A" id="classement_logo"></a>
@@ -102,6 +104,7 @@
 
     <div class="scroll w-100"></div>
 
+        </div>
     <?php
     include("../form/templates/footer.php")
     ?>

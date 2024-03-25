@@ -309,7 +309,8 @@ body {
 #classement_div_patern{
     background-image: url("../uploads/pattern.svg");
     background-size: cover; /* Ajuste la taille de l'image pour remplir complètement le conteneur */ /* Change la couleur de fond */
-    height: 150vh;
+    height: 100vh;
+    padding-top: 5vh;
 }
 
 #classement_title_box{
