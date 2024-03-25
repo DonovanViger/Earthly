@@ -174,22 +174,6 @@
     </div>
 
     <!-- Popup de sélection de badge -->
-    <div id="badgePopup" class="popup">
-        <div class="popup-content">
-            <?php $requete_succes_utilisateur = $db->prepare("SELECT s.ID_succes, s.pds FROM succes s INNER JOIN utilisateursucces us ON s.ID_succes = us.ID_Succes WHERE us.ID_Utilisateur = :id_utilisateur AND dateObtention = 00-00-0000");
-            $requete_succes_utilisateur->bindParam(':id_utilisateur', $id_utilisateur);
-            $requete_succes_utilisateur->execute();
-
-            // Récupérer les résultats de la requête
-            $succes_utilisateur = $requete_succes_utilisateur->fetchAll(PDO::FETCH_ASSOC);
-
-            // Afficher les succès de l'utilisateur
-            foreach ($succes_utilisateur as $succes) {
-                echo "<img src='" . $succes['pds'] . "' alt='" . $succes['nom'] . "'>";
-            }
-            ?>
-        </div>
-    </div>
 
     <div class="container mt-4">
         <div class="p-4 profil_page">
@@ -221,90 +205,90 @@
             </div>
             <div class="row mt-3">
                 <div class="col-6 offset-3 badges mb-2">
-                    <div class="row">
-                        <?php for ($i = 1; $i <= 6; $i++): ?>
-                            <div class="col-4">
-                                <div class="badgeSlot" id="badgeSlot<?php echo $i; ?>">
-                                    <?php
-                                    // Logique pour récupérer les images des succès pour chaque slot
-                                    // Par exemple, vous pouvez exécuter une requête SQL pour chaque slot
-                                    // et récupérer le succès avec la meilleure progression pour chaque groupe de succès
-                                
-                                    // Déterminer le groupe en fonction de la valeur de $i
-                                    switch ($i) {
-                                        case 1:
-                                            $group = 'A%';
-                                            break;
-                                        case 2:
-                                            $group = 'B%';
-                                            break;
-                                        case 3:
-                                            $group = 'C%';
-                                            break;
-                                        case 4:
-                                            $group = 'D%';
-                                            break;
-                                        case 5:
-                                            $group = 'E%';
-                                            break;
-                                        case 6:
-                                            $group = 'F%';
-                                            break;
-                                        default:
-                                            $group = ''; // Gérer les valeurs par défaut si nécessaire
-                                            break;
-                                    }
+                <div class="row">
+    <?php for ($i = 1; $i <= 6; $i++): ?>
+            <div class="col-4">
+                <div class="badgeSlot" id="badgeSlot<?php echo $i; ?>">
+                    <?php
+                    // Déterminer le groupe en fonction de la valeur de $i
+                    switch ($i) {
+                        case 1:
+                            $group = 'A%';
+                            break;
+                        case 2:
+                            $group = 'B%';
+                            break;
+                        case 3:
+                            $group = 'C%';
+                            break;
+                        case 4:
+                            $group = 'D%';
+                            break;
+                        case 5:
+                            $group = 'E%';
+                            break;
+                        case 6:
+                            $group = 'F%';
+                            break;
+                        default:
+                            $group = ''; // Gérer les valeurs par défaut si nécessaire
+                            break;
+                    }
 
-                                    // Exemple de requête SQL pour récupérer le succès pour chaque slot
-                                    $query_slot = $db->prepare("SELECT pds FROM `utilisateursucces` JOIN `succes` ON utilisateursucces.ID_Succes = succes.ID_succes WHERE utilisateursucces.ID_Utilisateur = :userID AND succes.triageSucces LIKE :group AND dateObtention != 00-00-0000 ORDER BY succes.maxProgression DESC LIMIT 1");
-                                    $query_slot->bindParam(':userID', $utilisateur['ID_Utilisateur']);
-                                    $query_slot->bindParam(':group', $group);
-                                    $query_slot->execute();
-                                    $slot_success = $query_slot->fetch(PDO::FETCH_ASSOC);
+                    // Exemple de requête SQL pour récupérer le succès pour chaque slot
+                    $requete_succes = $db->prepare("SELECT s.ID_succes, s.pds, s.nom FROM succes s 
+                    INNER JOIN utilisateursucces us ON s.ID_succes = us.ID_Succes 
+                    WHERE us.ID_Utilisateur = :id_utilisateur AND s.triageSucces LIKE :group AND us.dateObtention != 00-00-0000
+                    ORDER BY CAST(SUBSTRING(s.triageSucces, 2) AS UNSIGNED) DESC
+                    LIMIT 1");
+                    $requete_succes->bindParam(':id_utilisateur', $id_utilisateur);
+                    $requete_succes->bindParam(':group', $group);
+                    $requete_succes->execute();
 
-                                    // Affichage de l'image du succès ou une image par défaut
-                                    if ($slot_success) {
-                                        echo '<img src="' . $slot_success['pds'] . '" alt="Badge Slot ' . $i . '">';
-                                    } else {
-                                        echo '';
-                                    }
-                                    ?>
-                                </div>
-                            </div>
-                        <?php endfor; ?>
-                    </div>
+                    // Récupérer le résultat de la requête
+                    $succes_utilisateur = $requete_succes->fetch(PDO::FETCH_ASSOC);
+
+                    // Afficher le succès de l'utilisateur
+                    if ($succes_utilisateur) {
+                        echo "<img src='" . $succes_utilisateur['pds'] . "' alt='" . $succes_utilisateur['nom'] . "'>";
+                    }
+                    ?>
+                </div>
+            </div>
+    <?php endfor; ?>
+</div>
                 </div>
 
                 <?php
-                    // Les points de l'utilisateur (remplacez cela par vos données)
-                    $pointsUtilisateur = $utilisateur['point_Planete'];
+                // Les points de l'utilisateur (remplacez cela par vos données)
+                $pointsUtilisateur = $utilisateur['point_Planete'];
 
-                    // Initialisation des variables de niveau
-                    $niveauActuel = 1;
-                    $pointsNiveauSuivant = 1000;
+                // Initialisation des variables de niveau
+                $niveauActuel = 1;
+                $pointsNiveauSuivant = 1000;
 
-                    // Calcul du niveau en fonction des points
-                    if ($pointsUtilisateur >= 1000 && $pointsUtilisateur < 3000) {
-                        $niveauActuel = 2;
-                        $pointsNiveauSuivant = 3000;
-                    } elseif ($pointsUtilisateur >= 3000 && $pointsUtilisateur < 7000) {
-                        $niveauActuel = 3;
-                        $pointsNiveauSuivant = 7000;
-                    } elseif ($pointsUtilisateur >= 7000 && $pointsUtilisateur < 15000) {
-                        $niveauActuel = 4;
-                        $pointsNiveauSuivant = 15000;
-                    } elseif ($pointsUtilisateur >= 15000) {
-                        $niveauActuel = 5;
-                        $pointsNiveauSuivant = null; // Pas de niveau suivant car c'est le dernier niveau
-                    }
+                // Calcul du niveau en fonction des points
+                if ($pointsUtilisateur >= 1000 && $pointsUtilisateur < 3000) {
+                    $niveauActuel = 2;
+                    $pointsNiveauSuivant = 3000;
+                } elseif ($pointsUtilisateur >= 3000 && $pointsUtilisateur < 7000) {
+                    $niveauActuel = 3;
+                    $pointsNiveauSuivant = 7000;
+                } elseif ($pointsUtilisateur >= 7000 && $pointsUtilisateur < 15000) {
+                    $niveauActuel = 4;
+                    $pointsNiveauSuivant = 15000;
+                } elseif ($pointsUtilisateur >= 15000) {
+                    $niveauActuel = 5;
+                    $pointsNiveauSuivant = null; // Pas de niveau suivant car c'est le dernier niveau
+                }
 
-                    // Calcul de la progression
-                    if ($pointsNiveauSuivant !== null) {
-                        $progression = ($pointsUtilisateur / $pointsNiveauSuivant) * 100;
-                    } else {
-                        // Si $pointsNiveauSuivant est null, la progression est de 100%
-                        $progression = 100;
-                    }
+                // Calcul de la progression
+                if ($pointsNiveauSuivant !== null) {
+                    $progression = ($pointsUtilisateur / $pointsNiveauSuivant) * 100;
+                } else {
+                    // Si $pointsNiveauSuivant est null, la progression est de 100%
+                    $progression = 100;
+                }
                 ?>
 
 
