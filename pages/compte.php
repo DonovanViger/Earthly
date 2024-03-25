@@ -33,12 +33,39 @@
             margin-top: -20px;
         }
 
-        .sous-xp{
+        .sous-xp {
             font-size: 0.6rem;
         }
 
         .level {
             color: #A9FFA4;
+        }
+
+        .parametres {
+            margin-bottom: 20vh;
+        }
+
+        /* Style pour le séparateur */
+        .separator {
+            border-top: 1px solid #ddd;
+            margin: 10px 0;
+        }
+
+        /* Style pour les sous-catégories */
+        .sub-menu {
+            display: none;
+            padding-left: 30px;
+            /* Indentation des sous-catégories */
+        }
+
+        .sub-menu.show {
+            display: block;
+        }
+
+        .list-group {
+            --bs-list-group-color: #2BBA7C;
+            --bs-list-group-bg: #1C3326;
+            --bs-list-group-border-color: none;
         }
     </style>
 </head>
@@ -153,8 +180,7 @@
                     </h2>
                 </div>
                 <div class="col-2 text-md-end">
-                    <button class="btn" onclick="partager()"><i
-                            class="fa-solid fa-share-nodes"></i></button>
+                    <button class="btn" onclick="partager()"><i class="fa-solid fa-share-nodes"></i></button>
 
                 </div>
             </div>
@@ -253,18 +279,18 @@
                 </div>
                 <div class="row mt-3 sous-xp">
                     <div class="col-7">
-                    <p>Membre depuis le 
-                        <?php
-                        $dateCreationCompte = $utilisateur['dateCreationCompte'];
+                        <p>Membre depuis le
+                            <?php
+                            $dateCreationCompte = $utilisateur['dateCreationCompte'];
 
-                        echo $dateCreationCompte;
-                        ?>
-                    </p>
+                            echo $dateCreationCompte;
+                            ?>
+                        </p>
                     </div>
                     <div class="col-3 offset-2 level">
-                    <p>Planète niveau
-                        <?php echo $niveauActuel; ?>
-                    </p>
+                        <p>Planète niveau
+                            <?php echo $niveauActuel; ?>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -272,22 +298,122 @@
     </div>
     </div>
 
-    <form id="imageForm" action="../form/changer_image.php" method="post" enctype="multipart/form-data">
-        <label for="nouvelle_image" class="custom-file-upload">
-            <input id="nouvelle_image" type="file" name="nouvelle_image" accept="image/*" onchange="submitForm()"
-                required>
-            Changer l'image de profil
-        </label>
-    </form>
+    <div class="container parametres mt-4">
+        <div class="list-group">
+            <!-- Notification -->
+            <a class="list-group-item list-group-item-action main-category">
+                <div class="row">
+                    <div class="col-2">
+                        <i class="fas fa-bell mr-2"></i>
+                    </div>
+                    <div class="col-8">
+                        Notification
+                    </div>
+                    <div class="col-2 text-right">
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
+            </a>
+            <!-- Sous-catégories pour Notification -->
+            <div class="sub-menu">
+                <a href="#" class="list-group-item list-group-item-action">Paramètre 1</a>
+                <a href="#" class="list-group-item list-group-item-action">Paramètre 2</a>
+                <a href="#" class="list-group-item list-group-item-action">Paramètre 3</a>
+            </div>
+            <!-- Séparateur -->
+            <div class="separator"></div>
+            <!-- Confidentialité -->
+            <a class="list-group-item list-group-item-action main-category">
+                <div class="row">
+                    <div class="col-2">
+                        <i class="fas fa-lock mr-2"></i>
+                    </div>
+                    <div class="col-8">
+                        Confidentialité
+                    </div>
+                    <div class="col-2 text-right">
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
+            </a>
+            <!-- Sous-catégories pour Confidentialité -->
+            <div class="sub-menu">
+                <a href="#" class="list-group-item list-group-item-action">Paramètre A</a>
+                <a href="#" class="list-group-item list-group-item-action">Paramètre B</a>
+            </div>
+            <!-- Séparateur -->
+            <div class="separator"></div>
+            <!-- Mot de passe -->
+            <a class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col-2">
+                        <i class="fas fa-key mr-2"></i>
+                    </div>
+                    <div class="col-10">
+                        Mot de passe
+                    </div>
+                </div>
+            </a>
+            <!-- Séparateur -->
+            <div class="separator"></div>
+            <!-- Pseudo -->
+            <a class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col-2">
+                        <i class="fas fa-user mr-2"></i>
+                    </div>
+                    <div class="col-10">
+                        Pseudo
+                    </div>
+                </div>
+            </a>
+            <!-- Séparateur -->
+            <div class="separator"></div>
+            <!-- Modifier la photo -->
+            <a class="list-group-item list-group-item-action main-category">
+                <div class="row">
+                    <div class="col-2">
+                        <i class="fas fa-camera mr-2"></i>
+                    </div>
+                    <div class="col-8">
+                        Modifier la photo
+                    </div>
+                    <div class="col-2 text-right">
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
+            </a>
+            <!-- Sous-catégories pour Modifier la photo -->
+            <div class="sub-menu">
+                <form id="imageForm" action="../form/changer_image.php" method="post" enctype="multipart/form-data"
+                    class="list-group-item list-group-item-action">
+                    <label for="nouvelle_image" class="custom-file-upload">
+                        <input id="nouvelle_image" type="file" name="nouvelle_image" accept="image/*"
+                            onchange="submitForm()" required>
+                        Changer l'image de profil
+                    </label>
+                </form>
+            </div>
+        </div>
+    </div>
+
 
     <button id="compte_button">
         <a href="../form/deconnexion.php">Se déconnecter</a>
     </button>
-
+    </div>
 
 
     <br>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script>
+
+        // Script pour afficher ou masquer les sous-catégories lorsque vous cliquez sur une catégorie principale
+        $('.main-category').click(function () {
+            $(this).next('.sub-menu').toggleClass('show');
+        });
+
         function partager() {
             var lien = "localhost/earthly/pages/partage.php?pseudo=<?php echo $pseudo ?>";
             console.log(lien);
@@ -310,31 +436,6 @@
         }
     </script>
     </div>
-
-    <div class="succes">
-        <h2 class="p-5">Succès</h2>
-        <div class="row">
-            <?php
-            $requete_succes = $db->prepare("SELECT * FROM `succes` ORDER BY `triageSucces`");
-            $requete_succes->execute();
-            $succes = $requete_succes->fetchAll(PDO::FETCH_ASSOC);
-            foreach ($succes as $suc) {
-                ?>
-                <div class="col-lg-4">
-                    <!-- Sur les grands écrans (lg), il y aura trois succès par ligne. Sur les écrans moyens (md), il y en aura deux par ligne. -->
-                    <div class='succes_numero'>
-                        <h3>
-                            <?php echo $suc['nom']; ?>
-                        </h3><br>
-                        <p>
-                            <?php echo $suc['desc']; ?>
-                        </p><br>
-                    </div>
-                </div>
-            <?php } ?>
-        </div>
-    </div>
-
 
     <?php
     include ("../form/templates/footer.php")
