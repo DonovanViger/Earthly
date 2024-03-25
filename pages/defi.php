@@ -210,7 +210,7 @@ try {
     <img src="../img/DEFIS.svg" alt="épingle" id="defi_epingle_img">
     
 
-    <h1 id="defis_h1"><a href="../index.php">Earthly</a></h1>
+    <a href="../index.php" id="defis_h1_a"><img src="../img/earthly_defis.png" alt="logo défis" id="défis_logo"></a>
 
 </div>
 
@@ -261,12 +261,52 @@ try {
             $stmt_insert_defis->execute();
         }
     }
+
+
+$requete = $db->prepare("SELECT * FROM utilisateurs WHERE pseudo = :pseudo");
+$requete->bindParam(':pseudo', $_SESSION['pseudo']);
+$requete->execute();
+
+// Récupération des résultats de la requête
+$utilisateur = $requete->fetch(PDO::FETCH_ASSOC);
+    
+    $pointsUtilisateur = $utilisateur['point_Planete'];
+
+                        // Calcul du niveau en fonction des points
+                        if ($pointsUtilisateur < 1000) {
+                            $niveauActuel = 1;
+                            $pointsNiveauSuivant = 1000;
+                        } elseif ($pointsUtilisateur < 3000) {
+                            $niveauActuel = 2;
+                            $pointsNiveauSuivant = 3000;
+                        } elseif ($pointsUtilisateur < 7000) {
+                            $niveauActuel = 3;
+                            $pointsNiveauSuivant = 7000;
+                        } elseif ($pointsUtilisateur < 15000) {
+                            $niveauActuel = 4;
+                            $pointsNiveauSuivant = 15000;
+                        } else {
+                            $niveauActuel = 5;
+                            $pointsNiveauSuivant = null; // Pas de niveau suivant car c'est le dernier niveau
+                        }
+
+                        $progression = ($pointsUtilisateur / $pointsNiveauSuivant) * 100;
     ?>
 
 <div id="defis_button_succes_box">
 <a href="success.php">Voir mes succès</a>
 </div>
 
+<div id="defis_xp_bar">
+<?php
+echo "<h3 id='defis_h3_bar_ex'>".$utilisateur['point_Planete']."xp</h3>";
+echo "<h3 id='defis_h3_bar_lv'>1000</h3>";
+?>
+<br>
+<div class="progress">
+    <div class="progress-bar" role="progressbar" style="width: <?= $progression ?>%;" aria-valuenow="<?= $progression ?>" aria-valuemin="0" aria-valuemax="100"></div>
+  </div>
+</div>
 </div>
     <?php
         include("../form/templates/footer.php")
@@ -280,10 +320,14 @@ try {
         var A = document.getElementsByClassName("defi");
         A[1].style.backgroundColor = "#2BBA7C";
         A[2].style.backgroundColor = "#2BBA7C";
-        A[1].style.width = "45vw";
-        A[2].style.width = "45vw";
+        A[1].style.width = "42.5vw";
+        A[2].style.width = "42.5vw";
         A[1].style.float = "left";
         A[2].style.float = "left";
+        A[1].style.margin = "0 0 0 5vw";
+        A[2].style.margin = "0 0 0 5vw";
+        A[1].style.heigh = "20vh";
+        A[2].style.heigh = "20vh";
     </script>
 
 </body>
