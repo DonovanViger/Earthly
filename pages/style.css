@@ -708,8 +708,8 @@ body {
 
 #defis_button {
     border: none;
-    width: 15vw;
-    padding: 1vh;
+    width: 50vw;
+    padding: 0;
     cursor: pointer;
     border-radius: 20px;
 
