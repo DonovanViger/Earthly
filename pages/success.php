@@ -58,6 +58,15 @@ if (!isset($_SESSION['pseudo'])) {
     <h2 id="success_h2_1">Petite branche</h2>
     <div id="success_number">
         <?php 
+        if ($tableau[15] == "oui") {
+            echo "3/3";
+        } else if ($tableau[14] == "oui") {
+            echo "2/3";
+        } else if ($tableau[1] == "oui") {
+            echo "1/3";
+        } else {
+            echo "0/3";
+        }
         ?>
     </div>
 
@@ -78,7 +87,19 @@ if (!isset($_SESSION['pseudo'])) {
 <div id="succes_box2">
     <img src="../img/trophy-dark.svg" alt="trophy" id="success_svg_trophy">
     <h2 id="success_h2_2">De feuille en feuille</h2>
-    <div id="success_number"></div>
+    <div id="success_number">
+        <?php 
+        if ($tableau[5] == "oui") {
+            echo "3/3";
+        } else if ($tableau[4] == "oui") {
+            echo "2/3";
+        } else if ($tableau[2] == "oui") {
+            echo "1/3";
+        } else {
+            echo "0/3";
+        }
+        ?>
+    </div>
     
 
     <div class="success_box_2">
@@ -99,7 +120,19 @@ if (!isset($_SESSION['pseudo'])) {
 <div id="succes_box3">
 <img src="../img/trophy-white.svg" alt="trophy" id="success_svg_trophy">
     <h2 id="success_h2_3">Douche éclair</h2>
-    <div id="success_number"></div>
+    <div id="success_number">
+        <?php 
+        if ($tableau[7] == "oui") {
+            echo "3/3";
+        } else if ($tableau[6] == "oui") {
+            echo "2/3";
+        } else if ($tableau[3] == "oui") {
+            echo "1/3";
+        } else {
+            echo "0/3";
+        }
+        ?>
+    </div>
 
     <div class="success_box_1">
         <h3 class="success_h3_darkgreen">Douche éclair <strong class="succes_strong_green">I</strong></h3>
@@ -119,7 +152,19 @@ if (!isset($_SESSION['pseudo'])) {
 <div id="succes_box4">
 <img src="../img/trophy-dark.svg" alt="trophy" id="success_svg_trophy">
     <h2 id="success_h2_2">Douche éclair</h2>
-    <div id="success_number"></div>
+    <div id="success_number">
+        <?php 
+        if ($tableau[5] == "oui") {
+            echo "3/3";
+        } else if ($tableau[4] == "oui") {
+            echo "2/3";
+        } else if ($tableau[2] == "oui") {
+            echo "1/3";
+        } else {
+            echo "0/3";
+        }
+        ?>
+    </div>
 
     <div class="success_box_3">
         <h3 class="success_h3_lightgreen">Douche éclair <strong class="succes_strong_lightergreen">I</strong></h3>
