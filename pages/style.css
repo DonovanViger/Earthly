@@ -779,6 +779,28 @@ ul{
     color: #A9FFA4;
 }
 
+#defis_xp_bar{
+    width: 80%;
+    margin: 5vh auto;
+}
+
+#defis_h3_bar_ex{
+    margin: 0;
+    float: left;
+    text-align: left;
+    width: 50%;
+    font-size: 2vh;
+    color: #A9FFA4;
+}
+
+#defis_h3_bar_lv{
+    margin: 0;
+    float: right;
+    text-align: right;
+    font-size: 2vh;
+    width: 50%;
+    color: #fff;
+}
 
 
 /*Page succès*/
