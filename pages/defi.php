@@ -205,14 +205,25 @@ try {
 
 <body>
 
-    <a href="success.php">vers les success</a>
+    <div id="defi_patern_box">
+
+    <div id="defi_title_box">
+    <img src="../img/DEFIS.svg" alt="épingle" id="defi_epingle_img">
+    
 
     <h1 id="defis_h1"><a href="../index.php">Earthly</a></h1>
 
+</div>
+
+<div id="defis_communautaire_box">
+<img src="../img/people.svg" alt="people icon" id="defis_communautaire_people">
+<h2 id="defis_communautaire_h2">Les défis communautaires</h2>
+</div>
     <?php
     // Si des défis sont sélectionnés pour la journée actuelle
     if (!empty($defis_journaliers)) {
         // Afficher les défis sélectionnés pour la journée
+        echo "<div id='defis_challenge_box'>Liste des défis</h2>";
         echo "<h2 id='defis_h2'>Liste des défis</h2>";
         echo "<ul id='defis_ul'>";
         foreach ($defis_journaliers as $defi) {
@@ -251,6 +262,9 @@ try {
     }
     ?>
 
+<a href="success.php">vers les success</a>
+
+</div>
     <?php
         include("../form/templates/footer.php")
     ?>

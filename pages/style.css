@@ -662,58 +662,51 @@ body {
 
 /*Page défis*/
 
-#defis_h1 {
-    text-align: center;
-    margin: 5vh 0 0 0;
-    padding: 0;
+#defi_patern_box{
+    background-image: url("../uploads/pattern.svg");
+    background-size: cover; /* Ajuste la taille de l'image pour remplir complètement le conteneur */ /* Change la couleur de fond */
+    height: 150vh;
+    padding-top: 10vh;
 }
 
-#defis_h1 a {
-    text-decoration: none;
-    color: black;
-    font-size: 7.5vh;
+#defi_title_box{
+background-color: #BFEABB;
+height: 10vh;
 }
 
-
-#defis_h2 {
-    text-align: center;
-    font-size: 5vh;
-    margin: 0 0 5vh 0;
+#defi_epingle_img{
+    float: left;
+    width: 12.5vw ;
+    height: 10vh;
+    margin-left: 10vw;
+}
+#defis_h1{
+    float: left;
+    width: 60vw ;
 }
 
-
-#defis_ul {
-    margin: 0 auto 15vh auto;
+#defis_communautaire_box{
+    width: 85vw;
+    background-color: white;
+    border-radius: 20px ;
+    margin: 5vh auto 5vh;
+    clear: both;
     padding: 2vh;
-    background: rgb(130, 214, 123);
-    background: linear-gradient(230deg, rgba(130, 214, 123, 1) 0%, rgba(71, 195, 60, 1) 100%);
-    width: 90%;
-    border-radius: 10px;
+}
+
+#defis_communautaire_people{
+    width: 8vw;
+    height: 4vh;
+    float: left;
+}
+
+#defis_communautaire_h2{
+    width: 70vw;
+    font-size: 1.75vh;
+    margin: 0;
 }
 
 
-.defi {
-    background-color: #1C3326;
-    padding: 4vh;
-    margin: 4vh auto 4vh auto;
-    color: #fff;
-    text-align: center;
-    width: 80%;
-    border-radius: 10px;
-}
-
-#defi_form {
-    margin-top: 2vh;
-}
-
-#defis_button {
-    border: none;
-    width: 50vw;
-    padding: 0;
-    cursor: pointer;
-    border-radius: 20px;
-
-}
 
 
 /*Page succès*/
@@ -781,10 +774,11 @@ body {
 }
 
 #success_svg_trophy{
-    width: 10vw;
-    height: 5vh;
+    width: 7.5vw;
+    height: 3.5vh;
     float: left;
-    margin-left: 5vw;
+    margin-left: 4vw;
+    margin-right: 1vw;
 }
 
 #success_h2_1{
