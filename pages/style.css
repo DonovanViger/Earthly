@@ -759,6 +759,7 @@ ul{
     padding: 2.5vh;
     border: #A9FFA4 0.25vh solid;
     border-radius: 50px;
+    clear: both;
 }
 
 #defis_button_succes_box a{
