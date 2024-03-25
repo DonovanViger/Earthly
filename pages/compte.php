@@ -35,7 +35,7 @@
         }
 
         .sous-xp {
-            font-size: 0.6rem;
+            font-size: 0.70rem;
         }
 
         .level {
@@ -72,6 +72,20 @@
 
         .fa-chevron-up {
             transform: rotate(-180deg);
+        }
+
+        .xp{
+            font-size: 0.8rem;
+            position: relative;
+            top: 1.5vh;
+        }
+
+        .gauche{
+            color: #A9FFA4;
+        }
+
+        .niveauxp, .droite{
+            color: #FFEFE1;
         }
     </style>
 </head>
@@ -282,16 +296,43 @@
 
             </div>
             <div class="row">
-                <div class="col-md-6">
-                    <div class="progress mt-3">
-                        <div class="progress-bar bg-success" role="progressbar" style="width: <?= $progression ?>%;"
-                            aria-valuenow="<?= $progression ?>" aria-valuemin="0" aria-valuemax="100">
-                            <?= $progression ?>%
+                <div class="mt-2">
+                    <div class="rounded p-1 profil_page">
+                        <!-- Barre de progression avec l'XP actuel à gauche, le niveau au milieu, et l'XP nécessaire à droite -->
+                        <div class="row align-items-center">
+                            <div class="col-4">
+                                <p class="mb-0 xp gauche">
+                                    <?php echo $pointsUtilisateur; ?>exp
+                                </p>
+                            </div>
+                            <div class="col-4 text-center niveauxp">
+                                <p class="mb-0">Niveau
+                                    <?php echo $niveauActuel; ?>
+                                </p>
+                            </div>
+                            <div class="col-4 text-end xp droite">
+                                <p class="mb-0">
+                                    <?php echo $pointsNiveauSuivant; ?>
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Barre de progression -->
+                        <div class="row">
+                            <div class="col">
+                                <div class="progress mt-3">
+                                    <div class="progress-bar bg-success" role="progressbar"
+                                        style="width: <?= $progression ?>%;" aria-valuenow="<?= $progression ?>"
+                                        aria-valuemin="0" aria-valuemax="100">
+                                        <?= $progression ?>%
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="row mt-3 sous-xp">
-                    <div class="col-7">
+
+                <div class="row mt-3 sous-xp text-center">
+                    <div class="col-8">
                         <p>Membre depuis le
                             <?php
                             $dateCreationCompte = $utilisateur['dateCreationCompte'];
@@ -300,7 +341,7 @@
                             ?>
                         </p>
                     </div>
-                    <div class="col-3 offset-2 level">
+                    <div class="col-3 offset-1 level">
                         <p>Planète niveau
                             <?php echo $niveauActuel; ?>
                         </p>
@@ -308,7 +349,6 @@
                 </div>
             </div>
         </div>
-    </div>
     </div>
 
     <div class="container parametres mt-4">
