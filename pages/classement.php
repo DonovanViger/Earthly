@@ -1,3 +1,20 @@
+<?php
+session_start(); // Démarre la session
+
+// Vérifie si l'utilisateur est connecté
+if (!isset($_SESSION['pseudo'])) {
+    // Redirige l'utilisateur vers la page de connexion s'il n'est pas connecté
+    header("Location: connexion.php");
+    exit();
+}
+
+if (isset($_GET['partage'])){
+    $id_partage = $_GET['partage'];
+
+    
+}
+
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -66,7 +83,6 @@
 <body>
 
     <?php
-    session_start(); // Démarre la session
 
     try {
         $db = new PDO('mysql:host=localhost;dbname=sae401-2', 'root', '');

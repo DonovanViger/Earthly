@@ -31,13 +31,11 @@ if (!isset($_SESSION['pseudo'])) {
     echo "<script> console.table(".json_encode($succesuser).");</script>";
     echo "<script> console.table(".json_encode($tableau).");</script>";
 
-    $nn = 1;
     foreach ($succesuser as $succesnumber) {
         echo "<script> console.log(".json_encode($succesnumber[1]).");</script>";
         if ($succesnumber[1] != "0000-00-00"){
-            $tableau[$nn]="oui";
+            $tableau[$succesnumber[0]]="oui";
         }
-        $nn++;
     }
 
     echo "<script> console.table(".json_encode($tableau).");</script>";
