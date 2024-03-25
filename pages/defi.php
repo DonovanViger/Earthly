@@ -277,6 +277,12 @@ try {
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
 
+    <script>
+        var A = document.getElementsByClassName("defi");
+        A[1].style.backgroundColor = "#2BBA7C";
+        A[2].style.backgroundColor = "#2BBA7C";
+    </script>
+
 </body>
 
 </html>
