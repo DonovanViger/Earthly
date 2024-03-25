@@ -349,8 +349,11 @@
                     <div class="col-2">
                         <i class="fas fa-key mr-2"></i>
                     </div>
-                    <div class="col-10">
+                    <div class="col-8">
                         Mot de passe
+                    </div>
+                    <div class="col-2 text-right">
+                        <i class="fas fa-chevron-down"></i>
                     </div>
                 </div>
             </a>
@@ -362,8 +365,11 @@
                     <div class="col-2">
                         <i class="fas fa-user mr-2"></i>
                     </div>
-                    <div class="col-10">
+                    <div class="col-8">
                         Pseudo
+                    </div>
+                    <div class="col-2 text-right">
+                        <i class="fas fa-chevron-down"></i>
                     </div>
                 </div>
             </a>
