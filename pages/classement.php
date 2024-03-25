@@ -153,8 +153,8 @@ if (isset($_GET['partage'])){
                     }
 
                     // Exemple de requête SQL pour récupérer le succès pour chaque slot
-                    $requete_succes = $db->prepare("SELECT s.ID_succes, s.pds, s.nom FROM succes s 
-                    INNER JOIN utilisateursucces us ON s.ID_succes = us.ID_Succes 
+                    $requete_succes = $db->prepare("SELECT s.ID_Succes, s.pds, s.nom FROM succes s 
+                    INNER JOIN utilisateursucces us ON s.ID_Succes = us.ID_Succes 
                     WHERE us.ID_Utilisateur = :id_utilisateur AND s.triageSucces LIKE :group AND us.dateObtention != 00-00-0000
                     ORDER BY CAST(SUBSTRING(s.triageSucces, 2) AS UNSIGNED) DESC
                     LIMIT 1");

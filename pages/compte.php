@@ -229,7 +229,7 @@
                         </h2>
                     </div>
                     <div class="row">
-                        <div class="mb-3 titresucces">
+                        <div class="mb-3 titresucces" id="titrechoose" onclick="titrechoose()">
                             <?php echo $titreUtilisateur; ?>
                         </div>
                     </div>
@@ -277,8 +277,8 @@
                                                     }
 
                                                     // Exemple de requête SQL pour récupérer le succès pour chaque slot
-                                                    $requete_succes = $db->prepare("SELECT s.ID_succes, s.pds, s.nom FROM succes s 
-                                        INNER JOIN utilisateursucces us ON s.ID_succes = us.ID_Succes 
+                                                    $requete_succes = $db->prepare("SELECT s.ID_Succes, s.pds, s.nom FROM succes s 
+                                        INNER JOIN utilisateursucces us ON s.ID_Succes = us.ID_Succes 
                                         WHERE us.ID_Utilisateur = :id_utilisateur AND s.triageSucces LIKE :group AND us.dateObtention != 00-00-0000
                                         ORDER BY CAST(SUBSTRING(s.triageSucces, 2) AS UNSIGNED) DESC
                                         LIMIT 1");
@@ -569,8 +569,22 @@
                 popupContent.textContent = art;
             });
         });
-    </script>
+        </script>
+        <?php
+        $select_titres_user
+    $select_titres_user = $db->prepare("SELECT nom FROM succes WHERE ID_Utilisateur = :iduser");
+    $select_titres_user->bindParam(':iduser', $id_partage);
+    $select_titres_user->execute();
+    $titres = $select_titres_user->fetch(PDO::FETCH_ASSOC);
+        ?>
+        <script>
 
+        function titrechoose(){
+            var titrechoose = document.getElementById('titrechoose');
+            titrechoose.innerHTML="<select name='titre' id='titre'>";
+            titrechoose.innerHTML+="</select>";
+        }
+    </script>
 </body>
 
 </html>
