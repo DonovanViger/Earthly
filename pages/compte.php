@@ -10,10 +10,11 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
     <title>Mon compte</title>
     <style>
-        #comptetitre #h1_compte {
+        .titrecompte a {
             font-size: 2rem;
             color: #2BBA7C;
             text-decoration: none;
+            margin-left: 3%;
         }
 
         .boite {
@@ -129,9 +130,11 @@
         $query->execute();
     }
     ?>
+    <div class="row">
     <div id="comptetitre">
         <img src="../img/COMPTE.svg" class="header-image" data-image="5.png" style="max-width: 50px;">
-        <h1 id="h1_compte"><a href="../index.php">Mon compte</a></h1>
+        <h1 class="titrecompte"><a href="../index.php">Mon compte</a></h1>
+    </div>
     </div>
     <!-- Contenu de la pop-up s-->
     <div id="overlay" onclick="fermerPopup()"></div> <!-- Overlay pour l'arrière-plan semi-transparent -->
