@@ -46,7 +46,7 @@
         }
 
         .parametres {
-            margin-bottom: 10vh;
+            margin-bottom: 5vh;
             width: 80%;
         }
 
