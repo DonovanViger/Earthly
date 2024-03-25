@@ -686,7 +686,8 @@ height: 10vh;
 }
 
 #defis_communautaire_box{
-    width: 85vw;
+    width: 90vw;
+    height: 10vh;
     background-color: white;
     border-radius: 20px ;
     margin: 5vh auto 5vh;
@@ -701,11 +702,30 @@ height: 10vh;
 }
 
 #defis_communautaire_h2{
-    width: 70vw;
+    width: 60vw;
     font-size: 1.75vh;
     margin: 0;
+    float: left;
 }
 
+#defis_communautaire_chevron{
+    width: 7vw;
+    height: 3vh;
+    float: left;
+}
+
+ul{
+    margin: 0;
+    padding: 0;
+}
+
+.defi{
+    width: 90%;
+    background-color: #A9FFA4;
+    margin: 5vh auto;
+    padding: 2vh;
+    border-radius: 15px ;
+}
 
 
 
