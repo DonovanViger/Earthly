@@ -96,7 +96,7 @@ if (isset($_GET['partage'])){
         <div class="p-4 profil_page partage_click">
             <div class="row partage_click">
                 <div class="col-3 partage_click">
-                    <img src="<?php echo $profileImage; ?>" alt="Image de profil" class="profile-image partage_click">
+                <img src="<?php echo $profileImage; ?>" alt="Avatar de <?php echo $partage['pseudo']; ?>" class="user-avatar" onerror="this.onerror=null;this.src='../uploads/default.jpg';">
                 </div>
                 <div class="col-6 partage_click">
                     <div class="row partage_click">

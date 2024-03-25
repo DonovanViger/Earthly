@@ -219,7 +219,7 @@
         <div class="p-4 profil_page">
             <div class="row">
                 <div class="col-3">
-                    <img src="<?php echo $profileImage; ?>" alt="Image de profil" class="profile-image">
+                <img src="<?php echo $profileImage; ?>" alt="Avatar de <?php echo $utilisateur['pseudo']; ?>" class="user-avatar" onerror="this.onerror=null;this.src='../uploads/default.jpg';">
                 </div>
                 <div class="col-6">
                     <div class="row">
