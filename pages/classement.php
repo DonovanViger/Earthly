@@ -79,16 +79,11 @@
     $requeteClassement->execute();
     $Classements = $requeteClassement->fetchAll(PDO::FETCH_ASSOC);
     ?>
-
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-md-6 pt-5 pb-1 px-5">
-                <img src="../img/LAEDERBOARD.svg" alt="Tableau de classement" class="img-fluid">
-                <a href="../index.php"><img src="../img/a.svg" alt="Lettre A" class="px-2 ahah"></a>
+<div id="classement_title_box">
+                <img src="../img/LAEDERBOARD.svg" alt="Tableau de classement" id="classement_svg_leader">
+                <a href="../index.php"><img src="../img/a.svg" alt="Lettre A" id="classement_logo"></a>
                 <p id="classement_paragraph_top">TOP 10</p>
-            </div>
-        </div>
-    </div>
+</div>
 
     <div class="container">
         <?php foreach ($Classements as $key => $classement) { ?>

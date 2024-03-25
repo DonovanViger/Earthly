@@ -312,6 +312,30 @@ body {
     height: 150vh;
 }
 
+#classement_title_box{
+    padding: 2vh;
+    margin: 0 0 5vh 0;
+}
+
+#classement_svg_leader{
+    float: left;
+    margin: 0 0 0 5vw;
+}
+
+#classement_logo{
+    float: left;
+    margin: 0 0 0 3vw;
+}
+
+#classement_paragraph_top{
+    float: right;
+    margin: 2vh 0 0 0;
+    width: 20vw;
+}
+
+#un{
+    clear: both;
+}
 #h1_classement {
     text-align: center;
     margin-top: 5vh;
