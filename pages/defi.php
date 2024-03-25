@@ -210,7 +210,7 @@ try {
     <img src="../img/DEFIS.svg" alt="épingle" id="defi_epingle_img">
     
 
-    <h1 id="defis_h1"><a href="../index.php">Earthly</a></h1>
+    <a href="../index.php" id="defis_h1_a"><img src="../img/earthly_defis.png" alt="logo défis" id="défis_logo"></a>
 
 </div>
 
@@ -320,10 +320,14 @@ echo "<h3 id='defis_h3_bar_lv'>1000</h3>";
         var A = document.getElementsByClassName("defi");
         A[1].style.backgroundColor = "#2BBA7C";
         A[2].style.backgroundColor = "#2BBA7C";
-        A[1].style.width = "45vw";
-        A[2].style.width = "45vw";
+        A[1].style.width = "42.5vw";
+        A[2].style.width = "42.5vw";
         A[1].style.float = "left";
         A[2].style.float = "left";
+        A[1].style.margin = "0 0 0 5vw";
+        A[2].style.margin = "0 0 0 5vw";
+        A[1].style.heigh = "20vh";
+        A[2].style.heigh = "20vh";
     </script>
 
 </body>

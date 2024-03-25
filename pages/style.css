@@ -707,7 +707,6 @@ body {
 }
 
 #defi_title_box{
-background-color: #BFEABB;
 height: 10vh;
 }
 
@@ -717,9 +716,15 @@ height: 10vh;
     height: 10vh;
     margin-left: 10vw;
 }
-#defis_h1{
+#defis_h1_a{
     float: left;
     width: 60vw ;
+}
+
+#défis_logo{
+    width: 40vw;
+    height: 7vh;
+    margin: 2vh 0 0 3vw;
 }
 
 #defis_communautaire_box{
@@ -751,7 +756,7 @@ height: 10vh;
     float: left;
 }
 
-ul{
+#defis_ul{
     margin: 0;
     padding: 0;
 }
@@ -766,7 +771,7 @@ ul{
 
 #defis_button_succes_box{
     width: 75vw;
-    margin: auto;
+    margin: 30vh auto 0 auto;
     text-align: center;
     padding: 2.5vh;
     border: #A9FFA4 0.25vh solid;
