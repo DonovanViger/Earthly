@@ -312,6 +312,30 @@ body {
     height: 150vh;
 }
 
+#classement_title_box{
+    padding: 2vh;
+    margin: 0 0 5vh 0;
+}
+
+#classement_svg_leader{
+    float: left;
+    margin: 0 0 0 5vw;
+}
+
+#classement_logo{
+    float: left;
+    margin: 0 0 0 3vw;
+}
+
+#classement_paragraph_top{
+    float: right;
+    margin: 2vh 0 0 0;
+    width: 20vw;
+}
+
+#un{
+    clear: both;
+}
 #h1_classement {
     text-align: center;
     margin-top: 5vh;
@@ -801,6 +825,24 @@ ul{
 #succes_box4{
     width: 85%;
     background-color:#BFEABB ;
+    color: #A9FFA4;
+    border-radius: 15px;
+    margin: 5vh auto;
+    padding: 3vh 2vh 2vh 2vh;
+}
+
+#succes_box5{
+    width: 85%;
+    background-color: #2BBA7C;
+    color: #A9FFA4;
+    border-radius: 15px;
+    margin: auto;
+    padding: 3vh 2vh 2vh 2vh;
+}
+
+#succes_box6{
+    width: 85%;
+    background-color: #A9FFA4;
     color: #A9FFA4;
     border-radius: 15px;
     margin: 5vh auto;
