@@ -369,7 +369,7 @@ body {
 
 #planet_annotation{
     width: 85%;
-    height: 25vh;
+    height: 27.5vh;
     text-align: center;
     margin: 62.5vh auto 0 auto;
     background-color: #ffffff49;
@@ -381,7 +381,7 @@ body {
     background-color: #2BBA7C;
     padding: 0.5vh 1vh;
     border-radius: 20px;
-    width: 27.5vw;
+    width: 30vw;
     font-size: 2.5vh;
     margin: auto;
     color: white;
@@ -708,8 +708,8 @@ body {
 
 #defis_button {
     border: none;
-    width: 15vw;
-    padding: 1vh;
+    width: 50vw;
+    padding: 0;
     cursor: pointer;
     border-radius: 20px;
 
@@ -885,7 +885,7 @@ body {
 }
 
 #recyclage_h2_annotation{
-    font-size: 2.5vh;
+    font-size: 2.25vh;
     color:#FFEFE1
 }
 
