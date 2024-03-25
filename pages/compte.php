@@ -28,6 +28,9 @@
 
         .profil_page {
             background-color: #2BBA7C;
+            width: 95%;
+            margin: auto;
+            border-radius: 15px;
         }
 
         .badges {
@@ -43,21 +46,17 @@
         }
 
         .parametres {
-            margin-bottom: 20vh;
-            width: 85%;
+            margin-bottom: 10vh;
+            width: 80%;
         }
 
-        /* Style pour le séparateur */
         .separator {
             border-top: 1px solid #ddd;
-            margin: 10px 0;
         }
 
-        /* Style pour les sous-catégories */
         .sub-menu {
             display: none;
             padding-left: 30px;
-            /* Indentation des sous-catégories */
         }
 
         .sub-menu.show {
@@ -74,18 +73,37 @@
             transform: rotate(-180deg);
         }
 
-        .xp{
+        .xp {
             font-size: 0.8rem;
             position: relative;
             top: 1.5vh;
         }
 
-        .gauche{
+        .gauche {
             color: #A9FFA4;
         }
 
-        .niveauxp, .droite{
+        .niveauxp,
+        .droite {
             color: #FFEFE1;
+        }
+
+        .titresucces {
+            font-size: 0.8rem;
+            margin-top: -0.8rem;
+            color: #A9FFA4;
+        }
+
+        .partager {
+            font-size: 0.7rem;
+        }
+
+        .btn {
+            padding: 0px;
+        }
+
+        .progress-bar {
+            background-color: #A9FFA4;
         }
     </style>
 </head>
@@ -155,28 +173,6 @@
         </div>
     </div>
 
-    <!-- Contenu de la pop-up s-->
-    <div id="overlay" onclick="fermerPopup()"></div> <!-- Overlay pour l'arrière-plan semi-transparent -->
-    <div id="popup">
-        <button onclick="fermerPopup()" id="compte_param_button_close"><i class="fa-solid fa-xmark"></i></button>
-        <h3 id="compte_h3_settings">Paramètres</h3>
-
-        <form action="../form/traitement_modification.php" method="POST">
-            <label for="nouveauPseudo">Pseudo : </label>
-            <input type="text" id="nouveauPseudo" name="nouveauPseudo" value="<?php echo $utilisateur['pseudo']; ?>"
-                required><br><br>
-
-            <label for="nouvelleEmail">Adresse e-mail : </label>
-            <input type="email" id="nouvelleEmail" name="nouvelleEmail" value="<?php echo $utilisateur['mail']; ?>"
-                required><br><br>
-
-            <input type="submit" value="Modifier" id="compte_settings_button_valid">
-        </form>
-
-    </div>
-    </div>
-    </div>
-
     <!-- Popup de sélection de badge -->
     <div id="badgePopup" class="popup">
         <div class="popup-content">
@@ -196,19 +192,31 @@
     </div>
 
     <div class="container mt-4">
-        <div class="rounded p-4 profil_page">
+        <div class="p-4 profil_page">
             <div class="row">
                 <div class="col-3">
                     <img src="<?php echo $profileImage; ?>" alt="Image de profil" class="profile-image">
                 </div>
-                <div class="col-7">
-                    <h2 class="mb-3 pseudo">
-                        <?php echo $utilisateur['pseudo']; ?>
-                    </h2>
+                <div class="col-6">
+                    <div class="row">
+                        <h2 class="pseudo">
+                            <?php echo $utilisateur['pseudo']; ?>
+                        </h2>
+                    </div>
+                    <div class="row">
+                        <div class="mb-3 titresucces">
+                            <?php echo "imagine un titre"; ?>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-2 text-md-end">
-                    <button class="btn" onclick="partager()"><i class="fa-solid fa-share-nodes"></i></button>
-
+                <div class="col-3 text-end">
+                    <div class="row">
+                        <button class="btn" onclick="partager()"><img src="../img/share-solid 1.svg" alt=""
+                                srcset=""></button>
+                    </div>
+                    <div class="row partager text-center">
+                        <p>Partager</p>
+                    </div>
                 </div>
             </div>
             <div class="row mt-3">
@@ -318,20 +326,18 @@
                         </div>
                         <!-- Barre de progression -->
                         <div class="row">
-                            <div class="col">
-                                <div class="progress mt-3">
-                                    <div class="progress-bar bg-success" role="progressbar"
-                                        style="width: <?= $progression ?>%;" aria-valuenow="<?= $progression ?>"
-                                        aria-valuemin="0" aria-valuemax="100">
-                                        <?= $progression ?>%
+                                <div class="col">
+                                    <div class="progress mt-3">
+                                        <div class="progress-bar" role="progressbar"
+                                            style="width: <?= $progression ?>%;" aria-valuenow="<?= $progression ?>"
+                                            aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                 </div>
-                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="row mt-3 sous-xp text-center">
+                <div class="row mt-3 sous-xp text-center align-items-end">
                     <div class="col-8">
                         <p>Membre depuis le
                             <?php
@@ -454,6 +460,10 @@
                 </form>
             </div>
             <div class="separator my-3"></div>
+            <div class="row text-center mt-4">
+            <a href="../form/deconnexion.php" style="text-decoration: underline; color: white;">Déconnexion</a>
+            <a class="mt-3" style="text-decoration: none; color: #F21010;" onclick="return confirm('Voulez-vous vraiment supprimer votre compte ?');">Supprimer le compte</a>
+            </div>
         </div>
     </div>
 
