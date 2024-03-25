@@ -27,12 +27,6 @@ if (isset($_GET['partage'])){
     <title>Classement</title>
     <style>
 
-        body {
-            background-color: #1c3326;
-            background-image: url("../pack-icon/pattern/download.svg");
-            background-repeat: repeat;
-            background-size: 325%;
-        }
 
         .user-card {
             border-radius: 15px;
@@ -96,15 +90,12 @@ if (isset($_GET['partage'])){
     $Classements = $requeteClassement->fetchAll(PDO::FETCH_ASSOC);
     ?>
 
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-md-6 pt-5 pb-1 px-5">
-                <img src="../img/LAEDERBOARD.svg" alt="Tableau de classement" class="img-fluid">
-                <a href="../index.php"><img src="../img/a.svg" alt="Lettre A" class="px-2 ahah"></a>
+    <div id="classement_div_patern">
+<div id="classement_title_box">
+                <img src="../img/LAEDERBOARD.svg" alt="Tableau de classement" id="classement_svg_leader">
+                <a href="../index.php"><img src="../img/a.svg" alt="Lettre A" id="classement_logo"></a>
                 <p id="classement_paragraph_top">TOP 10</p>
-            </div>
-        </div>
-    </div>
+</div>
 
     <div class="container">
         <?php foreach ($Classements as $key => $classement) { ?>
@@ -123,6 +114,7 @@ if (isset($_GET['partage'])){
 
     <div class="scroll w-100"></div>
 
+        </div>
     <?php
     include("../form/templates/footer.php")
     ?>
