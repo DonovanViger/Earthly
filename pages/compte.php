@@ -576,17 +576,14 @@
     $select_titres_user->execute();
     $titres = $select_titres_user->fetchAll(PDO::FETCH_ASSOC);
     echo "<script> var titres = ".json_encode($titres)."</script>";
-    echo "<script> var titreUtilisateur = ".$titreUtilisateur."</script>";
         ?>
         <script>
             console.table(titres);
-            console.table(titreUtilisateur);
         function titrechoose(){
             var titrechoose = document.getElementById('titrechoose');
             titrechoose.innerHTML="<select name='titre' id='titre'>";
             for (let i=0; i<titres.length; i++) {
-                if (titres[i]==)
-            titrechoose.innerHTML+="<option value="">"+titres[i]+"</option>";
+            titrechoose.innerHTML+="<option value="+i+">"+titres[i].nom+"</option>";
             }
             titrechoose.innerHTML+="</select>";
         }
