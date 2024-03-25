@@ -227,8 +227,6 @@ try {
     // Si des défis sont sélectionnés pour la journée actuelle
     if (!empty($defis_journaliers)) {
         // Afficher les défis sélectionnés pour la journée
-        echo "<div id='defis_challenge_box'>Liste des défis</h2>";
-        echo "<h2 id='defis_h2'>Liste des défis</h2>";
         echo "<ul id='defis_ul'>";
         foreach ($defis_journaliers as $defi) {
             echo "<div class='defi'>";
@@ -266,7 +264,9 @@ try {
     }
     ?>
 
-<a href="success.php">vers les success</a>
+<div id="defis_button_succes_box">
+<a href="success.php">Voir mes succès</a>
+</div>
 
 </div>
     <?php

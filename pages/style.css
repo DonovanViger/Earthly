@@ -727,6 +727,20 @@ ul{
     border-radius: 15px ;
 }
 
+#defis_button_succes_box{
+    width: 75vw;
+    margin: auto;
+    text-align: center;
+    padding: 2.5vh;
+    border: #A9FFA4 0.25vh solid;
+    border-radius: 50px;
+}
+
+#defis_button_succes_box a{
+    text-decoration: none;
+    color: #A9FFA4;
+}
+
 
 
 /*Page succès*/
