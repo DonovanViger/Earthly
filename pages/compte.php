@@ -14,7 +14,7 @@
             font-size: 2rem;
             color: #2BBA7C;
             text-decoration: none;
-            margin-left: 3%;
+            margin-left: -3%;
         }
 
         .boite {
@@ -130,12 +130,17 @@
         $query->execute();
     }
     ?>
-    <div class="row">
-    <div id="comptetitre">
-        <img src="../img/COMPTE.svg" class="header-image" data-image="5.png" style="max-width: 50px;">
-        <h1 class="titrecompte"><a href="../index.php">Mon compte</a></h1>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-1 offset-1" class="comptetitre">
+                <img src="../img/COMPTE.svg" class="header-image" data-image="5.png" style="max-width: 50px;">
+            </div>
+            <div class="col-8 offset-1" class="comptetitre">
+                <h1 class="titrecompte"><a href="../index.php">Mon compte</a></h1>
+            </div>
+        </div>
     </div>
-    </div>
+
     <!-- Contenu de la pop-up s-->
     <div id="overlay" onclick="fermerPopup()"></div> <!-- Overlay pour l'arrière-plan semi-transparent -->
     <div id="popup">

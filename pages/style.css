@@ -433,14 +433,6 @@ body {
     border-radius: 50%;
 }
 
-#compte_settings {
-    float: right;
-    background-color: #1C3326;
-    border: none;
-    padding-right: 2vw;
-    padding-top: 2vh;
-}
-
 #compte_settings i {
     color: white;
     font-size: 4vh;
