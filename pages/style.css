@@ -807,6 +807,24 @@ ul{
     padding: 3vh 2vh 2vh 2vh;
 }
 
+#succes_box5{
+    width: 85%;
+    background-color: #2BBA7C;
+    color: #A9FFA4;
+    border-radius: 15px;
+    margin: auto;
+    padding: 3vh 2vh 2vh 2vh;
+}
+
+#succes_box6{
+    width: 85%;
+    background-color: #A9FFA4;
+    color: #A9FFA4;
+    border-radius: 15px;
+    margin: 5vh auto;
+    padding: 3vh 2vh 2vh 2vh;
+}
+
 #success_svg_trophy{
     width: 7.5vw;
     height: 3.5vh;
