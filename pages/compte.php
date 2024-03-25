@@ -123,8 +123,8 @@
         $user_id = $_SESSION['user_id'];
 
         // Requête SQL pour récupérer les informations de l'utilisateur
-        $requete = $db->prepare("SELECT * FROM utilisateurs WHERE pseudo = :pseudo");
-        $requete->bindParam(':pseudo', $pseudo);
+        $requete = $db->prepare("SELECT * FROM utilisateurs WHERE ID_Utilisateur = :id_utilisateur");
+        $requete->bindParam(':id_utilisateur', $user_id);
         $requete->execute();
 
         // Récupération des résultats de la requête
