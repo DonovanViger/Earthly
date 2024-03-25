@@ -349,6 +349,7 @@ if (!isset($_SESSION['pseudo'])) {
         </div>
     </div>
 </div>
+</div>
 
 
 </body>

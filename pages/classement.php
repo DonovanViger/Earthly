@@ -7,13 +7,6 @@ if (!isset($_SESSION['pseudo'])) {
     header("Location: connexion.php");
     exit();
 }
-
-if (isset($_GET['partage'])){
-    $id_partage = $_GET['partage'];
-
-    
-}
-
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -28,7 +21,8 @@ if (isset($_GET['partage'])){
     <style>
 
 
-        .user-card {
+        .user-card { 
+            flex-wrap: nowrap;
             border-radius: 15px;
             padding: 18px;
             margin-bottom: 10px;
@@ -78,12 +72,27 @@ if (isset($_GET['partage'])){
 
     <?php
 
-    try {
-        $db = new PDO('mysql:host=localhost;dbname=sae401-2', 'root', '');
-        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    } catch (PDOException $erreur) {
-        die("Erreur de connexion à la base de données : " . $erreur->getMessage());
-    }
+try {
+    $db = new PDO('mysql:host=localhost;dbname=sae401-2', 'root', '');
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $erreur) {
+    die("Erreur de connexion à la base de données : " . $erreur->getMessage());
+}
+
+if (isset($_GET['partage'])){
+    $id_partage = $_GET['partage'];
+
+    $requete1 = $db->prepare("SELECT pseudo, point_Planete, dateCreationCompte, pdp FROM utilisateurs WHERE ID_Utilisateur = :iduser");
+    $requete1->bindParam(':iduser', $id_partage);
+    $requete1->execute();
+    $partage = $requete1->fetch(PDO::FETCH_ASSOC);
+    echo "<script> console.log(".json_encode($partage).");</script>";
+?>
+
+<div class="partage_classement"></div>
+
+<?php 
+}
 
     $requeteClassement = $db->prepare("SELECT `pseudo`,`exp_Utilisateur`,`point_Planete`, IFNULL(`pdp`, '../uploads/default.jpg') AS `pdp` FROM `utilisateurs` ORDER BY `point_Planete` DESC LIMIT 10;");
     $requeteClassement->execute();
