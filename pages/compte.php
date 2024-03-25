@@ -8,25 +8,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="style.css" />
     <title>Mon compte</title>
-    <style>
-        h1 {
-            font-size: 2rem;
-        }
-
-        h1 a {
-            color: #2BBA7C;
-            text-decoration: none;
-        }
-
-        .boite {
-            background-color: #2BBA7C;
-            border-radius: 15px;
-        }
-
-        .pseudo {
-            color: #FFEFE1;
-        }
-    </style>
 </head>
 
 <body>
@@ -85,7 +66,7 @@
     ?>
     <div id="comptetitre">
         <img src="../img/COMPTE.svg" class="header-image" data-image="5.png" style="max-width: 50px;">
-        <h1 class="px-3"><a href="../index.php">Mon compte</a></h1>
+        <h1 id="h1_compte"><a href="../index.php">Mon compte</a></h1>
     </div>
     <!-- Contenu de la pop-up s-->
     <div id="overlay" onclick="fermerPopup()"></div> <!-- Overlay pour l'arrière-plan semi-transparent -->
@@ -110,7 +91,6 @@
     <!-- Popup de sélection de badge -->
     <div id="badgePopup" class="popup">
         <div class="popup-content">
-            <span class="close" onclick="closeBadgePopup()">&times;</span>
             <?php $requete_succes_utilisateur = $db->prepare("SELECT s.ID_succes, s.pds FROM succes s INNER JOIN utilisateursucces us ON s.ID_succes = us.ID_Succes WHERE us.ID_Utilisateur = :id_utilisateur AND dateObtention = 00-00-0000");
             $requete_succes_utilisateur->bindParam(':id_utilisateur', $id_utilisateur);
             $requete_succes_utilisateur->execute();
@@ -123,9 +103,6 @@
                 echo "<img src='" . $succes['pds'] . "' alt='" . $succes['nom'] . "'>";
             }
             ?>
-            <div id="badgeOptions">
-                <!-- Les options de badges seront chargées ici via JavaScript -->
-            </div>
         </div>
     </div>
 
@@ -140,8 +117,7 @@
                         <form id="imageForm" action="../form/changer_image.php" method="post" enctype="multipart/form-data">
                             <label for="nouvelle_image" class="custom-file-upload">
                                 <input id="nouvelle_image" type="file" name="nouvelle_image" accept="image/*" onchange="submitForm()" required>
-                                Changer l'image de profil
-                            </label>
+                                Changer l'image de profil</label>
                         </form>
 
                     </div>
@@ -150,26 +126,56 @@
                     <div class="col-md-6">
                         <img src="<?php echo $profileImage; ?>" alt="Image de profil" class="profile-image">
                         <div class="row">
-                            <div class="col-4">
-                                <div class="badgeSlot" id="badgeSlot1" onclick="openBadgePopup(1)"></div>
-                            </div>
-                            <div class="col-4">
-                                <div class="badgeSlot" id="badgeSlot2" onclick="openBadgePopup(2)"></div>
-                            </div>
-                            <div class="col-4">
-                                <div class="badgeSlot" id="badgeSlot3" onclick="openBadgePopup(3)"></div>
-                            </div>
-                        </div>
-                        <div class="row mt-2">
-                            <div class="col-4">
-                                <div class="badgeSlot" id="badgeSlot4" onclick="openBadgePopup(4)"></div>
-                            </div>
-                            <div class="col-4">
-                                <div class="badgeSlot" id="badgeSlot5" onclick="openBadgePopup(5)"></div>
-                            </div>
-                            <div class="col-4">
-                                <div class="badgeSlot" id="badgeSlot6" onclick="openBadgePopup(6)"></div>
-                            </div>
+                            <?php for ($i = 1; $i <= 6; $i++): ?>
+                                    <div class="col-4">
+                                        <div class="badgeSlot" id="badgeSlot<?php echo $i; ?>">
+                                            <?php
+                                            // Logique pour récupérer les images des succès pour chaque slot
+                                            // Par exemple, vous pouvez exécuter une requête SQL pour chaque slot
+                                            // et récupérer le succès avec la meilleure progression pour chaque groupe de succès
+                                        
+                                            // Déterminer le groupe en fonction de la valeur de $i
+                                            switch ($i) {
+                                                case 1:
+                                                    $group = 'A%';
+                                                    break;
+                                                case 2:
+                                                    $group = 'B%';
+                                                    break;
+                                                case 3:
+                                                    $group = 'C%';
+                                                    break;
+                                                case 4:
+                                                    $group = 'D%';
+                                                    break;
+                                                case 5:
+                                                    $group = 'E%';
+                                                    break;
+                                                case 6:
+                                                    $group = 'F%';
+                                                    break;
+                                                default:
+                                                    $group = ''; // Gérer les valeurs par défaut si nécessaire
+                                                    break;
+                                            }
+
+                                            // Exemple de requête SQL pour récupérer le succès pour chaque slot
+                                            $query_slot = $db->prepare("SELECT pds FROM `utilisateursucces` JOIN `succes` ON utilisateursucces.ID_Succes = succes.ID_succes WHERE utilisateursucces.ID_Utilisateur = :userID AND succes.triageSucces LIKE :group AND dateObtention != 00-00-0000 ORDER BY succes.maxProgression DESC LIMIT 1");
+                                            $query_slot->bindParam(':userID', $utilisateur['ID_Utilisateur']);
+                                            $query_slot->bindParam(':group', $group);
+                                            $query_slot->execute();
+                                            $slot_success = $query_slot->fetch(PDO::FETCH_ASSOC);
+
+                                            // Affichage de l'image du succès ou une image par défaut
+                                            if ($slot_success) {
+                                                echo '<img src="' . $slot_success['pds'] . '" alt="Badge Slot ' . $i . '">';
+                                            } else {
+                                                echo '';
+                                            }
+                                            ?>
+                                        </div>
+                                    </div>
+                            <?php endfor; ?>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -177,68 +183,62 @@
                             <div class="progress-bar" role="progressbar" style="width: <?php echo $utilisateur['exp_Utilisateur']; ?>%;" aria-valuenow="<?php echo $utilisateur['exp_Utilisateur']; ?>" aria-valuemin="0" aria-valuemax="100"><?php echo $utilisateur['exp_Utilisateur']; ?>%</div>
                         </div>
                         <p class="mt-3">Date de création du compte : <?php
-                                                                        $dateCreationCompte = $utilisateur['dateCreationCompte'];
+                        $dateCreationCompte = $utilisateur['dateCreationCompte'];
 
-                                                                        echo $dateCreationCompte;
-                                                                        ?></p>
+                        echo $dateCreationCompte;
+                        ?></p>
                         <p>Points : <?php
-                                    if ($utilisateur['point_Planete'] < 1000) {
-                                        $niv = 1;
-                                    } else if ($utilisateur['point_Planete'] < 3000) {
-                                        $niv = 2;
-                                    } else if ($utilisateur['point_Planete'] < 7000) {
-                                        $niv = 3;
-                                    } else if ($utilisateur['point_Planete'] < 15000) {
-                                        $niv = 4;
-                                    } else {
-                                        $niv = 5;
-                                    }
-                                    echo $utilisateur['point_Planete'];
+                        if ($utilisateur['point_Planete'] < 1000) {
+                            $niv = 1;
+                        } else if ($utilisateur['point_Planete'] < 3000) {
+                            $niv = 2;
+                        } else if ($utilisateur['point_Planete'] < 7000) {
+                            $niv = 3;
+                        } else if ($utilisateur['point_Planete'] < 15000) {
+                            $niv = 4;
+                        } else {
+                            $niv = 5;
+                        }
+                        echo $utilisateur['point_Planete'];
 
-                                    ?> (Planète niveau <?php echo $niv; ?>)</p>
-                        <?php if (!empty($utilisateur['ID_parrain'])) : ?>
-                            <p>Parrain : <?php echo $utilisateur['ID_parrain']; ?></p>
+                        ?> (Planète niveau <?php echo $niv; ?>)</p>
+                        <?php if (!empty ($utilisateur['ID_parrain'])): ?>
+                                                    <p>Parrain : <?php echo $utilisateur['ID_parrain']; ?></p>
                         <?php endif; ?>
                     </div>
                 </div>
             </div>
         </div>
 
-    <button id="compte_button">
-        <a href="../form/deconnexion.php">Se déconnecter</a>
-    </button>
-
-    <label for="nouvelle_image" class="custom-file-upload">
-        <input id="nouvelle_image" type="file" name="nouvelle_image" accept="image/*" onchange="submitForm()" required>
-        Changer l'image de profil
-    </label>
-    </form>
+        <button id="compte_button">
+            <a href="../form/deconnexion.php">Se déconnecter</a>
+        </button>
 
 
 
-    <br>
-    <script>
-        function partager() {
-            var lien = "localhost/earthly/pages/partage.php?pseudo=<?php echo $pseudo ?>";
-            console.log(lien);
-            alert("Partagez le lien à vos amis : " + lien);
-        }
-        // Fonction pour ouvrir le popup de sélection de badge
-        function openBadgePopup(slotNumber) {
-            // Code pour charger les options de badge en fonction du slotNumber ici
-            // Exemple: Vous pouvez utiliser une requête AJAX pour charger les badges disponibles
-            // Une fois les badges chargés, mettez à jour le contenu du popup
+        <br>
+        <script>
+            function partager() {
+                var lien = "localhost/earthly/pages/partage.php?pseudo=<?php echo $pseudo ?>";
+                console.log(lien);
+                alert("Partagez le lien à vos amis : " + lien);
+            }
+            // Fonction pour ouvrir le popup de sélection de badge
+            function openBadgePopup(slotNumber) {
+                // Code pour charger les options de badge en fonction du slotNumber ici
+                // Exemple: Vous pouvez utiliser une requête AJAX pour charger les badges disponibles
+                // Une fois les badges chargés, mettez à jour le contenu du popup
 
-            // Afficher le popup
-            document.getElementById('badgePopup').style.display = 'block';
-        }
+                // Afficher le popup
+                document.getElementById('badgePopup').style.display = 'block';
+            }
 
-        // Fonction pour fermer le popup de sélection de badge
-        function closeBadgePopup() {
-            // Masquer le popup
-            document.getElementById('badgePopup').style.display = 'none';
-        }
-    </script>
+            // Fonction pour fermer le popup de sélection de badge
+            function closeBadgePopup() {
+                // Masquer le popup
+                document.getElementById('badgePopup').style.display = 'none';
+            }
+        </script>
     </div>
 
     <div class="succes">
@@ -249,14 +249,14 @@
             $requete_succes->execute();
             $succes = $requete_succes->fetchAll(PDO::FETCH_ASSOC);
             foreach ($succes as $suc) {
-            ?>
-                <div class="col-lg-4">
-                    <!-- Sur les grands écrans (lg), il y aura trois succès par ligne. Sur les écrans moyens (md), il y en aura deux par ligne. -->
-                    <div class='succes_numero'>
-                        <h3><?php echo $suc['nom']; ?></h3><br>
-                        <p><?php echo $suc['desc']; ?></p><br>
-                    </div>
-                </div>
+                ?>
+                                        <div class="col-lg-4">
+                                            <!-- Sur les grands écrans (lg), il y aura trois succès par ligne. Sur les écrans moyens (md), il y en aura deux par ligne. -->
+                                            <div class='succes_numero'>
+                                                <h3><?php echo $suc['nom']; ?></h3><br>
+                                                <p><?php echo $suc['desc']; ?></p><br>
+                                            </div>
+                                        </div>
             <?php } ?>
         </div>
     </div>
