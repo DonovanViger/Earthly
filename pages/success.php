@@ -155,7 +155,7 @@ if (!isset($_SESSION['pseudo'])) {
 
 <div id="succes_box3">
 <img src="../img/trophy-white.svg" alt="trophy" id="success_svg_trophy">
-    <h2 id="success_h2_3">Douche éclair</h2>
+    <h2 id="success_h2_3">Eco-safari urbain</h2>
     <div id="success_number">
         <?php 
         if ($tableau[7] == "oui") {
@@ -171,7 +171,7 @@ if (!isset($_SESSION['pseudo'])) {
     </div>
 
     <div class="success_box_1">
-        <h3 class="success_h3_darkgreen">Douche éclair <strong class="succes_strong_green">I</strong></h3>
+        <h3 class="success_h3_darkgreen">Eco-safari urbain <strong class="succes_strong_green">I</strong></h3>
         <div class="succes_checkbox">
             <input type="checkbox" disabled <?php 
             if ($tableau[7] == "oui") {
@@ -181,7 +181,7 @@ if (!isset($_SESSION['pseudo'])) {
         </div>
     </div>
     <div class="success_box_1">
-        <h3 class="success_h3_darkgreen">Douche éclair <strong class="succes_strong_green">II</strong></h3>
+        <h3 class="success_h3_darkgreen">Eco-safari urbain <strong class="succes_strong_green">II</strong></h3>
         <div class="succes_checkbox">
             <input type="checkbox" disabled <?php 
             if ($tableau[6] == "oui") {
@@ -191,7 +191,7 @@ if (!isset($_SESSION['pseudo'])) {
         </div>
     </div>
     <div class="success_box_1">
-        <h3 class="success_h3_darkgreen">Douche éclair <strong class="succes_strong_green">III</strong></h3>
+        <h3 class="success_h3_darkgreen">Eco-safari urbain <strong class="succes_strong_green">III</strong></h3>
         <div class="succes_checkbox">
             <input type="checkbox" disabled <?php 
             if ($tableau[3] == "oui") {
@@ -245,6 +245,106 @@ if (!isset($_SESSION['pseudo'])) {
         <div class="succes_checkbox">
             <input type="checkbox" disabled <?php 
             if ($tableau[10] == "oui") {
+                echo "checked";
+            }
+            ?>>
+        </div>
+    </div>
+</div>
+
+
+<div id="succes_box5">
+<img src="../img/trophy-dark.svg" alt="trophy" id="success_svg_trophy">
+    <h2 id="success_h2_2">Objet De Second Feuillage</h2>
+    <div id="success_number">
+        <?php 
+        if ($tableau[18] == "oui") {
+            echo "3/3";
+        } else if ($tableau[17] == "oui") {
+            echo "2/3";
+        } else if ($tableau[16] == "oui") {
+            echo "1/3";
+        } else {
+            echo "0/3";
+        }
+        ?>
+    </div>
+
+    <div class="success_box_3">
+        <h3 class="success_h3_lightgreen">Objet De Second Feuillage <strong class="succes_strong_lightergreen">I</strong></h3>
+        <div class="succes_checkbox">
+            <input type="checkbox" disabled <?php 
+            if ($tableau[16] == "oui") {
+                echo "checked";
+            }
+            ?>>
+        </div>
+    </div>
+    <div class="success_box_3">
+        <h3 class="success_h3_lightgreen">Objet De Second Feuillage <strong class="succes_strong_lightergreen">II</strong></h3>
+        <div class="succes_checkbox">
+            <input type="checkbox" disabled <?php 
+            if ($tableau[17] == "oui") {
+                echo "checked";
+            }
+            ?>>
+        </div>
+    </div>
+    <div class="success_box_3">
+        <h3 class="success_h3_lightgreen">Objet De Second Feuillage <strong class="succes_strong_lightergreen">III</strong></h3>
+        <div class="succes_checkbox">
+            <input type="checkbox" disabled <?php 
+            if ($tableau[18] == "oui") {
+                echo "checked";
+            }
+            ?>>
+        </div>
+    </div>
+</div>
+
+
+<div id="succes_box6">
+<img src="../img/trophy-dark.svg" alt="trophy" id="success_svg_trophy">
+    <h2 id="success_h2_2">Dépense Fruitière</h2>
+    <div id="success_number">
+        <?php 
+        if ($tableau[21] == "oui") {
+            echo "3/3";
+        } else if ($tableau[20] == "oui") {
+            echo "2/3";
+        } else if ($tableau[19] == "oui") {
+            echo "1/3";
+        } else {
+            echo "0/3";
+        }
+        ?>
+    </div>
+
+    <div class="success_box_3">
+        <h3 class="success_h3_lightgreen">Dépense Fruitière <strong class="succes_strong_lightergreen">I</strong></h3>
+        <div class="succes_checkbox">
+            <input type="checkbox" disabled <?php 
+            if ($tableau[19] == "oui") {
+                echo "checked";
+            }
+            ?>>
+        </div>
+    </div>
+    <div class="success_box_3">
+        <h3 class="success_h3_lightgreen">Dépense Fruitière <strong class="succes_strong_lightergreen">II</strong></h3>
+        <div class="succes_checkbox">
+            <input type="checkbox" disabled <?php 
+            if ($tableau[20] == "oui") {
+                echo "checked";
+            }
+            ?>>
+        </div>
+    </div>
+    <div class="success_box_3">
+        <h3 class="success_h3_lightgreen">Dépense Fruitière <strong class="succes_strong_lightergreen">III</strong></h3>
+        <div class="succes_checkbox">
+            <input type="checkbox" disabled <?php 
+            if ($tableau[21] == "oui") {
                 echo "checked";
             }
             ?>>
