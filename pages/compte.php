@@ -339,13 +339,14 @@
 
                 <div class="row mt-3 sous-xp text-center align-items-end">
                     <div class="col-8">
-                        <p>Membre depuis le
-                            <?php
-                            $dateCreationCompte = $utilisateur['dateCreationCompte'];
-
-                            echo $dateCreationCompte;
-                            ?>
-                        </p>
+                    <p>Membre depuis le
+                        <?php
+                        $dateCreationCompte = $utilisateur['dateCreationCompte'];
+                        // Convertir la date en format DD-MM-YYYY
+                        $dateFormatee = date("d-m-Y", strtotime($dateCreationCompte));
+                        echo $dateFormatee;
+                        ?>
+                    </p>
                     </div>
                     <div class="col-3 offset-1 level">
                         <p>Planète niveau
