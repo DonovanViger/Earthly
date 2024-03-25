@@ -82,14 +82,190 @@ try {
 if (isset($_GET['partage'])){
     $id_partage = $_GET['partage'];
 
-    $requete1 = $db->prepare("SELECT pseudo, point_Planete, dateCreationCompte, pdp FROM utilisateurs WHERE ID_Utilisateur = :iduser");
+    $requete1 = $db->prepare("SELECT * FROM utilisateurs WHERE ID_Utilisateur = :iduser");
     $requete1->bindParam(':iduser', $id_partage);
     $requete1->execute();
     $partage = $requete1->fetch(PDO::FETCH_ASSOC);
     echo "<script> console.log(".json_encode($partage).");</script>";
+    
+    $profileImage = $partage['pdp'] ? $partage['pdp'] : '../uploads/default.jpg';
 ?>
 
-<div class="partage_classement"></div>
+<div class="partage_classement partage_click">
+<div class="container mt-4 partage_click">
+        <div class="p-4 profil_page partage_click">
+            <div class="row partage_click">
+                <div class="col-3 partage_click">
+                    <img src="<?php echo $profileImage; ?>" alt="Image de profil" class="profile-image partage_click">
+                </div>
+                <div class="col-6 partage_click">
+                    <div class="row partage_click">
+                        <h2 class="pseudo partage_click">
+                            <?php echo $partage['pseudo']; ?>
+                        </h2>
+                    </div>
+                    <div class="row partage_click">
+                        <div class="mb-3 titresucces partage_click">
+                            <?php echo "imagine un titre"; ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3 text-end partage_click">
+                    <div class="row partage_click">
+                        <button class="btn partage_click" onclick="partager()"><img src="../img/share-solid 1.svg" alt=""
+                                srcset=""></button>
+                    </div>
+                    <div class="row partager text-center partage_click">
+                        <p>Partager</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3 partage_click">
+                <div class="col-6 offset-3 badges mb-2 partage_click">
+                <div class="row partage_click">
+    <?php for ($i = 1; $i <= 6; $i++): ?>
+            <div class="col-4 partage_click">
+                <div class="badgeSlot partage_click" id="badgeSlot<?php echo $i; ?>">
+                    <?php
+                    // Déterminer le groupe en fonction de la valeur de $i
+                    switch ($i) {
+                        case 1:
+                            $group = 'A%';
+                            break;
+                        case 2:
+                            $group = 'B%';
+                            break;
+                        case 3:
+                            $group = 'C%';
+                            break;
+                        case 4:
+                            $group = 'D%';
+                            break;
+                        case 5:
+                            $group = 'E%';
+                            break;
+                        case 6:
+                            $group = 'F%';
+                            break;
+                        default:
+                            $group = ''; // Gérer les valeurs par défaut si nécessaire
+                            break;
+                    }
+
+                    // Exemple de requête SQL pour récupérer le succès pour chaque slot
+                    $requete_succes = $db->prepare("SELECT s.ID_succes, s.pds, s.nom FROM succes s 
+                    INNER JOIN utilisateursucces us ON s.ID_succes = us.ID_Succes 
+                    WHERE us.ID_Utilisateur = :id_utilisateur AND s.triageSucces LIKE :group AND us.dateObtention != 00-00-0000
+                    ORDER BY CAST(SUBSTRING(s.triageSucces, 2) AS UNSIGNED) DESC
+                    LIMIT 1");
+                    $requete_succes->bindParam(':id_utilisateur', $id_partage);
+                    $requete_succes->bindParam(':group', $group);
+                    $requete_succes->execute();
+
+                    // Récupérer le résultat de la requête
+                    $succes_utilisateur = $requete_succes->fetch(PDO::FETCH_ASSOC);
+
+                    // Afficher le succès de l'utilisateur
+                    if ($succes_utilisateur) {
+                        echo "<img src='" . $succes_utilisateur['pds'] . "' alt='" . $succes_utilisateur['nom'] . "'>";
+                    }
+                    ?>
+                </div>
+            </div>
+    <?php endfor; ?>
+</div>
+                </div>
+
+                <?php
+                // Les points de l'utilisateur (remplacez cela par vos données)
+                $pointsUtilisateur = $partage['point_Planete'];
+
+                // Initialisation des variables de niveau
+                $niveauActuel = 1;
+                $pointsNiveauSuivant = 1000;
+
+                // Calcul du niveau en fonction des points
+                if ($pointsUtilisateur >= 1000 && $pointsUtilisateur < 3000) {
+                    $niveauActuel = 2;
+                    $pointsNiveauSuivant = 3000;
+                } elseif ($pointsUtilisateur >= 3000 && $pointsUtilisateur < 7000) {
+                    $niveauActuel = 3;
+                    $pointsNiveauSuivant = 7000;
+                } elseif ($pointsUtilisateur >= 7000 && $pointsUtilisateur < 15000) {
+                    $niveauActuel = 4;
+                    $pointsNiveauSuivant = 15000;
+                } elseif ($pointsUtilisateur >= 15000) {
+                    $niveauActuel = 5;
+                    $pointsNiveauSuivant = null; // Pas de niveau suivant car c'est le dernier niveau
+                }
+
+                // Calcul de la progression
+                if ($pointsNiveauSuivant !== null) {
+                    $progression = ($pointsUtilisateur / $pointsNiveauSuivant) * 100;
+                } else {
+                    // Si $pointsNiveauSuivant est null, la progression est de 100%
+                    $progression = 100;
+                }
+                ?>
+
+
+            </div>
+            <div class="row partage_click">
+                <div class="mt-2 partage_click">
+                    <div class="rounded p-1 profil_page partage_click">
+                        <!-- Barre de progression avec l'XP actuel à gauche, le niveau au milieu, et l'XP nécessaire à droite -->
+                        <div class="row align-items-center partage_click">
+                            <div class="col-4 partage_click">
+                                <p class="mb-0 xp gauche partage_click">
+                                    <?php echo $pointsUtilisateur; ?>exp
+                                </p>
+                            </div>
+                            <div class="col-4 text-center niveauxp partage_click">
+                                <p class="mb-0 partage_click">Niveau
+                                    <?php echo $niveauActuel; ?>
+                                </p>
+                            </div>
+                            <div class="col-4 text-end xp droite partage_click">
+                                <p class="mb-0 partage_click">
+                                    <?php echo $pointsNiveauSuivant; ?>
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Barre de progression -->
+                        <div class="row partage_click">
+                                <div class="col partage_click">
+                                    <div class="progress mt-3 partage_click">
+                                        <div class="progress-bar partage_click" role="progressbar"
+                                            style="width: <?= $progression ?>%;" aria-valuenow="<?= $progression ?>"
+                                            aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-3 sous-xp text-center align-items-end partage_click">
+                    <div class="col-8 partage_click">
+                    <p>Membre depuis le
+                        <?php
+                        $dateCreationCompte = $partage['dateCreationCompte'];
+                        // Convertir la date en format DD-MM-YYYY
+                        $dateFormatee = date("d-m-Y", strtotime($dateCreationCompte));
+                        echo $dateFormatee;
+                        ?>
+                    </p>
+                    </div>
+                    <div class="col-3 offset-1 level partage_click">
+                        <p>Planète niveau
+                            <?php echo $niveauActuel; ?>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
 
 <?php 
 }
@@ -128,6 +304,24 @@ if (isset($_GET['partage'])){
     include("../form/templates/footer.php")
     ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script>
+    <script>
+        
+        function partager() {
+            var lien = "localhost/earthly/pages/partage.php?idpartage=<?php echo $id_partage ?>";
+            console.log(lien);
+            alert("Partagez le lien à vos amis : " + lien);
+        }
+
+        var partage_classement = document.getElementsByClassName("partage_classement");
+        document.body.addEventListener('click', function (e) {
+            if (!e.target.classList.contains('partage_click')) {
+                partage_classement[0].innerHTML="";
+                partage_classement[0].style.width="0";
+                partage_classement[0].style.height="0";
+            }
+        });
+
     </script>
 </body>
 
