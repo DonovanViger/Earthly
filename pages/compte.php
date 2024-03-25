@@ -276,29 +276,35 @@
                 </div>
 
                 <?php
-                // Les points de l'utilisateur (remplacez cela par vos données)
-                $pointsUtilisateur = $utilisateur['point_Planete'];
+                    // Les points de l'utilisateur (remplacez cela par vos données)
+                    $pointsUtilisateur = $utilisateur['point_Planete'];
 
-                // Calcul du niveau en fonction des points
-                if ($pointsUtilisateur < 1000) {
+                    // Initialisation des variables de niveau
                     $niveauActuel = 1;
                     $pointsNiveauSuivant = 1000;
-                } elseif ($pointsUtilisateur < 3000) {
-                    $niveauActuel = 2;
-                    $pointsNiveauSuivant = 3000;
-                } elseif ($pointsUtilisateur < 7000) {
-                    $niveauActuel = 3;
-                    $pointsNiveauSuivant = 7000;
-                } elseif ($pointsUtilisateur < 15000) {
-                    $niveauActuel = 4;
-                    $pointsNiveauSuivant = 15000;
-                } else {
-                    $niveauActuel = 5;
-                    $pointsNiveauSuivant = null; // Pas de niveau suivant car c'est le dernier niveau
-                }
 
-                $progression = ($pointsUtilisateur / $pointsNiveauSuivant) * 100;
+                    // Calcul du niveau en fonction des points
+                    if ($pointsUtilisateur >= 1000 && $pointsUtilisateur < 3000) {
+                        $niveauActuel = 2;
+                        $pointsNiveauSuivant = 3000;
+                    } elseif ($pointsUtilisateur >= 3000 && $pointsUtilisateur < 7000) {
+                        $niveauActuel = 3;
+                        $pointsNiveauSuivant = 7000;
+                    } elseif ($pointsUtilisateur >= 7000 && $pointsUtilisateur < 15000) {
+                        $niveauActuel = 4;
+                        $pointsNiveauSuivant = 15000;
+                    } elseif ($pointsUtilisateur >= 15000) {
+                        $niveauActuel = 5;
+                        $pointsNiveauSuivant = null; // Pas de niveau suivant car c'est le dernier niveau
+                    }
 
+                    // Calcul de la progression
+                    if ($pointsNiveauSuivant !== null) {
+                        $progression = ($pointsUtilisateur / $pointsNiveauSuivant) * 100;
+                    } else {
+                        // Si $pointsNiveauSuivant est null, la progression est de 100%
+                        $progression = 100;
+                    }
                 ?>
 
 
