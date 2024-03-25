@@ -156,6 +156,7 @@
 
         // Vérifier si l'utilisateur a une image de profil
         $profileImage = $utilisateur['pdp'] ? $utilisateur['pdp'] : '../uploads/default.jpg';
+        $titreUtilisateur = $utilisateur['titreUtilisateur'] ? $utilisateur['titreUtilisateur'] : 'Jeune branche';
     } catch (PDOException $erreur) {
         // En cas d'erreur de connexion à la base de données
         die ("Erreur de connexion à la base de données : " . $erreur->getMessage());
@@ -219,7 +220,7 @@
         <div class="p-4 profil_page">
             <div class="row">
                 <div class="col-3">
-                <img src="<?php echo $profileImage; ?>" alt="Avatar de <?php echo $utilisateur['pseudo']; ?>" class="user-avatar" onerror="this.onerror=null;this.src='../uploads/default.jpg';">
+                <img src="<?php echo $profileImage; ?>" alt="Avatar de <?php echo $utilisateur['pseudo']; ?>" class="profile-image" onerror="this.onerror=null;this.src='../uploads/default.jpg';">
                 </div>
                 <div class="col-6">
                     <div class="row">
@@ -229,7 +230,7 @@
                     </div>
                     <div class="row">
                         <div class="mb-3 titresucces">
-                            <?php echo "Jeune Branche"; ?>
+                            <?php echo $titreUtilisateur; ?>
                         </div>
                     </div>
                 </div>

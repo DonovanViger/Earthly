@@ -28,17 +28,12 @@ if (!isset($_SESSION['pseudo'])) {
     $succesuser = $select_succes_user->fetchAll();
     $tableau = [1 => "", 2 => "", 3 => "", 4 => "", 5 => "", 6 => "", 7 => "", 8 => "", 9 => "", 10 => "", 14 => "", 15 => "", 16 => "", 17 => "", 18 => "", 19 => "", 20 => "", 21 => "", ];
 
-    echo "<script> console.table(".json_encode($succesuser).");</script>";
-    echo "<script> console.table(".json_encode($tableau).");</script>";
-
     foreach ($succesuser as $succesnumber) {
-        echo "<script> console.log(".json_encode($succesnumber[1]).");</script>";
         if ($succesnumber[1] != "0000-00-00"){
             $tableau[$succesnumber[0]]="oui";
         }
     }
 
-    echo "<script> console.table(".json_encode($tableau).");</script>";
     ?>
 
     <div id="success_overall">
