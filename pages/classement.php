@@ -10,12 +10,6 @@
     <title>Classement</title>
     <style>
 
-        body {
-            background-color: #1c3326;
-            background-image: url("../pack-icon/pattern/download.svg");
-            background-repeat: repeat;
-            background-size: 325%;
-        }
 
         .user-card {
             border-radius: 15px;
