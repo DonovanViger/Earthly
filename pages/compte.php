@@ -68,6 +68,10 @@
             --bs-list-group-bg: #1C3326;
             --bs-list-group-border-color: none;
         }
+
+        .fa-chevron-up {
+            transform: rotate(-180deg);
+        }
     </style>
 </head>
 
@@ -302,7 +306,7 @@
     <div class="container parametres mt-4">
         <div class="list-group">
             <!-- Notification -->
-            <a class="list-group-item list-group-item-action main-category">
+            <a class="list-group-item list-group-item-action main-category rounded">
                 <div class="row">
                     <div class="col-2">
                         <i class="fas fa-bell mr-2"></i>
@@ -324,7 +328,7 @@
             <!-- Séparateur -->
             <div class="separator my-3"></div>
             <!-- Confidentialité -->
-            <a class="list-group-item list-group-item-action main-category">
+            <a class="list-group-item list-group-item-action main-category rounded">
                 <div class="row">
                     <div class="col-2">
                         <i class="fas fa-lock mr-2"></i>
@@ -345,7 +349,7 @@
             <!-- Séparateur -->
             <div class="separator my-3"></div>
             <!-- Mot de passe -->
-            <a class="list-group-item list-group-item-action">
+            <a class="list-group-item list-group-item-action rounded">
                 <div class="row">
                     <div class="col-2">
                         <i class="fas fa-key mr-2"></i>
@@ -361,7 +365,7 @@
             <!-- Séparateur -->
             <div class="separator my-3"></div>
             <!-- Pseudo -->
-            <a class="list-group-item list-group-item-action">
+            <a class="list-group-item list-group-item-action rounded">
                 <div class="row">
                     <div class="col-2">
                         <i class="fas fa-user mr-2"></i>
@@ -377,7 +381,7 @@
             <!-- Séparateur -->
             <div class="separator my-3"></div>
             <!-- Modifier la photo -->
-            <a class="list-group-item list-group-item-action main-category">
+            <a class="list-group-item list-group-item-action main-category rounded">
                 <div class="row">
                     <div class="col-2">
                         <i class="fas fa-camera mr-2"></i>
@@ -420,6 +424,7 @@
         // Script pour afficher ou masquer les sous-catégories lorsque vous cliquez sur une catégorie principale
         $('.main-category').click(function () {
             $(this).next('.sub-menu').toggleClass('show');
+            $(this).find('.fa-chevron-down').toggleClass('fa-chevron-up');
         });
 
         function partager() {
