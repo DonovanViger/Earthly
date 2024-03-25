@@ -571,17 +571,23 @@
         });
         </script>
         <?php
-        $select_titres_user
-    $select_titres_user = $db->prepare("SELECT nom FROM succes WHERE ID_Utilisateur = :iduser");
-    $select_titres_user->bindParam(':iduser', $id_partage);
+    $select_titres_user = $db->prepare("SELECT nom FROM succes INNER JOIN utilisateursucces ON utilisateursucces.ID_Succes = succes.ID_Succes WHERE utilisateursucces.ID_Utilisateur = :iduser AND utilisateursucces.dateObtention != '0000-00-00'");
+    $select_titres_user->bindParam(':iduser', $id_utilisateur);
     $select_titres_user->execute();
-    $titres = $select_titres_user->fetch(PDO::FETCH_ASSOC);
+    $titres = $select_titres_user->fetchAll(PDO::FETCH_ASSOC);
+    echo "<script> var titres = ".json_encode($titres)."</script>";
+    echo "<script> var titreUtilisateur = ".$titreUtilisateur."</script>";
         ?>
         <script>
-
+            console.table(titres);
+            console.table(titreUtilisateur);
         function titrechoose(){
             var titrechoose = document.getElementById('titrechoose');
             titrechoose.innerHTML="<select name='titre' id='titre'>";
+            for (let i=0; i<titres.length; i++) {
+                if (titres[i]==)
+            titrechoose.innerHTML+="<option value="">"+titres[i]+"</option>";
+            }
             titrechoose.innerHTML+="</select>";
         }
     </script>
