@@ -1,3 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../pages/style.css" />
+    <title>Earthly | Erreur de connexion</title>
+</head>
+<body>
+    
+</body>
+</html>
+
 <?php
 session_start(); // Démarre la session (à placer au début de chaque fichier PHP où vous utilisez des sessions)
 
@@ -75,7 +88,10 @@ try {
         header("Location: ../pages/compte.php"); // Redirige l'utilisateur vers la page d'accueil
         exit();
     } else {
-        echo "Identifiant ou mot de passe incorrect.";
+        echo "<div id='erreur_connexion_box'>";
+        echo "<p id='erreur_connexion_para'>Identifiant ou mot de passe incorrect</p>";
+        echo "<button id='erreur_button_form'><a href='http://localhost/Earthly/Earthly/pages/connexion.php'>Retour à la page de connexion</a>";
+        echo "</div>";
         // Redirection vers la page de connexion avec un message d'erreur
     }
     $date_actuelle = date('Y-m-d');

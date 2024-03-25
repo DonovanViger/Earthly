@@ -53,12 +53,18 @@
     }
     ?>
 
-    <div style="position:absolute;left:0px;top:0px;width:100vw;height:100vh;">
-        <div style="display:flex;justify-content:center;align-items:center;width:100vw;height:100vh;">
-            <svg width="300" height="300">
-                <rect width="300" height="300" stroke="white" stroke-width="10" rx="50" ry="50" fill-opacity="0" />
-            </svg>
+    <div id="recyclage_overall">
+    <svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="0.4" stroke-linecap="round" stroke-linejoin="round" id="recyclage_svg"><rect x="4.7" y="4" width="15" height="15" rx="3" ry="3"></rect></svg>
+    <div id="recyclage_annotation">
+        <h2 id="recyclage_h2_annotation">SCANNEZ UN QR CODE POUR VALIDER VOTRE UTILISATION DES POUBELLES DE RECYCLAGE</h2>
+        <div id="recyclage_trait"></div>
+        <div id="recyclage_annotation_warning">
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="#A9FFA4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="recyclage_warning"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+        <h3 id="recyclage_warning_h3">
+            Vous ne pouvez scanner qu'un seul QR code par jour
+        </h3>
         </div>
+    </div>
     </div>
 
 

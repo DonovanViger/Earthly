@@ -205,6 +205,8 @@ try {
 
 <body>
 
+    <a href="success.php">vers les success</a>
+
     <h1 id="defis_h1"><a href="../index.php">Earthly</a></h1>
 
     <?php

@@ -150,6 +150,37 @@ body {
     color: #FFEFE1;
 }
 
+/*Page erreur connexion*/
+
+#erreur_connexion_box{
+    width: 80%;
+    height: 25vh;
+    margin: 30vh auto;
+    background-color: #A9FFA4;
+    color: #1C3326;
+    text-align: center;
+    padding: 2vh;
+    border-radius: 15px;
+}
+
+#erreur_connexion_para{
+    margin-top: 7.5vh;
+    font-size: 2.5vh;
+}
+
+#erreur_button_form{
+    width: 75%;
+    border: none;
+    border-radius: 10px;
+    padding: 1vh;
+    background-color: #FFEFE1;
+}
+
+#erreur_button_form a{
+    text-decoration: none;
+    color: #1C3326;
+    font-size: 2.25vh;
+}
 
 /*Page Inscription*/
 
@@ -304,6 +335,96 @@ body {
     height: 75px;
     border-radius: 50%;
 }
+
+#classement_paragraph_top{
+    color: #A9FFA4;
+}
+
+/*Page Planète*/
+
+
+#planet_overall{
+    position:absolute;
+    left: 0px;
+    top: 0px;
+    width: 100vw;
+    height: 0;
+}
+#planet_box_logo{
+    margin-top: 2.5vh;
+    text-align: center;
+    height: 0;
+}
+
+#planet_logo{
+    width: 35vw;
+    height: 20vh;
+
+}
+
+.sketchfab-embed-wrapper{
+    margin-top: -4.95vh;
+}
+
+
+#planet_annotation{
+    width: 85%;
+    height: 25vh;
+    text-align: center;
+    margin: 62.5vh auto 0 auto;
+    background-color: #ffffff49;
+    padding: 2vh;
+    border-radius: 15px;
+}
+
+#planet_h2_annotation{
+    background-color: #2BBA7C;
+    padding: 0.5vh 1vh;
+    border-radius: 20px;
+    width: 27.5vw;
+    font-size: 2.5vh;
+    margin: auto;
+    color: white;
+}
+
+#planet_h3_annotation{
+    margin-top: 2vh;
+    color: white;
+    font-size: 2.25vh;
+    text-align: left;
+    width: 57.5vw;
+}
+#planet_points_vert{
+    color: #A9FFA4;
+}
+
+.progress{
+    height: 1.5vh;
+}
+
+.progress-bar{
+    background-color: #A9FFA4;
+    height: 1.5vh;
+}
+
+#planet_h3_annotation_ex{
+    margin: 0;
+    float: left;
+    text-align: left;
+    width: 50%;
+    font-size: 2vh;
+    color: #A9FFA4;
+}
+
+#planet_h3_annotation_lv{
+    margin: 0;
+    float: right;
+    text-align: right;
+    font-size: 2vh;
+    width: 50%;
+    color: #fff;
+}
+
 
 /*Page Compte*/
 
@@ -541,15 +662,15 @@ body {
 }
 
 .badgeSlot {
-    width: 50px; /* Largeur des éléments */
-    height: 50px; /* Hauteur des éléments */
+    width: 45px; /* Largeur des éléments */
+    height: 45px; /* Hauteur des éléments */
     background-color: transparent;
-    border: 2px solid #000; /* Bordure pour former un cercle */
+    border: 1px solid #000; /* Bordure pour former un cercle */
     border-radius: 50%; /* Rend les éléments circulaires */
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 20px; /* Espacement en bas de chaque élément */
+    margin-bottom: 5px; /* Espacement en bas de chaque élément */
 }
 
 /* Style pour les trois premiers éléments */
@@ -647,7 +768,205 @@ body {
 }
 
 
+/*Page succès*/
+
+#success_overall{
+    background-image: url("../uploads/pattern.svg");
+    background-size: cover; /* Ajuste la taille de l'image pour remplir complètement le conteneur */ /* Change la couleur de fond */
+    height: 200vh;
+    padding-top: 10vh;
+}
+
+#success_title_box{
+    margin-bottom:5vh ;
+}
+
+#success_svg_retour{
+    width: 7.5vw;
+    height: 5vh;
+    float: left;
+    margin-left: 5vw;
+}
+
+#success_h1{
+    width: 50%;
+    margin: auto;
+    color: #A9FFA4;
+    font-size: 4.5vh;
+    text-align: center;
+}
+
+#succes_box1{
+    width: 85%;
+    background-color: #2BBA7C;
+    color: #A9FFA4;
+    border-radius: 15px;
+    margin: auto;
+    padding: 3vh 2vh 2vh 2vh;
+}
+
+#succes_box2{
+    width: 85%;
+    background-color: #A9FFA4;
+    color: #A9FFA4;
+    border-radius: 15px;
+    margin: 5vh auto;
+    padding: 3vh 2vh 2vh 2vh;
+}
+
+#succes_box3{
+    width: 83%;
+    border: #2BBA7C 0.5vh solid;
+    color: #A9FFA4;
+    border-radius: 15px;
+    margin: 5vh auto;
+    padding: 3vh 2vh 2vh 2vh;
+}
+
+#succes_box4{
+    width: 85%;
+    background-color:#BFEABB ;
+    color: #A9FFA4;
+    border-radius: 15px;
+    margin: 5vh auto;
+    padding: 3vh 2vh 2vh 2vh;
+}
+
+#success_svg_trophy{
+    width: 10vw;
+    height: 5vh;
+    float: left;
+    margin-left: 5vw;
+}
+
+#success_h2_1{
+    color: #A9FFA4;
+    width: 80%;
+    margin: 0 auto 2vh auto;
+    float: left;
+}
+
+#success_h2_2{
+    color: #1C3326;
+    width: 80%;
+    margin: 0 auto 2vh auto;
+    float: left;
+}
+
+#success_h2_3{
+    color: white;
+    width: 80%;
+    margin: 0 auto 2vh auto;
+    float: left;
+}
+
+
+.success_box_1{
+    clear: both;
+    width: 85%;
+    background-color: #FFEFE1;
+    border-radius: 15px;
+    margin: 2.5vh auto;
+    padding: 2vh 2vh;
+}
+
+.success_box_2{
+    clear: both;
+    width: 85%;
+    background-color: #1C3326;
+    border-radius: 15px;
+    margin: 2.5vh auto;
+    padding: 2vh 2vh;
+}
+
+.success_box_3{
+    clear: both;
+    width: 85%;
+    background-color: #2BBA7C;
+    border-radius: 15px;
+    margin: 2.5vh auto;
+    padding: 2vh 2vh;
+}
+
+.success_h3_darkgreen{
+    color: #1C3326;
+    margin: 0;
+}
+
+.success_h3_lightgreen{
+    color: #A9FFA4;
+    margin: 0;
+}
+
+.succes_strong_green{
+    color:#2BBA7C;
+}
+
+.succes_strong_lightergreen{
+    color:#BFEABB;
+}
+
+
+
 /*Page Recyclage*/
+
+#recyclage_overall{
+    position:absolute;
+    left: 0px;
+    top: 0px;
+    width: 100vw;
+    height: 100vh;
+}
+
+#recyclage_svg{
+    margin: auto;
+    text-align: center;
+    width: 100vw;
+    height: 65vh;
+}
+
+#recyclage_annotation{
+    width: 85%;
+    height: 25vh;
+    text-align: center;
+    margin: auto;
+    background-color: #ffffff49;
+    padding: 2vh;
+    border-radius: 15px;
+
+}
+
+#recyclage_h2_annotation{
+    font-size: 2.5vh;
+    color:#FFEFE1
+}
+
+#recyclage_trait{
+    width: 65%;
+    height: 0.4vh;
+    border-radius: 10px;
+    background-color: #FFEFE1;
+    margin: 2vh auto 2vh auto;
+}
+
+#recyclage_annotation_warning{
+    width: 45vw;
+    height: 5vh;
+    margin: auto;
+}
+
+#recyclage_warning{
+    float: left;
+}
+
+#recyclage_warning_h3{
+    text-align: left;
+    margin-left: 3vw;
+    color: #A9FFA4;
+    float: left;
+    font-size: 1.55vh;
+    width: 35vw;
+}
 
 /*Général pour toutes les pages*/
 
