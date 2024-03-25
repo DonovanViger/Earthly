@@ -281,6 +281,10 @@ try {
         var A = document.getElementsByClassName("defi");
         A[1].style.backgroundColor = "#2BBA7C";
         A[2].style.backgroundColor = "#2BBA7C";
+        A[1].style.width = "45vw";
+        A[2].style.width = "45vw";
+        A[1].style.float = "left";
+        A[2].style.float = "left";
     </script>
 
 </body>
