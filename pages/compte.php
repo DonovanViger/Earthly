@@ -229,7 +229,7 @@
                     </div>
                     <div class="row">
                         <div class="mb-3 titresucces">
-                            <?php echo "imagine un titre"; ?>
+                            <?php echo "Jeune Branche"; ?>
                         </div>
                     </div>
                 </div>
