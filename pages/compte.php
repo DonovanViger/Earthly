@@ -160,6 +160,21 @@
         $query->bindParam(':dateConnexion', $dateConnexion, PDO::PARAM_STR);
         $query->bindParam(':pseudo', $pseudo, PDO::PARAM_STR);
         $query->execute();
+
+        // Vérifier d'abord si l'utilisateur a déjà obtenu le succès avec l'ID 1
+        $requete_verif_succes_1 = $db->prepare("SELECT COUNT(*) FROM utilisateursucces WHERE ID_Utilisateur = :id_utilisateur AND ID_Succes = 1");
+        $requete_verif_succes_1->bindParam(':id_utilisateur', $id_utilisateur);
+        $requete_verif_succes_1->execute();
+        $count_succes_1 = $requete_verif_succes_1->fetchColumn();
+
+        // Si l'utilisateur n'a pas déjà obtenu le succès avec l'ID 1
+        if ($count_succes_1 == 0) {
+            // Insérer une nouvelle entrée dans la table "utilisateursucces"
+            $requete_insert_succes_1 = $db->prepare("INSERT INTO utilisateursucces (ID_Utilisateur, ID_Succes, progression, dateObtention) 
+                                            VALUES (:id_utilisateur, 1, 1, NOW())");
+            $requete_insert_succes_1->bindParam(':id_utilisateur', $id_utilisateur);
+            $requete_insert_succes_1->execute();
+        }
     }
     ?>
     <div class="container mt-5">
@@ -207,54 +222,54 @@
                 <div class="col-6 offset-3 badges mb-2">
                 <div class="row">
     <?php for ($i = 1; $i <= 6; $i++): ?>
-            <div class="col-4">
-                <div class="badgeSlot" id="badgeSlot<?php echo $i; ?>">
-                    <?php
-                    // Déterminer le groupe en fonction de la valeur de $i
-                    switch ($i) {
-                        case 1:
-                            $group = 'A%';
-                            break;
-                        case 2:
-                            $group = 'B%';
-                            break;
-                        case 3:
-                            $group = 'C%';
-                            break;
-                        case 4:
-                            $group = 'D%';
-                            break;
-                        case 5:
-                            $group = 'E%';
-                            break;
-                        case 6:
-                            $group = 'F%';
-                            break;
-                        default:
-                            $group = ''; // Gérer les valeurs par défaut si nécessaire
-                            break;
-                    }
+                                <div class="col-4">
+                                    <div class="badgeSlot" id="badgeSlot<?php echo $i; ?>">
+                                        <?php
+                                        // Déterminer le groupe en fonction de la valeur de $i
+                                        switch ($i) {
+                                            case 1:
+                                                $group = 'A%';
+                                                break;
+                                            case 2:
+                                                $group = 'B%';
+                                                break;
+                                            case 3:
+                                                $group = 'C%';
+                                                break;
+                                            case 4:
+                                                $group = 'D%';
+                                                break;
+                                            case 5:
+                                                $group = 'E%';
+                                                break;
+                                            case 6:
+                                                $group = 'F%';
+                                                break;
+                                            default:
+                                                $group = ''; // Gérer les valeurs par défaut si nécessaire
+                                                break;
+                                        }
 
-                    // Exemple de requête SQL pour récupérer le succès pour chaque slot
-                    $requete_succes = $db->prepare("SELECT s.ID_succes, s.pds, s.nom FROM succes s 
-                    INNER JOIN utilisateursucces us ON s.ID_succes = us.ID_Succes 
-                    WHERE us.ID_Utilisateur = :id_utilisateur AND s.triageSucces LIKE :group AND us.dateObtention != 00-00-0000
-                    ORDER BY CAST(SUBSTRING(s.triageSucces, 2) AS UNSIGNED) DESC
-                    LIMIT 1");
-                    $requete_succes->bindParam(':id_utilisateur', $id_utilisateur);
-                    $requete_succes->bindParam(':group', $group);
-                    $requete_succes->execute();
+                                        // Exemple de requête SQL pour récupérer le succès pour chaque slot
+                                        $requete_succes = $db->prepare("SELECT s.ID_succes, s.pds, s.nom FROM succes s 
+                                        INNER JOIN utilisateursucces us ON s.ID_succes = us.ID_Succes 
+                                        WHERE us.ID_Utilisateur = :id_utilisateur AND s.triageSucces LIKE :group AND us.dateObtention != 00-00-0000
+                                        ORDER BY CAST(SUBSTRING(s.triageSucces, 2) AS UNSIGNED) DESC
+                                        LIMIT 1");
+                                        $requete_succes->bindParam(':id_utilisateur', $id_utilisateur);
+                                        $requete_succes->bindParam(':group', $group);
+                                        $requete_succes->execute();
 
-                    // Récupérer le résultat de la requête
-                    $succes_utilisateur = $requete_succes->fetch(PDO::FETCH_ASSOC);
+                                        // Récupérer le résultat de la requête
+                                        $succes_utilisateur = $requete_succes->fetch(PDO::FETCH_ASSOC);
 
-                    // Afficher le succès de l'utilisateur
-                    if ($succes_utilisateur) {
-                        echo "<img src='" . $succes_utilisateur['pds'] . "' alt='" . $succes_utilisateur['nom'] . "'>";
-                    }
-                    ?>
-                </div>
-            </div>
+                                        // Afficher le succès de l'utilisateur
+                                        if ($succes_utilisateur) {
+                                            echo "<img src='" . $succes_utilisateur['pds'] . "' alt='" . $succes_utilisateur['nom'] . "'>";
+                                        }
+                                        ?>
+                                    </div>
+                                </div>
     <?php endfor; ?>
 </div>
                 </div>
