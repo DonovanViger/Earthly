@@ -183,8 +183,7 @@ try {
             }
 
         }
-
-    }
+    }        
 } catch (PDOException $erreur) {
     die("Erreur de connexion à la base de données : " . $erreur->getMessage());
 }
