@@ -382,9 +382,9 @@
             </a>
             <!-- Sous-catégories pour Notification -->
             <div class="sub-menu">
-                <a href="#" class="list-group-item list-group-item-action">Paramètre 1</a>
-                <a href="#" class="list-group-item list-group-item-action">Paramètre 2</a>
-                <a href="#" class="list-group-item list-group-item-action">Paramètre 3</a>
+                <a href="#" class="list-group-item list-group-item-action rounded">Gestion des préférences de notification</a>
+                <a href="#" class="list-group-item list-group-item-action rounded">Notifications par e-mail</a>
+                <a href="#" class="list-group-item list-group-item-action rounded">Notifications push</a>
             </div>
             <!-- Séparateur -->
             <div class="separator my-3"></div>
@@ -404,13 +404,13 @@
             </a>
             <!-- Sous-catégories pour Confidentialité -->
             <div class="sub-menu">
-                <a href="#" class="list-group-item list-group-item-action">Paramètre A</a>
-                <a href="#" class="list-group-item list-group-item-action">Paramètre B</a>
+                <a href="#" class="list-group-item list-group-item-action rounded">Paramètres de confidentialité du profil</a>
+                <a href="#" class="list-group-item list-group-item-action rounded">Gestion des contacts</a>
             </div>
             <!-- Séparateur -->
             <div class="separator my-3"></div>
             <!-- Mot de passe -->
-            <a class="list-group-item list-group-item-action rounded">
+            <a class="list-group-item list-group-item-action main-category rounded">
                 <div class="row">
                     <div class="col-2">
                         <i class="fas fa-key mr-2"></i>
@@ -423,10 +423,13 @@
                     </div>
                 </div>
             </a>
+            <div class="sub-menu">
+                <a href="#" class="list-group-item list-group-item-action rounded">Changer de mot de passe</a>
+            </div>
             <!-- Séparateur -->
             <div class="separator my-3"></div>
             <!-- Pseudo -->
-            <a class="list-group-item list-group-item-action rounded">
+            <a class="list-group-item list-group-item-action main-category rounded">
                 <div class="row">
                     <div class="col-2">
                         <i class="fas fa-user mr-2"></i>
@@ -439,6 +442,10 @@
                     </div>
                 </div>
             </a>
+            <div class="sub-menu">
+                <a href="#" class="list-group-item list-group-item-action rounded">Changer de pseudo</a>
+                <a href="#" class="list-group-item list-group-item-action rounded">Affichage du pseudo</a>
+            </div>
             <!-- Séparateur -->
             <div class="separator my-3"></div>
             <!-- Modifier la photo -->
@@ -458,7 +465,7 @@
             <!-- Sous-catégories pour Modifier la photo -->
             <div class="sub-menu">
                 <form id="imageForm" action="../form/changer_image.php" method="post" enctype="multipart/form-data"
-                    class="list-group-item list-group-item-action">
+                    class="list-group-item list-group-item-action rounded">
                     <label for="nouvelle_image" class="custom-file-upload">
                         <input id="nouvelle_image" type="file" name="nouvelle_image" accept="image/*"
                             onchange="submitForm()" required>
