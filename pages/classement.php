@@ -33,6 +33,7 @@ if (!isset($_SESSION['pseudo'])) {
 
         .user-avatar {
             width: 60px;
+            height: 60px;
             border-radius: 50%;
         }
 
