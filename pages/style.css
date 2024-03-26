@@ -398,6 +398,10 @@ body {
     font-weight: bold;
 }
 
+.partage_classement h2 {
+    font-size: 18px;
+}
+
 /*Page Planète*/
 
 
@@ -1124,5 +1128,5 @@ iframe {
 }
 
 .footer-image[src*='blanc'] + .image-text {
-color: #FFEFE1;
+    color: #FFEFE1;
 }
