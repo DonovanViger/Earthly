@@ -140,7 +140,8 @@
 
     #cancel,
     #confirmChangePseudo,
-    #cancel3 {
+    #cancel3,
+    #cancel2 {
         color: #1C3326;
         background-color: #FFEFE1;
         border: #FFEFE1 0.8px solid;
@@ -155,12 +156,12 @@
     }
 
     .form-group {
-        text-align : left;
+        text-align: left;
         width: 95%;
     }
 
-    .form-group label{
-        font-weight : 200px;
+    .form-group label {
+        font-weight: 200px;
     }
 
     #newPseudo {
@@ -168,7 +169,8 @@
         padding: 5px 15px;
     }
 
-    h3, .form-group label{
+    h3,
+    .form-group label {
         color: #A9FFA4;
     }
 
@@ -644,27 +646,28 @@
         window.location.assign("compte.php?titre=" + value);
     }
 
-    // Script pour afficher ou masquer les sous-catégories lorsque vous cliquez sur une catégorie principale
     $('.main-category').click(function() {
-        $(this).next('.sub-menu').toggleClass('show');
-        $(this).find('.fa-chevron-down').toggleClass('fa-chevron-up');
-    });
+    var subMenu = $(this).next('.sub-menu');
+    if (subMenu.hasClass('show')) {
+        subMenu.slideUp("fast");
+        subMenu.removeClass('show');
+    } else {
+        subMenu.slideDown("fast");
+        subMenu.addClass('show');
+    }
+});
 
-    // Sélectionne tous les liens de suppression de compte
+
     const deleteAccountLinks = document.querySelectorAll('.delete-account-link');
 
-    // Ajoute un écouteur d'événement pour chaque lien de suppression de compte
     deleteAccountLinks.forEach(link => {
         link.addEventListener('click', function(event) {
-            event.preventDefault(); // Empêche le comportement par défaut du lien
+            event.preventDefault();
 
-            // Récupère l'ID de la pop-up depuis l'attribut data-popup-id
             const popupId = this.getAttribute('data-popup-id');
 
-            // Sélectionne la pop-up en fonction de l'ID
             const popup = document.getElementById(popupId);
 
-            // Affiche la pop-up
             popup.style.display = 'block';
         });
     });
