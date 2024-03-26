@@ -217,7 +217,6 @@ try {
             background-color:#1C3326;
             color:#FFEFE1;
             border-radius:15px;
-            padding:1vh;
             border: none;
         }
     </style>
@@ -262,7 +261,7 @@ try {
             if (!empty($defiuser)) {
                 echo "<div id='defis_reussi'>Defi Reussi !</div>";
             } else {
-                echo "<button type='submit' name='valider_defi' id='defis_button'>Valider le défi</button>";
+                echo "<button type='submit' name='valider_defi' id='defis_button'>Valider</button>";
             }
 
             echo "</form>";
