@@ -16,7 +16,7 @@ try {
     $date_actuelle = date('Y-m-d');
 
     // Vérification si des défis sont sélectionnés pour la journée actuelle
-    $stmt_select_defis = $db->prepare("SELECT defiquotidien.ID_Defi, defis_journaliers.date, defiquotidien.nom, defiquotidien.pdd, defiquotidien.desc FROM defis_journaliers INNER JOIN defiquotidien ON defis_journaliers.ID_Defi = defiquotidien.ID_Defi WHERE defis_journaliers.date = :date");
+    $stmt_select_defis = $db->prepare("SELECT defiquotidien.ID_Defi, defis_journaliers.date, defiquotidien.nom, defiquotidien.pdd, defiquotidien.desc, defiquotidien.point FROM defis_journaliers INNER JOIN defiquotidien ON defis_journaliers.ID_Defi = defiquotidien.ID_Defi WHERE defis_journaliers.date = :date");
     $stmt_select_defis->bindParam(':date', $date_actuelle);
     $stmt_select_defis->execute();
     $defi_suppression = $db->prepare("DELETE FROM defis_journaliers WHERE date != :date");
@@ -194,19 +194,16 @@ try {
     <title>Défis</title>
     <style>
         
-        .defi{
-            font-size:1em;
-            float: left;
-        }
         .defi strong{
             color:#2BBA7C;
-            font-size:8vw;
+            font-size:6.5vw;
             float:right;
-            width: 40%;
+            width: 55%;
             margin-left : 1vw;
+            margin-top: 5vh
         }
         .defi img{
-            width:40%;
+            width:30%;
         }
     </style>
 </head>
@@ -254,6 +251,7 @@ try {
             }
 
             echo "</form>";
+            echo "<h3 id='defis_xp_ajout'>+".$defi['point']."px</h3>";
             echo "</div>";
         }
         echo "</ul>";
@@ -327,6 +325,7 @@ echo "<h3 id='defis_h3_bar_lv'>1000</h3>";
 
     <script>
         var A = document.getElementsByClassName("defi");
+        console.log(A);
         A[1].style.backgroundColor = "#2BBA7C";
         A[2].style.backgroundColor = "#2BBA7C";
         A[1].style.width = "42.5vw";
@@ -337,6 +336,13 @@ echo "<h3 id='defis_h3_bar_lv'>1000</h3>";
         A[2].style.margin = "0 0 0 5vw";
         A[1].style.heigh = "20vh";
         A[2].style.heigh = "20vh";
+        A[1].children[1].style.color = "#1C3326";
+        A[2].children[1].style.color = "#1C3326";
+        A[1].style.color = "#A9FFA4";
+        A[2].style.color = "#A9FFA4";
+        A[0].children[3].style.color = "#2BBA7C";
+        A[1].children[3].style.color = "#1C3326";
+        A[2].children[3].style.color = "#1C3326";
     </script>
 
 </body>
