@@ -16,7 +16,7 @@ try {
     $date_actuelle = date('Y-m-d');
 
     // Vérification si des défis sont sélectionnés pour la journée actuelle
-    $stmt_select_defis = $db->prepare("SELECT defiquotidien.ID_Defi, defis_journaliers.date, defiquotidien.nom, defiquotidien.desc FROM defis_journaliers INNER JOIN defiquotidien ON defis_journaliers.ID_Defi = defiquotidien.ID_Defi WHERE defis_journaliers.date = :date");
+    $stmt_select_defis = $db->prepare("SELECT defiquotidien.ID_Defi, defis_journaliers.date, defiquotidien.nom, defiquotidien.pdd, defiquotidien.desc FROM defis_journaliers INNER JOIN defiquotidien ON defis_journaliers.ID_Defi = defiquotidien.ID_Defi WHERE defis_journaliers.date = :date");
     $stmt_select_defis->bindParam(':date', $date_actuelle);
     $stmt_select_defis->execute();
     $defi_suppression = $db->prepare("DELETE FROM defis_journaliers WHERE date != :date");
@@ -195,11 +195,18 @@ try {
     <style>
         
         .defi{
-            font-size:5vw;
+            font-size:1em;
+            float: left;
         }
         .defi strong{
             color:#2BBA7C;
             font-size:8vw;
+            float:right;
+            width: 40%;
+            margin-left : 1vw;
+        }
+        .defi img{
+            width:40%;
         }
     </style>
 </head>
@@ -231,7 +238,7 @@ try {
         echo "<ul id='defis_ul'>";
         foreach ($defis_journaliers as $defi) {
             echo "<div class='defi'>";
-            echo "<strong>", $defi['nom'], "</strong>: ", $defi['desc'];
+            echo "<img src = '",$defi['pdd'],"' alt='",$defi['nom'],"'><strong>", $defi['nom'], "</strong> ", $defi['desc'];
             // Afficher le bouton pour valider le défi dans un formulaire
             echo "<form method='POST' action='defi.php' id='defi_form'>";
             echo "<input type='hidden' name='id_defi' value='" . $defi['ID_Defi'] . "'>";
