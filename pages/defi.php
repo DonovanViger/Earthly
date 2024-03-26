@@ -194,16 +194,30 @@ try {
     <title>Défis</title>
     <style>
         
+        .defi{
+            text-align:center;
+        }
         .defi strong{
             color:#2BBA7C;
-            font-size:6.5vw;
+            font-size:5.5vw;
             float:right;
-            width: 55%;
+            width: 60%;
             margin-left : 1vw;
-            margin-top: 5vh
+            margin-top:5vh;
+            padding:2vh;
         }
         .defi img{
+            margin:3vh 0 3vh 5vw;
             width:30%;
+        }
+
+        #defis_button{
+            width:80%;
+            margin:2vh 0 0 0;
+            background-color:#2BBA7C;
+            border-radius:15px;
+            padding:1vh;
+            border: none;
         }
     </style>
 </head>
@@ -235,7 +249,7 @@ try {
         echo "<ul id='defis_ul'>";
         foreach ($defis_journaliers as $defi) {
             echo "<div class='defi'>";
-            echo "<img src = '",$defi['pdd'],"' alt='",$defi['nom'],"'><strong>", $defi['nom'], "</strong> ", $defi['desc'];
+            echo "<img src = '",$defi['pdd'],"' alt='",$defi['nom'],"'><strong>", $defi['nom'], "</strong> </br> ", $defi['desc'];
             // Afficher le bouton pour valider le défi dans un formulaire
             echo "<form method='POST' action='defi.php' id='defi_form'>";
             echo "<input type='hidden' name='id_defi' value='" . $defi['ID_Defi'] . "'>";
@@ -338,11 +352,9 @@ echo "<h3 id='defis_h3_bar_lv'>1000</h3>";
         A[2].style.heigh = "20vh";
         A[1].children[1].style.color = "#1C3326";
         A[2].children[1].style.color = "#1C3326";
+        A[0].children[4].style.margin = "2vh 0 0 0";
         A[1].style.color = "#A9FFA4";
         A[2].style.color = "#A9FFA4";
-        A[0].children[3].style.color = "#2BBA7C";
-        A[1].children[3].style.color = "#1C3326";
-        A[2].children[3].style.color = "#1C3326";
     </script>
 
 </body>
