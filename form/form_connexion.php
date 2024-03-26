@@ -152,7 +152,7 @@ try {
     } else {
         echo "<div id='erreur_connexion_box'>";
         echo "<p id='erreur_connexion_para'>Identifiant ou mot de passe incorrect</p>";
-        echo "<button id='erreur_button_form'><a href='http://localhost/Earthly/Earthly/pages/connexion.php'>Retour à la page de connexion</a>";
+        echo "<button id='erreur_button_form'><a href='../pages/connexion.php'>Retour à la page de connexion</a>";
         echo "</div>";
         // Redirection vers la page de connexion avec un message d'erreur
     }

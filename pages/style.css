@@ -679,14 +679,13 @@ height: 10vh;
 }
 
 #défis_logo{
-    width: 35vw;
-    height: 5vh;
+    width: 175px;
     margin: 2vh 0 0 3vw;
 }
 
 #defis_communautaire_box{
     width: 90vw;
-    height: 10vh;
+    height: 8vh;
     background-color: white;
     border-radius: 20px ;
     margin: 5vh auto 5vh;
@@ -703,7 +702,7 @@ height: 10vh;
 #defis_communautaire_h2{
     width: 60vw;
     font-size: 1.75vh;
-    margin: 0;
+    margin: 1.25vh 0 0 3vw;
     float: left;
 }
 
