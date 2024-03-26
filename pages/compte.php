@@ -138,7 +138,9 @@
         color: white;
     }
 
-    #cancel {
+    #cancel,
+    #confirmChangePseudo,
+    #cancel3 {
         color: #1C3326;
         background-color: #FFEFE1;
         border: #FFEFE1 0.8px solid;
@@ -500,10 +502,10 @@
                 </div>
             </a>
             <div class="sub-menu">
-                <a href="#" class="list-group-item list-group-item-action rounded">Changer de pseudo</a>
-                <a href="#" class="list-group-item list-group-item-action rounded">Affichage du pseudo</a>
-                <a href="#titrechoose" class="list-group-item list-group-item-action rounded" id="titrechoose"
-                    onclick="titrechoose()">Changer de titre</a>
+                <a href="#" class="list-group-item list-group-item-action rounded delete-account-link"
+                    data-popup-id="popup3">Changer de pseudo</a>
+                <a href="#titrechoose" class="list-group-item list-group-item-action delete-account-link rounded"
+                    id="titrechoose" data-popup-id="popup2">Changer de titre</a>
             </div>
             <!-- Séparateur -->
             <div class="separator my-3"></div>
@@ -548,6 +550,7 @@
     </div>
 
     <!-- La pop-up -->
+    <!-- Popup 1 -->
     <div id="popup1" class="popup">
         <div class="popup-content">
             <p>Êtes-vous sûr de supprimer votre compte ?</p>
@@ -562,32 +565,55 @@
         </div>
     </div>
 
+    <!-- Popup 2 -->
     <div id="popup2" class="popup">
         <div class="popup-content">
-            <?php
-            $select_titres_user = $db->prepare("SELECT nom FROM succes INNER JOIN utilisateursucces ON utilisateursucces.ID_Succes = succes.ID_Succes WHERE utilisateursucces.ID_Utilisateur = :iduser AND utilisateursucces.dateObtention != '0000-00-00'");
-            $select_titres_user->bindParam(':iduser', $user_id);
-            $select_titres_user->execute();
-            $titres = $select_titres_user->fetchAll(PDO::FETCH_ASSOC);
-            echo "<script> var titres = ".json_encode($titres)."</script>";
-                ?>
-            <script>
-            var popupcontent = document.getElementsByClassName('popup-content');
-            popupcontent[1].innerHTML = "Sélectionnez votre titre :<br>";
-            for (let i = 0; i < titres.length; i++) {
-                popupcontent[1].innerHTML += "<button value=" + i + " onclick='titrechoose2(value)'>" + titres[i].nom +
-                    "</button>";
-            }
-            </script>
-            <button id="cancel">Retour</button>
+            <h2>Changer de titre</h2>
+            <form>
+                <?php 
+                            $select_titres_user = $db->prepare("SELECT nom FROM succes INNER JOIN utilisateursucces ON utilisateursucces.ID_Succes = succes.ID_Succes WHERE utilisateursucces.ID_Utilisateur = :iduser AND utilisateursucces.dateObtention != '0000-00-00'");
+                            $select_titres_user->bindParam(':iduser', $user_id);
+                            $select_titres_user->execute();
+                            $titres = $select_titres_user->fetchAll(PDO::FETCH_ASSOC);
+                foreach ($titres as $key => $titre): ?>
+                <button value="<?php echo $key; ?>" onclick="titrechoose2(this.value)">
+                    <?php echo $titre['nom']; ?>
+                </button>
+                <?php endforeach; ?>
+            </form>
+            <button id="cancel2" class="close-popup">Retour</button>
         </div>
     </div>
+
+    <!-- Popup 3 -->
+    <div id="popup3" class="popup">
+    <div class="popup-content">
+        <h2>Changer de pseudo</h2>
+        <form id="changePseudoForm" action="../form/changer_pseudo.php" method="post">
+            <label for="newPseudo">Nouveau pseudo :</label>
+            <input type="text" id="newPseudo" name="newPseudo" placeholder="<?php echo $utilisateur['pseudo']; ?>" required>
+            <div class="row mt-3">
+                <div class="col-5 offset-1">
+                    <button id="cancel3" class="close-popup">Retour</button>
+                </div>
+                <div class="col-5">
+                    <button type="submit" id="confirmChangePseudo">Confirmer</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
 
 
     <br>
     <script src="https://code.jquery.com/jquery-3.7.1.js"
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script>
+    function titrechoose2(value) {
+        window.location.assign("compte.php?titre=" + value);
+    }
+
     // Script pour afficher ou masquer les sous-catégories lorsque vous cliquez sur une catégorie principale
     $('.main-category').click(function() {
         $(this).next('.sub-menu').toggleClass('show');
@@ -615,7 +641,10 @@
 
     // Sélectionne tous les boutons de fermeture de pop-up
     const closeButtons = document.querySelectorAll('.close-popup');
-    const confirmButton = $('#confirm');
+    const cancelButton = document.getElementById('cancel'); // Sélectionne le bouton Annuler
+    const cancelButton2 = document.getElementById('cancel2'); // Sélectionne le bouton Retour
+    const cancelButton3 = document.getElementById('cancel3'); // Sélectionne le bouton Retour
+    const confirmButton = document.getElementById('confirm');
 
     // Ajoute un écouteur d'événement pour chaque bouton de fermeture de pop-up
     closeButtons.forEach(button => {
@@ -628,20 +657,34 @@
         });
     });
 
+    // Ajoute un écouteur d'événement pour le clic sur le bouton Annuler
+    cancelButton.addEventListener('click', hidePopup);
+    cancelButton2.addEventListener('click', hidePopup);
+    cancelButton3.addEventListener('click', hidePopup);
+
+    function hidePopup() {
+        // Récupère le conteneur de la pop-up parent du bouton
+        const popup = this.closest('.popup');
+
+        // Masque la pop-up
+        popup.style.display = 'none';
+    }
 
     // Ajoute un écouteur d'événement pour le clic sur le bouton Annuler
     cancelButton.addEventListener('click', function() {
+        // Récupère le conteneur de la pop-up parent du bouton
+        const popup = this.closest('.popup');
+
         // Masque la pop-up
         popup.style.display = 'none';
     });
 
-    // Ajoute un écouteur d'événement pour le clic sur le bouton Valider
     confirmButton.addEventListener('click', function() {
-        // Insère ici le code pour supprimer le compte
-        // Une fois le compte supprimé, tu peux rediriger l'utilisateur vers une autre page ou effectuer toute autre action nécessaire
+        // Insérer ici le code pour supprimer le compte ou effectuer toute autre action souhaitée
         alert('Compte supprimé avec succès.');
-        // Masque la pop-up
-        popup.style.display = 'none';
+        // Récupère le conteneur de la pop-up parent du bouton
+        const popup = this.closest('.popup');
+        popup.style.display = 'none'; // Masque la pop-up
     });
 
     function partager() {
