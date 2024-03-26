@@ -694,7 +694,7 @@ body {
 #defi_patern_box{
     background-image: url("../uploads/pattern.svg");
     background-size: cover; /* Ajuste la taille de l'image pour remplir complètement le conteneur */ /* Change la couleur de fond */
-    height: 150vh;
+    height: 200vh;
     padding-top: 10vh;
 }
 
@@ -760,6 +760,14 @@ height: 10vh;
     border-radius: 15px ;
 }
 
+#defis_reussi{
+    width: 100%;
+    background-color: #1C3326;
+    margin: auto;
+    border-radius: 15px ;
+    color: #A9FFA4;
+    margin: 2.5vh 0 0 0;
+}
 #defis_button_succes_box{
     width: 75vw;
     margin: 30vh auto 0 auto;

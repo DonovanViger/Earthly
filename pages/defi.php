@@ -203,7 +203,7 @@ try {
             float:right;
             width: 60%;
             margin-left : 1vw;
-            margin-top:5vh;
+            margin-top:3vh;
             padding:2vh;
         }
         .defi img{
@@ -214,7 +214,8 @@ try {
         #defis_button{
             width:80%;
             margin:2vh 0 0 0;
-            background-color:#2BBA7C;
+            background-color:#1C3326;
+            color:#FFEFE1;
             border-radius:15px;
             padding:1vh;
             border: none;
@@ -259,7 +260,7 @@ try {
             $stmt_select_userDefi->execute();
             $defiuser = $stmt_select_userDefi->fetch();
             if (!empty($defiuser)) {
-                echo "Defi Reussi !";
+                echo "<div id='defis_reussi'>Defi Reussi !</div>";
             } else {
                 echo "<button type='submit' name='valider_defi' id='defis_button'>Valider le défi</button>";
             }
@@ -346,15 +347,40 @@ echo "<h3 id='defis_h3_bar_lv'>1000</h3>";
         A[2].style.width = "42.5vw";
         A[1].style.float = "left";
         A[2].style.float = "left";
-        A[1].style.margin = "0 0 0 5vw";
-        A[2].style.margin = "0 0 0 5vw";
+        A[1].style.margin = "0 0 5vh 5vw";
+        A[2].style.margin = "0 0 5vh 5vw";
         A[1].style.heigh = "20vh";
         A[2].style.heigh = "20vh";
         A[1].children[1].style.color = "#1C3326";
         A[2].children[1].style.color = "#1C3326";
         A[0].children[4].style.margin = "2vh 0 0 0";
+
         A[1].style.color = "#A9FFA4";
         A[2].style.color = "#A9FFA4";
+
+        A[1].children[0].style.width = "10vh";
+        A[1].children[0].style.height = "10vh";
+        A[1].children[0].style.margin = "2vh 0 0 0";
+
+        A[2].children[0].style.width = "10vh";
+        A[2].children[0].style.height = "10vh";
+        A[2].children[0].style.margin = "2vh 0 0 0";
+
+        A[1].children[1].style.width = "100%";
+        A[1].children[1].style.margin = "0";
+        A[1].children[1].style.fontSize = "2vh";
+
+        A[2].children[1].style.width = "100%";
+        A[2].children[1].style.margin = "0";
+        A[2].children[1].style.fontSize = "2vh";
+
+
+        A[1].children[3].style.margin = "0 0 2vh 0";
+        A[2].children[3].style.margin = "0 0 2vh 0";
+
+
+
+
     </script>
 
 </body>
