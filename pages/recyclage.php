@@ -11,7 +11,7 @@
     <title>Scanneur</title>
 </head>
 
-<body>
+<body scrollbehaviour:hidden>
     <?php
     session_start(); // Démarre la session
 
