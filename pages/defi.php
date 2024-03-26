@@ -251,6 +251,7 @@ try {
             }
 
             echo "</form>";
+            echo "<h3 id='defis_xp_ajout'>+100px</h3>";
             echo "</div>";
         }
         echo "</ul>";
@@ -335,6 +336,13 @@ echo "<h3 id='defis_h3_bar_lv'>1000</h3>";
         A[2].style.margin = "0 0 0 5vw";
         A[1].style.heigh = "20vh";
         A[2].style.heigh = "20vh";
+        A[1].children[1].style.color = "#1C3326";
+        A[2].children[1].style.color = "#1C3326";
+        A[1].style.color = "#A9FFA4";
+        A[2].style.color = "#A9FFA4";
+        A[0].children[3].style.color = "#2BBA7C";
+        A[1].children[3].style.color = "#1C3326";
+        A[2].children[3].style.color = "#1C3326";
     </script>
 
 </body>
