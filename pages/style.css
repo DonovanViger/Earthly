@@ -702,6 +702,19 @@ body {
     padding-top: 10vh;
 }
 
+#defis_rafraichir_defis{
+    width: 90%;
+    background-color: #2BBA7C;
+    text-align: center;
+    padding: 1vh;
+    border-radius: 15px;
+    margin: auto;
+}
+
+#defis_rafraichir_defis a{
+    color: #1C3326;
+    text-decoration: none; 
+}
 #defi_title_box{
 height: 10vh;
 }
@@ -736,12 +749,13 @@ height: 10vh;
     width: 8vw;
     height: 4vh;
     float: left;
+    margin: -0.25vh 0 0 0;
 }
 
 #defis_communautaire_h2{
     width: 60vw;
     font-size: 1.75vh;
-    margin: 1.25vh 0 0 3vw;
+    margin: 1vh 0 0 3vw;
     float: left;
 }
 
@@ -749,6 +763,7 @@ height: 10vh;
     width: 7vw;
     height: 3vh;
     float: left;
+    margin: 0.5vh 0 0 3vw;
 }
 
 #defis_ul{
