@@ -17,6 +17,8 @@ body {
     font-family: Arial-Rounded;
 }
 
+
+
 ::-webkit-scrollbar {
     display: none;
 }
@@ -27,7 +29,7 @@ body {
     background-image: url("../uploads/patern_light_green.svg");
     background-size: cover; /* Ajuste la taille de l'image pour remplir complètement le conteneur */ /* Change la couleur de fond */
     padding-top: 10vh;
-    height: 150vh;
+    height: 100vh;
 }
 
 
@@ -184,15 +186,15 @@ body {
 
 /*Page Inscription*/
 
-
-#inscription_div_patern{
-    background-image: url("../uploads/pattern.svg");
-    background-size: cover; /* Ajuste la taille de l'image pour remplir complètement le conteneur */ /* Change la couleur de fond */
-    height: 150vh;
+#body_inscription{
+    background-image: url('../uploads/patern_light_green.svg');
+    background-size: cover;
+    margin: 0px;
+    padding: 5vh 0 5vh 0;
     background-color: #1C3326;
     font-family: Arial-Rounded;
-    padding-top: 4vh;
 }
+
 #h1_inscription {
     text-align: center;
     font-weight: bolder;
@@ -268,27 +270,15 @@ body {
     color: #1C3326;
 }
 
-#image_preview img{
+#inscription_div_img{
+    margin: auto;
+    width: 25vh;
+    text-align: center;
+}
+#imagePreview{
     border-radius: 10px;
 }
 
-
-#crop_button{
-    width: 75vw;
-    border: none;
-    background-color: #1C3326;
-    color: #A9FFA4;
-    border-radius: 15px;
-    padding: 1.5vh;
-}
-
-#crop_submit_button{
-    border: none;
-    background-color: #1C3326;
-    margin-top: 2vh;
-    color: #A9FFA4;
-    font-size: 3vh;
-}
 #inscription_box_button{
     width: 50vw;
     text-align: center;

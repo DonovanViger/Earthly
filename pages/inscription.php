@@ -59,9 +59,9 @@
     </style>
 </head>
 
-<body>
+<body id="body_inscription">
 
-    <div id="inscription_div_patern">
+
         <h1 id="h1_inscription"><a href="../index.php">BIENVENUE SUR</a></h1>
         <div id="inscription_logo_contour">
             <img id="connexion_logo" src="../uploads/Logo-earthly-text+baseline.svg">
@@ -76,9 +76,9 @@
             <h2 id="h2_inscription">Inscription</h2>
             <form action="../form/form_inscription.php" method="POST" enctype="multipart/form-data"
                 id="inscription_form">
-                <input type="text" id="pseudo" name="pseudo" required placeholder="Pseudonyme"
-                    class="inscription_input_area"><br><br>
                 <input type="email" id="email" name="email" required placeholder="Adresse mail"
+                    class="inscription_input_area"><br><br>
+                <input type="text" id="pseudo" name="pseudo" required placeholder="Pseudonyme"
                     class="inscription_input_area"><br><br>
                 <input type="password" id="mdp" name="mdp" required placeholder="Mot de passe"
                     class="inscription_input_area"><br><br>
@@ -89,9 +89,10 @@
                     <input type="file" id="photo" name="photo" accept="image/*" required
                         onchange="previewImage(event)"><br><br>
                     <!-- Prévisualisation de l'image -->
+                    <div id="inscription_div_img">
                     <img id="imagePreview" src="#" alt="Aperçu de votre image"
-                        style="display: none; width: 15vh; height: 15vh;"><br><br>
-
+                        style="display: none; width: 25vh; height: 25vh;"><br><br>
+                    </div>
                     <!-- Bouton pour ouvrir la boîte de dialogue de recadrage -->
                     <div id="inscription_box_button">
                         <input type="submit" value="Créer un compte" id="inscription_input_submit">
@@ -99,7 +100,7 @@
                 </div>
             </form>
 
-        </div>
+
 
         <script src="../script/previewimage.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.js"

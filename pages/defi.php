@@ -192,6 +192,16 @@ try {
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="style.css" />
     <title>Défis</title>
+    <style>
+        
+        .defi{
+            font-size:5vw;
+        }
+        .defi strong{
+            color:#2BBA7C;
+            font-size:8vw;
+        }
+    </style>
 </head>
 
 <body>
