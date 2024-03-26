@@ -154,19 +154,18 @@ const captureAndDecode = () => {
             // Afficher la popup avec overlay et le message correspondant à la poubelle
             let message;
             if (qrData.includes("poubelle=1")) {
-                message = "Vous recyclez vos déchets cartons, plastiques, papiers et métalliques +100 Points";
+                message = "Vous recyclez vos déchets cartons, plastiques, papiers et métalliques<br>+200 Points";
             } else if (qrData.includes("poubelle=2")) {
-                message = "Vous recyclez vos déchets en verre +100 Points";
+                message = "Vous recyclez vos déchets en verre<br>+200 Points";
             } else if (qrData.includes("poubelle=3")) {
                 message = "Vous jetez vos déchets ordinaires qui ne se recyclent pas";
             } else {
                 message = "Cette poubelle n'existe pas dans notre base de données";
             }
             showPopupWithOverlay(message);
-        } else if (isValidUrl(qrData)) {
-            stopCapture();
-            // Ouvrir le lien dans un nouvel onglet pour les liens valides
-            window.open(qrData, '_blank');
+        } else {
+            message = "Ce QR code n'est pas valide";
+            showPopupWithOverlay(message);
         }
     }
 };

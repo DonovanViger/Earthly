@@ -417,7 +417,7 @@
                         <div class="row align-items-center">
                             <div class="col-4">
                                 <p class="mb-0 xp gauche">
-                                    <?php echo $pointsUtilisateur; ?>exp
+                                    <?php echo $pointsUtilisateur; ?>xp
                                 </p>
                             </div>
                             <div class="col-4 text-center niveauxp">
@@ -585,15 +585,12 @@
             <div class="row text-center mt-4">
                 <a href="../form/deconnexion.php" style="text-decoration: underline; color: white;">Déconnexion</a>
                 <a id="delete-account" class="mt-3 delete-account-link" data-popup-id="popup1"
-                    style="text-decoration: none; color: #F21010; cursor: pointer;">Supprimer le compte</a>
+                    style="text-decoration: none; color: #F21010; cursor: pointer; margin-bottom: 10vh;">Supprimer le compte</a>
             </div>
         </div>
     </div>
 
 
-    <button id="compte_button">
-        <a href="../form/deconnexion.php">Se déconnecter</a>
-    </button>
     </div>
 
     <!-- La pop-up -->
