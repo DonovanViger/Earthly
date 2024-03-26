@@ -117,6 +117,7 @@
         background-color: rgba(0, 0, 0, 0.5);
         z-index: 9999;
     }
+
     .popup-content {
         position: absolute;
         top: 50%;
@@ -130,20 +131,21 @@
         text-align: center;
         width: 70%;
     }
-    #titrechoose button{
+
+    #titrechoose button {
         border-radius: 50vw;
         background-color: #2BBA7C;
         color: white;
     }
 
-    #cancel{
+    #cancel {
         color: #1C3326;
         background-color: #FFEFE1;
         border: #FFEFE1 0.8px solid;
         border-radius: 15px
     }
 
-    #confirm{
+    #confirm {
         color: #F90505;
         background-color: transparent;
         border: #F90505 0.8px solid;
@@ -500,7 +502,8 @@
             <div class="sub-menu">
                 <a href="#" class="list-group-item list-group-item-action rounded">Changer de pseudo</a>
                 <a href="#" class="list-group-item list-group-item-action rounded">Affichage du pseudo</a>
-                <a href="#titrechoose" class="list-group-item list-group-item-action rounded" id="titrechoose" onclick="titrechoose()">Changer de titre</a>
+                <a href="#titrechoose" class="list-group-item list-group-item-action rounded" id="titrechoose"
+                    onclick="titrechoose()">Changer de titre</a>
             </div>
             <!-- Séparateur -->
             <div class="separator my-3"></div>
@@ -532,7 +535,8 @@
             <div class="separator my-3"></div>
             <div class="row text-center mt-4">
                 <a href="../form/deconnexion.php" style="text-decoration: underline; color: white;">Déconnexion</a>
-                <a id="delete-account" class="mt-3" style="text-decoration: none; color: #F21010; cursor: pointer;">Supprimer le compte</a>
+                <a id="delete-account" class="mt-3 delete-account-link" data-popup-id="popup1"
+                    style="text-decoration: none; color: #F21010; cursor: pointer;">Supprimer le compte</a>
             </div>
         </div>
     </div>
@@ -544,15 +548,15 @@
     </div>
 
     <!-- La pop-up -->
-    <div id="popup" class="popup">
+    <div id="popup1" class="popup">
         <div class="popup-content">
             <p>Êtes-vous sûr de supprimer votre compte ?</p>
             <div class="row">
                 <div class="col-5 offset-1">
-                <button id="cancel" class="px-3">Retour</button>
+                    <button id="cancel" class="px-3 close-popup">Retour</button>
                 </div>
                 <div class="col-5">
-                <button id="confirm" class="px-3">Valider</button>
+                    <button id="confirm" class="px-3">Valider</button>
                 </div>
             </div>
         </div>
@@ -569,21 +573,40 @@
         $(this).find('.fa-chevron-down').toggleClass('fa-chevron-up');
     });
 
-    // Sélectionne l'élément lien de suppression de compte
-    const deleteAccountLink = document.getElementById('delete-account');
+    // Sélectionne tous les liens de suppression de compte
+    const deleteAccountLinks = document.querySelectorAll('.delete-account-link');
 
-    // Sélectionne la pop-up
-    const popup = document.getElementById('popup');
+    // Ajoute un écouteur d'événement pour chaque lien de suppression de compte
+    deleteAccountLinks.forEach(link => {
+        link.addEventListener('click', function(event) {
+            event.preventDefault(); // Empêche le comportement par défaut du lien
 
-    // Sélectionne les boutons de la pop-up
-    const cancelButton = document.getElementById('cancel');
-    const confirmButton = document.getElementById('confirm');
+            // Récupère l'ID de la pop-up depuis l'attribut data-popup-id
+            const popupId = this.getAttribute('data-popup-id');
 
-    // Ajoute un écouteur d'événement pour le clic sur le lien de suppression de compte
-    deleteAccountLink.addEventListener('click', function() {
-        // Affiche la pop-up
-        popup.style.display = 'block';
+            // Sélectionne la pop-up en fonction de l'ID
+            const popup = document.getElementById(popupId);
+
+            // Affiche la pop-up
+            popup.style.display = 'block';
+        });
     });
+
+    // Sélectionne tous les boutons de fermeture de pop-up
+    const closeButtons = document.querySelectorAll('.close-popup');
+    const confirmButton = $('#confirm');
+
+    // Ajoute un écouteur d'événement pour chaque bouton de fermeture de pop-up
+    closeButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Récupère le conteneur de la pop-up parent du bouton
+            const popup = this.closest('.popup');
+
+            // Masque la pop-up
+            popup.style.display = 'none';
+        });
+    });
+
 
     // Ajoute un écouteur d'événement pour le clic sur le bouton Annuler
     cancelButton.addEventListener('click', function() {
@@ -605,7 +628,6 @@
         console.log(lien);
         alert("Partagez le lien à vos amis : " + lien);
     }
-
     </script>
     </div>
 
