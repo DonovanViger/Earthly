@@ -154,9 +154,9 @@ const captureAndDecode = () => {
             // Afficher la popup avec overlay et le message correspondant à la poubelle
             let message;
             if (qrData.includes("poubelle=1")) {
-                message = "Vous recyclez vos déchets cartons, plastiques, papiers et métalliques<br>+100 Points";
+                message = "Vous recyclez vos déchets cartons, plastiques, papiers et métalliques<br>+200 Points";
             } else if (qrData.includes("poubelle=2")) {
-                message = "Vous recyclez vos déchets en verre<br>+100 Points";
+                message = "Vous recyclez vos déchets en verre<br>+200 Points";
             } else if (qrData.includes("poubelle=3")) {
                 message = "Vous jetez vos déchets ordinaires qui ne se recyclent pas";
             } else {

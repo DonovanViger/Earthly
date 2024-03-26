@@ -417,7 +417,7 @@
                         <div class="row align-items-center">
                             <div class="col-4">
                                 <p class="mb-0 xp gauche">
-                                    <?php echo $pointsUtilisateur; ?>exp
+                                    <?php echo $pointsUtilisateur; ?>xp
                                 </p>
                             </div>
                             <div class="col-4 text-center niveauxp">
