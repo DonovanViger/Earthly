@@ -585,7 +585,7 @@
             <div class="row text-center mt-4">
                 <a href="../form/deconnexion.php" style="text-decoration: underline; color: white;">Déconnexion</a>
                 <a id="delete-account" class="mt-3 delete-account-link" data-popup-id="popup1"
-                    style="text-decoration: none; color: #F21010; cursor: pointer;">Supprimer le compte</a>
+                    style="text-decoration: none; color: #F21010; cursor: pointer; margin-bottom: 10vh;">Supprimer le compte</a>
             </div>
         </div>
     </div>
