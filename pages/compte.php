@@ -135,6 +135,20 @@
         background-color: #2BBA7C;
         color: white;
     }
+
+    #cancel{
+        color: #1C3326;
+        background-color: #FFEFE1;
+        border: #FFEFE1 0.8px solid;
+        border-radius: 15px
+    }
+
+    #confirm{
+        color: #F90505;
+        background-color: transparent;
+        border: #F90505 0.8px solid;
+        border-radius: 15px
+    }
     </style>
 </head>
 
@@ -533,8 +547,14 @@
     <div id="popup" class="popup">
         <div class="popup-content">
             <p>Êtes-vous sûr de supprimer votre compte ?</p>
-            <button id="cancel">Retour</button>
-            <button id="confirm">Valider</button>
+            <div class="row">
+                <div class="col-5 offset-1">
+                <button id="cancel" class="px-3">Retour</button>
+                </div>
+                <div class="col-5">
+                <button id="confirm" class="px-3">Valider</button>
+                </div>
+            </div>
         </div>
     </div>
 
