@@ -662,6 +662,13 @@ body {
     grid-row: 2; /* Deuxième ligne */
 }
 
+#compte_button_titre{
+    border: none;
+    margin: 0 0 1.5vh 0;
+    border-radius: 15px;
+    background-color: #A9FFA4;
+    color: #1C3326;
+}
 
 
 @media screen and (max-Width:700px){
