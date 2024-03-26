@@ -30,8 +30,14 @@
     }
     ?>
 
+<div id="overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 998;"></div>
+<div id="popup" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: #1C3326; padding:3vh; border-radius: 15px; z-index: 999; width:75%; color:#FFEFE1; text-align:center;">
+</div>
+
+
+
     <canvas id="canvas" style="display:none;"></canvas>
-    <div id="recyclage_video" style="width: 100vw; height: 90vh; overflow: hidden;">
+    <div id="recyclage_video" style="width: 100vw; height: 90vh; overflow: hidden;background-color:black;">
         <video id="video" width="100%" height="100%" autoplay style="object-fit: cover;"></video>
     </div>
     <div id="result"></div>
@@ -109,39 +115,62 @@
             }
         };
 
-        const captureAndDecode = () => {
-            canvas.width = video.videoWidth;
-            canvas.height = video.videoHeight;
-            context.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-            const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
-            const code = jsQR(imageData.data, imageData.width, imageData.height);
+        const showPopupWithOverlay = (message) => {
+    const popupElement = document.getElementById('popup');
+    const overlayElement = document.getElementById('overlay');
+    const closeButton = document.createElement('span');
+    closeButton.innerHTML = '&times;';
+    closeButton.style.position = 'absolute';
+    closeButton.style.top = '1vh';
+    closeButton.style.right = '3vw';
+    
 
-            if (code) {
-                const qrData = code.data;
-                resultElement.innerText = "QR Code trouvé : " + qrData;
+    closeButton.style.cursor = 'pointer';
+    closeButton.addEventListener('click', () => {
+        popupElement.style.display = 'none';
+        overlayElement.style.display = 'none';
+    });
+    popupElement.innerText = message;
+    popupElement.appendChild(closeButton);
+    popupElement.style.display = 'block';
+    overlayElement.style.display = 'block';
+};
 
-                // Ne pas utiliser isValidUrl pour les liens contenant les paramètres poubelle
-                if (qrData.includes("poubelle=")) {
-                    // Afficher la popup avec le message correspondant à la poubelle
-                    let message;
-                    if (qrData.includes("poubelle=1")) {
-                        message = "Vous recyclez vos déchets cartons, plastiques, papiers et métalliques.";
-                    } else if (qrData.includes("poubelle=2")) {
-                        message = "Vous recyclez vos déchets en verre.";
-                    } else if (qrData.includes("poubelle=3")) {
-                        message = "Vous jetez vos déchets ordinaires qui ne se recyclent pas.";
-                    } else {
-                        message = "Cette poubelle n'existe pas dans notre base de données";
-                    }
-                    alert(message);
-                } else if (isValidUrl(qrData)) {
-                    stopCapture();
-                    // Ouvrir le lien dans un nouvel onglet pour les liens valides
-                    window.open(qrData, '_blank');
-                }
+const captureAndDecode = () => {
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+    const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+    const code = jsQR(imageData.data, imageData.width, imageData.height);
+
+    if (code) {
+        const qrData = code.data;
+        resultElement.innerText = "QR Code trouvé : " + qrData;
+
+        // Ne pas utiliser isValidUrl pour les liens contenant les paramètres poubelle
+        if (qrData.includes("poubelle=")) {
+            // Afficher la popup avec overlay et le message correspondant à la poubelle
+            let message;
+            if (qrData.includes("poubelle=1")) {
+                message = "Vous recyclez vos déchets cartons, plastiques, papiers et métalliques +100 Points";
+            } else if (qrData.includes("poubelle=2")) {
+                message = "Vous recyclez vos déchets en verre +100 Points";
+            } else if (qrData.includes("poubelle=3")) {
+                message = "Vous jetez vos déchets ordinaires qui ne se recyclent pas";
+            } else {
+                message = "Cette poubelle n'existe pas dans notre base de données";
             }
-        };
+            showPopupWithOverlay(message);
+        } else if (isValidUrl(qrData)) {
+            stopCapture();
+            // Ouvrir le lien dans un nouvel onglet pour les liens valides
+            window.open(qrData, '_blank');
+        }
+    }
+};
+
 
         const isValidUrl = url =>
             /^(http|https):\/\/[\w\-]+(\.[\w\-]+)+([\w\-\.,@?^=%&:/~\+#]*[\w\-\@?^=%&/~\+#])?$/.test(url);
@@ -154,6 +183,7 @@
         // Appel de la fonction startCapture au chargement de la page
         startCapture();
     });
+
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
