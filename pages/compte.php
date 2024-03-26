@@ -591,9 +591,6 @@
     </div>
 
 
-    <button id="compte_button">
-        <a href="../form/deconnexion.php">Se déconnecter</a>
-    </button>
     </div>
 
     <!-- La pop-up -->
