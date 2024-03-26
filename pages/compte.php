@@ -164,9 +164,9 @@
         $select_titres_user = $db->prepare("SELECT nom FROM succes INNER JOIN utilisateursucces ON utilisateursucces.ID_Succes = succes.ID_Succes WHERE utilisateursucces.ID_Utilisateur = :iduser AND utilisateursucces.dateObtention != '0000-00-00'");
         $select_titres_user->bindParam(':iduser', $user_id);
         $select_titres_user->execute();
-        $titres = $select_titres_user->fetchAll(PDO::FETCH_ASSOC);
-        $titre2 = json_encode($titres[$_GET['titre']]['nom']);
-        $nouveauTitre = $titre2;
+        $titre = $select_titres_user->fetch($_GET['titre']);
+        echo "<script> console.log(".json_encode($titre).")</script>";
+        $nouveauTitre = $titre['nom'];
         echo "<script> console.log(".$nouveauTitre.")</script>";
         
         $query = $db->prepare("UPDATE utilisateurs SET titreUtilisateur = :titreUtilisateur WHERE ID_Utilisateur = :id_utilisateur");
