@@ -140,7 +140,8 @@
 
     #cancel,
     #confirmChangePseudo,
-    #cancel3 {
+    #cancel3,
+    #cancel2 {
         color: #1C3326;
         background-color: #FFEFE1;
         border: #FFEFE1 0.8px solid;
@@ -155,12 +156,12 @@
     }
 
     .form-group {
-        text-align : left;
+        text-align: left;
         width: 95%;
     }
 
-    .form-group label{
-        font-weight : 200px;
+    .form-group label {
+        font-weight: 200px;
     }
 
     #newPseudo {
@@ -168,7 +169,8 @@
         padding: 5px 15px;
     }
 
-    h3, .form-group label{
+    h3,
+    .form-group label {
         color: #A9FFA4;
     }
 
@@ -594,18 +596,20 @@
     <div id="popup2" class="popup">
         <div class="popup-content">
             <h2>Changer de titre</h2>
-            <form>
                 <?php 
                             $select_titres_user = $db->prepare("SELECT nom FROM succes INNER JOIN utilisateursucces ON utilisateursucces.ID_Succes = succes.ID_Succes WHERE utilisateursucces.ID_Utilisateur = :iduser AND utilisateursucces.dateObtention != '0000-00-00'");
                             $select_titres_user->bindParam(':iduser', $user_id);
                             $select_titres_user->execute();
                             $titres = $select_titres_user->fetchAll(PDO::FETCH_ASSOC);
-                foreach ($titres as $key => $titre): ?>
-                <button class="px-3" value="<?php echo $key; ?>" onclick="titrechoose2(this.value)">
-                    <?php echo $titre['nom']; ?>
-                </button>
-                <?php endforeach; ?>
-            </form>
+                            echo "<script>var titres=".json_encode($titres)."</script>"
+                ?>
+                <script>
+                    console.log(titres);
+                    for (var i=0; i<titres.length; i++){
+                        document.write("<button class='px-3' value='"+i+"' onclick='titrechoose2(this.value)'>"+titres[i].nom+"</button>")
+                        
+                    }
+                </script>
             <button class="px-3" id="cancel2" class="close-popup">Retour</button>
         </div>
     </div>
@@ -644,27 +648,28 @@
         window.location.assign("compte.php?titre=" + value);
     }
 
-    // Script pour afficher ou masquer les sous-catégories lorsque vous cliquez sur une catégorie principale
     $('.main-category').click(function() {
-        $(this).next('.sub-menu').toggleClass('show');
-        $(this).find('.fa-chevron-down').toggleClass('fa-chevron-up');
-    });
+    var subMenu = $(this).next('.sub-menu');
+    if (subMenu.hasClass('show')) {
+        subMenu.slideUp("fast");
+        subMenu.removeClass('show');
+    } else {
+        subMenu.slideDown("fast");
+        subMenu.addClass('show');
+    }
+});
 
-    // Sélectionne tous les liens de suppression de compte
+
     const deleteAccountLinks = document.querySelectorAll('.delete-account-link');
 
-    // Ajoute un écouteur d'événement pour chaque lien de suppression de compte
     deleteAccountLinks.forEach(link => {
         link.addEventListener('click', function(event) {
-            event.preventDefault(); // Empêche le comportement par défaut du lien
+            event.preventDefault();
 
-            // Récupère l'ID de la pop-up depuis l'attribut data-popup-id
             const popupId = this.getAttribute('data-popup-id');
 
-            // Sélectionne la pop-up en fonction de l'ID
             const popup = document.getElementById(popupId);
 
-            // Affiche la pop-up
             popup.style.display = 'block';
         });
     });
@@ -753,20 +758,6 @@
     $titres = $select_titres_user->fetchAll(PDO::FETCH_ASSOC);
     echo "<script> var titres = ".json_encode($titres)."</script>";
         ?>
-    <script>
-    function titrechoose() {
-        var titrechoose = document.getElementById('titrechoose');
-        titrechoose.innerHTML = "Changer de titre<br>";
-        for (let i = 0; i < titres.length; i++) {
-            titrechoose.innerHTML += "<button value=" + i + " onclick='titrechoose2(value)'>" + titres[i].nom +
-                "</button>";
-        }
-    }
-
-    function titrechoose2(value) {
-        window.location.assign("compte.php?titre=" + value);
-    }
-    </script>
 </body>
 
 </html>

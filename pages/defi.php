@@ -16,7 +16,7 @@ try {
     $date_actuelle = date('Y-m-d');
 
     // Vérification si des défis sont sélectionnés pour la journée actuelle
-    $stmt_select_defis = $db->prepare("SELECT defiquotidien.ID_Defi, defis_journaliers.date, defiquotidien.nom, defiquotidien.pdd, defiquotidien.desc FROM defis_journaliers INNER JOIN defiquotidien ON defis_journaliers.ID_Defi = defiquotidien.ID_Defi WHERE defis_journaliers.date = :date");
+    $stmt_select_defis = $db->prepare("SELECT defiquotidien.ID_Defi, defis_journaliers.date, defiquotidien.nom, defiquotidien.pdd, defiquotidien.desc, defiquotidien.point FROM defis_journaliers INNER JOIN defiquotidien ON defis_journaliers.ID_Defi = defiquotidien.ID_Defi WHERE defis_journaliers.date = :date");
     $stmt_select_defis->bindParam(':date', $date_actuelle);
     $stmt_select_defis->execute();
     $defi_suppression = $db->prepare("DELETE FROM defis_journaliers WHERE date != :date");
@@ -265,7 +265,7 @@ try {
             }
 
             echo "</form>";
-            echo "<h3 id='defis_xp_ajout'>+100px</h3>";
+            echo "<h3 id='defis_xp_ajout'>+".$defi['point']."px</h3>";
             echo "</div>";
         }
         echo "</ul>";
