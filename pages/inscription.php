@@ -56,6 +56,16 @@
         text-decoration: none;
         cursor: pointer;
     }
+
+    #imagePreview {
+        display: block;
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        aspect-ratio: 1/1;
+    }
+</style>
+
     </style>
 </head>
 
