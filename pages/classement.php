@@ -302,7 +302,7 @@ document.body.addEventListener('click', function (e) {
         <?php foreach ($Classements as $key => $classement) { ?>
             <div class="row user-card mx-3 my-4" id="<?php if ($key == 0) echo 'un';
                                                         elseif ($key == 1) echo 'deux';
-                                                        elseif ($key == 2) echo 'trois'; ?>">
+                                                        elseif ($key == 2) echo 'trois';?>">
                 <div class="col-1 text-center align-self-center placement-large"><?php echo $key + 1; ?></div>
                 <div class="col-3 text-center align-self-center">
                     <img src="<?php echo $classement['pdp']; ?>" alt="Avatar de <?php echo $classement['pseudo']; ?>" class="user-avatar" onerror="this.onerror=null;this.src='../uploads/default.jpg';">
