@@ -130,6 +130,11 @@
         text-align: center;
         width: 70%;
     }
+    #titrechoose button{
+        border-radius: 50vw;
+        background-color: #1C3326;
+        color: inherit;
+    }
     </style>
 </head>
 
