@@ -188,77 +188,93 @@
     session_start(); // Démarre la session
     setlocale(LC_TIME, "fr_FR");
 
-    if (isset ($_SESSION['pseudo'])) {
+    if (isset($_SESSION['pseudo'])) {
         $pseudo = $_SESSION['pseudo'];
         $user_id = $_SESSION['user_id'];
     }
-    
-        // Vérifie si l'utilisateur est connecté
-        if (!isset ($_SESSION['pseudo'])) {
-            // Redirige l'utilisateur vers la page de connexion s'il n'est pas connecté
-            header("Location: connexion.php");
-            exit();
-        }
-    
 
-        try {
-            $db = new PDO('mysql:host=localhost;dbname=sae401-2', 'root', '');
-            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch (PDOException $erreur) {
-            die("Erreur de connexion à la base de données : " . $erreur->getMessage());
-        }
-        
+    // Vérifie si l'utilisateur est connecté
+    if (!isset($_SESSION['pseudo'])) {
+        // Redirige l'utilisateur vers la page de connexion s'il n'est pas connecté
+        header("Location: connexion.php");
+        exit();
+    }
 
-        
+
+    try {
+        $db = new PDO('mysql:host=localhost;dbname=sae401-2', 'root', '');
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch (PDOException $erreur) {
+        die("Erreur de connexion à la base de données : " . $erreur->getMessage());
+    }
+
+
+
     if (isset($_SESSION['pseudo']) && isset($_GET['titre'])) {
-        
+
         $select_titres_user = $db->prepare("SELECT nom FROM succes INNER JOIN utilisateursucces ON utilisateursucces.ID_Succes = succes.ID_Succes WHERE utilisateursucces.ID_Utilisateur = :iduser AND utilisateursucces.dateObtention != '0000-00-00'");
         $select_titres_user->bindParam(':iduser', $user_id);
         $select_titres_user->execute();
         $titres = $select_titres_user->fetchAll(PDO::FETCH_ASSOC);
         $nouveauTitre = $titres[$_GET['titre']]['nom'];
-        
+
         $query = $db->prepare("UPDATE utilisateurs SET titreUtilisateur = :titreUtilisateur WHERE ID_Utilisateur = :id_utilisateur");
         $query->bindParam(':titreUtilisateur', $nouveauTitre);
         $query->bindParam(':id_utilisateur', $user_id);
         $query->execute();
     }
 
-        setlocale(LC_TIME, "fr_FR");
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Récupérer le nouveau mot de passe depuis le formulaire
+        $newPassword = $_POST['newPassword'];
+    
+        // Hasher le nouveau mot de passe
+        $hashedPassword = hash('sha256', $newPassword);
+    
+        // Préparer la requête SQL d'update
+        $stmt_update_mdp = $db->prepare("UPDATE utilisateurs SET mdp = :mdp WHERE pseudo = :pseudo");
+        $stmt_update_mdp->bindParam(':mdp', $hashedPassword); // Utiliser le mot de passe haché
+        $stmt_update_mdp->bindParam(':pseudo', $pseudo);
+    
+        // Exécution de la requête
+        $stmt_update_mdp->execute();
+    }
 
-        $dateConnexion = date("Y-m-d");
+    setlocale(LC_TIME, "fr_FR");
 
-        $query = $db->prepare("UPDATE utilisateurs SET dateConnexion = :dateConnexion WHERE ID_Utilisateur = :id_utilisateur");
-        // Liez les paramètres et exécutez la requête
-        $query->bindParam(':dateConnexion', $dateConnexion, PDO::PARAM_STR);
-        $query->bindParam(':id_utilisateur', $user_id);
-        $query->execute();
+    $dateConnexion = date("Y-m-d");
 
-        // Vérifier d'abord si l'utilisateur a déjà obtenu le succès avec l'ID 1
-        $requete_verif_succes_1 = $db->prepare("SELECT COUNT(*) FROM utilisateursucces WHERE ID_Utilisateur = :id_utilisateur AND ID_Succes = 1");
-        $requete_verif_succes_1->bindParam(':id_utilisateur', $user_id);
-        $requete_verif_succes_1->execute();
-        $count_succes_1 = $requete_verif_succes_1->fetchColumn();
+    $query = $db->prepare("UPDATE utilisateurs SET dateConnexion = :dateConnexion WHERE ID_Utilisateur = :id_utilisateur");
+    // Liez les paramètres et exécutez la requête
+    $query->bindParam(':dateConnexion', $dateConnexion, PDO::PARAM_STR);
+    $query->bindParam(':id_utilisateur', $user_id);
+    $query->execute();
 
-        // Si l'utilisateur n'a pas déjà obtenu le succès avec l'ID 1
-        if ($count_succes_1 == 0) {
-            // Insérer une nouvelle entrée dans la table "utilisateursucces"
-            $requete_insert_succes_1 = $db->prepare("INSERT INTO utilisateursucces (ID_Utilisateur, ID_Succes, progression, dateObtention) VALUES (:id_utilisateur, 1, 1, NOW())");
-            $requete_insert_succes_1->bindParam(':id_utilisateur', $user_id);
-            $requete_insert_succes_1->execute();
-        }
+    // Vérifier d'abord si l'utilisateur a déjà obtenu le succès avec l'ID 1
+    $requete_verif_succes_1 = $db->prepare("SELECT COUNT(*) FROM utilisateursucces WHERE ID_Utilisateur = :id_utilisateur AND ID_Succes = 1");
+    $requete_verif_succes_1->bindParam(':id_utilisateur', $user_id);
+    $requete_verif_succes_1->execute();
+    $count_succes_1 = $requete_verif_succes_1->fetchColumn();
 
-        // Requête SQL pour récupérer les informations de l'utilisateur
-        $requete = $db->prepare("SELECT * FROM utilisateurs WHERE ID_Utilisateur = :id_utilisateur");
-        $requete->bindParam(':id_utilisateur', $user_id);
-        $requete->execute();
+    // Si l'utilisateur n'a pas déjà obtenu le succès avec l'ID 1
+    if ($count_succes_1 == 0) {
+        // Insérer une nouvelle entrée dans la table "utilisateursucces"
+        $requete_insert_succes_1 = $db->prepare("INSERT INTO utilisateursucces (ID_Utilisateur, ID_Succes, progression, dateObtention) VALUES (:id_utilisateur, 1, 1, NOW())");
+        $requete_insert_succes_1->bindParam(':id_utilisateur', $user_id);
+        $requete_insert_succes_1->execute();
+    }
 
-        // Récupération des résultats de la requête
-        $utilisateur = $requete->fetch(PDO::FETCH_ASSOC);
+    // Requête SQL pour récupérer les informations de l'utilisateur
+    $requete = $db->prepare("SELECT * FROM utilisateurs WHERE ID_Utilisateur = :id_utilisateur");
+    $requete->bindParam(':id_utilisateur', $user_id);
+    $requete->execute();
 
-        // Vérifier si l'utilisateur a une image de profil
-        $profileImage = $utilisateur['pdp'] ? $utilisateur['pdp'] : '../uploads/default.jpg';
-        $titreUtilisateur = $utilisateur['titreUtilisateur'] ? $utilisateur['titreUtilisateur'] : 'Jeune branche';   
+    // Récupération des résultats de la requête
+    $utilisateur = $requete->fetch(PDO::FETCH_ASSOC);
+
+    // Vérifier si l'utilisateur a une image de profil
+    $profileImage = $utilisateur['pdp'] ? $utilisateur['pdp'] : '../uploads/default.jpg';
+    $titreUtilisateur = $utilisateur['titreUtilisateur'] ? $utilisateur['titreUtilisateur'] : 'Jeune branche';
     ?>
     <div class="container mt-5">
         <div class="row">
@@ -306,56 +322,56 @@
                 <div class="col-6 offset-3 badges mb-2">
                     <div class="row">
                         <?php for ($i = 1; $i <= 6; $i++): ?>
-                        <div class="col-4">
-                            <div class="badgeSlot" id="badgeSlot<?php echo $i; ?>">
-                                <?php
-                                                    // Déterminer le groupe en fonction de la valeur de $i
-                                                    switch ($i) {
-                                                        case 1:
-                                                            $group = 'A%';
-                                                            break;
-                                                        case 2:
-                                                            $group = 'B%';
-                                                            break;
-                                                        case 3:
-                                                            $group = 'C%';
-                                                            break;
-                                                        case 4:
-                                                            $group = 'D%';
-                                                            break;
-                                                        case 5:
-                                                            $group = 'E%';
-                                                            break;
-                                                        case 6:
-                                                            $group = 'F%';
-                                                            break;
-                                                        default:
-                                                            $group = ''; // Gérer les valeurs par défaut si nécessaire
-                                                            break;
-                                                    }
+                                <div class="col-4">
+                                    <div class="badgeSlot" id="badgeSlot<?php echo $i; ?>">
+                                        <?php
+                                        // Déterminer le groupe en fonction de la valeur de $i
+                                        switch ($i) {
+                                            case 1:
+                                                $group = 'A%';
+                                                break;
+                                            case 2:
+                                                $group = 'B%';
+                                                break;
+                                            case 3:
+                                                $group = 'C%';
+                                                break;
+                                            case 4:
+                                                $group = 'D%';
+                                                break;
+                                            case 5:
+                                                $group = 'E%';
+                                                break;
+                                            case 6:
+                                                $group = 'F%';
+                                                break;
+                                            default:
+                                                $group = ''; // Gérer les valeurs par défaut si nécessaire
+                                                break;
+                                        }
 
-                                                    // Exemple de requête SQL pour récupérer le succès pour chaque slot
-                                                    $requete_succes = $db->prepare("SELECT s.ID_Succes, s.pds, s.nom FROM succes s 
+                                        // Exemple de requête SQL pour récupérer le succès pour chaque slot
+                                        $requete_succes = $db->prepare("SELECT s.ID_Succes, s.pds, s.nom FROM succes s 
                                         INNER JOIN utilisateursucces us ON s.ID_Succes = us.ID_Succes 
                                         WHERE us.ID_Utilisateur = :id_utilisateur AND s.triageSucces LIKE :group AND us.dateObtention != 00-00-0000
                                         ORDER BY CAST(SUBSTRING(s.triageSucces, 2) AS UNSIGNED) DESC
                                         LIMIT 1");
-                                                    $requete_succes->bindParam(':id_utilisateur', $user_id);
-                                                    $requete_succes->bindParam(':group', $group);
-                                                    $requete_succes->execute();
+                                        $requete_succes->bindParam(':id_utilisateur', $user_id);
+                                        $requete_succes->bindParam(':group', $group);
+                                        $requete_succes->execute();
 
-                                                    // Récupérer le résultat de la requête
-                                                    $succes_utilisateur = $requete_succes->fetch(PDO::FETCH_ASSOC);
+                                        // Récupérer le résultat de la requête
+                                        $succes_utilisateur = $requete_succes->fetch(PDO::FETCH_ASSOC);
 
-                                                    // Afficher le succès de l'utilisateur
-                                                    if ($succes_utilisateur) {
-                                                        echo "<img src='" . $succes_utilisateur['pds'] . "' alt='" . $succes_utilisateur['nom'] . " class='popup-trigger''><div class='popup'>
+                                        // Afficher le succès de l'utilisateur
+                                        if ($succes_utilisateur) {
+                                            echo "<img src='" . $succes_utilisateur['pds'] . "' alt='" . $succes_utilisateur['nom'] . " class='popup-trigger''><div class='popup'>
                                             <span class='popup-content'></span>
                                         </div>";
-                                                    }
-                                                    ?>
-                            </div>
-                        </div>
+                                        }
+                                        ?>
+                                    </div>
+                                </div>
                         <?php endfor; ?>
                     </div>
                 </div>
@@ -431,11 +447,11 @@
                     <div class="col-8">
                         <p>Membre depuis le
                             <?php
-                        $dateCreationCompte = $utilisateur['dateCreationCompte'];
-                        // Convertir la date en format DD-MM-YYYY
-                        $dateFormatee = date("d-m-Y", strtotime($dateCreationCompte));
-                        echo $dateFormatee;
-                        ?>
+                            $dateCreationCompte = $utilisateur['dateCreationCompte'];
+                            // Convertir la date en format DD-MM-YYYY
+                            $dateFormatee = date("d-m-Y", strtotime($dateCreationCompte));
+                            echo $dateFormatee;
+                            ?>
                         </p>
                     </div>
                     <div class="col-3 offset-1 level">
@@ -510,7 +526,11 @@
                 </div>
             </a>
             <div class="sub-menu">
-                <a href="#" class="list-group-item list-group-item-action rounded">Changer de mot de passe</a>
+                <a href="#" class="list-group-item list-group-item-action rounded" id="mdpListe">Changer de mot de passe</a>
+                <form id="changePasswordForm" style="display: none;" method="post" action="compte.php">
+                <input type="password" id="newPassword" name="newPassword" placeholder="Nouveau mot de passe" autocomplete="new-password">
+                    <button type="submit">Changer</button>
+                </form>
             </div>
             <!-- Séparateur -->
             <div class="separator my-3"></div>
@@ -610,7 +630,7 @@
                         
                     }
                 </script>
-            <button class="px-3" id="cancel2" class="close-popup">Retour</button>
+            <button class="px-3 mt-3" id="cancel2" class="close-popup">Retour</button>
         </div>
     </div>
 
@@ -644,6 +664,15 @@
     <script src="https://code.jquery.com/jquery-3.7.1.js"
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script>
+        document.addEventListener("DOMContentLoaded", function () {
+    var changePasswordLink = document.querySelector('#mdpListe'); // Sélectionnez le bon élément de lien
+    var changePasswordForm = document.getElementById('changePasswordForm');
+
+    changePasswordLink.addEventListener('click', function (event) {
+        event.preventDefault();
+        changePasswordForm.style.display = 'block'; // Affichez le formulaire lorsque le lien est cliqué
+    });
+});
     function titrechoose2(value) {
         window.location.assign("compte.php?titre=" + value);
     }
@@ -758,6 +787,20 @@
     $titres = $select_titres_user->fetchAll(PDO::FETCH_ASSOC);
     echo "<script> var titres = ".json_encode($titres)."</script>";
         ?>
+    <script>
+    function titrechoose() {
+        var titrechoose = document.getElementById('titrechoose');
+        titrechoose.innerHTML = "Changer de titre<br>";
+        for (let i = 0; i < titres.length; i++) {
+            titrechoose.innerHTML += "<button value=" + i + " onclick='titrechoose2(value)'>" + titres[i].nom +
+                "</button>";
+        }
+    }
+
+    function titrechoose2(value) {
+        window.location.assign("compte.php?titre=" + value);
+    }
+    </script>
 </body>
 
 </html>
