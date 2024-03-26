@@ -153,7 +153,32 @@
         border: #F90505 0.8px solid;
         border-radius: 15px
     }
+
+    .form-group {
+        text-align : left;
+        width: 95%;
+    }
+
+    .form-group label{
+        font-weight : 200px;
+    }
+
+    #newPseudo {
+        width: 100%;
+        padding: 5px 15px;
+    }
+
+    h3, .form-group label{
+        color: #A9FFA4;
+    }
+
+    #confirmChangePseudo {
+        border: #A9FFA4 0.8px solid;
+        background-color: transparent;
+        color: #A9FFA4;
+    }
     </style>
+
 </head>
 
 <body>
@@ -576,33 +601,38 @@
                             $select_titres_user->execute();
                             $titres = $select_titres_user->fetchAll(PDO::FETCH_ASSOC);
                 foreach ($titres as $key => $titre): ?>
-                <button value="<?php echo $key; ?>" onclick="titrechoose2(this.value)">
+                <button class="px-3" value="<?php echo $key; ?>" onclick="titrechoose2(this.value)">
                     <?php echo $titre['nom']; ?>
                 </button>
                 <?php endforeach; ?>
             </form>
-            <button id="cancel2" class="close-popup">Retour</button>
+            <button class="px-3" id="cancel2" class="close-popup">Retour</button>
         </div>
     </div>
 
     <!-- Popup 3 -->
     <div id="popup3" class="popup">
-    <div class="popup-content">
-        <h2>Changer de pseudo</h2>
-        <form id="changePseudoForm" action="../form/changer_pseudo.php" method="post">
-            <label for="newPseudo">Nouveau pseudo :</label>
-            <input type="text" id="newPseudo" name="newPseudo" placeholder="<?php echo $utilisateur['pseudo']; ?>" required>
-            <div class="row mt-3">
-                <div class="col-5 offset-1">
-                    <button id="cancel3" class="close-popup">Retour</button>
+        <div class="popup-content">
+            <h3>Changer de pseudo</h3>
+            <p class="mt-4">Saisissez ci-dessous le nouveau pseudo que vous souhaitez utiliser</p>
+            <form id="changePseudoForm" action="../form/changer_pseudo.php" method="post">
+                <div class="form-group">
+                    <label for="newPseudo">Nouveau pseudo</label>
+                    <input type="text" id="newPseudo" name="newPseudo"
+                        placeholder="<?php echo $utilisateur['pseudo']; ?>" class="rounded" required>
                 </div>
-                <div class="col-5">
-                    <button type="submit" id="confirmChangePseudo">Confirmer</button>
+                <div class="row mt-4">
+                    <div class="col-5">
+                        <button class="px-3" id="cancel3" class="close-popup">Retour</button>
+                    </div>
+                    <div class="col-5">
+                        <button class="px-3" type="submit" id="confirmChangePseudo">Confirmer</button>
+                    </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
-</div>
+
 
 
 
