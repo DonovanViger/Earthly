@@ -251,6 +251,7 @@ try {
             }
 
             echo "</form>";
+            echo "<h3 id='defis_xp_ajout'>+100px</h3>";
             echo "</div>";
         }
         echo "</ul>";
