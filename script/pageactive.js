@@ -3,8 +3,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var currentPage = window.location.pathname.split("/").pop();
 
     // Récupération de l'élément img du footer
-    var footerLink = document.querySelector("footer a[href*='" + currentPage + "']");
-    var footerImage = footerLink.querySelector(".footer-image");
+    var footerImage = document.querySelector("footer a[href*='" + currentPage + "'] .footer-image");
 
     // Définir le chemin de l'image en fonction de la page actuelle
     var imagePath;
@@ -27,5 +26,10 @@ document.addEventListener("DOMContentLoaded", function() {
         default:
             // Chemin d'image par défaut si la page n'est pas reconnue
             imagePath = "../img/footer/default.png";
+    }
+
+    // Remplacer l'image du footer par celle correspondant à la page actuelle
+    if (footerImage) {
+        footerImage.src = imagePath;
     }
 });
