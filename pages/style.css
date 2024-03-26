@@ -1093,5 +1093,5 @@ iframe {
 }
 
 .footer-image[src*='blanc'] + .image-text {
-color: #FFEFE1;
+    color: #FFEFE1;
 }
