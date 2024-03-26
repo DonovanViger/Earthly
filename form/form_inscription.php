@@ -1,3 +1,16 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../pages/style.css" />
+    <title>Earthly | Erreur de connexion</title>
+</head>
+<body>
+    
+</body>
+</html>
+
 <?php
 try {
     // Connexion à la base de données
@@ -43,8 +56,10 @@ try {
     $requete->bindParam(':photo', $photoPath);
     $requete->execute();
 
-    echo "<p>Compte créé avec succès.</p>";
-    echo "<a href='../index.php'>Retour à l'index</a>";
+    echo "<div id='erreur_connexion_box'>";
+    echo "<p id='erreur_connexion_para'>Compte créé avec succès</p>";
+    echo "<button id='erreur_button_form'><a href='../pages/connexion.php'>Retour à la page de connexion</a>";
+    echo "</div>";
 
 } catch (PDOException $erreur) {
     // En cas d'erreur de connexion à la base de données
