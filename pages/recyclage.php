@@ -35,6 +35,16 @@
     $poubelle_suppression = $db->prepare("DELETE FROM scanpoubelle WHERE dateScan != :date");
     $poubelle_suppression->bindParam(':date', $date_actuelle);
     $poubelle_suppression->execute();
+    
+    $select_poubelle_user = $db->prepare("SELECT * FROM scanpoubelle  WHERE ID_Utilisateur = :iduser");
+    $select_poubelle_user->bindParam(':iduser', $iduser);
+    $select_poubelle_user->execute();
+    $poubelle_user = $select_poubelle_user->fetch(PDO::FETCH_ASSOC);
+    if (isset($poubelle_user[2])) {
+        echo "<script> var poubelle_user = 'oui'</script>";
+    } else {
+        echo "<script> var poubelle_user = 'non'</script>";
+    }
     ?>
 
 <div id="overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 998;"></div>
@@ -70,18 +80,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script src="bundle.js"></script>
-    <?php 
-    
-    $select_poubelle_user = $db->prepare("SELECT * FROM scanpoubelle  WHERE ID_Utilisateur = :iduser");
-    $select_poubelle_user->bindParam(':iduser', $iduser);
-    $select_poubelle_user->execute();
-    $poubelle_user = $select_poubelle_user->fetch(PDO::FETCH_ASSOC);
-    if (isset($poubelle_user[2])) {
-        echo "<script> var poubelle_user = 'oui'</script>";
-    } else {
-        echo "<script> var poubelle_user = 'non'</script>";
-    }
-    ?>
     <script>
     document.addEventListener('DOMContentLoaded', () => {
         const video = document.getElementById('video');
@@ -156,9 +154,18 @@ const captureAndDecode = () => {
                 // Afficher la popup avec overlay et le message correspondant à la poubelle
                 let message;
                 if (qrData.includes("poubelle=1")) {
-                    message = "Vous recyclez vos déchets cartons, plastiques, papiers et métalliques<br>+200 Points";
+                    message = "Vous recyclez vos déchets cartons, plastiques, papiers et métalliques\n+200 Points";
+                    <?php
+                    $insert_into_poubelle = $db->prepare("INSERT INTO scanpoubelle (ID_Utilisateur, ID_Poubelle, dateScan) VALUES (:iduser, 1, :dateActuel)");
+                    $insert_into_poubelle->bindParam(':iduser', $iduser);
+                    $insert_into_poubelle->bindParam(':dateActuel', $date_actuelle);
+                    $insert_into_poubelle->execute();
+                    $stmt_update_score = $db->prepare("UPDATE utilisateurs SET point_Planete = point_Planete + 200, exp_Utilisateur = exp_Utilisateur + 200 WHERE ID_Utilisateur = :id_utilisateur");
+                    $stmt_update_score->bindParam(':id_utilisateur', $iduser);
+                    $stmt_update_score->execute();
+                    ?>
                 } else if (qrData.includes("poubelle=2")) {
-                    message = "Vous recyclez vos déchets en verre<br>+200 Points";
+                    message = "Vous recyclez vos déchets en verre\n+200 Points";
                 } else if (qrData.includes("poubelle=3")) {
                     message = "Vous jetez vos déchets ordinaires qui ne se recyclent pas";
                 } else {
@@ -171,8 +178,19 @@ const captureAndDecode = () => {
             }
         
         } else {
-            message = "Vous avez déjà scanner un QR code aujourd'hui sale batard";
-            showPopupWithOverlay(message);
+            if (qrData.includes("poubelle=")) {
+                // Afficher la popup avec overlay et le message correspondant à la poubelle
+                let message;
+                if (qrData.includes("poubelle=3")) {
+                    message = "Vous jetez vos déchets ordinaires qui ne se recyclent pas";
+                } else {
+                    message = "Vous avez déjà scanner un QR code aujourd'hui";
+                }
+                showPopupWithOverlay(message);
+            } else {
+                message = "Vous avez déjà scanner un QR code aujourd'hui";
+                showPopupWithOverlay(message);
+            }
         }
     }
 };
