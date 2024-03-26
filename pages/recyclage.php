@@ -30,18 +30,11 @@
     }
 
     $date_actuelle = date("Y-m-d");
-    $iduser = $_SESSION['iduser'];
+    $iduser = $_SESSION['user_id'];
     
     $poubelle_suppression = $db->prepare("DELETE FROM scanpoubelle WHERE dateScan != :date");
     $poubelle_suppression->bindParam(':date', $date_actuelle);
     $poubelle_suppression->execute();
-    
-    $select_poubelle_user = $db->prepare("SELECT * FROM scanpoubelle  WHERE ID_Utilisateur = :iduser");
-    $select_poubelle_user->bindParam(':iduser', $iduser);
-    $select_poubelle_user->execute();
-    $poubelle_user = $select_poubelle_user->fetch(PDO::FETCH_ASSOC);
-    echo "<script>console.log(".$poubelle_user[2].")</script>";
-    echo "<script>var poubelle_user = ".$poubelle_user[2]."</script>";
     ?>
 
 <div id="overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 998;"></div>
@@ -77,6 +70,18 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script src="bundle.js"></script>
+    <?php 
+    
+    $select_poubelle_user = $db->prepare("SELECT * FROM scanpoubelle  WHERE ID_Utilisateur = :iduser");
+    $select_poubelle_user->bindParam(':iduser', $iduser);
+    $select_poubelle_user->execute();
+    $poubelle_user = $select_poubelle_user->fetch(PDO::FETCH_ASSOC);
+    if (isset($poubelle_user[2])) {
+        echo "<script> var poubelle_user = 'oui'</script>";
+    } else {
+        echo "<script> var poubelle_user = 'non'</script>";
+    }
+    ?>
     <script>
     document.addEventListener('DOMContentLoaded', () => {
         const video = document.getElementById('video');
@@ -145,7 +150,7 @@ const captureAndDecode = () => {
     if (code) {
         const qrData = code.data;
         //resultElement.innerText = "QR Code trouvé : " + qrData;
-        <?php if (!isset($poubelle_user)) { ?>
+        if (poubelle_user == 'non') { 
             // Ne pas utiliser isValidUrl pour les liens contenant les paramètres poubelle
             if (qrData.includes("poubelle=")) {
                 // Afficher la popup avec overlay et le message correspondant à la poubelle
@@ -165,7 +170,10 @@ const captureAndDecode = () => {
                 showPopupWithOverlay(message);
             }
         
-            <?php } else {} ?>
+        } else {
+            message = "Vous avez déjà scanner un QR code aujourd'hui sale batard";
+            showPopupWithOverlay(message);
+        }
     }
 };
 
