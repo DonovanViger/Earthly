@@ -653,8 +653,8 @@ body {
 }
 
 .badgeSlot {
-    width: 45px; /* Largeur des éléments */
-    height: 45px; /* Hauteur des éléments */
+    width: 40px; /* Largeur des éléments */
+    height: 40px; /* Hauteur des éléments */
     background-color: transparent;
     border: 1px solid #000; /* Bordure pour former un cercle */
     border-radius: 50%; /* Rend les éléments circulaires */
@@ -662,6 +662,10 @@ body {
     align-items: center;
     justify-content: center;
     margin-bottom: 5px; /* Espacement en bas de chaque élément */
+}
+.badgeSlot img{
+    height: 45px;
+    margin-top: 2px;
 }
 
 /* Style pour les trois premiers éléments */

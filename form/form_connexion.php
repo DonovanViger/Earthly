@@ -85,16 +85,46 @@ try {
             $stmt_update_pointNeg->execute();
         }
 
-        header("Location: ../pages/compte.php"); // Redirige l'utilisateur vers la page d'accueil
-        exit();
-    } else {
-        echo "<div id='erreur_connexion_box'>";
-        echo "<p id='erreur_connexion_para'>Identifiant ou mot de passe incorrect</p>";
-        echo "<button id='erreur_button_form'><a href='http://localhost/Earthly/Earthly/pages/connexion.php'>Retour à la page de connexion</a>";
-        echo "</div>";
-        // Redirection vers la page de connexion avec un message d'erreur
-    }
-    $date_actuelle = date('Y-m-d');
+        $stmt_select_idutilisateur = $db->prepare("SELECT `ID_Utilisateur` FROM `utilisateurs` WHERE pseudo = :pseudo;");
+        $stmt_select_idutilisateur->bindParam(':pseudo', $pseudo,PDO::PARAM_STR);
+        $stmt_select_idutilisateur->execute();
+        $id_utilisateur_row = $stmt_select_idutilisateur->fetch(PDO::FETCH_ASSOC);
+        $id_utilisateur = $id_utilisateur_row['ID_Utilisateur'];
+        
+        $date_actuelle = date('Y-m-d');
+        
+        $stmt_select_dateDepuisCreation = $db->prepare("SELECT TIMESTAMPDIFF(DAY, dateCreationCompte, CURDATE()) AS jours_ecoules FROM utilisateurs WHERE `pseudo` = :pseudo");
+        $stmt_select_dateDepuisCreation->bindParam(':pseudo', $pseudo, PDO::PARAM_STR);
+        $stmt_select_dateDepuisCreation->execute();
+        $jourPassee = $stmt_select_dateDepuisCreation->fetch(PDO::FETCH_ASSOC);
+        
+        $stmt_select_succesmois = $db->prepare("SELECT * FROM `utilisateursucces` WHERE `ID_Utilisateur` = :IDutilisateur AND `ID_Succes` = 14");
+        $stmt_select_succesmois->bindParam(':IDutilisateur', $id_utilisateur, PDO::PARAM_STR);
+        $stmt_select_succesmois->execute();
+        $avoirbadgemois = $stmt_select_succesmois->fetch(PDO::FETCH_ASSOC);
+        
+        $stmt_select_succesannee = $db->prepare("SELECT * FROM `utilisateursucces` WHERE `ID_Utilisateur` = :IDutilisateur AND `ID_Succes` = 15");
+        $stmt_select_succesannee->bindParam(':IDutilisateur', $id_utilisateur, PDO::PARAM_STR);
+        $stmt_select_succesannee->execute();
+        $avoirbadgeannee = $stmt_select_succesannee->fetch(PDO::FETCH_ASSOC);
+        
+        if (empty($avoirbadgemois)) {
+            if ($jourPassee['jours_ecoules'] >= 30) {
+                $stmt_insert_badgemois = $db->prepare("INSERT INTO `utilisateursucces`(`ID_Utilisateur`, `ID_Succes`, `progression`, `dateObtention`) VALUES (:id_utilisateur, 14, 1, :datejour)");
+                $stmt_insert_badgemois->bindParam(':id_utilisateur', $id_utilisateur, PDO::PARAM_INT);
+                $stmt_insert_badgemois->bindParam(':datejour', $date_actuelle, PDO::PARAM_STR);
+                $stmt_insert_badgemois->execute();
+            }
+        }
+        
+        if (empty($avoirbadgeannee)) {
+            if ($jourPassee['jours_ecoules'] >= 365) {
+                $stmt_insert_badgeannee = $db->prepare("INSERT INTO `utilisateursucces`(`ID_Utilisateur`, `ID_Succes`, `progression`, `dateObtention`) VALUES (:id_utilisateur, 15, 1, :datejour)");
+                $stmt_insert_badgeannee->bindParam(':id_utilisateur', $id_utilisateur, PDO::PARAM_INT);
+                $stmt_insert_badgeannee->bindParam(':datejour', $date_actuelle, PDO::PARAM_STR);
+                $stmt_insert_badgeannee->execute();
+            }
+        }
 
     // Vérification si des défis sont sélectionnés pour la journée actuelle
     $stmt_select_defis = $db->prepare("SELECT defis_journaliers.date, defiquotidien.nom, defiquotidien.desc FROM defis_journaliers INNER JOIN defiquotidien ON defis_journaliers.ID_Defi = defiquotidien.ID_Defi WHERE defis_journaliers.date = :date");
@@ -116,6 +146,17 @@ try {
             $stmt_insert_defis->execute();
         }
     }
+
+        header("Location: ../pages/compte.php"); // Redirige l'utilisateur vers la page d'accueil
+        exit();
+    } else {
+        echo "<div id='erreur_connexion_box'>";
+        echo "<p id='erreur_connexion_para'>Identifiant ou mot de passe incorrect</p>";
+        echo "<button id='erreur_button_form'><a href='http://localhost/Earthly/Earthly/pages/connexion.php'>Retour à la page de connexion</a>";
+        echo "</div>";
+        // Redirection vers la page de connexion avec un message d'erreur
+    }
+    
 } catch (PDOException $erreur) {
     // En cas d'erreur de connexion à la base de données
     die ("Erreur de connexion à la base de données : " . $erreur->getMessage());
