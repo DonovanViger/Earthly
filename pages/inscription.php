@@ -83,6 +83,7 @@
                 <input type="password" id="mdp" name="mdp" required placeholder="Mot de passe"
                     class="inscription_input_area"><br><br>
 
+    </div>
                 <div id="inscription_files_box">
                     <h2 id="inscription_h2_files">Votre photo de profil</h2>
                     <input type="file" id="photo" name="photo" accept="image/*" required
