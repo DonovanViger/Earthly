@@ -130,6 +130,11 @@
         text-align: center;
         width: 70%;
     }
+    #titrechoose button{
+        border-radius: 50vw;
+        background-color: #1C3326;
+        color: inherit;
+    }
     </style>
 </head>
 
@@ -237,7 +242,7 @@
                         </h2>
                     </div>
                     <div class="row">
-                        <div class="mb-3 titresucces" id="titrechoose" onclick="titrechoose()">
+                        <div class="mb-3 titresucces">
                             <?php echo $titreUtilisateur; ?>
                         </div>
                     </div>
@@ -481,6 +486,7 @@
             <div class="sub-menu">
                 <a href="#" class="list-group-item list-group-item-action rounded">Changer de pseudo</a>
                 <a href="#" class="list-group-item list-group-item-action rounded">Affichage du pseudo</a>
+                <a href="#titrechoose" class="list-group-item list-group-item-action rounded" id="titrechoose" onclick="titrechoose()">Changer de titre</a>
             </div>
             <!-- Séparateur -->
             <div class="separator my-3"></div>
@@ -610,15 +616,14 @@
     $select_titres_user->execute();
     $titres = $select_titres_user->fetchAll(PDO::FETCH_ASSOC);
     echo "<script> var titres = ".json_encode($titres)."</script>";
-    echo "<script> var titreUtilisateur = '".$titreUtilisateur."'</script>";
         ?>
     <script>
     function titrechoose() {
         var titrechoose = document.getElementById('titrechoose');
-        titrechoose.innerHTML = titreUtilisateur;
+        titrechoose.innerHTML = "Changer de titre<br>";
         for (let i = 0; i < titres.length; i++) {
             titrechoose.innerHTML += "<button value=" + i + " onclick='titrechoose2(value)'>" + titres[i].nom +
-                "</option>";
+                "</button>";
         }
     }
 
