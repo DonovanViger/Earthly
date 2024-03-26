@@ -285,7 +285,7 @@ body {
     border: none;
     border-radius: 15px;
     cursor: pointer;
-    font-size: 2.5vh; /* Taille du texte */
+    font-size: 2.25vh; /* Taille du texte */
     width: 90%;
 }
 
@@ -433,9 +433,9 @@ body {
 
 #planet_annotation{
     width: 85%;
-    height: 27.5vh;
+    height: 30vh;
     text-align: center;
-    margin: 62.5vh auto 0 auto;
+    margin: 60vh auto 0 auto;
     background-color: #ffffff49;
     padding: 2vh;
     border-radius: 15px;
@@ -698,8 +698,8 @@ body {
 #defi_patern_box{
     background-image: url("../uploads/pattern.svg");
     background-size: cover; /* Ajuste la taille de l'image pour remplir complètement le conteneur */ /* Change la couleur de fond */
-    height: 175vh;
-    padding-top: 10vh;
+    height: 200vh;
+    padding-top: 5vh;
 }
 
 #defis_rafraichir_defis{

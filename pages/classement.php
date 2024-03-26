@@ -96,6 +96,15 @@ if (!isset($_SESSION['pseudo'])) {
     if (isset($_GET['partage'])) {
         $id_partage = $_GET['partage'];
 
+    $requete1 = $db->prepare("SELECT * FROM utilisateurs WHERE ID_Utilisateur = :iduser");
+    $requete1->bindParam(':iduser', $id_partage);
+    $requete1->execute();
+    $partage = $requete1->fetch(PDO::FETCH_ASSOC);
+    
+    $profileImage = $partage['pdp'] ? $partage['pdp'] : '../uploads/default.jpg';
+    $titrePartage = $partage['titreUtilisateur'] ? $partage['titreUtilisateur'] : 'Jeune branche';
+    }
+?>
         $requete1 = $db->prepare("SELECT * FROM utilisateurs WHERE ID_Utilisateur = :iduser");
         $requete1->bindParam(':iduser', $id_partage);
         $requete1->execute();
@@ -302,9 +311,8 @@ if (!isset($_SESSION['pseudo'])) {
                 }
             });
         </script>
-
+    </div>
     <?php
-    }
 
     $requeteClassement = $db->prepare("SELECT `ID_Utilisateur`,`pseudo`,`exp_Utilisateur`,`point_Planete`, IFNULL(`pdp`, '../uploads/default.jpg') AS `pdp` FROM `utilisateurs` ORDER BY `point_Planete` DESC LIMIT 10;");
     $requeteClassement->execute();
@@ -342,7 +350,7 @@ if (!isset($_SESSION['pseudo'])) {
                 </div>
             <?php } ?>
         </div>
-
+        
         <div class="scroll w-100"></div>
 
     </div>
@@ -351,18 +359,23 @@ if (!isset($_SESSION['pseudo'])) {
     echo "<script>var classements = " . json_encode($Classements) . ";</script>";
 
     ?>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-        </script>
-    <script>
-        var usercard = document.getElementsByClassName("user-card");
-        for (let i = 0; i < classements.length; i++) {
-            usercard[i].addEventListener('click', function () {
-                window.location.assign("classement.php?partage=" + classements[i].ID_Utilisateur);
-            });
-        }
+    </div>
+        </div>
+    </div>
+</div> <!-- Fermeture de la balise div avec la classe "popup" -->
 
-    </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+</script>
+<script>
+    var usercard = document.getElementsByClassName("user-card");
+    for (let i = 0; i < classements.length; i++) {
+        usercard[i].addEventListener('click', function () {
+            window.location.assign("classement.php?partage=" + classements[i].ID_Utilisateur);
+        });
+    }
+</script>
+
 </body>
 
 </html>
