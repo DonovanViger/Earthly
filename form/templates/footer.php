@@ -8,7 +8,7 @@
         <div class="nav-slot">
             <a href="../pages/recyclage.php" class="nav-link" id="recyclage">
                 <img src="../img/nav bar/Scanner noir.png" class="footer-image" data-image="2.png">
-                <span class="image-text">Recyclage</span>
+                <span class="image-text">Scanner</span>
             </a>
         </div>
         <div class="nav-slot round-top-left">
