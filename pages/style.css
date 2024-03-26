@@ -277,14 +277,28 @@ body {
 /* Style du bouton personnalisé */
 .custom-file-input {
     display: inline-block;
-    background-color: #007bff; /* Couleur de fond pour le bouton */
-    color: white; /* Couleur du texte */
-    padding: 10px 20px; /* Espacement du bouton */
+    margin-top: 2vh;
+    margin-bottom: 5vh;
+    background-color: #1C3326; /* Couleur de fond pour le bouton */
+    color: #A9FFA4; /* Couleur du texte */
+    padding: 1vh 1vh; /* Espacement du bouton */
     border: none;
-    border-radius: 5px;
+    border-radius: 15px;
     cursor: pointer;
-    font-size: 16px; /* Taille du texte */
-    text-align: center;
+    font-size: 2.5vh; /* Taille du texte */
+    width: 90%;
+}
+
+#inscription_dossier_svg{
+    margin: 0 5vw 0 0;
+    width: 5vh;
+    width: 5vh;
+    float: left;
+}
+
+#inscription_paragraph_dossier{
+    float: left;
+    margin: 0.75vh 0 0 0 ;
 }
 
 #inscription_div_img{
@@ -299,7 +313,7 @@ body {
 #inscription_box_button{
     width: 50vw;
     text-align: center;
-    margin: auto;
+    margin: -2.5vh auto 0 auto;
 }
 
 #inscription_box_button input{
