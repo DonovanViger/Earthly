@@ -195,7 +195,7 @@ try {
     <style>
         
         .defi{
-            font-size:3vw;
+            font-size:5vw;
         }
         .defi strong{
             color:#2BBA7C;

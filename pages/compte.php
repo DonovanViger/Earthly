@@ -132,8 +132,8 @@
     }
     #titrechoose button{
         border-radius: 50vw;
-        background-color: #1C3326;
-        color: inherit;
+        background-color: #2BBA7C;
+        color: white;
     }
     </style>
 </head>
