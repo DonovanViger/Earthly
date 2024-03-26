@@ -433,9 +433,9 @@ body {
 
 #planet_annotation{
     width: 85%;
-    height: 27.5vh;
+    height: 30vh;
     text-align: center;
-    margin: 62.5vh auto 0 auto;
+    margin: 60vh auto 0 auto;
     background-color: #ffffff49;
     padding: 2vh;
     border-radius: 15px;
