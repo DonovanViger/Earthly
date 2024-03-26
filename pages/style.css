@@ -270,6 +270,23 @@ body {
     color: #1C3326;
 }
 
+#photo {
+    display: none;
+}
+
+/* Style du bouton personnalisé */
+.custom-file-input {
+    display: inline-block;
+    background-color: #007bff; /* Couleur de fond pour le bouton */
+    color: white; /* Couleur du texte */
+    padding: 10px 20px; /* Espacement du bouton */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px; /* Taille du texte */
+    text-align: center;
+}
+
 #inscription_div_img{
     margin: auto;
     width: 25vh;
@@ -1090,4 +1107,8 @@ iframe {
 .sketchfab-embed-wrapper {
     width: 100vw;
     height: 100vh;
+}
+
+.footer-image[src*='blanc'] + .image-text {
+    color: #FFEFE1;
 }
