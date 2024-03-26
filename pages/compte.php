@@ -620,10 +620,10 @@
     <script>
     function titrechoose() {
         var titrechoose = document.getElementById('titrechoose');
-        titrechoose.innerHTML = "Changer de titre";
+        titrechoose.innerHTML = "Changer de titre<br>";
         for (let i = 0; i < titres.length; i++) {
             titrechoose.innerHTML += "<button value=" + i + " onclick='titrechoose2(value)'>" + titres[i].nom +
-                "</option>";
+                "</button>";
         }
     }
 
