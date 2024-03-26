@@ -623,7 +623,7 @@
                 <script>
                     console.log(titres);
                     for (var i=0; i<titres.length; i++){
-                        document.write("<button class='px-3' value='"+i+"' onclick='titrechoose2(this.value)'>"+titres[i].nom+"</button>")
+                        document.write("<button id='compte_button_titre' class='px-3' value='"+i+"' onclick='titrechoose2(this.value)'>"+titres[i].nom+"</button>")
                         
                     }
                 </script>
