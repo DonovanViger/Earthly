@@ -10,125 +10,126 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
     <title>Mon compte</title>
     <style>
-        .titrecompte a {
-            font-size: 2rem;
-            color: #2BBA7C;
-            text-decoration: none;
-            margin-left: -3%;
-        }
+    .titrecompte a {
+        font-size: 2rem;
+        color: #2BBA7C;
+        text-decoration: none;
+        margin-left: -3%;
+    }
 
-        .boite {
-            background-color: #2BBA7C;
-            border-radius: 15px;
-        }
+    .boite {
+        background-color: #2BBA7C;
+        border-radius: 15px;
+    }
 
-        .pseudo {
-            color: #FFEFE1;
-        }
+    .pseudo {
+        color: #FFEFE1;
+    }
 
-        .profil_page {
-            background-color: #2BBA7C;
-            width: 95%;
-            margin: auto;
-            border-radius: 15px;
-        }
+    .profil_page {
+        background-color: #2BBA7C;
+        width: 95%;
+        margin: auto;
+        border-radius: 15px;
+    }
 
-        .badges {
-            margin-top: -20px;
-        }
+    .badges {
+        margin-top: -20px;
+    }
 
-        .sous-xp {
-            font-size: 0.70rem;
-        }
+    .sous-xp {
+        font-size: 0.70rem;
+    }
 
-        .level {
-            color: #A9FFA4;
-        }
+    .level {
+        color: #A9FFA4;
+    }
 
-        .parametres {
-            margin-bottom: 5vh;
-            width: 80%;
-        }
+    .parametres {
+        margin-bottom: 5vh;
+        width: 80%;
+    }
 
-        .separator {
-            border-top: 1px solid #ddd;
-        }
+    .separator {
+        border-top: 1px solid #ddd;
+    }
 
-        .sub-menu {
-            display: none;
-            padding-left: 30px;
-        }
+    .sub-menu {
+        display: none;
+        padding-left: 30px;
+    }
 
-        .sub-menu.show {
-            display: block;
-        }
+    .sub-menu.show {
+        display: block;
+    }
 
-        .list-group {
-            --bs-list-group-color: #2BBA7C;
-            --bs-list-group-bg: #1C3326;
-            --bs-list-group-border-color: none;
-        }
+    .list-group {
+        --bs-list-group-color: #2BBA7C;
+        --bs-list-group-bg: #1C3326;
+        --bs-list-group-border-color: none;
+    }
 
-        .fa-chevron-up {
-            transform: rotate(-180deg);
-        }
+    .fa-chevron-up {
+        transform: rotate(-180deg);
+    }
 
-        .xp {
-            font-size: 0.8rem;
-            position: relative;
-            top: 1.5vh;
-        }
+    .xp {
+        font-size: 0.8rem;
+        position: relative;
+        top: 1.5vh;
+    }
 
-        .gauche {
-            color: #A9FFA4;
-        }
+    .gauche {
+        color: #A9FFA4;
+    }
 
-        .niveauxp,
-        .droite {
-            color: #FFEFE1;
-        }
+    .niveauxp,
+    .droite {
+        color: #FFEFE1;
+    }
 
-        .titresucces {
-            font-size: 0.8rem;
-            margin-top: -0.8rem;
-            color: #A9FFA4;
-        }
+    .titresucces {
+        font-size: 0.8rem;
+        margin-top: -0.8rem;
+        color: #A9FFA4;
+    }
 
-        .partager {
-            font-size: 0.7rem;
-        }
+    .partager {
+        font-size: 0.7rem;
+    }
 
-        .btn {
-            padding: 0px;
-        }
+    .btn {
+        padding: 0px;
+    }
 
-        .progress-bar {
-            background-color: #A9FFA4;
-        }
-        .popup {
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            transform: translate(-50%, 10px);
-            background-color: rgba(0, 0, 0, 0.8);
-            color: #fff;
-            padding: 10px;
-            border-radius: 5px;
-            display: none;
-        }
+    .progress-bar {
+        background-color: #A9FFA4;
+    }
 
-        .popup-content {
-            display: block;
-        }
-
-        .popup-content::before {
-            content: "Art: ";
-            font-weight: bold;
-        }
-
-        .popup-trigger:hover + .popup {
-            display: block;
-        }
+    /* Styles pour la pop-up */
+    .popup {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 9999;
+    }
+    .popup-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 20px;
+        border-radius: 15px;
+        background-color: #1C3326;
+        color: #FFEFE1;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        text-align: center;
+        width: 70%;
+    }
     </style>
 </head>
 
@@ -228,7 +229,8 @@
         <div class="p-4 profil_page">
             <div class="row">
                 <div class="col-3">
-                <img src="<?php echo $profileImage; ?>" alt="Avatar de <?php echo $utilisateur['pseudo']; ?>" class="profile-image" onerror="this.onerror=null;this.src='../uploads/default.jpg';">
+                    <img src="<?php echo $profileImage; ?>" alt="Avatar de <?php echo $utilisateur['pseudo']; ?>"
+                        class="profile-image" onerror="this.onerror=null;this.src='../uploads/default.jpg';">
                 </div>
                 <div class="col-6">
                     <div class="row">
@@ -254,11 +256,11 @@
             </div>
             <div class="row mt-3">
                 <div class="col-6 offset-3 badges mb-2">
-                <div class="row">
-    <?php for ($i = 1; $i <= 6; $i++): ?>
-                                            <div class="col-4">
-                                                <div class="badgeSlot" id="badgeSlot<?php echo $i; ?>">
-                                                    <?php
+                    <div class="row">
+                        <?php for ($i = 1; $i <= 6; $i++): ?>
+                        <div class="col-4">
+                            <div class="badgeSlot" id="badgeSlot<?php echo $i; ?>">
+                                <?php
                                                     // Déterminer le groupe en fonction de la valeur de $i
                                                     switch ($i) {
                                                         case 1:
@@ -304,10 +306,10 @@
                                         </div>";
                                                     }
                                                     ?>
-                                                </div>
-                                            </div>
-    <?php endfor; ?>
-</div>
+                            </div>
+                        </div>
+                        <?php endfor; ?>
+                    </div>
                 </div>
 
                 <?php
@@ -367,27 +369,26 @@
                         </div>
                         <!-- Barre de progression -->
                         <div class="row">
-                                <div class="col">
-                                    <div class="progress mt-3">
-                                        <div class="progress-bar" role="progressbar"
-                                            style="width: <?= $progression ?>%;" aria-valuenow="<?= $progression ?>"
-                                            aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
+                            <div class="col">
+                                <div class="progress mt-3">
+                                    <div class="progress-bar" role="progressbar" style="width: <?= $progression ?>%;"
+                                        aria-valuenow="<?= $progression ?>" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="row mt-3 sous-xp text-center align-items-end">
                     <div class="col-8">
-                    <p>Membre depuis le
-                        <?php
+                        <p>Membre depuis le
+                            <?php
                         $dateCreationCompte = $utilisateur['dateCreationCompte'];
                         // Convertir la date en format DD-MM-YYYY
                         $dateFormatee = date("d-m-Y", strtotime($dateCreationCompte));
                         echo $dateFormatee;
                         ?>
-                    </p>
+                        </p>
                     </div>
                     <div class="col-3 offset-1 level">
                         <p>Planète niveau
@@ -417,7 +418,8 @@
             </a>
             <!-- Sous-catégories pour Notification -->
             <div class="sub-menu">
-                <a href="#" class="list-group-item list-group-item-action rounded">Gestion des préférences de notification</a>
+                <a href="#" class="list-group-item list-group-item-action rounded">Gestion des préférences de
+                    notification</a>
                 <a href="#" class="list-group-item list-group-item-action rounded">Notifications par e-mail</a>
                 <a href="#" class="list-group-item list-group-item-action rounded">Notifications push</a>
             </div>
@@ -439,7 +441,8 @@
             </a>
             <!-- Sous-catégories pour Confidentialité -->
             <div class="sub-menu">
-                <a href="#" class="list-group-item list-group-item-action rounded">Paramètres de confidentialité du profil</a>
+                <a href="#" class="list-group-item list-group-item-action rounded">Paramètres de confidentialité du
+                    profil</a>
                 <a href="#" class="list-group-item list-group-item-action rounded">Gestion des contacts</a>
             </div>
             <!-- Séparateur -->
@@ -510,8 +513,8 @@
             </div>
             <div class="separator my-3"></div>
             <div class="row text-center mt-4">
-            <a href="../form/deconnexion.php" style="text-decoration: underline; color: white;">Déconnexion</a>
-            <a class="mt-3" style="text-decoration: none; color: #F21010;" onclick="return confirm('Voulez-vous vraiment supprimer votre compte ?');">Supprimer le compte</a>
+                <a href="../form/deconnexion.php" style="text-decoration: underline; color: white;">Déconnexion</a>
+                <a id="delete-account" class="mt-3" style="text-decoration: none; color: #F21010; cursor: pointer;">Supprimer le compte</a>
             </div>
         </div>
     </div>
@@ -522,38 +525,63 @@
     </button>
     </div>
 
+    <!-- La pop-up -->
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <p>Êtes-vous sûr de supprimer votre compte ?</p>
+            <button id="cancel">Retour</button>
+            <button id="confirm">Valider</button>
+        </div>
+    </div>
+
 
     <br>
     <script src="https://code.jquery.com/jquery-3.7.1.js"
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script>
+    // Script pour afficher ou masquer les sous-catégories lorsque vous cliquez sur une catégorie principale
+    $('.main-category').click(function() {
+        $(this).next('.sub-menu').toggleClass('show');
+        $(this).find('.fa-chevron-down').toggleClass('fa-chevron-up');
+    });
 
-        // Script pour afficher ou masquer les sous-catégories lorsque vous cliquez sur une catégorie principale
-        $('.main-category').click(function () {
-            $(this).next('.sub-menu').toggleClass('show');
-            $(this).find('.fa-chevron-down').toggleClass('fa-chevron-up');
-        });
+    // Sélectionne l'élément lien de suppression de compte
+    const deleteAccountLink = document.getElementById('delete-account');
 
-        function partager() {
-            var lien = "localhost/earthly/pages/partage.php?idpartage=<?php echo $user_id ?>";
-            console.log(lien);
-            alert("Partagez le lien à vos amis : " + lien);
-        }
-        // Fonction pour ouvrir le popup de sélection de badge
-        function openBadgePopup(slotNumber) {
-            // Code pour charger les options de badge en fonction du slotNumber ici
-            // Exemple: Vous pouvez utiliser une requête AJAX pour charger les badges disponibles
-            // Une fois les badges chargés, mettez à jour le contenu du popup
+    // Sélectionne la pop-up
+    const popup = document.getElementById('popup');
 
-            // Afficher le popup
-            document.getElementById('badgePopup').style.display = 'block';
-        }
+    // Sélectionne les boutons de la pop-up
+    const cancelButton = document.getElementById('cancel');
+    const confirmButton = document.getElementById('confirm');
 
-        // Fonction pour fermer le popup de sélection de badge
-        function closeBadgePopup() {
-            // Masquer le popup
-            document.getElementById('badgePopup').style.display = 'none';
-        }
+    // Ajoute un écouteur d'événement pour le clic sur le lien de suppression de compte
+    deleteAccountLink.addEventListener('click', function() {
+        // Affiche la pop-up
+        popup.style.display = 'block';
+    });
+
+    // Ajoute un écouteur d'événement pour le clic sur le bouton Annuler
+    cancelButton.addEventListener('click', function() {
+        // Masque la pop-up
+        popup.style.display = 'none';
+    });
+
+    // Ajoute un écouteur d'événement pour le clic sur le bouton Valider
+    confirmButton.addEventListener('click', function() {
+        // Insère ici le code pour supprimer le compte
+        // Une fois le compte supprimé, tu peux rediriger l'utilisateur vers une autre page ou effectuer toute autre action nécessaire
+        alert('Compte supprimé avec succès.');
+        // Masque la pop-up
+        popup.style.display = 'none';
+    });
+
+    function partager() {
+        var lien = "localhost/earthly/pages/partage.php?idpartage=<?php echo $user_id ?>";
+        console.log(lien);
+        alert("Partagez le lien à vos amis : " + lien);
+    }
+
     </script>
     </div>
 
@@ -563,22 +591,22 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-        </script>
+    </script>
     <script src="../script/popup.js"></script>
     <script>
-        function submitForm() {
-            document.getElementById('imageForm').submit();
-        }
-        document.addEventListener("DOMContentLoaded", function() {
-            const popupTriggers = document.querySelectorAll('.popup-trigger');
-            popupTriggers.forEach(function(trigger) {
-                const art = trigger.getAttribute('data-art');
-                const popupContent = trigger.nextElementSibling.querySelector('.popup-content');
-                popupContent.textContent = art;
-            });
+    function submitForm() {
+        document.getElementById('imageForm').submit();
+    }
+    document.addEventListener("DOMContentLoaded", function() {
+        const popupTriggers = document.querySelectorAll('.popup-trigger');
+        popupTriggers.forEach(function(trigger) {
+            const art = trigger.getAttribute('data-art');
+            const popupContent = trigger.nextElementSibling.querySelector('.popup-content');
+            popupContent.textContent = art;
         });
-        </script>
-        <?php
+    });
+    </script>
+    <?php
     $select_titres_user = $db->prepare("SELECT nom FROM succes INNER JOIN utilisateursucces ON utilisateursucces.ID_Succes = succes.ID_Succes WHERE utilisateursucces.ID_Utilisateur = :iduser AND utilisateursucces.dateObtention != '0000-00-00'");
     $select_titres_user->bindParam(':iduser', $user_id);
     $select_titres_user->execute();
@@ -586,17 +614,19 @@
     echo "<script> var titres = ".json_encode($titres)."</script>";
     echo "<script> var titreUtilisateur = '".$titreUtilisateur."'</script>";
         ?>
-        <script>
-        function titrechoose(){
-            var titrechoose = document.getElementById('titrechoose');
-            titrechoose.innerHTML=titreUtilisateur;
-            for (let i=0; i<titres.length; i++) {
-                titrechoose.innerHTML+="<button value="+i+" onclick='titrechoose2(value)'>"+titres[i].nom+"</option>";
-            }
+    <script>
+    function titrechoose() {
+        var titrechoose = document.getElementById('titrechoose');
+        titrechoose.innerHTML = titreUtilisateur;
+        for (let i = 0; i < titres.length; i++) {
+            titrechoose.innerHTML += "<button value=" + i + " onclick='titrechoose2(value)'>" + titres[i].nom +
+                "</option>";
         }
-        function titrechoose2(value){
-                window.location.assign("compte.php?titre="+value);
-        }
+    }
+
+    function titrechoose2(value) {
+        window.location.assign("compte.php?titre=" + value);
+    }
     </script>
 </body>
 
