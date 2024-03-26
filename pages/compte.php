@@ -568,6 +568,7 @@
     <!-- Popup 2 -->
     <div id="popup2" class="popup">
         <div class="popup-content">
+            <h2>Changer de titre</h2>
             <form>
                 <?php 
                             $select_titres_user = $db->prepare("SELECT nom FROM succes INNER JOIN utilisateursucces ON utilisateursucces.ID_Succes = succes.ID_Succes WHERE utilisateursucces.ID_Utilisateur = :iduser AND utilisateursucces.dateObtention != '0000-00-00'");
