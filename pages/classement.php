@@ -86,7 +86,6 @@ if (isset($_GET['partage'])){
     $requete1->bindParam(':iduser', $id_partage);
     $requete1->execute();
     $partage = $requete1->fetch(PDO::FETCH_ASSOC);
-    echo "<script> console.log(".json_encode($partage).");</script>";
     
     $profileImage = $partage['pdp'] ? $partage['pdp'] : '../uploads/default.jpg';
 ?>
@@ -270,7 +269,6 @@ if (isset($_GET['partage'])){
 <script>
     function partager() {
             var lien = "localhost/earthly/pages/partage.php?idpartage=<?php echo $id_partage ?>";
-            console.log(lien);
             alert("Partagez le lien à vos amis : " + lien);
         }
 
