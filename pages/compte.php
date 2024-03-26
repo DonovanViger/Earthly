@@ -610,7 +610,7 @@
                         
                     }
                 </script>
-            <button class="px-3" id="cancel2" class="close-popup">Retour</button>
+            <button class="px-3 mt-3" id="cancel2" class="close-popup">Retour</button>
         </div>
     </div>
 
