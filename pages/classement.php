@@ -99,6 +99,7 @@ if (isset($_GET['partage'])){
     $partage = $requete1->fetch(PDO::FETCH_ASSOC);
     
     $profileImage = $partage['pdp'] ? $partage['pdp'] : '../uploads/default.jpg';
+    $titrePartage = $partage['titreUtilisateur'] ? $partage['titreUtilisateur'] : 'Jeune branche';
 ?>
 
 <div class="popup">
@@ -117,7 +118,7 @@ if (isset($_GET['partage'])){
                         </div>
                         <div class="row partage_click">
                             <div class="mb-3 titresucces partage_click">
-                                <?php echo "imagine un titre"; ?>
+                                <?php echo $titrePartage; ?>
                             </div>
                         </div>
                     </div>
