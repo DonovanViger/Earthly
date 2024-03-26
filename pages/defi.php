@@ -194,19 +194,16 @@ try {
     <title>Défis</title>
     <style>
         
-        .defi{
-            font-size:1em;
-            float: left;
-        }
         .defi strong{
             color:#2BBA7C;
-            font-size:8vw;
+            font-size:6.5vw;
             float:right;
-            width: 40%;
+            width: 55%;
             margin-left : 1vw;
+            margin-top: 5vh
         }
         .defi img{
-            width:40%;
+            width:30%;
         }
     </style>
 </head>
@@ -327,6 +324,7 @@ echo "<h3 id='defis_h3_bar_lv'>1000</h3>";
 
     <script>
         var A = document.getElementsByClassName("defi");
+        console.log(A);
         A[1].style.backgroundColor = "#2BBA7C";
         A[2].style.backgroundColor = "#2BBA7C";
         A[1].style.width = "42.5vw";
