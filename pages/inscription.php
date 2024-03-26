@@ -86,7 +86,7 @@
     </div>
                 <div id="inscription_files_box">
                     <h2 id="inscription_h2_files">Votre photo de profil</h2>
-                    <label for="photo" class="custom-file-input">Choisir un fichier</label>
+                    <label for="photo" class="custom-file-input"><img src="../img/dossier.svg" id="inscription_dossier_svg"><p id="inscription_paragraph_dossier">Choisir un fichier</p></label>
                     <input type="file" id="photo" name="photo" accept="image/*" onchange="previewImage(event)" style="display: none;">
                         
                     <!-- Prévisualisation de l'image -->
