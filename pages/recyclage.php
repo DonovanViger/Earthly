@@ -40,7 +40,7 @@
     $select_poubelle_user->bindParam(':iduser', $iduser);
     $select_poubelle_user->execute();
     $poubelle_user = $select_poubelle_user->fetch(PDO::FETCH_ASSOC);
-    if (isset($poubelle_user[2])) {
+    if (isset($poubelle_user['dateScan'])) {
         echo "<script> var poubelle_user = 'oui'</script>";
     } else {
         echo "<script> var poubelle_user = 'non'</script>";
@@ -166,6 +166,15 @@ const captureAndDecode = () => {
                     ?>
                 } else if (qrData.includes("poubelle=2")) {
                     message = "Vous recyclez vos déchets en verre\n+200 Points";
+                    <?php
+                    $insert_into_poubelle = $db->prepare("INSERT INTO scanpoubelle (ID_Utilisateur, ID_Poubelle, dateScan) VALUES (:iduser, 1, :dateActuel)");
+                    $insert_into_poubelle->bindParam(':iduser', $iduser);
+                    $insert_into_poubelle->bindParam(':dateActuel', $date_actuelle);
+                    $insert_into_poubelle->execute();
+                    $stmt_update_score = $db->prepare("UPDATE utilisateurs SET point_Planete = point_Planete + 200, exp_Utilisateur = exp_Utilisateur + 200 WHERE ID_Utilisateur = :id_utilisateur");
+                    $stmt_update_score->bindParam(':id_utilisateur', $iduser);
+                    $stmt_update_score->execute();
+                    ?>
                 } else if (qrData.includes("poubelle=3")) {
                     message = "Vous jetez vos déchets ordinaires qui ne se recyclent pas";
                 } else {
