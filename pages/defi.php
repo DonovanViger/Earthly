@@ -354,6 +354,8 @@ echo "<h3 id='defis_h3_bar_lv'>1000</h3>";
 
         A[1].style.color = "#A9FFA4";
         A[2].style.color = "#A9FFA4";
+        A[1].style.fontSize = "1.5vh";
+        A[2].style.fontSize = "1.5vh";
 
         A[1].children[0].style.width = "10vh";
         A[1].children[0].style.height = "10vh";

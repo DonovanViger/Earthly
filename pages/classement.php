@@ -96,14 +96,76 @@ if (!isset($_SESSION['pseudo'])) {
     if (isset($_GET['partage'])) {
         $id_partage = $_GET['partage'];
 
-        $requete1 = $db->prepare("SELECT * FROM utilisateurs WHERE ID_Utilisateur = :iduser");
-        $requete1->bindParam(':iduser', $id_partage);
-        $requete1->execute();
-        $partage = $requete1->fetch(PDO::FETCH_ASSOC);
-
-        $profileImage = $partage['pdp'] ? $partage['pdp'] : '../uploads/default.jpg';
-        ?>
-
+    $requete1 = $db->prepare("SELECT * FROM utilisateurs WHERE ID_Utilisateur = :iduser");
+    $requete1->bindParam(':iduser', $id_partage);
+    $requete1->execute();
+    $partage = $requete1->fetch(PDO::FETCH_ASSOC);
+    
+    $profileImage = $partage['pdp'] ? $partage['pdp'] : '../uploads/default.jpg';
+    $titrePartage = $partage['titreUtilisateur'] ? $partage['titreUtilisateur'] : 'Jeune branche';
+?>
+<div class="popup">
+    <div class="partage_classement partage_click">
+    <div class="container mt-4 partage_click">
+            <div class="p-4 profil_page partage_click">
+                <div class="row partage_click">
+                    <div class="col-3 partage_click">
+                    <img src="<?php echo $profileImage; ?>" alt="Avatar de <?php echo $partage['pseudo']; ?>" class="user-avatar partage_click" onerror="this.onerror=null;this.src='../uploads/default.jpg';">
+                    </div>
+                    <div class="col-6 partage_click">
+                        <div class="row partage_click">
+                            <h2 class="pseudo partage_click">
+                                <?php echo $partage['pseudo']; ?>
+                            </h2>
+                        </div>
+                        <div class="row partage_click">
+                            <div class="mb-3 titresucces partage_click">
+                                <?php echo $titrePartage; ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3 text-end partage_click">
+                        <div class="row partage_click">
+                            <button class="btn partage_click" onclick="partager()"><img src="../img/share-solid 1.svg" alt=""
+                                    srcset=""></button>
+                        </div>
+                        <div class="row partager text-center partage_click">
+                            <p>Partager</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-3 partage_click">
+                    <div class="col-6 offset-3 badges mb-2 partage_click">
+                    <div class="row partage_click">
+        <?php for ($i = 1; $i <= 6; $i++): ?>
+                <div class="col-4 partage_click">
+                    <div class="badgeSlot partage_click" id="badgeSlot<?php echo $i; ?>">
+                        <?php
+                        // Déterminer le groupe en fonction de la valeur de $i
+                        switch ($i) {
+                            case 1:
+                                $group = 'A%';
+                                break;
+                            case 2:
+                                $group = 'B%';
+                                break;
+                            case 3:
+                                $group = 'C%';
+                                break;
+                            case 4:
+                                $group = 'D%';
+                                break;
+                            case 5:
+                                $group = 'E%';
+                                break;
+                            case 6:
+                                $group = 'F%';
+                                break;
+                            default:
+                                $group = ''; // Gérer les valeurs par défaut si nécessaire
+                                break;
+                        }
+                        ?>
         <div class="popup">
             <div class="partage_classement partage_click">
                 <div class="container mt-4 partage_click">
