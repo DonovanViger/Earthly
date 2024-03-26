@@ -49,7 +49,7 @@ if (!isset($_SESSION['pseudo'])) {
     <div id="succes_box1">
     <img src="../img/trophy.svg" alt="trophy" id="success_svg_trophy">
     <h2 id="success_h2_1">Petite branche</h2>
-    <div id="success_number">
+    <div id="success_number_lightgreen">
         <?php 
         if ($tableau[15] == "oui") {
             echo "3/3";
@@ -98,7 +98,7 @@ if (!isset($_SESSION['pseudo'])) {
 <div id="succes_box2">
     <img src="../img/trophy-dark.svg" alt="trophy" id="success_svg_trophy">
     <h2 id="success_h2_2">De feuille en feuille</h2>
-    <div id="success_number">
+    <div id="success_number_green">
         <?php 
         if ($tableau[5] == "oui") {
             echo "3/3";
@@ -149,7 +149,7 @@ if (!isset($_SESSION['pseudo'])) {
 <div id="succes_box3">
 <img src="../img/trophy-white.svg" alt="trophy" id="success_svg_trophy">
     <h2 id="success_h2_3">Eco-safari urbain</h2>
-    <div id="success_number">
+    <div id="success_number_white">
         <?php 
         if ($tableau[7] == "oui") {
             echo "3/3";
@@ -199,7 +199,7 @@ if (!isset($_SESSION['pseudo'])) {
 <div id="succes_box4">
 <img src="../img/trophy-dark.svg" alt="trophy" id="success_svg_trophy">
     <h2 id="success_h2_2">Douche éclair</h2>
-    <div id="success_number">
+    <div id="success_number_green">
         <?php 
         if ($tableau[10] == "oui") {
             echo "3/3";
@@ -249,7 +249,7 @@ if (!isset($_SESSION['pseudo'])) {
 <div id="succes_box5">
 <img src="../img/trophy.svg" alt="trophy" id="success_svg_trophy">
     <h2 id="success_h2_2">Objet De Second Feuillage</h2>
-    <div id="success_number">
+    <div id="success_number_lightgreen">
         <?php 
         if ($tableau[18] == "oui") {
             echo "3/3";
@@ -299,7 +299,7 @@ if (!isset($_SESSION['pseudo'])) {
 <div id="succes_box6">
 <img src="../img/trophy-dark.svg" alt="trophy" id="success_svg_trophy">
     <h2 id="success_h2_2">Dépense Fruitière</h2>
-    <div id="success_number">
+    <div id="success_number_green">
         <?php 
         if ($tableau[21] == "oui") {
             echo "3/3";

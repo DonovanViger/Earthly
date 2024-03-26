@@ -722,8 +722,8 @@ height: 10vh;
 }
 
 #défis_logo{
-    width: 40vw;
-    height: 7vh;
+    width: 35vw;
+    height: 5vh;
     margin: 2vh 0 0 3vw;
 }
 
@@ -813,7 +813,7 @@ height: 10vh;
 #success_overall{
     background-image: url("../uploads/pattern.svg");
     background-size: cover; /* Ajuste la taille de l'image pour remplir complètement le conteneur */ /* Change la couleur de fond */
-    height: 200vh;
+    height: 275vh;
     padding-top: 10vh;
 }
 
@@ -900,21 +900,21 @@ height: 10vh;
 
 #success_h2_1{
     color: #A9FFA4;
-    width: 80%;
+    width: 60%;
     margin: 0 auto 2vh auto;
     float: left;
 }
 
 #success_h2_2{
     color: #1C3326;
-    width: 80%;
+    width: 60%;
     margin: 0 auto 2vh auto;
     float: left;
 }
 
 #success_h2_3{
     color: white;
-    width: 80%;
+    width: 60%;
     margin: 0 auto 2vh auto;
     float: left;
 }
@@ -923,6 +923,7 @@ height: 10vh;
 .success_box_1{
     clear: both;
     width: 85%;
+    height: 2.25vh;
     background-color: #FFEFE1;
     border-radius: 15px;
     margin: 2.5vh auto;
@@ -932,6 +933,7 @@ height: 10vh;
 .success_box_2{
     clear: both;
     width: 85%;
+    height: 2.25vh;
     background-color: #1C3326;
     border-radius: 15px;
     margin: 2.5vh auto;
@@ -941,6 +943,7 @@ height: 10vh;
 .success_box_3{
     clear: both;
     width: 85%;
+    height: 2.25vh;
     background-color: #2BBA7C;
     border-radius: 15px;
     margin: 2.5vh auto;
@@ -949,12 +952,16 @@ height: 10vh;
 
 .success_h3_darkgreen{
     color: #1C3326;
+    width: 60vw;
     margin: 0;
+    float: left;
 }
 
 .success_h3_lightgreen{
     color: #A9FFA4;
+    width: 60vw;
     margin: 0;
+    float: left;
 }
 
 .succes_strong_green{
@@ -963,6 +970,33 @@ height: 10vh;
 
 .succes_strong_lightergreen{
     color:#BFEABB;
+}
+
+
+#success_number_lightgreen{
+    float: right;
+    color: #A9FFA4;
+}
+
+#success_number_green{
+    float: right;
+    color: #2BBA7C;
+}
+
+#success_number_white{
+    float: right;
+    color: white;
+}
+.succes_checkbox{
+    width: 5vw;
+    float: left;
+    
+}
+
+.succes_checkbox input{
+    width: 5vw;
+    height: 2.5vh; 
+    margin: -0.15vh 0 0 5vw;
 }
 
 
