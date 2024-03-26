@@ -538,6 +538,27 @@
         </div>
     </div>
 
+    <div id="popup2" class="popup">
+        <div class="popup-content">
+            <?php
+            $select_titres_user = $db->prepare("SELECT nom FROM succes INNER JOIN utilisateursucces ON utilisateursucces.ID_Succes = succes.ID_Succes WHERE utilisateursucces.ID_Utilisateur = :iduser AND utilisateursucces.dateObtention != '0000-00-00'");
+            $select_titres_user->bindParam(':iduser', $user_id);
+            $select_titres_user->execute();
+            $titres = $select_titres_user->fetchAll(PDO::FETCH_ASSOC);
+            echo "<script> var titres = ".json_encode($titres)."</script>";
+                ?>
+            <script>
+            var popupcontent = document.getElementsByClassName('popup-content');
+            popupcontent[1].innerHTML = "Sélectionnez votre titre :<br>";
+            for (let i = 0; i < titres.length; i++) {
+                popupcontent[1].innerHTML += "<button value=" + i + " onclick='titrechoose2(value)'>" + titres[i].nom +
+                    "</button>";
+            }
+            </script>
+            <button id="cancel">Retour</button>
+        </div>
+    </div>
+
 
     <br>
     <script src="https://code.jquery.com/jquery-3.7.1.js"
