@@ -596,18 +596,20 @@
     <div id="popup2" class="popup">
         <div class="popup-content">
             <h2>Changer de titre</h2>
-            <form>
                 <?php 
                             $select_titres_user = $db->prepare("SELECT nom FROM succes INNER JOIN utilisateursucces ON utilisateursucces.ID_Succes = succes.ID_Succes WHERE utilisateursucces.ID_Utilisateur = :iduser AND utilisateursucces.dateObtention != '0000-00-00'");
                             $select_titres_user->bindParam(':iduser', $user_id);
                             $select_titres_user->execute();
                             $titres = $select_titres_user->fetchAll(PDO::FETCH_ASSOC);
-                foreach ($titres as $key => $titre): ?>
-                <button class="px-3" value="<?php echo $key; ?>" onclick="titrechoose2(this.value)">
-                    <?php echo $titre['nom']; ?>
-                </button>
-                <?php endforeach; ?>
-            </form>
+                            echo "<script>var titres=".json_encode($titres)."</script>"
+                ?>
+                <script>
+                    console.log(titres);
+                    for (var i=0; i<titres.length; i++){
+                        document.write("<button class='px-3' value='"+i+"' onclick='titrechoose2(this.value)'>"+titres[i].nom+"</button>")
+                        
+                    }
+                </script>
             <button class="px-3" id="cancel2" class="close-popup">Retour</button>
         </div>
     </div>
@@ -756,20 +758,6 @@
     $titres = $select_titres_user->fetchAll(PDO::FETCH_ASSOC);
     echo "<script> var titres = ".json_encode($titres)."</script>";
         ?>
-    <script>
-    function titrechoose() {
-        var titrechoose = document.getElementById('titrechoose');
-        titrechoose.innerHTML = "Changer de titre<br>";
-        for (let i = 0; i < titres.length; i++) {
-            titrechoose.innerHTML += "<button value=" + i + " onclick='titrechoose2(value)'>" + titres[i].nom +
-                "</button>";
-        }
-    }
-
-    function titrechoose2(value) {
-        window.location.assign("compte.php?titre=" + value);
-    }
-    </script>
 </body>
 
 </html>
