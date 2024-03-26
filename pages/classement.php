@@ -103,7 +103,6 @@ if (!isset($_SESSION['pseudo'])) {
     
     $profileImage = $partage['pdp'] ? $partage['pdp'] : '../uploads/default.jpg';
     $titrePartage = $partage['titreUtilisateur'] ? $partage['titreUtilisateur'] : 'Jeune branche';
-    }
 ?>
        
 
@@ -286,6 +285,10 @@ if (!isset($_SESSION['pseudo'])) {
 
             </div>
         </div>
+        <?php
+        
+    }
+    ?>
 
         <script>
             function partager() {
