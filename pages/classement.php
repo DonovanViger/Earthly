@@ -105,6 +105,15 @@ if (!isset($_SESSION['pseudo'])) {
     $titrePartage = $partage['titreUtilisateur'] ? $partage['titreUtilisateur'] : 'Jeune branche';
     }
 ?>
+        $requete1 = $db->prepare("SELECT * FROM utilisateurs WHERE ID_Utilisateur = :iduser");
+        $requete1->bindParam(':iduser', $id_partage);
+        $requete1->execute();
+        $partage = $requete1->fetch(PDO::FETCH_ASSOC);
+
+        $profileImage = $partage['pdp'] ? $partage['pdp'] : '../uploads/default.jpg';
+        $titrePartage = $partage['titreUtilisateur'] ? $partage['titreUtilisateur'] : 'Jeune branche';
+        ?>
+
         <div class="popup">
             <div class="partage_classement partage_click">
                 <div class="container mt-4 partage_click">
@@ -123,7 +132,7 @@ if (!isset($_SESSION['pseudo'])) {
                                 </div>
                                 <div class="row partage_click">
                                     <div class="mb-3 titresucces partage_click">
-                                        <?php echo "imagine un titre"; ?>
+                                        <?php echo $titrePartage; ?>
                                     </div>
                                 </div>
                             </div>
