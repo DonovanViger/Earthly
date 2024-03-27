@@ -22,8 +22,16 @@ if (isset($_FILES['nouvelle_image'])) {
         unlink($ancienneImage);
     }
 
-    $nouveauNomImage = $uploadDirectory . uniqid() . '_' . basename($_FILES['nouvelle_image']['name']);
-    if (move_uploaded_file($_FILES['nouvelle_image']['tmp_name'], $nouveauNomImage)) {
+    $nouveauNomImage = $uploadDirectory . uniqid() . '.webp'; // Nouveau nom avec l'extension WebP
+    $nouveauCheminImage = $nouveauNomImage;
+    $nouvelleImageTmpPath = $_FILES['nouvelle_image']['tmp_name'];
+
+    // Convertir l'image en WebP
+    $image = imagecreatefromstring(file_get_contents($nouvelleImageTmpPath));
+    imagewebp($image, $nouveauCheminImage, 80); // 80 est le taux de compression, réglez-le selon vos besoins
+    imagedestroy($image);
+
+    if (move_uploaded_file($nouvelleImageTmpPath, $nouveauNomImage)) {
         $requete = $db->prepare("UPDATE utilisateurs SET pdp = :nouveauNomImage WHERE ID_Utilisateur = :id");
         $requete->bindParam(':nouveauNomImage', $nouveauNomImage);
         $requete->bindParam(':id', $user_id);

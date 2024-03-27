@@ -1,19 +1,3 @@
-<!DOCTYPE html>
-<html lang="fr">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../pages/style.css" />
-    <title>Earthly | Erreur de connexion</title>
-</head>
-
-<body>
-
-</body>
-
-</html>
-
 <?php
 try {
     $db = new PDO('mysql:host=localhost;dbname=sae401-2', 'root', '');
@@ -35,11 +19,16 @@ try {
     $photoPath = null;
 
     if (isset($_FILES['photo']) && $_FILES['photo']['error'] === UPLOAD_ERR_OK) {
-        $photoPath = $uploadDirectory . uniqid() . '_' . basename($_FILES['photo']['name']);
+        $photoTmpPath = $_FILES['photo']['tmp_name'];
+        $photoExtension = pathinfo($_FILES['photo']['name'], PATHINFO_EXTENSION);
 
-        if (!move_uploaded_file($_FILES['photo']['tmp_name'], $photoPath)) {
-            throw new Exception("Impossible de déplacer le fichier téléchargé.");
-        }
+        // Convertir l'image en WebP
+        $image = imagecreatefromstring(file_get_contents($photoTmpPath));
+        $webpPath = $uploadDirectory . uniqid() . '.webp';
+        imagewebp($image, $webpPath, 80); // 80 est le taux de compression, réglez-le selon vos besoins
+        imagedestroy($image);
+
+        $photoPath = $webpPath;
     }
 
     $requete = $db->prepare("INSERT INTO utilisateurs (pseudo, mail, mdp, point_Planete, dateConnexion, dateCreationCompte, exp_Utilisateur, pdp) VALUES (:pseudo, :email, :mdp, 0, :dateCreationCompte, :dateCreationCompte, 0, :photo)");
