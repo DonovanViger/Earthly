@@ -332,7 +332,8 @@ body {
 #classement_div_patern{
     background-image: url("../uploads/pattern.svg");
     background-size: cover; /* Ajuste la taille de l'image pour remplir complètement le conteneur */ /* Change la couleur de fond */
-    height: 180vh;
+    height: 100%;
+    padding-bottom: 15vh;
     padding-top: 5vh;
 }
 
@@ -736,7 +737,8 @@ body {
 #defi_patern_box{
     background-image: url("../uploads/pattern.svg");
     background-size: cover; /* Ajuste la taille de l'image pour remplir complètement le conteneur */ /* Change la couleur de fond */
-    height: 200vh;
+    height: 100%;
+    padding-bottom: 15vh;
     padding-top: 5vh;
 }
 
@@ -869,8 +871,9 @@ height: 10vh;
 #success_overall{
     background-image: url("../uploads/pattern.svg");
     background-size: cover; /* Ajuste la taille de l'image pour remplir complètement le conteneur */ /* Change la couleur de fond */
-    height: 275vh;
-    padding-top: 10vh;
+    height: 100%;
+    padding-bottom: 15vh;
+    padding-top: 5vh;
 }
 
 #success_title_box{

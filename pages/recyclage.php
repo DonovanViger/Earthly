@@ -13,11 +13,9 @@
 
 <body scrollbehaviour:hidden>
     <?php
-    session_start(); // Démarre la session
+    session_start();
 
-    // Vérifie si l'utilisateur est connecté
     if(!isset($_SESSION['pseudo'])) {
-        // Redirige l'utilisateur vers la page de connexion s'il n'est pas connecté
         header("Location: connexion.php");
         exit();
     }
@@ -147,11 +145,8 @@ const captureAndDecode = () => {
 
     if (code) {
         const qrData = code.data;
-        //resultElement.innerText = "QR Code trouvé : " + qrData;
         if (poubelle_user == 'non') { 
-            // Ne pas utiliser isValidUrl pour les liens contenant les paramètres poubelle
             if (qrData.includes("poubelle=")) {
-                // Afficher la popup avec overlay et le message correspondant à la poubelle
                 let message;
                 if (qrData.includes("poubelle=1")) {
                     message = "Vous recyclez vos déchets cartons, plastiques, papiers et métalliques\n+200 Points";
@@ -160,9 +155,9 @@ const captureAndDecode = () => {
                     $insert_into_poubelle->bindParam(':iduser', $iduser);
                     $insert_into_poubelle->bindParam(':dateActuel', $date_actuelle);
                     $insert_into_poubelle->execute();
-                    $stmt_update_score = $db->prepare("UPDATE utilisateurs SET point_Planete = point_Planete + 200, exp_Utilisateur = exp_Utilisateur + 200 WHERE ID_Utilisateur = :id_utilisateur");
-                    $stmt_update_score->bindParam(':id_utilisateur', $iduser);
-                    $stmt_update_score->execute();
+                    $update_score = $db->prepare("UPDATE utilisateurs SET point_Planete = point_Planete + 200, exp_Utilisateur = exp_Utilisateur + 200 WHERE ID_Utilisateur = :id_utilisateur");
+                    $update_score->bindParam(':id_utilisateur', $iduser);
+                    $update_score->execute();
                     ?>
                 } else if (qrData.includes("poubelle=2")) {
                     message = "Vous recyclez vos déchets en verre\n+200 Points";
@@ -171,9 +166,9 @@ const captureAndDecode = () => {
                     $insert_into_poubelle->bindParam(':iduser', $iduser);
                     $insert_into_poubelle->bindParam(':dateActuel', $date_actuelle);
                     $insert_into_poubelle->execute();
-                    $stmt_update_score = $db->prepare("UPDATE utilisateurs SET point_Planete = point_Planete + 200, exp_Utilisateur = exp_Utilisateur + 200 WHERE ID_Utilisateur = :id_utilisateur");
-                    $stmt_update_score->bindParam(':id_utilisateur', $iduser);
-                    $stmt_update_score->execute();
+                    $update_score = $db->prepare("UPDATE utilisateurs SET point_Planete = point_Planete + 200, exp_Utilisateur = exp_Utilisateur + 200 WHERE ID_Utilisateur = :id_utilisateur");
+                    $update_score->bindParam(':id_utilisateur', $iduser);
+                    $update_score->execute();
                     ?>
                 } else if (qrData.includes("poubelle=3")) {
                     message = "Vous jetez vos déchets ordinaires qui ne se recyclent pas";
@@ -188,7 +183,6 @@ const captureAndDecode = () => {
         
         } else {
             if (qrData.includes("poubelle=")) {
-                // Afficher la popup avec overlay et le message correspondant à la poubelle
                 let message;
                 if (qrData.includes("poubelle=3")) {
                     message = "Vous jetez vos déchets ordinaires qui ne se recyclent pas";
@@ -209,11 +203,9 @@ const captureAndDecode = () => {
             /^(http|https):\/\/[\w\-]+(\.[\w\-]+)+([\w\-\.,@?^=%&:/~\+#]*[\w\-\@?^=%&/~\+#])?$/.test(url);
 
         const showError = message => {
-            // Afficher l'erreur à l'utilisateur
             alert(message);
         };
 
-        // Appel de la fonction startCapture au chargement de la page
         startCapture();
     });
 

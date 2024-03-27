@@ -1,9 +1,7 @@
 <?php
-session_start(); // Démarre la session
+session_start();
 
-// Vérifie si l'utilisateur est connecté
 if (!isset($_SESSION['pseudo'])) {
-    // Redirige l'utilisateur vers la page de connexion s'il n'est pas connecté
     header("Location: connexion.php");
     exit();
 }
@@ -20,65 +18,77 @@ if (!isset($_SESSION['pseudo'])) {
     <link rel="stylesheet" type="text/css" href="style.css" />
     <title>Classement</title>
     <style>
-        .user-card {
-            flex-wrap: nowrap;
-            border-radius: 15px;
-            padding: 18px;
-            margin-bottom: 10px;
-            background-color: #2BBA7C;
-            color: #FFEFE1;
-            font-weight: bold;
-        }
+    .user-card {
+        flex-wrap: nowrap;
+        border-radius: 15px;
+        padding: 18px;
+        margin-bottom: 10px;
+        background-color: #2BBA7C;
+        color: #FFEFE1;
+        font-weight: bold;
+    }
 
-        .user-avatar {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: block;
-            height: auto;
-            object-fit: cover;
-            aspect-ratio: 1/1;
-        }
+    .user-avatar {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: block;
+        height: auto;
+        object-fit: cover;
+        aspect-ratio: 1/1;
+    }
 
-        .points-col {
-            border-left: 3px solid #FFFFFF;
-            border-radius: 2px;
-        }
+    .points-col {
+        border-left: 3px solid #FFFFFF;
+        border-radius: 2px;
+    }
 
-        #un {
-            background-color: #BAA32B;
-        }
+    #un {
+        background-color: #BAA32B;
+    }
 
-        #deux {
-            background-color: #98a09b;
-        }
+    #deux {
+        background-color: #98a09b;
+    }
 
-        #trois {
-            background-color: #AA5632;
-        }
+    #trois {
+        background-color: #AA5632;
+    }
 
-        .placement-large {
-            font-size: 32px;
-            /* Ajustez cette valeur selon vos besoins */
-        }
+    #dix .chiffre {
+        position: relative;
+        left: -1.1rem;
+    }
 
-        .ahah {
-            margin-top: -5px;
-        }
 
-        .scroll {
-            height: 125px;
-        }
+    .placement-large {
+        font-size: 32px;
+        /* Ajustez cette valeur selon vos besoins */
+    }
 
-        .popup {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 9999;
-        }
+    .ahah {
+        margin-top: -5px;
+    }
+
+    .scroll {
+        height: 1vh;
+    }
+
+    .popup {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 9999;
+    }
+
+    .titreuh {
+        color: rgb(255, 255, 255, 0.7);
+        font-size: 0.7rem;
+        margin-top: -0.3rem;
+    }
     </style>
 </head>
 
@@ -104,48 +114,48 @@ if (!isset($_SESSION['pseudo'])) {
     $profileImage = $partage['pdp'] ? $partage['pdp'] : '../uploads/default.jpg';
     $titrePartage = $partage['titreUtilisateur'] ? $partage['titreUtilisateur'] : 'Jeune branche';
 ?>
-       
 
-        <div class="popup">
-            <div class="partage_classement partage_click">
-                <div class="container mt-4 partage_click">
-                    <div class="profil_page partage_click">
-                        <div class="row partage_click">
-                            <div class="col-3 partage_click">
-                                <img src="<?php echo $profileImage; ?>" alt="Avatar de <?php echo $partage['pseudo']; ?>"
-                                    class="user-avatar partage_click"
-                                    onerror="this.onerror=null;this.src='../uploads/default.jpg';">
+
+    <div class="popup">
+        <div class="partage_classement partage_click">
+            <div class="container mt-4 partage_click">
+                <div class="profil_page partage_click">
+                    <div class="row partage_click">
+                        <div class="col-3 partage_click">
+                            <img src="<?php echo $profileImage; ?>" alt="Avatar de <?php echo $partage['pseudo']; ?>"
+                                class="user-avatar partage_click"
+                                onerror="this.onerror=null;this.src='../uploads/default.jpg';">
+                        </div>
+                        <div class="col-6 partage_click">
+                            <div class="row partage_click">
+                                <h2 class="pseudo partage_click">
+                                    <?php echo $partage['pseudo']; ?>
+                                </h2>
                             </div>
-                            <div class="col-6 partage_click">
-                                <div class="row partage_click">
-                                    <h2 class="pseudo partage_click">
-                                        <?php echo $partage['pseudo']; ?>
-                                    </h2>
-                                </div>
-                                <div class="row partage_click">
-                                    <div class="titresucces partage_click">
-                                        <?php echo $titrePartage; ?>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-3 text-end partage_click">
-                                <div class="row partage_click">
-                                    <button class="btn partage_click" onclick="partager()"><img
-                                            src="../img/share-solid 1.svg" alt="" srcset=""></button>
-                                </div>
-                                <div class="row partager text-center partage_click">
-                                    <p class="ppartage partage_click">Partager</p>
+                            <div class="row partage_click">
+                                <div class="titresucces partage_click">
+                                    <?php echo $titrePartage; ?>
                                 </div>
                             </div>
                         </div>
-                        <div class="row partage_click">
-                            <div class="col-6 offset-3 badges mb-2 partage_click">
-                                <div class="row partage_click">
-                                    <?php for ($i = 1; $i <= 6; $i++): ?>
-                                        <div class="col-4 partage_click">
-                                            <div class="badgeSlot partage_click" id="badgeSlot<?php echo $i; ?>">
-                                                <?php
-                                                // Déterminer le groupe en fonction de la valeur de $i
+                        <div class="col-3 text-end partage_click">
+                            <div class="row partage_click">
+                                <button class="btn partage_click" onclick="partager()"><img
+                                        src="../img/share-solid 1.svg" alt="" srcset=""></button>
+                            </div>
+                            <div class="row partager text-center partage_click">
+                                <p class="ppartage partage_click">Partager</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row partage_click">
+                        <div class="col-6 offset-3 badges mb-2 partage_click">
+                            <div class="row partage_click">
+                                <?php for ($i = 1; $i <= 6; $i++): ?>
+                                <div class="col-4 partage_click">
+                                    <div class="badgeSlot partage_click" id="badgeSlot<?php echo $i; ?>">
+                                        <?php
+                                                // Détermine le groupe
                                                 switch ($i) {
                                                     case 1:
                                                         $group = 'A%';
@@ -166,11 +176,10 @@ if (!isset($_SESSION['pseudo'])) {
                                                         $group = 'F%';
                                                         break;
                                                     default:
-                                                        $group = ''; // Gérer les valeurs par défaut si nécessaire
+                                                        $group = '';
                                                         break;
                                                 }
 
-                                                // Exemple de requête SQL pour récupérer le succès pour chaque slot
                                                 $requete_succes = $db->prepare("SELECT s.ID_Succes, s.pds, s.nom FROM succes s 
                         INNER JOIN utilisateursucces us ON s.ID_Succes = us.ID_Succes 
                         WHERE us.ID_Utilisateur = :id_utilisateur AND s.triageSucces LIKE :group AND us.dateObtention != '1999-01-01'
@@ -180,29 +189,24 @@ if (!isset($_SESSION['pseudo'])) {
                                                 $requete_succes->bindParam(':group', $group);
                                                 $requete_succes->execute();
 
-                                                // Récupérer le résultat de la requête
                                                 $succes_utilisateur = $requete_succes->fetch(PDO::FETCH_ASSOC);
 
-                                                // Afficher le succès de l'utilisateur
                                                 if ($succes_utilisateur) {
                                                     echo "<img src='" . $succes_utilisateur['pds'] . "' alt='" . $succes_utilisateur['nom'] . "'>";
                                                 }
                                                 ?>
-                                            </div>
-                                        </div>
-                                    <?php endfor; ?>
+                                    </div>
                                 </div>
+                                <?php endfor; ?>
                             </div>
+                        </div>
 
-                            <?php
-                            // Les points de l'utilisateur (remplacez cela par vos données)
+                        <?php
                             $pointsUtilisateur = $partage['point_Planete'];
 
-                            // Initialisation des variables de niveau
                             $niveauActuel = 1;
                             $pointsNiveauSuivant = 1000;
 
-                            // Calcul du niveau en fonction des points
                             if ($pointsUtilisateur >= 1000 && $pointsUtilisateur < 3000) {
                                 $niveauActuel = 2;
                                 $pointsNiveauSuivant = 2000;
@@ -217,103 +221,100 @@ if (!isset($_SESSION['pseudo'])) {
                                 $pointsUtilisateur = $pointsUtilisateur - 7000;
                             } elseif ($pointsUtilisateur >= 15000) {
                                 $niveauActuel = 5;
-                                $pointsNiveauSuivant = null; // Pas de niveau suivant car c'est le dernier niveau
+                                $pointsNiveauSuivant = null;
                             }
 
-                            // Calcul de la progression
                             if ($pointsNiveauSuivant !== null) {
                                 $progression = ($pointsUtilisateur / $pointsNiveauSuivant) * 100;
                             } else {
-                                // Si $pointsNiveauSuivant est null, la progression est de 100%
                                 $progression = 100;
                             }
                             ?>
 
 
-                        </div>
-                        <div class="row partage_click partagefin">
-                            <div class="mt-2 partage_click">
-                                <div class="rounded p-1 profil_page partage_click">
-                                    <!-- Barre de progression avec l'XP actuel à gauche, le niveau au milieu, et l'XP nécessaire à droite -->
-                                    <div class="row align-items-center partage_click">
-                                        <div class="col-4 partage_click">
-                                            <p class="mb-0 xp gauche partage_click">
-                                                <?php echo $pointsUtilisateur; ?>exp
-                                            </p>
-                                        </div>
-                                        <div class="col-4 text-center niveauxp partage_click">
-                                            <p class="mb-0 partage_click">Niveau
-                                                <?php echo $niveauActuel; ?>
-                                            </p>
-                                        </div>
-                                        <div class="col-4 text-end xp droite partage_click">
-                                            <p class="mb-0 partage_click">
-                                                <?php echo $pointsNiveauSuivant; ?>
-                                            </p>
-                                        </div>
+                    </div>
+                    <div class="row partage_click partagefin">
+                        <div class="mt-2 partage_click">
+                            <div class="rounded p-1 profil_page partage_click">
+                                <div class="row align-items-center partage_click">
+                                    <div class="col-4 partage_click">
+                                        <p class="mb-0 xp gauche partage_click">
+                                            <?php echo $pointsUtilisateur; ?>exp
+                                        </p>
                                     </div>
-                                    <!-- Barre de progression -->
-                                    <div class="row partage_click">
-                                        <div class="col partage_click">
-                                            <div class="progress mt-3 partage_click">
-                                                <div class="progress-bar partage_click" role="progressbar"
-                                                    style="width: <?= $progression ?>%;" aria-valuenow="<?= $progression ?>"
-                                                    aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
+                                    <div class="col-4 text-center niveauxp partage_click">
+                                        <p class="mb-0 partage_click">Niveau
+                                            <?php echo $niveauActuel; ?>
+                                        </p>
+                                    </div>
+                                    <div class="col-4 text-end xp droite partage_click">
+                                        <p class="mb-0 partage_click">
+                                            <?php echo $pointsNiveauSuivant; ?>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row partage_click">
+                                    <div class="col partage_click">
+                                        <div class="progress mt-3 partage_click">
+                                            <div class="progress-bar partage_click" role="progressbar"
+                                                style="width: <?= $progression ?>%;" aria-valuenow="<?= $progression ?>"
+                                                aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="row sous-xp text-center align-items-end partage_click">
-                                <div class="col-8 membre partage_click">
-                                    <p class="ppartage partage_click">Membre depuis le
-                                        <?php
+                        <div class="row sous-xp text-center align-items-end partage_click">
+                            <div class="col-8 membre partage_click">
+                                <p class="ppartage partage_click">Membre depuis le
+                                    <?php
                                         $dateCreationCompte = $partage['dateCreationCompte'];
                                         // Convertir la date en format DD-MM-YYYY
                                         $dateFormatee = date("d-m-Y", strtotime($dateCreationCompte));
                                         echo $dateFormatee;
                                         ?>
-                                    </p>
-                                </div>
-                                <div class="col-4 level partage_click">
-                                    <p class="ppartage niveau partage_click">Planète niveau
-                                        <?php echo $niveauActuel; ?>
-                                    </p>
-                                </div>
+                                </p>
+                            </div>
+                            <div class="col-4 level partage_click">
+                                <p class="ppartage niveau partage_click">Planète niveau
+                                    <?php echo $niveauActuel; ?>
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
+
         </div>
-        <?php
+    </div>
+    <?php
         
     }
     ?>
 
-        <script>
-            function partager() {
-                var lien = "https://poulatan.tpweb.univ-rouen.fr/earthly/pages/classement.php?partage=<?php echo $id_partage ?>";
-                alert("Partagez le lien à vos amis : " + lien);
-            }
+    <script>
+    function partager() {
+        var lien =
+        "https://poulatan.tpweb.univ-rouen.fr/earthly/pages/classement.php?partage=<?php echo $id_partage ?>";
+        alert("Partagez le lien à vos amis : " + lien);
+    }
 
-            var popup = document.getElementsByClassName("popup");
-            var partage_classement = document.getElementsByClassName("partage_classement");
-            document.body.addEventListener('click', function (e) {
-                if (!e.target.classList.contains('partage_click')) {
-                    partage_classement[0].innerHTML = "";
-                    partage_classement[0].style.width = "0";
-                    partage_classement[0].style.height = "0";
-                    popup[0].style.display = 'none';
-                }
-            });
-        </script>
+    var popup = document.getElementsByClassName("popup");
+    var partage_classement = document.getElementsByClassName("partage_classement");
+    document.body.addEventListener('click', function(e) {
+        if (!e.target.classList.contains('partage_click')) {
+            partage_classement[0].innerHTML = "";
+            partage_classement[0].style.width = "0";
+            partage_classement[0].style.height = "0";
+            popup[0].style.display = 'none';
+        }
+    });
+    </script>
     </div>
     <?php
 
-    $requeteClassement = $db->prepare("SELECT `ID_Utilisateur`,`pseudo`,`exp_Utilisateur`,`point_Planete`, IFNULL(`pdp`, '../uploads/default.jpg') AS `pdp` FROM `utilisateurs` ORDER BY `point_Planete` DESC LIMIT 10;");
+    $requeteClassement = $db->prepare("SELECT `ID_Utilisateur`,`titreUtilisateur`,`pseudo`,`exp_Utilisateur`,`point_Planete`, IFNULL(`pdp`, '../uploads/default.jpg') AS `pdp` FROM `utilisateurs` ORDER BY `point_Planete` DESC LIMIT 10;");
     $requeteClassement->execute();
     $Classements = $requeteClassement->fetchAll(PDO::FETCH_ASSOC);
     ?>
@@ -327,29 +328,32 @@ if (!isset($_SESSION['pseudo'])) {
 
         <div class="container">
             <?php foreach ($Classements as $key => $classement) { ?>
-                <div class="row user-card mx-3 my-4" id="<?php if ($key == 0)
+            <div class="row user-card mx-3 my-4" id="<?php if ($key == 0)
                     echo 'un';
                 elseif ($key == 1)
                     echo 'deux';
+                    elseif ($key == 9)
+                    echo 'dix';
                 elseif ($key == 2)
                     echo 'trois'; ?>">
-                    <div class="col-1 text-center align-self-center placement-large">
-                        <?php echo $key + 1; ?>
-                    </div>
-                    <div class="col-3 text-center align-self-center">
-                        <img src="<?php echo $classement['pdp']; ?>" alt="Avatar de <?php echo $classement['pseudo']; ?>"
-                            class="user-avatar" onerror="this.onerror=null;this.src='../uploads/default.jpg';">
-                    </div>
-                    <div class="col-5 align-self-center">
-                        <?php echo $classement['pseudo']; ?>
-                    </div>
-                    <div class="col-3 points-col text-center align-self-center">
-                        <?php echo $classement['point_Planete']; ?>pts
-                    </div>
+                <div class="col-1 text-center align-self-center placement-large chiffre">
+                    <?php echo $key + 1; ?>
                 </div>
+                <div class="col-3 text-center align-self-center">
+                    <img src="<?php echo $classement['pdp']; ?>" alt="Avatar de <?php echo $classement['pseudo']; ?>"
+                        class="user-avatar" onerror="this.onerror=null;this.src='../uploads/default.jpg';">
+                </div>
+                <div class="col-5 align-self-center">
+                    <div class="row"><?php echo $classement['pseudo']; ?></div>
+                    <div class="row titreuh"><?php echo $classement['titreUtilisateur']; ?></div>
+                </div>
+                <div class="col-3 points-col text-center align-self-center">
+                    <?php echo $classement['point_Planete']; ?>pts
+                </div>
+            </div>
             <?php } ?>
         </div>
-        
+
         <div class="scroll w-100"></div>
 
     </div>
@@ -359,21 +363,21 @@ if (!isset($_SESSION['pseudo'])) {
 
     ?>
     </div>
-        </div>
     </div>
-</div> <!-- Fermeture de la balise div avec la classe "popup" -->
+    </div>
+    </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-</script>
-<script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script>
+    <script>
     var usercard = document.getElementsByClassName("user-card");
     for (let i = 0; i < classements.length; i++) {
-        usercard[i].addEventListener('click', function () {
+        usercard[i].addEventListener('click', function() {
             window.location.assign("classement.php?partage=" + classements[i].ID_Utilisateur);
         });
     }
-</script>
+    </script>
 
 </body>
 
