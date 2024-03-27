@@ -10,7 +10,7 @@ try {
     $pseudo = $_SESSION['pseudo'];
 
     // Récupération du nouveau pseudo depuis le formulaire
-    $nouveauPseudo = $_POST['newPseudo'];
+    $nouveauPseudo = htmlspecialchars($_POST['newPseudo']); // Échapper les caractères spéciaux
 
     // Vérification si le pseudo a été modifié
     if ($nouveauPseudo != $pseudo) {
