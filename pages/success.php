@@ -61,8 +61,8 @@ if (!isset($_SESSION['pseudo'])) {
         ?>
     </div>
 
-    <div id="success_descript_box">
-    <p id="success_paragraph_descrip">rgsrhhherhg</p>
+    <div class="success_descript_box">
+    <p class="success_paragraph_descrip_darkgreen">rgsrhhherhg</p>
     </div>
 
     <div class="success_box_1">
@@ -114,6 +114,9 @@ if (!isset($_SESSION['pseudo'])) {
         ?>
     </div>
     
+    <div class="success_descript_box">
+    <p class="success_paragraph_descrip_darkgreen">rgsrhhherhg</p>
+    </div>
 
     <div class="success_box_2">
         <h3 class="success_h3_lightgreen">De feuille en feuille <strong class="succes_strong_green">I</strong></h3>
@@ -163,6 +166,10 @@ if (!isset($_SESSION['pseudo'])) {
             echo "0/3";
         }
         ?>
+    </div>
+
+    <div class="success_descript_box">
+    <p class="success_paragraph_descrip_white">rgsrhhherhg</p>
     </div>
 
     <div class="success_box_1">
@@ -215,6 +222,10 @@ if (!isset($_SESSION['pseudo'])) {
         ?>
     </div>
 
+    <div class="success_descript_box">
+    <p class="success_paragraph_descrip_darkgreen">rgsrhhherhg</p>
+    </div>
+
     <div class="success_box_3">
         <h3 class="success_h3_lightgreen">Douche éclair <strong class="succes_strong_lightergreen">I</strong></h3>
         <div class="succes_checkbox">
@@ -250,7 +261,7 @@ if (!isset($_SESSION['pseudo'])) {
 
 <div id="succes_box5">
 <img src="../img/trophy.svg" alt="trophy" id="success_svg_trophy">
-    <h2 id="success_h2_2">Seconde vie</h2>
+    <h2 id="success_h2_1">Seconde vie</h2>
     <div id="success_number_lightgreen">
         <?php 
         if ($tableau[18] == "oui") {
@@ -263,6 +274,10 @@ if (!isset($_SESSION['pseudo'])) {
             echo "0/3";
         }
         ?>
+    </div>
+
+    <div class="success_descript_box">
+    <p class="success_paragraph_descrip_lightgreen">rgsrhhherhg</p>
     </div>
 
     <div class="success_box_1">
@@ -313,6 +328,10 @@ if (!isset($_SESSION['pseudo'])) {
             echo "0/3";
         }
         ?>
+    </div>
+
+    <div class="success_descript_box">
+    <p class="success_paragraph_descrip_darkgreen">rgsrhhherhg</p>
     </div>
 
     <div class="success_box_3">

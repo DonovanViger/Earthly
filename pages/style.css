@@ -957,10 +957,22 @@ height: 10vh;
     margin-right: 1vw;
 }
 
-#success_descript_box{
+.success_descript_box{
     width: 80%;
     clear: both;
     margin: 3vh auto 0 auto;
+}
+
+.success_paragraph_descrip_lightgreen{
+    color: #A9FFA4;
+}
+
+.success_paragraph_descrip_darkgreen{
+    color: #1C3326;
+}
+
+.success_paragraph_descrip_white{
+    color: #fff;
 }
 
 #success_h2_1{
@@ -1025,6 +1037,7 @@ height: 10vh;
     color: #1C3326;
     width: 60vw;
     margin: 0;
+    font-size: 1.75vh;
     float: left;
 }
 
@@ -1032,6 +1045,7 @@ height: 10vh;
     color: #A9FFA4;
     width: 60vw;
     margin: 0;
+    font-size: 1.75vh;
     float: left;
 }
 
