@@ -235,8 +235,7 @@
         $update_mdp->bindParam(':mdp', $hashedPassword); // Utiliser le mot de passe haché
         $update_mdp->bindParam(':id', $_SESSION['user_id']);
     
-        // Exécution de la requête
-        $stmt_update_mdp->execute();
+        $update_mdp->execute();
     }
 
     setlocale(LC_TIME, "fr_FR");
@@ -649,10 +648,10 @@
             <h3>Changer de mot de passe</h3>
             <p class="mt-4">Saisissez ci-dessous votre nouveau mot de passe</p>
             <form id="changePasswordForm" action="compte.php" method="post">
-                <div class="form-group">
-                    <label for="newPassword">Nouveau mot de passe</label>
-                    <input type="password" id="newPassword" name="newPassword" class="rounded barreinput" required>
-                </div>
+            <div class="form-group">
+                <label for="newPassword">Nouveau mot de passe</label>
+                <input type="password" id="newPassword" name="newPassword" class="rounded barreinput" required autocomplete="new-password">
+            </div>
                 <div class="row mt-4">
                     <div class="col-5">
                         <button class="px-3 close-popup" id="cancel4">Retour</button>
