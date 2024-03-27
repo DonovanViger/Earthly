@@ -214,7 +214,7 @@
 
     if (isset($_SESSION['pseudo']) && isset($_GET['titre'])) {
 
-        $select_titres_user = $db->prepare("SELECT nom FROM succes INNER JOIN utilisateursucces ON utilisateursucces.ID_Succes = succes.ID_Succes WHERE utilisateursucces.ID_Utilisateur = :iduser AND utilisateursucces.dateObtention != '0000-00-00'");
+        $select_titres_user = $db->prepare("SELECT nom FROM succes INNER JOIN utilisateursucces ON utilisateursucces.ID_Succes = succes.ID_Succes WHERE utilisateursucces.ID_Utilisateur = :iduser AND utilisateursucces.dateObtention != '1999-01-01'");
         $select_titres_user->bindParam(':iduser', $user_id);
         $select_titres_user->execute();
         $titres = $select_titres_user->fetchAll(PDO::FETCH_ASSOC);
@@ -284,7 +284,7 @@
                 <img src="../img/COMPTE.svg" class="header-image" data-image="5.png" style="max-width: 50px;">
             </div>
             <div class="col-8 offset-1" class="comptetitre">
-                <h1 class="titrecompte"><a href="../index.php">Mon compte</a></h1>
+                <h1 class="titrecompte"><a href="../index.html">Mon compte</a></h1>
             </div>
         </div>
     </div>
@@ -355,7 +355,7 @@
                                         // Exemple de requête SQL pour récupérer le succès pour chaque slot
                                         $requete_succes = $db->prepare("SELECT s.ID_Succes, s.pds, s.nom FROM succes s 
                                         INNER JOIN utilisateursucces us ON s.ID_Succes = us.ID_Succes 
-                                        WHERE us.ID_Utilisateur = :id_utilisateur AND s.triageSucces LIKE :group AND us.dateObtention != 00-00-0000
+                                        WHERE us.ID_Utilisateur = :id_utilisateur AND s.triageSucces LIKE :group AND us.dateObtention != 01-01-1999
                                         ORDER BY CAST(SUBSTRING(s.triageSucces, 2) AS UNSIGNED) DESC
                                         LIMIT 1");
                                         $requete_succes->bindParam(':id_utilisateur', $user_id);
@@ -616,7 +616,7 @@
         <div class="popup-content">
             <h2>Changer de titre</h2>
                 <?php 
-                            $select_titres_user = $db->prepare("SELECT nom FROM succes INNER JOIN utilisateursucces ON utilisateursucces.ID_Succes = succes.ID_Succes WHERE utilisateursucces.ID_Utilisateur = :iduser AND utilisateursucces.dateObtention != '0000-00-00'");
+                            $select_titres_user = $db->prepare("SELECT nom FROM succes INNER JOIN utilisateursucces ON utilisateursucces.ID_Succes = succes.ID_Succes WHERE utilisateursucces.ID_Utilisateur = :iduser AND utilisateursucces.dateObtention != '1999-01-01'");
                             $select_titres_user->bindParam(':iduser', $user_id);
                             $select_titres_user->execute();
                             $titres = $select_titres_user->fetchAll(PDO::FETCH_ASSOC);
@@ -804,7 +804,7 @@
     });
     </script>
     <?php
-    $select_titres_user = $db->prepare("SELECT nom FROM succes INNER JOIN utilisateursucces ON utilisateursucces.ID_Succes = succes.ID_Succes WHERE utilisateursucces.ID_Utilisateur = :iduser AND utilisateursucces.dateObtention != '0000-00-00'");
+    $select_titres_user = $db->prepare("SELECT nom FROM succes INNER JOIN utilisateursucces ON utilisateursucces.ID_Succes = succes.ID_Succes WHERE utilisateursucces.ID_Utilisateur = :iduser AND utilisateursucces.dateObtention != '1999-01-01'");
     $select_titres_user->bindParam(':iduser', $user_id);
     $select_titres_user->execute();
     $titres = $select_titres_user->fetchAll(PDO::FETCH_ASSOC);
