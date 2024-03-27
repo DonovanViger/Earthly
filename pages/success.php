@@ -128,8 +128,7 @@ if (!isset($_SESSION['pseudo'])) {
             echo "100%";
         } else if (isset($tableau[2])) {
             $calcul = intval($tableau[2])*20;
-            echo $calcul;
-            echo "%";
+            echo $calcul."%";
         } else {
             echo "0%";
         }
@@ -144,7 +143,15 @@ if (!isset($_SESSION['pseudo'])) {
     </div>
     <div class="success_box_2">
         <h3 class="success_h3_lightgreen">De feuille à feuille <strong class="succes_strong_green">II</strong></h3>
-        <div class="success_advencement"></div>
+        <div class="success_advencement"><?php if ($tableau[4] == "oui") {
+            echo "100%";
+        } else if (isset($tableau[4])) {
+            $calcul = intval($tableau[4])*5;
+            echo $calcul."%";
+        } else {
+            echo "0%";
+        }
+         ?></div>
         <div class="succes_checkbox">
             <input type="checkbox" disabled <?php 
             if ($tableau[4] == "oui") {
@@ -155,7 +162,15 @@ if (!isset($_SESSION['pseudo'])) {
     </div>
     <div class="success_box_2">
         <h3 class="success_h3_lightgreen">De feuille à feuille <strong class="succes_strong_green">III</strong></h3>
-        <div class="success_advencement"></div>
+        <div class="success_advencement"><?php if ($tableau[5] == "oui") {
+            echo "100%";
+        } else if (isset($tableau[5])) {
+            $calcul = intval($tableau[5]);
+            echo $calcul."%";
+        } else {
+            echo "0%";
+        }
+         ?></div>
         <div class="succes_checkbox">
             <input type="checkbox" disabled <?php 
             if ($tableau[5] == "oui") {
@@ -190,7 +205,15 @@ if (!isset($_SESSION['pseudo'])) {
 
     <div class="success_box_1">
         <h3 class="success_h3_darkgreen">Eco-safari urbain <strong class="succes_strong_green">I</strong></h3>
-        <div class="success_advencement"></div>
+        <div class="success_advencement"><?php if ($tableau[7] == "oui") {
+            echo "100%";
+        } else if (isset($tableau[7])) {
+            $calcul = intval($tableau[7])*20;
+            echo $calcul."%";
+        } else {
+            echo "0%";
+        }
+         ?></div>
         <div class="succes_checkbox">
             <input type="checkbox" disabled <?php 
             if ($tableau[7] == "oui") {
@@ -201,7 +224,15 @@ if (!isset($_SESSION['pseudo'])) {
     </div>
     <div class="success_box_1">
         <h3 class="success_h3_darkgreen">Eco-safari urbain <strong class="succes_strong_green">II</strong></h3>
-        <div class="success_advencement"></div>
+        <div class="success_advencement"><?php if ($tableau[6] == "oui") {
+            echo "100%";
+        } else if (isset($tableau[6])) {
+            $calcul = intval($tableau[6])*5;
+            echo $calcul."%";
+        } else {
+            echo "0%";
+        }
+         ?></div>
         <div class="succes_checkbox">
             <input type="checkbox" disabled <?php 
             if ($tableau[6] == "oui") {
@@ -212,7 +243,15 @@ if (!isset($_SESSION['pseudo'])) {
     </div>
     <div class="success_box_1">
         <h3 class="success_h3_darkgreen">Eco-safari urbain <strong class="succes_strong_green">III</strong></h3>
-        <div class="success_advencement"></div>
+        <div class="success_advencement"><?php if ($tableau[3] == "oui") {
+            echo "100%";
+        } else if (isset($tableau[3])) {
+            $calcul = intval($tableau[3]);
+            echo $calcul."%";
+        } else {
+            echo "0%";
+        }
+         ?></div>
         <div class="succes_checkbox">
             <input type="checkbox" disabled <?php 
             if ($tableau[3] == "oui") {
@@ -247,7 +286,15 @@ if (!isset($_SESSION['pseudo'])) {
 
     <div class="success_box_3">
         <h3 class="success_h3_lightgreen">Douche éclair <strong class="succes_strong_lightergreen">I</strong></h3>
-        <div class="success_advencement"></div>
+        <div class="success_advencement"><?php if ($tableau[8] == "oui") {
+            echo "100%";
+        } else if (isset($tableau[8])) {
+            $calcul = intval($tableau[8])*20;
+            echo $calcul."%";
+        } else {
+            echo "0%";
+        }
+         ?></div>
         <div class="succes_checkbox">
             <input type="checkbox" disabled <?php 
             if ($tableau[8] == "oui") {
@@ -258,7 +305,15 @@ if (!isset($_SESSION['pseudo'])) {
     </div>
     <div class="success_box_3">
         <h3 class="success_h3_lightgreen">Douche éclair <strong class="succes_strong_lightergreen">II</strong></h3>
-        <div class="success_advencement"></div>
+        <div class="success_advencement"><?php if ($tableau[9] == "oui") {
+            echo "100%";
+        } else if (isset($tableau[9])) {
+            $calcul = intval($tableau[9])*5;
+            echo $calcul."%";
+        } else {
+            echo "0%";
+        }
+         ?></div>
         <div class="succes_checkbox">
             <input type="checkbox" disabled <?php 
             if ($tableau[9] == "oui") {
@@ -269,7 +324,15 @@ if (!isset($_SESSION['pseudo'])) {
     </div>
     <div class="success_box_3">
         <h3 class="success_h3_lightgreen">Douche éclair <strong class="succes_strong_lightergreen">III</strong></h3>
-        <div class="success_advencement"></div>
+        <div class="success_advencement"><?php if ($tableau[10] == "oui") {
+            echo "100%";
+        } else if (isset($tableau[10])) {
+            $calcul = intval($tableau[10]);
+            echo $calcul."%";
+        } else {
+            echo "0%";
+        }
+         ?></div>
         <div class="succes_checkbox">
             <input type="checkbox" disabled <?php 
             if ($tableau[10] == "oui") {
@@ -304,7 +367,15 @@ if (!isset($_SESSION['pseudo'])) {
 
     <div class="success_box_1">
         <h3 class="success_h3_darkgreen">Seconde vie <strong class="succes_strong_lightergreen">I</strong></h3>
-        <div class="success_advencement"></div>
+        <div class="success_advencement"><?php if ($tableau[16] == "oui") {
+            echo "100%";
+        } else if (isset($tableau[16])) {
+            $calcul = intval($tableau[16])*20;
+            echo $calcul."%";
+        } else {
+            echo "0%";
+        }
+         ?></div>
         <div class="succes_checkbox">
             <input type="checkbox" disabled <?php 
             if ($tableau[16] == "oui") {
@@ -315,7 +386,15 @@ if (!isset($_SESSION['pseudo'])) {
     </div>
     <div class="success_box_1">
         <h3 class="success_h3_darkgreen">Seconde vie <strong class="succes_strong_lightergreen">II</strong></h3>
-        <div class="success_advencement"></div>
+        <div class="success_advencement"><?php if ($tableau[17] == "oui") {
+            echo "100%";
+        } else if (isset($tableau[17])) {
+            $calcul = intval($tableau[17])*5;
+            echo $calcul."%";
+        } else {
+            echo "0%";
+        }
+         ?></div>
         <div class="succes_checkbox">
             <input type="checkbox" disabled <?php 
             if ($tableau[17] == "oui") {
@@ -326,7 +405,15 @@ if (!isset($_SESSION['pseudo'])) {
     </div>
     <div class="success_box_1">
         <h3 class="success_h3_darkgreen">Seconde vie <strong class="succes_strong_lightergreen">III</strong></h3>
-        <div class="success_advencement"></div>
+        <div class="success_advencement"><?php if ($tableau[18] == "oui") {
+            echo "100%";
+        } else if (isset($tableau[18])) {
+            $calcul = intval($tableau[18]);
+            echo $calcul."%";
+        } else {
+            echo "0%";
+        }
+         ?></div>
         <div class="succes_checkbox">
             <input type="checkbox" disabled <?php 
             if ($tableau[18] == "oui") {
@@ -361,7 +448,15 @@ if (!isset($_SESSION['pseudo'])) {
 
     <div class="success_box_3">
         <h3 class="success_h3_lightgreen">Dépense Fruitière <strong class="succes_strong_lightergreen">I</strong></h3>
-        <div class="success_advencement"></div>
+        <div class="success_advencement"><?php if ($tableau[19] == "oui") {
+            echo "100%";
+        } else if (isset($tableau[19])) {
+            $calcul = intval($tableau[19])*20;
+            echo $calcul."%";
+        } else {
+            echo "0%";
+        }
+         ?></div>
         <div class="succes_checkbox">
             <input type="checkbox" disabled <?php 
             if ($tableau[19] == "oui") {
@@ -372,7 +467,15 @@ if (!isset($_SESSION['pseudo'])) {
     </div>
     <div class="success_box_3">
         <h3 class="success_h3_lightgreen">Dépense Fruitière <strong class="succes_strong_lightergreen">II</strong></h3>
-        <div class="success_advencement"></div>
+        <div class="success_advencement"><?php if ($tableau[20] == "oui") {
+            echo "100%";
+        } else if (isset($tableau[20])) {
+            $calcul = intval($tableau[20])*5;
+            echo $calcul."%";
+        } else {
+            echo "0%";
+        }
+         ?></div>
         <div class="succes_checkbox">
             <input type="checkbox" disabled <?php 
             if ($tableau[20] == "oui") {
@@ -383,7 +486,15 @@ if (!isset($_SESSION['pseudo'])) {
     </div>
     <div class="success_box_3">
         <h3 class="success_h3_lightgreen">Dépense Fruitière <strong class="succes_strong_lightergreen">III</strong></h3>
-        <div class="success_advencement"></div>
+        <div class="success_advencement"><?php if ($tableau[21] == "oui") {
+            echo "100%";
+        } else if (isset($tableau[21])) {
+            $calcul = intval($tableau[11]);
+            echo $calcul."%";
+        } else {
+            echo "0%";
+        }
+         ?></div>
         <div class="succes_checkbox">
             <input type="checkbox" disabled <?php 
             if ($tableau[21] == "oui") {
