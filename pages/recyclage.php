@@ -27,6 +27,31 @@
         die("Erreur de connexion à la base de données : ". $erreur->getMessage());
     }
 
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST["iduser"]) && !empty($_POST["iduser"])) {
+        $iduserpost = $_POST["iduser"];
+        try {
+            $db = new PDO('mysql:host=localhost;dbname=sae401-2', 'root', '');
+            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (PDOException $erreur) {
+            die("Erreur de connexion à la base de données : ". $erreur->getMessage());
+        }
+        
+        $date_actuelle = date("Y-m-d");
+        $insert_into_poubelle = $db->prepare("INSERT INTO scanpoubelle (ID_Utilisateur, ID_Poubelle, dateScan) VALUES (:iduser, 2, :dateActuel)");
+        $insert_into_poubelle->bindParam(':iduser', $iduserpost);
+        $insert_into_poubelle->bindParam(':dateActuel', $date_actuelle);
+        header("Location: recyclage.php");
+        if ($insert_into_poubelle->execute()) {
+            $update_score = $db->prepare("UPDATE utilisateurs SET point_Planete = point_Planete + 200, exp_Utilisateur = exp_Utilisateur + 200 WHERE ID_Utilisateur = :id_utilisateur");
+            $update_score->bindParam(':id_utilisateur', $iduserpost);
+            if ($update_score->execute()) {
+            }
+        }
+    }
+}
     $date_actuelle = date("Y-m-d");
     $iduser = $_SESSION['user_id'];
     
@@ -43,7 +68,7 @@
     } else {
         echo "<script> var poubelle_user = 'non'</script>";
     }
-    echo "<script> var idutilisateur = ".$iduser."</script>";
+    echo "<script> var iduser = ".$iduser."</script>";
     ?>
 
 <div id="overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 998;"></div>
@@ -93,7 +118,7 @@
         const startCapture = () => {
             navigator.mediaDevices.getUserMedia({
                     video: {
-                        facingMode: 'environment' // Utiliser la caméra arrière
+                        facingMode: 'environment'
                     }
                 })
                 .then(stream => {
@@ -101,7 +126,7 @@
                     video.srcObject = stream;
                     captureInterval = setInterval(captureAndDecode, 1000);
                     video.style.transform =
-                        'scaleX(1)'; // Inverse la vidéo horizontalement pour la rendre miroir
+                        'scaleX(1)'; 
                 })
                 .catch(err => showError("Erreur lors de l'accès à la caméra arrière: " + err));
         };
@@ -152,21 +177,19 @@ const captureAndDecode = () => {
                 if (qrData.includes("poubelle=1")) {
                     message = "Vous recyclez vos déchets cartons, plastiques, papiers et métalliques\n+200 Points";
                     $.ajax({
-                        url: 'traitement.php',
+                        url: 'recyclage.php',
                         method: 'POST',
-                        data: { iduser: idutilisateur }, 
+                        data: { iduser: iduser }, 
                         success: function(response) {
-                            alert('Opération effectuée avec succès !');
                         }
                     });
                 } else if (qrData.includes("poubelle=2")) {
                     message = "Vous recyclez vos déchets en verre\n+200 Points";
                     $.ajax({
-                        url: 'traitement.php',
+                        url: 'recyclage.php',
                         method: 'POST',
-                        data: { iduser: idutilisateur }, 
+                        data: { iduser: iduser }, 
                         success: function(response) {
-                            alert('Opération effectuée avec succès !');
                         }
                     });
                 } else if (qrData.includes("poubelle=3")) {
