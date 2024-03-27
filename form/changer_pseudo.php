@@ -14,10 +14,12 @@ try {
 
     // Vérification si le pseudo a été modifié
     if ($nouveauPseudo != $pseudo) {
-        // Mise à jour du pseudo dans la base de données
+        // Préparation de la requête avec des paramètres liés
         $requetePseudo = $db->prepare("UPDATE utilisateurs SET pseudo = :nouveauPseudo WHERE pseudo = :pseudo");
+        // Liaison des paramètres
         $requetePseudo->bindParam(':nouveauPseudo', $nouveauPseudo);
         $requetePseudo->bindParam(':pseudo', $pseudo);
+        // Exécution de la requête
         $requetePseudo->execute();
 
         // Mise à jour de la variable de session avec le nouveau pseudo
