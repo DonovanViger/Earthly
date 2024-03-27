@@ -234,9 +234,9 @@
         $hashedPassword = hash('sha256', $newPassword);
     
         // Préparer la requête SQL d'update
-        $stmt_update_mdp = $db->prepare("UPDATE utilisateurs SET mdp = :mdp WHERE pseudo = :pseudo");
+        $stmt_update_mdp = $db->prepare("UPDATE utilisateurs SET mdp = :mdp WHERE ID_Utilisateur = :id");
         $stmt_update_mdp->bindParam(':mdp', $hashedPassword); // Utiliser le mot de passe haché
-        $stmt_update_mdp->bindParam(':pseudo', $pseudo);
+        $stmt_update_mdp->bindParam(':id', $_SESSION['user_id']);
     
         // Exécution de la requête
         $stmt_update_mdp->execute();
