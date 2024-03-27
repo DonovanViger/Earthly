@@ -391,10 +391,9 @@ body {
 
 .partage_classement {
     position: absolute;
-    margin-left: 1rem;
-    top: 35vh;
     width: 90vw;
     height: 35vh;
+    padding-top: 1vh;
     background-color: #2BBA7C;
     border-radius: 15px;
     color: #FFEFE1;

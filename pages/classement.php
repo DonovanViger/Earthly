@@ -75,14 +75,18 @@ if (!isset($_SESSION['pseudo'])) {
     }
 
     .popup {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        z-index: 9999;
-    }
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    margin-left: 0;
+    display: flex; /* Utiliser flexbox */
+    justify-content: center; /* Centrer horizontalement */
+    align-items: center; /* Centrer verticalement */
+}
 
     .titreuh {
         color: rgb(255, 255, 255, 0.7);
