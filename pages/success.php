@@ -126,7 +126,7 @@ if (!isset($_SESSION['pseudo'])) {
         <div class="success_advencement"><?php if ($tableau[2] == "oui") {
             echo "100%";
         } else if (isset($tableau[2])) {
-            $calcul = $tableau[2]*20;
+            $calcul = intval($tableau[2])*20;
             echo $calcul;
             echo "%";
         } else {
