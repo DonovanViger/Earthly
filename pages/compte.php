@@ -140,7 +140,9 @@
 
     #cancel,
     #confirmChangePseudo,
+    #confirmChangePassword,
     #cancel3,
+    #cancel4,
     #cancel2 {
         color: #1C3326;
         background-color: #FFEFE1;
@@ -174,7 +176,7 @@
         color: #A9FFA4;
     }
 
-    #confirmChangePseudo {
+    #confirmChangePseudo, #confirmChangePassword {
         border: #A9FFA4 0.8px solid;
         background-color: transparent;
         color: #A9FFA4;
@@ -529,11 +531,8 @@
                 </div>
             </a>
             <div class="sub-menu">
-                <a href="#" class="list-group-item list-group-item-action rounded" id="mdpListe">Changer de mot de passe</a>
-                <form id="changePasswordForm" style="display: none;" method="post" action="compte.php">
-                <input type="password" id="newPassword" name="newPassword" placeholder="Nouveau mot de passe" autocomplete="new-password">
-                    <button type="submit">Changer</button>
-                </form>
+                <a href="#" class="list-group-item list-group-item-action rounded delete-account-link"
+                    data-popup-id="popup4">Changer de mot de passe</a>
             </div>
             <!-- Séparateur -->
             <div class="separator my-3"></div>
@@ -657,6 +656,28 @@
         </div>
     </div>
 
+    <!-- Popup 4 -->
+    <div id="popup4" class="popup">
+    <div class="popup-content">
+        <h3>Changer de mot de passe</h3>
+        <p class="mt-4">Saisissez ci-dessous votre nouveau mot de passe</p>
+        <form id="changePasswordForm" action="compte.php" method="post">
+            <div class="form-group">
+                <label for="newPassword">Nouveau mot de passe</label>
+                <input type="password" id="newPassword" name="newPassword" class="rounded" required>
+            </div>
+            <div class="row mt-4">
+                <div class="col-5">
+                    <button class="px-3 close-popup" id="cancel4">Retour</button>
+                </div>
+                <div class="col-5">
+                    <button class="px-3" type="submit" id="confirmChangePassword">Confirmer</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
 
 
 
@@ -708,6 +729,7 @@
     const cancelButton = document.getElementById('cancel'); // Sélectionne le bouton Annuler
     const cancelButton2 = document.getElementById('cancel2'); // Sélectionne le bouton Retour
     const cancelButton3 = document.getElementById('cancel3'); // Sélectionne le bouton Retour
+    const cancelButton4 = document.getElementById('cancel4'); // Sélectionne le bouton Retour
     const confirmButton = document.getElementById('confirm');
 
     // Ajoute un écouteur d'événement pour chaque bouton de fermeture de pop-up
@@ -725,6 +747,7 @@
     cancelButton.addEventListener('click', hidePopup);
     cancelButton2.addEventListener('click', hidePopup);
     cancelButton3.addEventListener('click', hidePopup);
+    cancelButton4.addEventListener('click', hidePopup);
 
     function hidePopup() {
         // Récupère le conteneur de la pop-up parent du bouton
