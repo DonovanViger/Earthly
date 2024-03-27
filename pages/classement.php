@@ -87,7 +87,7 @@ if (!isset($_SESSION['pseudo'])) {
     .titreuh {
         color: rgb(255, 255, 255, 0.7);
         font-size: 0.7rem;
-        margin-top: -0.3rem
+        margin-top: -0.3rem;
     }
     </style>
 </head>
