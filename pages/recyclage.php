@@ -43,11 +43,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $insert_into_poubelle = $db->prepare("INSERT INTO scanpoubelle (ID_Utilisateur, ID_Poubelle, dateScan) VALUES (:iduser, 2, :dateActuel)");
         $insert_into_poubelle->bindParam(':iduser', $iduserpost);
         $insert_into_poubelle->bindParam(':dateActuel', $date_actuelle);
-        header("Location: recyclage.php");
         if ($insert_into_poubelle->execute()) {
             $update_score = $db->prepare("UPDATE utilisateurs SET point_Planete = point_Planete + 200, exp_Utilisateur = exp_Utilisateur + 200 WHERE ID_Utilisateur = :id_utilisateur");
             $update_score->bindParam(':id_utilisateur', $iduserpost);
             if ($update_score->execute()) {
+                echo "<script>window.location.assign('recyclage.php');</script>";
             }
         }
     }
@@ -154,6 +154,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     closeButton.addEventListener('click', () => {
         popupElement.style.display = 'none';
         overlayElement.style.display = 'none';
+        window.location.assign("recyclage.php");
     });
     popupElement.innerText = message;
     popupElement.appendChild(closeButton);

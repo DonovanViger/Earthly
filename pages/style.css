@@ -1077,12 +1077,12 @@ height: 10vh;
     margin: auto;
     text-align: center;
     width: 100vw;
-    height: 65vh;
+    height: 60vh;
 }
 
 #recyclage_annotation{
     width: 85%;
-    height: 25vh;
+    height: 30vh;
     text-align: center;
     margin: auto;
     background-color: #ffffff49;
@@ -1092,6 +1092,7 @@ height: 10vh;
 }
 
 #recyclage_h2_annotation{
+    margin-top: 2vh;
     font-size: 2.25vh;
     color:#FFEFE1
 }
