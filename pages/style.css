@@ -401,7 +401,45 @@ body {
 }
 
 .partage_classement h2 {
-    font-size: 18px;
+    font-size: 2vh;
+}
+
+.partage_classement .titresucces {
+    font-size: 1.5vh;
+}
+
+.partage_classement .partager p {
+    color: #1C3326;
+    font-size: 1.3vh;
+}
+
+.partage_classement .partagefin {
+    font-size: 1.2vh;
+}
+
+.partage_classement .ppartage {
+    margin-bottom: 0;
+}
+
+.partage_classement .gauche {
+    font-size: 1.5vh;
+    color: #A9FFA4;
+}
+
+.partage_classement .niveauxp {
+    font-size: 1.7vh;
+}
+
+.partage_classement .droite {
+    font-size: 1.5vh;
+}
+
+.partage_classement .membre {
+    color: #1C3326;
+}
+
+.partage_classement .niveau {
+    color: #A9FFA4;
 }
 
 /*Page Planète*/

@@ -109,7 +109,7 @@ if (!isset($_SESSION['pseudo'])) {
         <div class="popup">
             <div class="partage_classement partage_click">
                 <div class="container mt-4 partage_click">
-                    <div class="p-4 profil_page partage_click">
+                    <div class="profil_page partage_click">
                         <div class="row partage_click">
                             <div class="col-3 partage_click">
                                 <img src="<?php echo $profileImage; ?>" alt="Avatar de <?php echo $partage['pseudo']; ?>"
@@ -123,7 +123,7 @@ if (!isset($_SESSION['pseudo'])) {
                                     </h2>
                                 </div>
                                 <div class="row partage_click">
-                                    <div class="mb-3 titresucces partage_click">
+                                    <div class="titresucces partage_click">
                                         <?php echo $titrePartage; ?>
                                     </div>
                                 </div>
@@ -134,11 +134,11 @@ if (!isset($_SESSION['pseudo'])) {
                                             src="../img/share-solid 1.svg" alt="" srcset=""></button>
                                 </div>
                                 <div class="row partager text-center partage_click">
-                                    <p>Partager</p>
+                                    <p class="ppartage partage_click">Partager</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="row mt-3 partage_click">
+                        <div class="row partage_click">
                             <div class="col-6 offset-3 badges mb-2 partage_click">
                                 <div class="row partage_click">
                                     <?php for ($i = 1; $i <= 6; $i++): ?>
@@ -205,13 +205,16 @@ if (!isset($_SESSION['pseudo'])) {
                             // Calcul du niveau en fonction des points
                             if ($pointsUtilisateur >= 1000 && $pointsUtilisateur < 3000) {
                                 $niveauActuel = 2;
-                                $pointsNiveauSuivant = 3000;
+                                $pointsNiveauSuivant = 2000;
+                                $pointsUtilisateur = $pointsUtilisateur - 1000;
                             } elseif ($pointsUtilisateur >= 3000 && $pointsUtilisateur < 7000) {
                                 $niveauActuel = 3;
-                                $pointsNiveauSuivant = 7000;
+                                $pointsNiveauSuivant = 4000;
+                                $pointsUtilisateur = $pointsUtilisateur - 3000;
                             } elseif ($pointsUtilisateur >= 7000 && $pointsUtilisateur < 15000) {
                                 $niveauActuel = 4;
-                                $pointsNiveauSuivant = 15000;
+                                $pointsNiveauSuivant = 8000;
+                                $pointsUtilisateur = $pointsUtilisateur - 7000;
                             } elseif ($pointsUtilisateur >= 15000) {
                                 $niveauActuel = 5;
                                 $pointsNiveauSuivant = null; // Pas de niveau suivant car c'est le dernier niveau
@@ -228,7 +231,7 @@ if (!isset($_SESSION['pseudo'])) {
 
 
                         </div>
-                        <div class="row partage_click">
+                        <div class="row partage_click partagefin">
                             <div class="mt-2 partage_click">
                                 <div class="rounded p-1 profil_page partage_click">
                                     <!-- Barre de progression avec l'XP actuel à gauche, le niveau au milieu, et l'XP nécessaire à droite -->
@@ -262,9 +265,9 @@ if (!isset($_SESSION['pseudo'])) {
                                 </div>
                             </div>
 
-                            <div class="row mt-3 sous-xp text-center align-items-end partage_click">
-                                <div class="col-8 partage_click">
-                                    <p>Membre depuis le
+                            <div class="row sous-xp text-center align-items-end partage_click">
+                                <div class="col-8 membre partage_click">
+                                    <p class="ppartage partage_click">Membre depuis le
                                         <?php
                                         $dateCreationCompte = $partage['dateCreationCompte'];
                                         // Convertir la date en format DD-MM-YYYY
@@ -273,8 +276,8 @@ if (!isset($_SESSION['pseudo'])) {
                                         ?>
                                     </p>
                                 </div>
-                                <div class="col-3 offset-1 level partage_click">
-                                    <p>Planète niveau
+                                <div class="col-4 level partage_click">
+                                    <p class="ppartage niveau partage_click">Planète niveau
                                         <?php echo $niveauActuel; ?>
                                     </p>
                                 </div>
