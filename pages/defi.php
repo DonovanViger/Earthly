@@ -12,9 +12,9 @@ try {
 
     $date_actuelle = date('Y-m-d');
 
-    $stmt_select_defis = $db->prepare("SELECT defiquotidien.ID_Defi, defis_journaliers.date, defiquotidien.nom, defiquotidien.pdd, defiquotidien.desc, defiquotidien.point FROM defis_journaliers INNER JOIN defiquotidien ON defis_journaliers.ID_Defi = defiquotidien.ID_Defi WHERE defis_journaliers.date = :date");
-    $stmt_select_defis->bindParam(':date', $date_actuelle);
-    $stmt_select_defis->execute();
+    $select_defis = $db->prepare("SELECT defiquotidien.ID_Defi, defis_journaliers.date, defiquotidien.nom, defiquotidien.pdd, defiquotidien.desc, defiquotidien.point FROM defis_journaliers INNER JOIN defiquotidien ON defis_journaliers.ID_Defi = defiquotidien.ID_Defi WHERE defis_journaliers.date = :date");
+    $select_defis->bindParam(':date', $date_actuelle);
+    $select_defis->execute();
     $defi_suppression = $db->prepare("DELETE FROM defis_journaliers WHERE date != :date");
     $defi_suppression->bindParam(':date', $date_actuelle);
     $defi_suppression->execute();
