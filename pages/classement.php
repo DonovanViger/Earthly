@@ -155,7 +155,6 @@ if (!isset($_SESSION['pseudo'])) {
                                 <div class="col-4 partage_click">
                                     <div class="badgeSlot partage_click" id="badgeSlot<?php echo $i; ?>">
                                         <?php
-                                                // Détermine le groupe
                                                 switch ($i) {
                                                     case 1:
                                                         $group = 'A%';
@@ -270,7 +269,6 @@ if (!isset($_SESSION['pseudo'])) {
                                 <p class="ppartage partage_click">Membre depuis le
                                     <?php
                                         $dateCreationCompte = $partage['dateCreationCompte'];
-                                        // Convertir la date en format DD-MM-YYYY
                                         $dateFormatee = date("d-m-Y", strtotime($dateCreationCompte));
                                         echo $dateFormatee;
                                         ?>

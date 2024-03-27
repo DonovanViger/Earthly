@@ -98,5 +98,4 @@
     AH - 1234
     admin - nice
     test - test
-    Ninbanight - mdp1
 -->
