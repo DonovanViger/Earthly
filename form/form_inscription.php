@@ -50,9 +50,15 @@ try {
     $requete->bindParam(':photo', $photoPath);
     $requete->execute();
 
-    echo "<div id='erreur_connexion_box'>";
-    echo "<p id='erreur_connexion_para'>Compte créé avec succès</p>";
-    echo "<button id='erreur_button_form'><a href='../pages/connexion.php'>Retour à la page de connexion</a>";
+    echo "<div class='erreur_connexion_box'>";
+    echo "<p class='erreur_connexion_para'>Compte créé avec succès</p>";
+    /* echo "<button class='erreur_button_form'><a href='../pages/connexion.php'>Retour à la page de connexion</a></button>";
+    echo "<br>";
+    echo "<br>"; */
+    echo "<button class='erreur_button_form'><a href='../index.html'>Retour à la page d'accueil</a></button>";
+    echo "<br>";
+    echo "<br>";
+    echo "<form action='form_connexion.php' method='POST'><input type='hidden' name='pseudo' value='".$pseudo."'><input type='hidden' name='mdp' value='".$mdp."'><input type='submit' value='Se connecter' class='erreur_button_form'></form>";
     echo "</div>";
 
 } catch (PDOException $erreur) {

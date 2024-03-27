@@ -34,14 +34,14 @@ try {
             $requeteSuppression->bindParam(':user_id', $user_id);
             $requeteSuppression->execute();
 
-            echo "<div id='erreur_connexion_box'>";
-            echo "<p id='erreur_connexion_para'>Compte supprimé avec succès</p>";
-            echo "<button id='erreur_button_form'><a href='../pages/inscription.php'>Retour à la page d'inscription</a>";
+            echo "<div class='erreur_connexion_box'>";
+            echo "<p class='erreur_connexion_para'>Compte supprimé avec succès</p>";
+            echo "<button class='erreur_button_form'><a href='../pages/inscription.php'>Retour à la page d'inscription</a>";
             echo "</div>";
         } else {
-            echo "<div id='erreur_connexion_box'>";
-            echo "<p id='erreur_connexion_para'>Erreur : ID utilisateur non défini.</p>";
-            echo "<button id='erreur_button_form'><a href='../pages/connexion.php'>Retour à la page de connexion</a>";
+            echo "<div class='erreur_connexion_box'>";
+            echo "<p class='erreur_connexion_para'>Erreur : ID utilisateur non défini.</p>";
+            echo "<button class='erreur_button_form'><a href='../pages/connexion.php'>Retour à la page de connexion</a>";
             echo "</div>";
         }
     }

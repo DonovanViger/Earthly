@@ -154,9 +154,9 @@ body {
 
 /*Page erreur connexion*/
 
-#erreur_connexion_box{
+.erreur_connexion_box{
     width: 80%;
-    height: 25vh;
+    height: 30vh;
     margin: 30vh auto;
     background-color: #A9FFA4;
     color: #1C3326;
@@ -165,20 +165,22 @@ body {
     border-radius: 15px;
 }
 
-#erreur_connexion_para{
+.erreur_connexion_para{
     margin-top: 7.5vh;
     font-size: 2.5vh;
 }
 
-#erreur_button_form{
+.erreur_button_form{
     width: 75%;
     border: none;
     border-radius: 10px;
     padding: 1vh;
     background-color: #FFEFE1;
+    color: #1C3326;
+    font-size: 2.25vh;
 }
 
-#erreur_button_form a{
+.erreur_button_form a{
     text-decoration: none;
     color: #1C3326;
     font-size: 2.25vh;
