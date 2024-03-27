@@ -61,6 +61,10 @@ if (!isset($_SESSION['pseudo'])) {
         ?>
     </div>
 
+    <div id="success_descript_box">
+    <p id="success_paragraph_descrip">rgsrhhherhg</p>
+    </div>
+
     <div class="success_box_1">
         <h3 class="success_h3_darkgreen">Petite branche <strong class="succes_strong_green">I</strong></h3>
         <div class="succes_checkbox">

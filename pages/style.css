@@ -957,6 +957,12 @@ height: 10vh;
     margin-right: 1vw;
 }
 
+#success_descript_box{
+    width: 80%;
+    clear: both;
+    margin: 3vh auto 0 auto;
+}
+
 #success_h2_1{
     color: #A9FFA4;
     width: 60%;
