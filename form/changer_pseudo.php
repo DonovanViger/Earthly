@@ -8,6 +8,7 @@ try {
 
     // Récupération du pseudo de l'utilisateur connecté
     $pseudo = $_SESSION['pseudo'];
+    $user_id = $_SESSION['user_id'];
 
     // Récupération du nouveau pseudo depuis le formulaire
     $nouveauPseudo = htmlspecialchars($_POST['newPseudo']); // Échapper les caractères spéciaux
@@ -15,10 +16,10 @@ try {
     // Vérification si le pseudo a été modifié
     if ($nouveauPseudo != $pseudo) {
         // Préparation de la requête avec des paramètres liés
-        $requetePseudo = $db->prepare("UPDATE utilisateurs SET pseudo = :nouveauPseudo WHERE pseudo = :pseudo");
+        $requetePseudo = $db->prepare("UPDATE utilisateurs SET pseudo = :nouveauPseudo WHERE ID_Utilisateur = :user_id");
         // Liaison des paramètres
         $requetePseudo->bindParam(':nouveauPseudo', $nouveauPseudo);
-        $requetePseudo->bindParam(':pseudo', $pseudo);
+        $requetePseudo->bindParam(':user_id', $user_id);
         // Exécution de la requête
         $requetePseudo->execute();
 
