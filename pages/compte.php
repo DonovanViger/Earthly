@@ -282,7 +282,7 @@
                 <img src="../img/COMPTE.svg" class="header-image" data-image="5.png" style="max-width: 50px;">
             </div>
             <div class="col-8 offset-1" class="comptetitre">
-                <h1 class="titrecompte"><a href="../index.php">Mon compte</a></h1>
+                <h1 class="titrecompte"><a href="../index.html">Mon compte</a></h1>
             </div>
         </div>
     </div>

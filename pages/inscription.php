@@ -100,7 +100,7 @@
 <body id="body_inscription">
 
 
-        <h1 id="h1_inscription"><a href="../index.php">BIENVENUE SUR</a></h1>
+        <h1 id="h1_inscription"><a href="../index.html">BIENVENUE SUR</a></h1>
         <div id="inscription_logo_contour">
             <img id="connexion_logo" src="../uploads/Logo-earthly-text+baseline.svg">
         </div>
