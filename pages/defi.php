@@ -294,22 +294,22 @@ $utilisateur = $requete->fetch(PDO::FETCH_ASSOC);
     $pointsUtilisateur = $utilisateur['point_Planete'];
 
                         // Calcul du niveau en fonction des points
-                        if ($pointsUtilisateur < 1000) {
-                            $niveauActuel = 1;
-                            $pointsNiveauSuivant = 1000;
-                        } elseif ($pointsUtilisateur < 3000) {
-                            $niveauActuel = 2;
-                            $pointsNiveauSuivant = 3000;
-                        } elseif ($pointsUtilisateur < 7000) {
-                            $niveauActuel = 3;
-                            $pointsNiveauSuivant = 7000;
-                        } elseif ($pointsUtilisateur < 15000) {
-                            $niveauActuel = 4;
-                            $pointsNiveauSuivant = 15000;
-                        } else {
-                            $niveauActuel = 5;
-                            $pointsNiveauSuivant = null; // Pas de niveau suivant car c'est le dernier niveau
-                        }
+                if ($pointsUtilisateur >= 1000 && $pointsUtilisateur < 3000) {
+                    $niveauActuel = 2;
+                    $pointsNiveauSuivant = 2000;
+                    $pointsUtilisateur = $pointsUtilisateur - 1000;
+                } elseif ($pointsUtilisateur >= 3000 && $pointsUtilisateur < 7000) {
+                    $niveauActuel = 3;
+                    $pointsNiveauSuivant = 4000;
+                    $pointsUtilisateur = $pointsUtilisateur - 3000;
+                } elseif ($pointsUtilisateur >= 7000 && $pointsUtilisateur < 15000) {
+                    $niveauActuel = 4;
+                    $pointsNiveauSuivant = 8000;
+                    $pointsUtilisateur = $pointsUtilisateur - 7000;
+                } elseif ($pointsUtilisateur >= 15000) {
+                    $niveauActuel = 5;
+                    $pointsNiveauSuivant = null; // Pas de niveau suivant car c'est le dernier niveau
+                }
 
                         $progression = ($pointsUtilisateur / $pointsNiveauSuivant) * 100;
     ?>
@@ -320,8 +320,8 @@ $utilisateur = $requete->fetch(PDO::FETCH_ASSOC);
 
 <div id="defis_xp_bar">
 <?php
-echo "<h3 id='defis_h3_bar_ex'>".$utilisateur['point_Planete']."xp</h3>";
-echo "<h3 id='defis_h3_bar_lv'>1000</h3>";
+echo "<h3 id='defis_h3_bar_ex'>".$pointsUtilisateur."xp</h3>";
+echo "<h3 id='defis_h3_bar_lv'>".$pointsNiveauSuivant."</h3>";
 ?>
 <br>
 <div class="progress">
