@@ -594,23 +594,31 @@
         <div class="popup-content">
             <h2>Changer de titre</h2>
             <?php 
-                            $select_titres_user = $db->prepare("SELECT nom FROM succes INNER JOIN utilisateursucces ON utilisateursucces.ID_Succes = succes.ID_Succes WHERE utilisateursucces.ID_Utilisateur = :iduser AND utilisateursucces.dateObtention != '1999-01-01'");
-                            $select_titres_user->bindParam(':iduser', $user_id);
-                            $select_titres_user->execute();
-                            $titres = $select_titres_user->fetchAll(PDO::FETCH_ASSOC);
-                            echo "<script>var titres=".json_encode($titres)."</script>"
-                ?>
+        $select_titres_user = $db->prepare("SELECT nom FROM succes INNER JOIN utilisateursucces ON utilisateursucces.ID_Succes = succes.ID_Succes WHERE utilisateursucces.ID_Utilisateur = :iduser AND utilisateursucces.dateObtention != '1999-01-01'");
+        $select_titres_user->bindParam(':iduser', $user_id);
+        $select_titres_user->execute();
+        $titres = $select_titres_user->fetchAll(PDO::FETCH_ASSOC);
+        echo "<script>var titres=".json_encode($titres)."</script>"
+        ?>
+            <div id="button-container"></div>
             <script>
-            console.log(titres);
-            for (var i = 0; i < titres.length; i++) {
-                document.write("<button id='compte_button_titre' class='px-3' value='" + i +
-                    "' onclick='titrechoose2(this.value)'>" + titres[i].nom + "</button>")
-
-            }
+            var titres = <?php echo json_encode($titres); ?>;
+            var buttonContainer = document.getElementById('button-container');
+            titres.forEach(function(titre, index) {
+                var button = document.createElement('button');
+                button.setAttribute('class', 'px-3 compte_button_titre');
+                button.setAttribute('value', index);
+                button.textContent = titre.nom;
+                button.addEventListener('click', function() {
+                    titrechoose2(this.value);
+                });
+                buttonContainer.appendChild(button);
+            });
             </script>
             <button class="px-3 mt-3" id="cancel2" class="close-popup">Retour</button>
         </div>
     </div>
+
 
     <!-- Popup 3 -->
     <div id="popup3" class="popup">
@@ -671,7 +679,7 @@
         changePasswordLink.addEventListener('click', function(event) {
             event.preventDefault();
             changePasswordForm.style.display =
-            'block'; // Affichez le formulaire lorsque le lien est cliqué
+                'block'; // Affichez le formulaire lorsque le lien est cliqué
         });
     });
 

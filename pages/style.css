@@ -706,7 +706,7 @@ body {
     grid-row: 2; /* Deuxième ligne */
 }
 
-#compte_button_titre{
+.compte_button_titre{
     border: none;
     margin: 1.5vh 0 0 0;
     border-radius: 15px;
