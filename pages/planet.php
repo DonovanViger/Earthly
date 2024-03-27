@@ -111,22 +111,22 @@ if ($utilisateur['point_Planete'] < 1000) {
 $pointsUtilisateur = $utilisateur['point_Planete'];
 
 // Calcul du niveau en fonction des points
-if ($pointsUtilisateur < 1000) {
-    $niveauActuel = 1;
-    $pointsNiveauSuivant = 1000;
-} elseif ($pointsUtilisateur < 3000) {
-    $niveauActuel = 2;
-    $pointsNiveauSuivant = 3000;
-} elseif ($pointsUtilisateur < 7000) {
-    $niveauActuel = 3;
-    $pointsNiveauSuivant = 7000;
-} elseif ($pointsUtilisateur < 15000) {
-    $niveauActuel = 4;
-    $pointsNiveauSuivant = 15000;
-} else {
-    $niveauActuel = 5;
-    $pointsNiveauSuivant = null; // Pas de niveau suivant car c'est le dernier niveau
-}
+                if ($pointsUtilisateur >= 1000 && $pointsUtilisateur < 3000) {
+                    $niveauActuel = 2;
+                    $pointsNiveauSuivant = 2000;
+                    $pointsUtilisateur = $pointsUtilisateur - 1000;
+                } elseif ($pointsUtilisateur >= 3000 && $pointsUtilisateur < 7000) {
+                    $niveauActuel = 3;
+                    $pointsNiveauSuivant = 4000;
+                    $pointsUtilisateur = $pointsUtilisateur - 3000;
+                } elseif ($pointsUtilisateur >= 7000 && $pointsUtilisateur < 15000) {
+                    $niveauActuel = 4;
+                    $pointsNiveauSuivant = 8000;
+                    $pointsUtilisateur = $pointsUtilisateur - 7000;
+                } elseif ($pointsUtilisateur >= 15000) {
+                    $niveauActuel = 5;
+                    $pointsNiveauSuivant = null; // Pas de niveau suivant car c'est le dernier niveau
+                }
 
 $progression = ($pointsUtilisateur / $pointsNiveauSuivant) * 100;
 ?>
