@@ -116,7 +116,7 @@ if (!isset($_SESSION['pseudo'])) {
     </div>
     
     <div class="success_descript_box">
-    <p class="success_paragraph_descrip_darkgreen">rgsrhhherhg</p>
+    <p class="success_paragraph_descrip_darkgreen">Réaliser le défi quotidien "De feuille à feuille" 5 fois <br>20 fois <br>100 fois</p>
     </div>
 
     <div class="success_box_2">
