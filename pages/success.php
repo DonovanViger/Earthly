@@ -68,6 +68,7 @@ if (!isset($_SESSION['pseudo'])) {
 
     <div class="success_box_1">
         <h3 class="success_h3_darkgreen">Petite branche <strong class="succes_strong_green">I</strong></h3>
+        <div class="success_advencement"></div>
         <div class="succes_checkbox">
             <input type="checkbox" disabled <?php 
             if ($tableau[1] == "oui") {
@@ -78,6 +79,7 @@ if (!isset($_SESSION['pseudo'])) {
     </div>
     <div class="success_box_1">
         <h3 class="success_h3_darkgreen">Petite branche <strong class="succes_strong_green">II</strong></h3>
+        <div class="success_advencement"></div>
         <div class="succes_checkbox">
             <input type="checkbox" disabled <?php 
             if ($tableau[14] == "oui") {
@@ -88,6 +90,7 @@ if (!isset($_SESSION['pseudo'])) {
     </div>
     <div class="success_box_1">
         <h3 class="success_h3_darkgreen">Petite branche <strong class="succes_strong_green">III</strong></h3>
+        <div class="success_advencement"></div>
         <div class="succes_checkbox">
             <input type="checkbox" disabled <?php 
             if ($tableau[15] == "oui") {
@@ -121,6 +124,7 @@ if (!isset($_SESSION['pseudo'])) {
 
     <div class="success_box_2">
         <h3 class="success_h3_lightgreen">De feuille à feuille <strong class="succes_strong_green">I</strong></h3>
+        <div class="success_advencement"></div>
         <div class="succes_checkbox">
             <input type="checkbox" disabled <?php 
             if ($tableau[2] == "oui") {
@@ -131,6 +135,7 @@ if (!isset($_SESSION['pseudo'])) {
     </div>
     <div class="success_box_2">
         <h3 class="success_h3_lightgreen">De feuille à feuille <strong class="succes_strong_green">II</strong></h3>
+        <div class="success_advencement"></div>
         <div class="succes_checkbox">
             <input type="checkbox" disabled <?php 
             if ($tableau[4] == "oui") {
@@ -141,6 +146,7 @@ if (!isset($_SESSION['pseudo'])) {
     </div>
     <div class="success_box_2">
         <h3 class="success_h3_lightgreen">De feuille à feuille <strong class="succes_strong_green">III</strong></h3>
+        <div class="success_advencement"></div>
         <div class="succes_checkbox">
             <input type="checkbox" disabled <?php 
             if ($tableau[5] == "oui") {
@@ -175,6 +181,7 @@ if (!isset($_SESSION['pseudo'])) {
 
     <div class="success_box_1">
         <h3 class="success_h3_darkgreen">Eco-safari urbain <strong class="succes_strong_green">I</strong></h3>
+        <div class="success_advencement"></div>
         <div class="succes_checkbox">
             <input type="checkbox" disabled <?php 
             if ($tableau[7] == "oui") {
@@ -185,6 +192,7 @@ if (!isset($_SESSION['pseudo'])) {
     </div>
     <div class="success_box_1">
         <h3 class="success_h3_darkgreen">Eco-safari urbain <strong class="succes_strong_green">II</strong></h3>
+        <div class="success_advencement"></div>
         <div class="succes_checkbox">
             <input type="checkbox" disabled <?php 
             if ($tableau[6] == "oui") {
@@ -195,6 +203,7 @@ if (!isset($_SESSION['pseudo'])) {
     </div>
     <div class="success_box_1">
         <h3 class="success_h3_darkgreen">Eco-safari urbain <strong class="succes_strong_green">III</strong></h3>
+        <div class="success_advencement"></div>
         <div class="succes_checkbox">
             <input type="checkbox" disabled <?php 
             if ($tableau[3] == "oui") {
@@ -229,6 +238,7 @@ if (!isset($_SESSION['pseudo'])) {
 
     <div class="success_box_3">
         <h3 class="success_h3_lightgreen">Douche éclair <strong class="succes_strong_lightergreen">I</strong></h3>
+        <div class="success_advencement"></div>
         <div class="succes_checkbox">
             <input type="checkbox" disabled <?php 
             if ($tableau[8] == "oui") {
@@ -239,6 +249,7 @@ if (!isset($_SESSION['pseudo'])) {
     </div>
     <div class="success_box_3">
         <h3 class="success_h3_lightgreen">Douche éclair <strong class="succes_strong_lightergreen">II</strong></h3>
+        <div class="success_advencement"></div>
         <div class="succes_checkbox">
             <input type="checkbox" disabled <?php 
             if ($tableau[9] == "oui") {
@@ -249,6 +260,7 @@ if (!isset($_SESSION['pseudo'])) {
     </div>
     <div class="success_box_3">
         <h3 class="success_h3_lightgreen">Douche éclair <strong class="succes_strong_lightergreen">III</strong></h3>
+        <div class="success_advencement"></div>
         <div class="succes_checkbox">
             <input type="checkbox" disabled <?php 
             if ($tableau[10] == "oui") {
@@ -283,6 +295,7 @@ if (!isset($_SESSION['pseudo'])) {
 
     <div class="success_box_1">
         <h3 class="success_h3_darkgreen">Seconde vie <strong class="succes_strong_lightergreen">I</strong></h3>
+        <div class="success_advencement"></div>
         <div class="succes_checkbox">
             <input type="checkbox" disabled <?php 
             if ($tableau[16] == "oui") {
@@ -293,6 +306,7 @@ if (!isset($_SESSION['pseudo'])) {
     </div>
     <div class="success_box_1">
         <h3 class="success_h3_darkgreen">Seconde vie <strong class="succes_strong_lightergreen">II</strong></h3>
+        <div class="success_advencement"></div>
         <div class="succes_checkbox">
             <input type="checkbox" disabled <?php 
             if ($tableau[17] == "oui") {
@@ -303,6 +317,7 @@ if (!isset($_SESSION['pseudo'])) {
     </div>
     <div class="success_box_1">
         <h3 class="success_h3_darkgreen">Seconde vie <strong class="succes_strong_lightergreen">III</strong></h3>
+        <div class="success_advencement"></div>
         <div class="succes_checkbox">
             <input type="checkbox" disabled <?php 
             if ($tableau[18] == "oui") {
@@ -337,6 +352,7 @@ if (!isset($_SESSION['pseudo'])) {
 
     <div class="success_box_3">
         <h3 class="success_h3_lightgreen">Dépense Fruitière <strong class="succes_strong_lightergreen">I</strong></h3>
+        <div class="success_advencement"></div>
         <div class="succes_checkbox">
             <input type="checkbox" disabled <?php 
             if ($tableau[19] == "oui") {
@@ -347,6 +363,7 @@ if (!isset($_SESSION['pseudo'])) {
     </div>
     <div class="success_box_3">
         <h3 class="success_h3_lightgreen">Dépense Fruitière <strong class="succes_strong_lightergreen">II</strong></h3>
+        <div class="success_advencement"></div>
         <div class="succes_checkbox">
             <input type="checkbox" disabled <?php 
             if ($tableau[20] == "oui") {
@@ -357,6 +374,7 @@ if (!isset($_SESSION['pseudo'])) {
     </div>
     <div class="success_box_3">
         <h3 class="success_h3_lightgreen">Dépense Fruitière <strong class="succes_strong_lightergreen">III</strong></h3>
+        <div class="success_advencement"></div>
         <div class="succes_checkbox">
             <input type="checkbox" disabled <?php 
             if ($tableau[21] == "oui") {
