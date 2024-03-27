@@ -16,39 +16,39 @@ try {
     $date_actuelle = date('Y-m-d');
 
     // Vérification si des défis sont sélectionnés pour la journée actuelle
-    $stmt_select_defis = $db->prepare("SELECT defiquotidien.ID_Defi, defis_journaliers.date, defiquotidien.nom, defiquotidien.pdd, defiquotidien.desc, defiquotidien.point FROM defis_journaliers INNER JOIN defiquotidien ON defis_journaliers.ID_Defi = defiquotidien.ID_Defi WHERE defis_journaliers.date = :date");
-    $stmt_select_defis->bindParam(':date', $date_actuelle);
-    $stmt_select_defis->execute();
+    $select_defis = $db->prepare("SELECT defiquotidien.ID_Defi, defis_journaliers.date, defiquotidien.nom, defiquotidien.pdd, defiquotidien.desc, defiquotidien.point FROM defis_journaliers INNER JOIN defiquotidien ON defis_journaliers.ID_Defi = defiquotidien.ID_Defi WHERE defis_journaliers.date = :date");
+    $select_defis->bindParam(':date', $date_actuelle);
+    $select_defis->execute();
     $defi_suppression = $db->prepare("DELETE FROM defis_journaliers WHERE date != :date");
     $defi_suppression->bindParam(':date', $date_actuelle);
     $defi_suppression->execute();
     $defi_utilisateur_suppression = $db->prepare("DELETE FROM utilisateursdefiquotidien WHERE dateObtention != :date");
     $defi_utilisateur_suppression->bindParam(':date', $date_actuelle);
     $defi_utilisateur_suppression->execute();
-    $defis_journaliers = $stmt_select_defis->fetchAll(PDO::FETCH_ASSOC);
+    $defis_journaliers = $select_defis->fetchAll(PDO::FETCH_ASSOC);
 
     // Récupération de l'ID de l'utilisateur associé à son pseudo
-    $stmt_select_id = $db->prepare("SELECT ID_Utilisateur FROM utilisateurs WHERE ID_Utilisateur = :id_utilisateur");
-    $stmt_select_id->bindParam(':id_utilisateur', $_SESSION['user_id']);
-    $stmt_select_id->execute();
-    $id_utilisateur = $stmt_select_id->fetchColumn();
+    $select_id = $db->prepare("SELECT ID_Utilisateur FROM utilisateurs WHERE ID_Utilisateur = :id_utilisateur");
+    $select_id->bindParam(':id_utilisateur', $_SESSION['user_id']);
+    $select_id->execute();
+    $id_utilisateur = $select_id->fetchColumn();
 
     // Si le formulaire de validation du défi a été soumis
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['valider_defi'])) {
         $id_defi = $_POST['id_defi'];
         $sql = "SELECT * FROM `utilisateursdefiquotidien` WHERE `ID_Utilisateur` = $id_utilisateur AND `ID_Defi` = $id_defi AND `dateObtention` = '$date_actuelle'";
-        $stmt_select_userDefi = $db->prepare($sql);
-        $stmt_select_userDefi->execute();
-        $defiuser = $stmt_select_userDefi->fetch();
+        $select_userDefi = $db->prepare($sql);
+        $select_userDefi->execute();
+        $defiuser = $select_userDefi->fetch();
         if (empty($defiuser)) {
-            $stmt_update_defi = $db->prepare("INSERT INTO utilisateursdefiquotidien (ID_Utilisateur, ID_Defi, dateObtention) VALUES (:id_utilisateur, :id_defi, :date_obtention) ON DUPLICATE KEY UPDATE dateObtention = VALUES(dateObtention)");
-            $stmt_update_defi->bindParam(':id_utilisateur', $id_utilisateur);
-            $stmt_update_defi->bindParam(':id_defi', $_POST['id_defi']);
-            $stmt_update_defi->bindParam(':date_obtention', $date_actuelle);
-            $stmt_update_defi->execute();
-            $stmt_update_score = $db->prepare("UPDATE utilisateurs INNER JOIN utilisateursdefiquotidien ON utilisateurs.ID_Utilisateur = utilisateursdefiquotidien.ID_Utilisateur INNER JOIN defiquotidien ON utilisateursdefiquotidien.ID_Defi = defiquotidien.ID_Defi SET utilisateurs.point_Planete = utilisateurs.point_Planete + defiquotidien.point, utilisateurs.exp_Utilisateur = utilisateurs.exp_Utilisateur + defiquotidien.point WHERE utilisateurs.ID_Utilisateur = :id_utilisateur");
-            $stmt_update_score->bindParam(':id_utilisateur', $_SESSION['user_id']);
-            $stmt_update_score->execute();
+            $update_defi = $db->prepare("INSERT INTO utilisateursdefiquotidien (ID_Utilisateur, ID_Defi, dateObtention) VALUES (:id_utilisateur, :id_defi, :date_obtention) ON DUPLICATE KEY UPDATE dateObtention = VALUES(dateObtention)");
+            $update_defi->bindParam(':id_utilisateur', $id_utilisateur);
+            $update_defi->bindParam(':id_defi', $_POST['id_defi']);
+            $update_defi->bindParam(':date_obtention', $date_actuelle);
+            $update_defi->execute();
+            $update_score = $db->prepare("UPDATE utilisateurs INNER JOIN utilisateursdefiquotidien ON utilisateurs.ID_Utilisateur = utilisateursdefiquotidien.ID_Utilisateur INNER JOIN defiquotidien ON utilisateursdefiquotidien.ID_Defi = defiquotidien.ID_Defi SET utilisateurs.point_Planete = utilisateurs.point_Planete + defiquotidien.point, utilisateurs.exp_Utilisateur = utilisateurs.exp_Utilisateur + defiquotidien.point WHERE utilisateurs.ID_Utilisateur = :id_utilisateur");
+            $update_score->bindParam(':id_utilisateur', $_SESSION['user_id']);
+            $update_score->execute();
             if ($id_defi == 1) {
                 $id_succes = 2;
                 $id_succes2 = 4;
@@ -70,42 +70,42 @@ try {
                 $id_succes2 = 20;
                 $id_succes3 = 21;
             } 
-            $stmt_select_succes = $db->prepare("SELECT * FROM utilisateursucces INNER JOIN utilisateurs ON utilisateurs.ID_Utilisateur = utilisateursucces.ID_Utilisateur INNER JOIN succes ON succes.ID_Succes = utilisateursucces.ID_Succes WHERE utilisateursucces.ID_Succes = :id_succes AND utilisateurs.ID_Utilisateur = :id_utilisateur");
-            $stmt_select_succes->bindParam(':id_succes', $id_succes);
-            $stmt_select_succes->bindParam(':id_utilisateur', $_SESSION['user_id']);
-            $stmt_select_succes->execute(); 
-            $succesuser = $stmt_select_succes->fetch();
+            $select_succes = $db->prepare("SELECT * FROM utilisateursucces INNER JOIN utilisateurs ON utilisateurs.ID_Utilisateur = utilisateursucces.ID_Utilisateur INNER JOIN succes ON succes.ID_Succes = utilisateursucces.ID_Succes WHERE utilisateursucces.ID_Succes = :id_succes AND utilisateurs.ID_Utilisateur = :id_utilisateur");
+            $select_succes->bindParam(':id_succes', $id_succes);
+            $select_succes->bindParam(':id_utilisateur', $_SESSION['user_id']);
+            $select_succes->execute(); 
+            $succesuser = $select_succes->fetch();
             if (empty($succesuser)) {
-                $stmt_update_defi = $db->prepare("INSERT INTO utilisateursucces (ID_Utilisateur, ID_Succes, progression) VALUES (:id_utilisateur, :id_succes, 1)");
-                $stmt_update_defi->bindParam(':id_utilisateur', $_SESSION['user_id']);
-                $stmt_update_defi->bindParam(':id_succes', $id_succes);
-                $stmt_update_defi->execute();
-                $stmt_update_defi2 = $db->prepare("INSERT INTO utilisateursucces (ID_Utilisateur, ID_Succes, progression) VALUES (:id_utilisateur, :id_succes, 1)");
-                $stmt_update_defi2->bindParam(':id_utilisateur', $_SESSION['user_id']);
-                $stmt_update_defi2->bindParam(':id_succes', $id_succes2);
-                $stmt_update_defi2->execute();
-                $stmt_update_defi3 = $db->prepare("INSERT INTO utilisateursucces (ID_Utilisateur, ID_Succes, progression) VALUES (:id_utilisateur, :id_succes, 1)");
-                $stmt_update_defi3->bindParam(':id_utilisateur', $_SESSION['user_id']);
-                $stmt_update_defi3->bindParam(':id_succes', $id_succes3);
-                $stmt_update_defi3->execute();
+                $update_defi = $db->prepare("INSERT INTO utilisateursucces (ID_Utilisateur, ID_Succes, progression) VALUES (:id_utilisateur, :id_succes, 1)");
+                $update_defi->bindParam(':id_utilisateur', $_SESSION['user_id']);
+                $update_defi->bindParam(':id_succes', $id_succes);
+                $update_defi->execute();
+                $update_defi2 = $db->prepare("INSERT INTO utilisateursucces (ID_Utilisateur, ID_Succes, progression) VALUES (:id_utilisateur, :id_succes, 1)");
+                $update_defi2->bindParam(':id_utilisateur', $_SESSION['user_id']);
+                $update_defi2->bindParam(':id_succes', $id_succes2);
+                $update_defi2->execute();
+                $update_defi3 = $db->prepare("INSERT INTO utilisateursucces (ID_Utilisateur, ID_Succes, progression) VALUES (:id_utilisateur, :id_succes, 1)");
+                $update_defi3->bindParam(':id_utilisateur', $_SESSION['user_id']);
+                $update_defi3->bindParam(':id_succes', $id_succes3);
+                $update_defi3->execute();
             } else if ($succesuser[4] != "1999-01-01") {
-                $stmt_select_succes2 = $db->prepare("SELECT dateObtention FROM utilisateursucces WHERE ID_Succes = :id_succes2 AND ID_Utilisateur = :id_utilisateur");
-                $stmt_select_succes2->bindParam(':id_succes2', $id_succes2);
-                $stmt_select_succes2->bindParam(':id_utilisateur', $_SESSION['user_id']);
-                $stmt_select_succes2->execute(); 
-                $dateObtention2 = $stmt_select_succes2->fetch();
+                $select_succes2 = $db->prepare("SELECT dateObtention FROM utilisateursucces WHERE ID_Succes = :id_succes2 AND ID_Utilisateur = :id_utilisateur");
+                $select_succes2->bindParam(':id_succes2', $id_succes2);
+                $select_succes2->bindParam(':id_utilisateur', $_SESSION['user_id']);
+                $select_succes2->execute(); 
+                $dateObtention2 = $select_succes2->fetch();
                 if ($dateObtention2[0] != "1999-01-01") {
-                    $stmt_select_succes2 = $db->prepare("SELECT dateObtention FROM utilisateursucces WHERE ID_Succes = :id_succes2 AND ID_Utilisateur = :id_utilisateur");
-                    $stmt_select_succes2->bindParam(':id_succes2', $id_succes3);
-                    $stmt_select_succes2->bindParam(':id_utilisateur', $_SESSION['user_id']);
-                    $stmt_select_succes2->execute(); 
-                    $dateObtention2 = $stmt_select_succes2->fetch();
+                    $select_succes2 = $db->prepare("SELECT dateObtention FROM utilisateursucces WHERE ID_Succes = :id_succes2 AND ID_Utilisateur = :id_utilisateur");
+                    $select_succes2->bindParam(':id_succes2', $id_succes3);
+                    $select_succes2->bindParam(':id_utilisateur', $_SESSION['user_id']);
+                    $select_succes2->execute(); 
+                    $dateObtention2 = $select_succes2->fetch();
                     if ($dateObtention2[0] != "1999-01-01") {
                     } else {
-                        $stmt_update_succes = $db->prepare("UPDATE utilisateursucces SET progression = progression + 1 WHERE ID_Utilisateur = :id_utilisateur AND ID_Succes = :id_succes3");
-                        $stmt_update_succes->bindParam(':id_utilisateur', $_SESSION['user_id']);
-                        $stmt_update_succes->bindParam(':id_succes3', $id_succes3);
-                        $stmt_update_succes->execute();
+                        $update_succes = $db->prepare("UPDATE utilisateursucces SET progression = progression + 1 WHERE ID_Utilisateur = :id_utilisateur AND ID_Succes = :id_succes3");
+                        $update_succes->bindParam(':id_utilisateur', $_SESSION['user_id']);
+                        $update_succes->bindParam(':id_succes3', $id_succes3);
+                        $update_succes->execute();
                         $select_progression_succes = $db->prepare("SELECT progression FROM utilisateursucces WHERE ID_Succes = :id_succes AND ID_Utilisateur = :id_utilisateur");
                         $select_progression_succes->bindParam(':id_succes', $id_succes3);
                         $select_progression_succes->bindParam(':id_utilisateur', $_SESSION['user_id']);
@@ -117,19 +117,19 @@ try {
                         $maxprogression_succes = $select_maxprogression_succes->fetch();
                         if ($progression_actuel[0] == $maxprogression_succes[0]) {
                             $dateActuel = date("Y-m-d");
-                            $stmt_update_succes = $db->prepare("UPDATE utilisateursucces SET dateObtention = :dateActuel WHERE ID_Utilisateur = :id_utilisateur AND ID_Succes = :id_succes");
-                            $stmt_update_succes->bindParam(':id_utilisateur', $_SESSION['user_id']);
-                            $stmt_update_succes->bindParam(':id_succes', $id_succes3);
-                            $stmt_update_succes->bindParam(':dateActuel', $dateActuel);
-                            $stmt_update_succes->execute();
+                            $update_succes = $db->prepare("UPDATE utilisateursucces SET dateObtention = :dateActuel WHERE ID_Utilisateur = :id_utilisateur AND ID_Succes = :id_succes");
+                            $update_succes->bindParam(':id_utilisateur', $_SESSION['user_id']);
+                            $update_succes->bindParam(':id_succes', $id_succes3);
+                            $update_succes->bindParam(':dateActuel', $dateActuel);
+                            $update_succes->execute();
                         }
                     }
                 } else {
-                    $stmt_update_succes = $db->prepare("UPDATE utilisateursucces SET progression = progression + 1 WHERE ID_Utilisateur = :id_utilisateur AND ID_Succes = :id_succes2 OR ID_Succes = :id_succes3");
-                    $stmt_update_succes->bindParam(':id_utilisateur', $_SESSION['user_id']);
-                    $stmt_update_succes->bindParam(':id_succes2', $id_succes2);
-                    $stmt_update_succes->bindParam(':id_succes3', $id_succes3);
-                    $stmt_update_succes->execute();
+                    $update_succes = $db->prepare("UPDATE utilisateursucces SET progression = progression + 1 WHERE ID_Utilisateur = :id_utilisateur AND ID_Succes = :id_succes2 OR ID_Succes = :id_succes3");
+                    $update_succes->bindParam(':id_utilisateur', $_SESSION['user_id']);
+                    $update_succes->bindParam(':id_succes2', $id_succes2);
+                    $update_succes->bindParam(':id_succes3', $id_succes3);
+                    $update_succes->execute();
                     $select_progression_succes = $db->prepare("SELECT progression FROM utilisateursucces WHERE ID_Succes = :id_succes AND ID_Utilisateur = :id_utilisateur");
                     $select_progression_succes->bindParam(':id_succes', $id_succes2);
                     $select_progression_succes->bindParam(':id_utilisateur', $_SESSION['user_id']);
@@ -141,20 +141,20 @@ try {
                     $maxprogression_succes = $select_maxprogression_succes->fetch();
                     if ($progression_actuel[0] == $maxprogression_succes[0]) {
                         $dateActuel = date("Y-m-d");
-                        $stmt_update_succes = $db->prepare("UPDATE utilisateursucces SET dateObtention = :dateActuel WHERE ID_Utilisateur = :id_utilisateur AND ID_Succes = :id_succes");
-                        $stmt_update_succes->bindParam(':id_utilisateur', $_SESSION['user_id']);
-                        $stmt_update_succes->bindParam(':id_succes', $id_succes2);
-                        $stmt_update_succes->bindParam(':dateActuel', $dateActuel);
-                        $stmt_update_succes->execute();
+                        $update_succes = $db->prepare("UPDATE utilisateursucces SET dateObtention = :dateActuel WHERE ID_Utilisateur = :id_utilisateur AND ID_Succes = :id_succes");
+                        $update_succes->bindParam(':id_utilisateur', $_SESSION['user_id']);
+                        $update_succes->bindParam(':id_succes', $id_succes2);
+                        $update_succes->bindParam(':dateActuel', $dateActuel);
+                        $update_succes->execute();
                     }
                 }
             } else {
-                $stmt_update_succes = $db->prepare("UPDATE utilisateursucces SET progression = progression + 1 WHERE ID_Utilisateur = :id_utilisateur AND ID_Succes = :id_succes OR ID_Succes = :id_succes2 OR ID_Succes = :id_succes3");
-                $stmt_update_succes->bindParam(':id_utilisateur', $_SESSION['user_id']);
-                $stmt_update_succes->bindParam(':id_succes', $id_succes);
-                $stmt_update_succes->bindParam(':id_succes2', $id_succes2);
-                $stmt_update_succes->bindParam(':id_succes3', $id_succes3);
-                $stmt_update_succes->execute();
+                $update_succes = $db->prepare("UPDATE utilisateursucces SET progression = progression + 1 WHERE ID_Utilisateur = :id_utilisateur AND ID_Succes = :id_succes OR ID_Succes = :id_succes2 OR ID_Succes = :id_succes3");
+                $update_succes->bindParam(':id_utilisateur', $_SESSION['user_id']);
+                $update_succes->bindParam(':id_succes', $id_succes);
+                $update_succes->bindParam(':id_succes2', $id_succes2);
+                $update_succes->bindParam(':id_succes3', $id_succes3);
+                $update_succes->execute();
                 $select_progression_succes = $db->prepare("SELECT progression FROM utilisateursucces WHERE ID_Succes = :id_succes AND ID_Utilisateur = :id_utilisateur");
                 $select_progression_succes->bindParam(':id_succes', $id_succes);
                 $select_progression_succes->bindParam(':id_utilisateur', $_SESSION['user_id']);
@@ -166,11 +166,11 @@ try {
                 $maxprogression_succes = $select_maxprogression_succes->fetch();
                 if ($progression_actuel[0] == $maxprogression_succes[0]) {
                     $dateActuel = date("Y-m-d");
-                    $stmt_update_succes = $db->prepare("UPDATE utilisateursucces SET dateObtention = :dateActuel WHERE ID_Utilisateur = :id_utilisateur AND ID_Succes = :id_succes");
-                    $stmt_update_succes->bindParam(':id_utilisateur', $_SESSION['user_id']);
-                    $stmt_update_succes->bindParam(':id_succes', $id_succes);
-                    $stmt_update_succes->bindParam(':dateActuel', $dateActuel);
-                    $stmt_update_succes->execute();
+                    $update_succes = $db->prepare("UPDATE utilisateursucces SET dateObtention = :dateActuel WHERE ID_Utilisateur = :id_utilisateur AND ID_Succes = :id_succes");
+                    $update_succes->bindParam(':id_utilisateur', $_SESSION['user_id']);
+                    $update_succes->bindParam(':id_succes', $id_succes);
+                    $update_succes->bindParam(':dateActuel', $dateActuel);
+                    $update_succes->execute();
                 }
             }
 
@@ -255,9 +255,9 @@ try {
             echo "<input type='hidden' name='id_defi' value='" . $defi['ID_Defi'] . "'>";
             $id_defi = $defi['ID_Defi'];
             $sql = "SELECT * FROM `utilisateursdefiquotidien` WHERE `ID_Utilisateur` = $id_utilisateur AND `ID_Defi` = $id_defi AND `dateObtention` = '$date_actuelle'";
-            $stmt_select_userDefi = $db->prepare($sql);
-            $stmt_select_userDefi->execute();
-            $defiuser = $stmt_select_userDefi->fetch();
+            $select_userDefi = $db->prepare($sql);
+            $select_userDefi->execute();
+            $defiuser = $select_userDefi->fetch();
             if (!empty($defiuser)) {
                 echo "<div id='defis_reussi'>Defi Reussi !</div>";
             } else {
@@ -275,11 +275,11 @@ try {
         $defis_selectionnes = $requete_defis->fetchAll(PDO::FETCH_ASSOC);
 
         // Insérer les défis sélectionnés dans la table des défis journaliers
-        $stmt_insert_defis = $db->prepare("INSERT INTO defis_journaliers (ID_Defi, date) VALUES (:id_defi, :date)");
+        $insert_defis = $db->prepare("INSERT INTO defis_journaliers (ID_Defi, date) VALUES (:id_defi, :date)");
         foreach ($defis_selectionnes as $defi) {
-            $stmt_insert_defis->bindParam(':id_defi', $defi['ID_Defi']);
-            $stmt_insert_defis->bindParam(':date', $date_actuelle);
-            $stmt_insert_defis->execute();
+            $insert_defis->bindParam(':id_defi', $defi['ID_Defi']);
+            $insert_defis->bindParam(':date', $date_actuelle);
+            $insert_defis->execute();
         }
     }
 
