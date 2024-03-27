@@ -194,16 +194,30 @@ try {
     <title>Défis</title>
     <style>
         
+        .defi{
+            text-align:center;
+        }
         .defi strong{
             color:#2BBA7C;
-            font-size:6.5vw;
+            font-size:5.5vw;
             float:right;
-            width: 55%;
+            width: 60%;
             margin-left : 1vw;
-            margin-top: 5vh
+            margin-top:3vh;
+            padding:2vh;
         }
         .defi img{
+            margin:3vh 0 3vh 5vw;
             width:30%;
+        }
+
+        #defis_button{
+            width:80%;
+            margin:2vh 0 0 0;
+            background-color:#1C3326;
+            color:#FFEFE1;
+            border-radius:15px;
+            border: none;
         }
     </style>
 </head>
@@ -235,7 +249,7 @@ try {
         echo "<ul id='defis_ul'>";
         foreach ($defis_journaliers as $defi) {
             echo "<div class='defi'>";
-            echo "<img src = '",$defi['pdd'],"' alt='",$defi['nom'],"'><strong>", $defi['nom'], "</strong> ", $defi['desc'];
+            echo "<img src = '",$defi['pdd'],"' alt='",$defi['nom'],"'><strong>", $defi['nom'], "</strong> </br> ", $defi['desc'];
             // Afficher le bouton pour valider le défi dans un formulaire
             echo "<form method='POST' action='defi.php' id='defi_form'>";
             echo "<input type='hidden' name='id_defi' value='" . $defi['ID_Defi'] . "'>";
@@ -245,9 +259,9 @@ try {
             $stmt_select_userDefi->execute();
             $defiuser = $stmt_select_userDefi->fetch();
             if (!empty($defiuser)) {
-                echo "Defi Reussi !";
+                echo "<div id='defis_reussi'>Defi Reussi !</div>";
             } else {
-                echo "<button type='submit' name='valider_defi' id='defis_button'>Valider le défi</button>";
+                echo "<button type='submit' name='valider_defi' id='defis_button'>Valider</button>";
             }
 
             echo "</form>";
@@ -256,7 +270,7 @@ try {
         }
         echo "</ul>";
     } else {
-        echo "<a href='defi.php'>Rafraîchir la page pour voir les defis</a>";
+        echo "<div id='defis_rafraichir_defis'><a href='defi.php'>Rafraîchir la page pour voir les defis</a></div>";
         $requete_defis = $db->query("SELECT * FROM defiquotidien ORDER BY RAND() LIMIT 3");
         $defis_selectionnes = $requete_defis->fetchAll(PDO::FETCH_ASSOC);
 
@@ -332,17 +346,40 @@ echo "<h3 id='defis_h3_bar_lv'>1000</h3>";
         A[2].style.width = "42.5vw";
         A[1].style.float = "left";
         A[2].style.float = "left";
-        A[1].style.margin = "0 0 0 5vw";
-        A[2].style.margin = "0 0 0 5vw";
-        A[1].style.heigh = "20vh";
-        A[2].style.heigh = "20vh";
+        A[1].style.margin = "0 0 5vh 5vw";
+        A[2].style.margin = "0 0 5vh 5vw";
         A[1].children[1].style.color = "#1C3326";
         A[2].children[1].style.color = "#1C3326";
+        A[0].children[4].style.margin = "2vh 0 0 0";
+
         A[1].style.color = "#A9FFA4";
         A[2].style.color = "#A9FFA4";
-        A[0].children[3].style.color = "#2BBA7C";
-        A[1].children[3].style.color = "#1C3326";
-        A[2].children[3].style.color = "#1C3326";
+        A[1].style.fontSize = "1.5vh";
+        A[2].style.fontSize = "1.5vh";
+
+        A[1].children[0].style.width = "10vh";
+        A[1].children[0].style.height = "10vh";
+        A[1].children[0].style.margin = "2vh 0 0 0";
+
+        A[2].children[0].style.width = "10vh";
+        A[2].children[0].style.height = "10vh";
+        A[2].children[0].style.margin = "2vh 0 0 0";
+
+        A[1].children[1].style.width = "100%";
+        A[1].children[1].style.margin = "0";
+        A[1].children[1].style.fontSize = "2vh";
+
+        A[2].children[1].style.width = "100%";
+        A[2].children[1].style.margin = "0";
+        A[2].children[1].style.fontSize = "2vh";
+
+
+        A[1].children[3].style.margin = "0 0 2vh 0";
+        A[2].children[3].style.margin = "0 0 2vh 0";
+
+
+
+
     </script>
 
 </body>

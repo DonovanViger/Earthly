@@ -248,7 +248,7 @@ if (!isset($_SESSION['pseudo'])) {
 
 <div id="succes_box5">
 <img src="../img/trophy.svg" alt="trophy" id="success_svg_trophy">
-    <h2 id="success_h2_2">Objet De Second Feuillage</h2>
+    <h2 id="success_h2_2">Seconde vie</h2>
     <div id="success_number_lightgreen">
         <?php 
         if ($tableau[18] == "oui") {
@@ -264,7 +264,7 @@ if (!isset($_SESSION['pseudo'])) {
     </div>
 
     <div class="success_box_1">
-        <h3 class="success_h3_darkgreen">Objet De Second Feuillage <strong class="succes_strong_lightergreen">I</strong></h3>
+        <h3 class="success_h3_darkgreen">Seconde vie <strong class="succes_strong_lightergreen">I</strong></h3>
         <div class="succes_checkbox">
             <input type="checkbox" disabled <?php 
             if ($tableau[16] == "oui") {
@@ -274,7 +274,7 @@ if (!isset($_SESSION['pseudo'])) {
         </div>
     </div>
     <div class="success_box_1">
-        <h3 class="success_h3_darkgreen">Objet De Second Feuillage <strong class="succes_strong_lightergreen">II</strong></h3>
+        <h3 class="success_h3_darkgreen">Seconde vie <strong class="succes_strong_lightergreen">II</strong></h3>
         <div class="succes_checkbox">
             <input type="checkbox" disabled <?php 
             if ($tableau[17] == "oui") {
@@ -284,7 +284,7 @@ if (!isset($_SESSION['pseudo'])) {
         </div>
     </div>
     <div class="success_box_1">
-        <h3 class="success_h3_darkgreen">Objet De Second Feuillage <strong class="succes_strong_lightergreen">III</strong></h3>
+        <h3 class="success_h3_darkgreen">Seconde vie <strong class="succes_strong_lightergreen">III</strong></h3>
         <div class="succes_checkbox">
             <input type="checkbox" disabled <?php 
             if ($tableau[18] == "oui") {

@@ -11,7 +11,7 @@
     <title>Scanneur</title>
 </head>
 
-<body>
+<body scrollbehaviour:hidden>
     <?php
     session_start(); // Démarre la session
 
@@ -28,6 +28,23 @@
     } catch (PDOException $erreur) {
         die("Erreur de connexion à la base de données : ". $erreur->getMessage());
     }
+
+    $date_actuelle = date("Y-m-d");
+    $iduser = $_SESSION['user_id'];
+    
+    $poubelle_suppression = $db->prepare("DELETE FROM scanpoubelle WHERE dateScan != :date");
+    $poubelle_suppression->bindParam(':date', $date_actuelle);
+    $poubelle_suppression->execute();
+    
+    $select_poubelle_user = $db->prepare("SELECT * FROM scanpoubelle  WHERE ID_Utilisateur = :iduser");
+    $select_poubelle_user->bindParam(':iduser', $iduser);
+    $select_poubelle_user->execute();
+    $poubelle_user = $select_poubelle_user->fetch(PDO::FETCH_ASSOC);
+    if (isset($poubelle_user['dateScan'])) {
+        echo "<script> var poubelle_user = 'oui'</script>";
+    } else {
+        echo "<script> var poubelle_user = 'non'</script>";
+    }
     ?>
 
 <div id="overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 998;"></div>
@@ -41,23 +58,6 @@
         <video id="video" width="100%" height="100%" autoplay style="object-fit: cover;"></video>
     </div>
     <div id="result"></div>
-
-    <?php 
-    if (isset($_GET['poubelle'])) {
-        $poubelle = $_GET['poubelle'];
-        echo "<div>";
-        if ($poubelle == 1) {
-            echo "<p>Vous recyclez vos déchets cartons, plastiques, papiers et métalliques.</p>";
-        } else if ($poubelle == 2) {
-            echo "<p>Vous recyclez vos déchets en verre.</p>";
-        } else if ($poubelle == 3) {
-            echo "<p>Vous jetez vos déchets ordinaires qui ne se recyclent pas.</p>";
-        } else {
-            echo "<p>Cette poubelle n'existe pas dans notre base de données</p>";
-        }
-        echo "</div>";
-    }
-    ?>
 
     <div id="recyclage_overall">
     <svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="0.4" stroke-linecap="round" stroke-linejoin="round" id="recyclage_svg"><rect x="4.7" y="4" width="15" height="15" rx="3" ry="3"></rect></svg>
@@ -147,26 +147,59 @@ const captureAndDecode = () => {
 
     if (code) {
         const qrData = code.data;
-        resultElement.innerText = "QR Code trouvé : " + qrData;
-
-        // Ne pas utiliser isValidUrl pour les liens contenant les paramètres poubelle
-        if (qrData.includes("poubelle=")) {
-            // Afficher la popup avec overlay et le message correspondant à la poubelle
-            let message;
-            if (qrData.includes("poubelle=1")) {
-                message = "Vous recyclez vos déchets cartons, plastiques, papiers et métalliques +100 Points";
-            } else if (qrData.includes("poubelle=2")) {
-                message = "Vous recyclez vos déchets en verre +100 Points";
-            } else if (qrData.includes("poubelle=3")) {
-                message = "Vous jetez vos déchets ordinaires qui ne se recyclent pas";
+        //resultElement.innerText = "QR Code trouvé : " + qrData;
+        if (poubelle_user == 'non') { 
+            // Ne pas utiliser isValidUrl pour les liens contenant les paramètres poubelle
+            if (qrData.includes("poubelle=")) {
+                // Afficher la popup avec overlay et le message correspondant à la poubelle
+                let message;
+                if (qrData.includes("poubelle=1")) {
+                    message = "Vous recyclez vos déchets cartons, plastiques, papiers et métalliques\n+200 Points";
+                    <?php
+                    $insert_into_poubelle = $db->prepare("INSERT INTO scanpoubelle (ID_Utilisateur, ID_Poubelle, dateScan) VALUES (:iduser, 1, :dateActuel)");
+                    $insert_into_poubelle->bindParam(':iduser', $iduser);
+                    $insert_into_poubelle->bindParam(':dateActuel', $date_actuelle);
+                    $insert_into_poubelle->execute();
+                    $stmt_update_score = $db->prepare("UPDATE utilisateurs SET point_Planete = point_Planete + 200, exp_Utilisateur = exp_Utilisateur + 200 WHERE ID_Utilisateur = :id_utilisateur");
+                    $stmt_update_score->bindParam(':id_utilisateur', $iduser);
+                    $stmt_update_score->execute();
+                    ?>
+                } else if (qrData.includes("poubelle=2")) {
+                    message = "Vous recyclez vos déchets en verre\n+200 Points";
+                    <?php
+                    $insert_into_poubelle = $db->prepare("INSERT INTO scanpoubelle (ID_Utilisateur, ID_Poubelle, dateScan) VALUES (:iduser, 1, :dateActuel)");
+                    $insert_into_poubelle->bindParam(':iduser', $iduser);
+                    $insert_into_poubelle->bindParam(':dateActuel', $date_actuelle);
+                    $insert_into_poubelle->execute();
+                    $stmt_update_score = $db->prepare("UPDATE utilisateurs SET point_Planete = point_Planete + 200, exp_Utilisateur = exp_Utilisateur + 200 WHERE ID_Utilisateur = :id_utilisateur");
+                    $stmt_update_score->bindParam(':id_utilisateur', $iduser);
+                    $stmt_update_score->execute();
+                    ?>
+                } else if (qrData.includes("poubelle=3")) {
+                    message = "Vous jetez vos déchets ordinaires qui ne se recyclent pas";
+                } else {
+                    message = "Cette poubelle n'existe pas dans notre base de données";
+                }
+                showPopupWithOverlay(message);
             } else {
-                message = "Cette poubelle n'existe pas dans notre base de données";
+                message = "Ce QR code n'est pas valide";
+                showPopupWithOverlay(message);
             }
-            showPopupWithOverlay(message);
-        } else if (isValidUrl(qrData)) {
-            stopCapture();
-            // Ouvrir le lien dans un nouvel onglet pour les liens valides
-            window.open(qrData, '_blank');
+        
+        } else {
+            if (qrData.includes("poubelle=")) {
+                // Afficher la popup avec overlay et le message correspondant à la poubelle
+                let message;
+                if (qrData.includes("poubelle=3")) {
+                    message = "Vous jetez vos déchets ordinaires qui ne se recyclent pas";
+                } else {
+                    message = "Vous avez déjà scanner un QR code aujourd'hui";
+                }
+                showPopupWithOverlay(message);
+            } else {
+                message = "Vous avez déjà scanner un QR code aujourd'hui";
+                showPopupWithOverlay(message);
+            }
         }
     }
 };

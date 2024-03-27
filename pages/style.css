@@ -285,7 +285,7 @@ body {
     border: none;
     border-radius: 15px;
     cursor: pointer;
-    font-size: 2.5vh; /* Taille du texte */
+    font-size: 2.25vh; /* Taille du texte */
     width: 90%;
 }
 
@@ -401,7 +401,45 @@ body {
 }
 
 .partage_classement h2 {
-    font-size: 18px;
+    font-size: 2vh;
+}
+
+.partage_classement .titresucces {
+    font-size: 1.5vh;
+}
+
+.partage_classement .partager p {
+    color: #1C3326;
+    font-size: 1.3vh;
+}
+
+.partage_classement .partagefin {
+    font-size: 1.2vh;
+}
+
+.partage_classement .ppartage {
+    margin-bottom: 0;
+}
+
+.partage_classement .gauche {
+    font-size: 1.5vh;
+    color: #A9FFA4;
+}
+
+.partage_classement .niveauxp {
+    font-size: 1.7vh;
+}
+
+.partage_classement .droite {
+    font-size: 1.5vh;
+}
+
+.partage_classement .membre {
+    color: #1C3326;
+}
+
+.partage_classement .niveau {
+    color: #A9FFA4;
 }
 
 /*Page Planète*/
@@ -433,9 +471,9 @@ body {
 
 #planet_annotation{
     width: 85%;
-    height: 27.5vh;
+    height: 30vh;
     text-align: center;
-    margin: 62.5vh auto 0 auto;
+    margin: 60vh auto 0 auto;
     background-color: #ffffff49;
     padding: 2vh;
     border-radius: 15px;
@@ -463,6 +501,7 @@ body {
 }
 
 .progress{
+    background-color: #FFEFE1;
     height: 1.5vh;
 }
 
@@ -496,6 +535,10 @@ body {
     width: 60px;
     height: 60px;
     border-radius: 50%;
+    display: block;
+    height: auto;
+    object-fit: cover;
+    aspect-ratio: 1/1;
 }
 
 #compte_settings i {
@@ -662,6 +705,13 @@ body {
     grid-row: 2; /* Deuxième ligne */
 }
 
+#compte_button_titre{
+    border: none;
+    margin: 1.5vh 0 0 0;
+    border-radius: 15px;
+    background-color: #A9FFA4;
+    color: #1C3326;
+}
 
 
 @media screen and (max-Width:700px){
@@ -686,10 +736,23 @@ body {
 #defi_patern_box{
     background-image: url("../uploads/pattern.svg");
     background-size: cover; /* Ajuste la taille de l'image pour remplir complètement le conteneur */ /* Change la couleur de fond */
-    height: 150vh;
-    padding-top: 10vh;
+    height: 200vh;
+    padding-top: 5vh;
 }
 
+#defis_rafraichir_defis{
+    width: 90%;
+    background-color: #2BBA7C;
+    text-align: center;
+    padding: 1vh;
+    border-radius: 15px;
+    margin: auto;
+}
+
+#defis_rafraichir_defis a{
+    color: #1C3326;
+    text-decoration: none; 
+}
 #defi_title_box{
 height: 10vh;
 }
@@ -724,12 +787,13 @@ height: 10vh;
     width: 8vw;
     height: 4vh;
     float: left;
+    margin: -0.25vh 0 0 0;
 }
 
 #defis_communautaire_h2{
     width: 60vw;
     font-size: 1.75vh;
-    margin: 1.25vh 0 0 3vw;
+    margin: 1vh 0 0 3vw;
     float: left;
 }
 
@@ -737,6 +801,7 @@ height: 10vh;
     width: 7vw;
     height: 3vh;
     float: left;
+    margin: 0.5vh 0 0 3vw;
 }
 
 #defis_ul{
@@ -752,6 +817,14 @@ height: 10vh;
     border-radius: 15px ;
 }
 
+#defis_reussi{
+    width: 100%;
+    background-color: #1C3326;
+    margin: auto;
+    border-radius: 15px ;
+    color: #A9FFA4;
+    margin: 2.5vh 0 0 0;
+}
 #defis_button_succes_box{
     width: 75vw;
     margin: 30vh auto 0 auto;

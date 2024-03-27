@@ -56,6 +56,44 @@
         text-decoration: none;
         cursor: pointer;
     }
+
+    #imagePreview {
+        display: block;
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        aspect-ratio: 1/1;
+    }
+    #inscription{
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+            justify-content: center;
+            align-items: center;
+    }
+    #lieninscrit{
+            display: flex;
+            background-color: #A9FFA4;
+            padding: 1.5vh;
+            width: 60vw;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.75vh;
+            font-weight: bold;
+            color: #1C3326;
+            text-decoration: none;
+            flex-direction: row-reverse;
+            align-content: center;
+            justify-content: center;
+    }
+    #pasdecompte{
+            margin-top:5vh;
+            text-align: center;
+            font-size: 1.25vh;
+            color: #FFEFE1;
+    }
+</style>
+
     </style>
 </head>
 
@@ -98,7 +136,12 @@
                     <div id="inscription_box_button">
                         <input type="submit" value="Créer un compte" id="inscription_input_submit">
                     </div>
+                    
                 </div>
+                    <div id="inscription">
+                        <p id="pasdecompte">Vous avez déja un compte ?</p>
+                        <a href="connexion.php" id="lieninscrit">Connecter Vous</a>
+                    </div>
             </form>
 
 

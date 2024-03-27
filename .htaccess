@@ -1,8 +1,9 @@
-ErrorDocument 401 http://localhost/earthly/errors/401.html
-ErrorDocument 403 http://localhost/earthly/errors/403.html
-ErrorDocument 404 http://localhost/earthly/errors/404.html
-ErrorDocument 500 http://localhost/earthly/errors/500.html
-ErrorDocument 504 http://localhost/earthly/errors/504.html
+ErrorDocument 401 /earthly/errors/401.html
+ErrorDocument 403 /earthly/errors/403.html
+ErrorDocument 404 /earthly/errors/404.html
+ErrorDocument 500 /earthly/errors/500.html
+ErrorDocument 504 /earthly/errors/504.html
+
 
 RewriteEngine On
 RewriteRule ^partage/([0-9A-Za-z\-_]+) partage.php?pseudo=$1 [NC,L]
