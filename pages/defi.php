@@ -292,6 +292,7 @@ $requete->execute();
 $utilisateur = $requete->fetch(PDO::FETCH_ASSOC);
     
     $pointsUtilisateur = $utilisateur['point_Planete'];
+    $pointsNiveauSuivant = 1000;
 
                         // Calcul du niveau en fonction des points
                 if ($pointsUtilisateur >= 1000 && $pointsUtilisateur < 3000) {
