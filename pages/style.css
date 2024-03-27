@@ -737,7 +737,8 @@ body {
 #defi_patern_box{
     background-image: url("../uploads/pattern.svg");
     background-size: cover; /* Ajuste la taille de l'image pour remplir complètement le conteneur */ /* Change la couleur de fond */
-    height: 200vh;
+    height: 100%;
+    padding-bottom: 15vh;
     padding-top: 5vh;
 }
 
