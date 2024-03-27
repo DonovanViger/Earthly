@@ -147,18 +147,18 @@ if ($utilisateur['point_Planete'] < 1000) {
                 d'expérience avant le niveau <?= $niv + 1 ?> !</h3>
             <?php } else { ?>
             <h3 id="planet_h3_annotation">Bravo, votre planète est au niveau maximal avec un total de <strong
-                    id="planet_points_vert"><?= $utilisateur['point_Planete'] ?></strong> points d'expérience !</h3>
+                    id="planet_points_vert"><?= niveauActuel ?></strong> points d'expérience !</h3>
             <?php } ?>
-            <h3 id="planet_h3_annotation_ex"><?= $utilisateur['point_Planete'] ?>xp</h3>
+            <h3 id="planet_h3_annotation_ex"><?= $pointsNiveauSuivant ?>xp</h3>
             <?php if ($pointsNiveauSuivant !== null) { ?>
             <h3 id="planet_h3_annotation_lv"><?= $pointsNiveauSuivant ?></h3>
 
             <?php } ?>
             <br>
             <div class="progress">
-                <div class="progress-bar" role="progressbar" style="width: <?= $progression ?>%;"
-                    aria-valuenow="<?= $progression ?>" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
+    <div class="progress-bar" role="progressbar" style="width: <?= $progression ?>%;" aria-valuenow="<?= $progression ?>" aria-valuemin="0" aria-valuemax="100"></div>
+  </div>
+</div>
         </div>
     </div>
 
