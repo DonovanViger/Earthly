@@ -383,7 +383,7 @@ html {
     position: relative;
   }
   
-  .w-video iframe, .w-video object, .w-video embed {
+  .w-video video, .w-video object, .w-video embed {
     border: none;
     width: 100vw;
     height: 100vh;
