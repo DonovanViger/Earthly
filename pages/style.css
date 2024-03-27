@@ -957,10 +957,17 @@ height: 10vh;
     margin-right: 1vw;
 }
 
+#success_descript_box{
+    width: 80%;
+    clear: both;
+    margin: 3vh auto 0 auto;
+}
+
 #success_h2_1{
     color: #A9FFA4;
     width: 60%;
     margin: 0 auto 2vh auto;
+    font-size: 2vh;
     padding-left: 1vh;
     float: left;
 }
@@ -970,6 +977,7 @@ height: 10vh;
     width: 60%;
     margin: 0 auto 2vh auto;
     padding-left: 1vh;
+    font-size: 2vh;
     float: left;
 }
 
@@ -978,6 +986,7 @@ height: 10vh;
     width: 60%;
     margin: 0 auto 2vh auto;
     padding-left: 1vh;
+    font-size: 2vh;
     float: left;
 }
 

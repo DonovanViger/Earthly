@@ -109,9 +109,9 @@ if ($utilisateur['point_Planete'] < 1000) {
     $niveauActuel = $niv;
     $pointsNiveauSuivant = match($niv) {
         1 => 1000,
-        2 => 3000,
-        3 => 7000,
-        4 => 15000,
+        2 => 2000,
+        3 => 4000,
+        4 => 8000,
         default => null
     };
 
