@@ -232,9 +232,8 @@
         $hashedPassword = hash('sha256', $newPassword);
     
         $update_mdp = $db->prepare("UPDATE utilisateurs SET mdp = :mdp WHERE ID_Utilisateur = :id");
-        $update_mdp->bindParam(':mdp', $hashedPassword); // Utiliser le mot de passe haché
+        $update_mdp->bindParam(':mdp', $hashedPassword);
         $update_mdp->bindParam(':id', $_SESSION['user_id']);
-    
         $update_mdp->execute();
     }
 
@@ -335,7 +334,7 @@
                                                 $group = 'F%';
                                                 break;
                                             default:
-                                                $group = ''; // Gérer les valeurs par défaut si nécessaire
+                                                $group = '';
                                                 break;
                                         }
 
@@ -672,13 +671,13 @@
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script>
     document.addEventListener("DOMContentLoaded", function() {
-        var changePasswordLink = document.querySelector('#mdpListe'); // Sélectionnez le bon élément de lien
+        var changePasswordLink = document.querySelector('#mdpListe');
         var changePasswordForm = document.getElementById('changePasswordForm');
 
         changePasswordLink.addEventListener('click', function(event) {
             event.preventDefault();
             changePasswordForm.style.display =
-                'block'; // Affichez le formulaire lorsque le lien est cliqué
+                'block';
         });
     });
 
