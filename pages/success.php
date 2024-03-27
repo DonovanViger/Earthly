@@ -47,6 +47,7 @@ if (!isset($_SESSION['pseudo'])) {
     <div id="succes_box1">
     <img src="../img/trophy.svg" alt="trophy" id="success_svg_trophy">
     <h2 id="success_h2_1">Petite branche</h2>
+
     <div id="success_number_lightgreen">
         <?php 
         if ($tableau[15] == "oui") {
