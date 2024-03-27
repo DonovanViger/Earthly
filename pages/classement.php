@@ -71,7 +71,7 @@ if (!isset($_SESSION['pseudo'])) {
     }
 
     .scroll {
-        height: 125px;
+        height: 1vh;
     }
 
     .popup {
