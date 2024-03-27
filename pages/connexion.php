@@ -53,7 +53,7 @@
 
 
     <div id="connection_div_patern">
-        <h1 id="h1_connexion"><a href="../index.php">BON RETOUR SUR </a></h1>
+        <h1 id="h1_connexion"><a href="../index.html">BON RETOUR SUR </a></h1>
         <div id="connexion_logo_contour">
         <img  id="connexion_logo" src="../uploads/Logo-earthly-text+baseline.svg">
     </div>
@@ -79,8 +79,8 @@
 <a href="http://localhost/Earthly/Earthly/pages/connexion.php" id="connexion_button_mdp">Mot de passe oublié ?</a>
 </div>
 <div id="inscription">
-    <p id="pasdecompte">Pas de Compte ?</p>
-    <a href="inscription.php" id="lieninscrit"> Creer un Compte</a>
+    <p id="pasdecompte">Pas de compte ?</p>
+    <a href="inscription.php" id="lieninscrit"> Créer un Compte</a>
 </div>
 </div>
 

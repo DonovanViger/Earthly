@@ -230,7 +230,7 @@ try {
     <img src="../img/DEFIS.svg" alt="épingle" id="defi_epingle_img">
     
 
-    <a href="../index.php" id="defis_h1_a"><img src="../img/earthly_defis.png" alt="logo défis" id="défis_logo"></a>
+    <a href="../index.html" id="defis_h1_a"><img src="../img/earthly_defis.png" alt="logo défis" id="défis_logo"></a>
 
 </div>
 

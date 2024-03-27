@@ -321,7 +321,7 @@ if (!isset($_SESSION['pseudo'])) {
     <div id="classement_div_patern">
         <div id="classement_title_box">
             <img src="../img/LAEDERBOARD.svg" alt="Tableau de classement" id="classement_svg_leader">
-            <a href="../index.php"><img src="../img/a.svg" alt="Lettre A" id="classement_logo"></a>
+            <a href="../index.html"><img src="../img/a.svg" alt="Lettre A" id="classement_logo"></a>
             <p id="classement_paragraph_top">TOP 10</p>
         </div>
 
