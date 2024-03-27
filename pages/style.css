@@ -974,6 +974,20 @@ height: 10vh;
     color: #fff;
 }
 
+.success_advencement_lightgreen{
+    color: #A9FFA4;
+    float: left;
+    width: 6vw;
+    margin-left: 15vw;
+}
+
+.success_advencement_darkgreen{
+    color: #1C3326;
+    float: left;
+    width: 6vw;
+    margin-left: 15vw;
+}
+
 #success_h2_1{
     color: #A9FFA4;
     width: 60%;
@@ -1034,7 +1048,7 @@ height: 10vh;
 
 .success_h3_darkgreen{
     color: #1C3326;
-    width: 60vw;
+    width: 40vw;
     margin: 0;
     font-size: 1.75vh;
     float: left;
@@ -1042,7 +1056,7 @@ height: 10vh;
 
 .success_h3_lightgreen{
     color: #A9FFA4;
-    width: 60vw;
+    width: 40vw;
     margin: 0;
     font-size: 1.75vh;
     float: left;
@@ -1073,14 +1087,14 @@ height: 10vh;
 }
 .succes_checkbox{
     width: 5vw;
-    float: left;
+    float: right;
     
 }
 
 .succes_checkbox input{
     width: 5vw;
     height: 2.5vh; 
-    margin: -0.15vh 0 0 5vw;
+    margin: -0.15vh 0 0 0;
 }
 
 

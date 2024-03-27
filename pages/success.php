@@ -124,7 +124,7 @@ if (!isset($_SESSION['pseudo'])) {
 
     <div class="success_box_2">
         <h3 class="success_h3_lightgreen">De feuille à feuille <strong class="succes_strong_green">I</strong></h3>
-        <div class="success_advencement"><?php if ($tableau[2] == "oui") {
+        <div class="success_advencement_lightgreen"><?php if ($tableau[2] == "oui") {
             echo "100%";
         } else if (isset($tableau[2])) {
             $calcul = intval($tableau[2])*20;
@@ -143,7 +143,7 @@ if (!isset($_SESSION['pseudo'])) {
     </div>
     <div class="success_box_2">
         <h3 class="success_h3_lightgreen">De feuille à feuille <strong class="succes_strong_green">II</strong></h3>
-        <div class="success_advencement"><?php if ($tableau[4] == "oui") {
+        <div class="success_advencement_lightgreen"><?php if ($tableau[4] == "oui") {
             echo "100%";
         } else if (isset($tableau[4])) {
             $calcul = intval($tableau[4])*5;
@@ -162,7 +162,7 @@ if (!isset($_SESSION['pseudo'])) {
     </div>
     <div class="success_box_2">
         <h3 class="success_h3_lightgreen">De feuille à feuille <strong class="succes_strong_green">III</strong></h3>
-        <div class="success_advencement"><?php if ($tableau[5] == "oui") {
+        <div class="success_advencement_lightgreen"><?php if ($tableau[5] == "oui") {
             echo "100%";
         } else if (isset($tableau[5])) {
             $calcul = intval($tableau[5]);
@@ -205,7 +205,7 @@ if (!isset($_SESSION['pseudo'])) {
 
     <div class="success_box_1">
         <h3 class="success_h3_darkgreen">Eco-safari urbain <strong class="succes_strong_green">I</strong></h3>
-        <div class="success_advencement"><?php if ($tableau[7] == "oui") {
+        <div class="success_advencement_darkgreen"><?php if ($tableau[7] == "oui") {
             echo "100%";
         } else if (isset($tableau[7])) {
             $calcul = intval($tableau[7])*20;
@@ -224,7 +224,7 @@ if (!isset($_SESSION['pseudo'])) {
     </div>
     <div class="success_box_1">
         <h3 class="success_h3_darkgreen">Eco-safari urbain <strong class="succes_strong_green">II</strong></h3>
-        <div class="success_advencement"><?php if ($tableau[6] == "oui") {
+        <div class="success_advencement_darkgreen"><?php if ($tableau[6] == "oui") {
             echo "100%";
         } else if (isset($tableau[6])) {
             $calcul = intval($tableau[6])*5;
@@ -243,7 +243,7 @@ if (!isset($_SESSION['pseudo'])) {
     </div>
     <div class="success_box_1">
         <h3 class="success_h3_darkgreen">Eco-safari urbain <strong class="succes_strong_green">III</strong></h3>
-        <div class="success_advencement"><?php if ($tableau[3] == "oui") {
+        <div class="success_advencement_darkgreen"><?php if ($tableau[3] == "oui") {
             echo "100%";
         } else if (isset($tableau[3])) {
             $calcul = intval($tableau[3]);
@@ -286,7 +286,7 @@ if (!isset($_SESSION['pseudo'])) {
 
     <div class="success_box_3">
         <h3 class="success_h3_lightgreen">Douche éclair <strong class="succes_strong_lightergreen">I</strong></h3>
-        <div class="success_advencement"><?php if ($tableau[8] == "oui") {
+        <div class="success_advencement_lightgreen"><?php if ($tableau[8] == "oui") {
             echo "100%";
         } else if (isset($tableau[8])) {
             $calcul = intval($tableau[8])*20;
@@ -305,7 +305,7 @@ if (!isset($_SESSION['pseudo'])) {
     </div>
     <div class="success_box_3">
         <h3 class="success_h3_lightgreen">Douche éclair <strong class="succes_strong_lightergreen">II</strong></h3>
-        <div class="success_advencement"><?php if ($tableau[9] == "oui") {
+        <div class="success_advencement_lightgreen"><?php if ($tableau[9] == "oui") {
             echo "100%";
         } else if (isset($tableau[9])) {
             $calcul = intval($tableau[9])*5;
@@ -324,7 +324,7 @@ if (!isset($_SESSION['pseudo'])) {
     </div>
     <div class="success_box_3">
         <h3 class="success_h3_lightgreen">Douche éclair <strong class="succes_strong_lightergreen">III</strong></h3>
-        <div class="success_advencement"><?php if ($tableau[10] == "oui") {
+        <div class="success_advencement_lightgreen"><?php if ($tableau[10] == "oui") {
             echo "100%";
         } else if (isset($tableau[10])) {
             $calcul = intval($tableau[10]);
@@ -367,7 +367,7 @@ if (!isset($_SESSION['pseudo'])) {
 
     <div class="success_box_1">
         <h3 class="success_h3_darkgreen">Seconde vie <strong class="succes_strong_lightergreen">I</strong></h3>
-        <div class="success_advencement"><?php if ($tableau[16] == "oui") {
+        <div class="success_advencement_darkgreen"><?php if ($tableau[16] == "oui") {
             echo "100%";
         } else if (isset($tableau[16])) {
             $calcul = intval($tableau[16])*20;
@@ -386,7 +386,7 @@ if (!isset($_SESSION['pseudo'])) {
     </div>
     <div class="success_box_1">
         <h3 class="success_h3_darkgreen">Seconde vie <strong class="succes_strong_lightergreen">II</strong></h3>
-        <div class="success_advencement"><?php if ($tableau[17] == "oui") {
+        <div class="success_advencement_darkgreen"><?php if ($tableau[17] == "oui") {
             echo "100%";
         } else if (isset($tableau[17])) {
             $calcul = intval($tableau[17])*5;
@@ -405,7 +405,7 @@ if (!isset($_SESSION['pseudo'])) {
     </div>
     <div class="success_box_1">
         <h3 class="success_h3_darkgreen">Seconde vie <strong class="succes_strong_lightergreen">III</strong></h3>
-        <div class="success_advencement"><?php if ($tableau[18] == "oui") {
+        <div class="success_advencement_darkgreen"><?php if ($tableau[18] == "oui") {
             echo "100%";
         } else if (isset($tableau[18])) {
             $calcul = intval($tableau[18]);
@@ -448,7 +448,7 @@ if (!isset($_SESSION['pseudo'])) {
 
     <div class="success_box_3">
         <h3 class="success_h3_lightgreen">Dépense Fruitière <strong class="succes_strong_lightergreen">I</strong></h3>
-        <div class="success_advencement"><?php if ($tableau[19] == "oui") {
+        <div class="success_advencement_lightgreen"><?php if ($tableau[19] == "oui") {
             echo "100%";
         } else if (isset($tableau[19])) {
             $calcul = intval($tableau[19])*20;
@@ -467,7 +467,7 @@ if (!isset($_SESSION['pseudo'])) {
     </div>
     <div class="success_box_3">
         <h3 class="success_h3_lightgreen">Dépense Fruitière <strong class="succes_strong_lightergreen">II</strong></h3>
-        <div class="success_advencement"><?php if ($tableau[20] == "oui") {
+        <div class="success_advencement_lightgreen"><?php if ($tableau[20] == "oui") {
             echo "100%";
         } else if (isset($tableau[20])) {
             $calcul = intval($tableau[20])*5;
@@ -486,7 +486,7 @@ if (!isset($_SESSION['pseudo'])) {
     </div>
     <div class="success_box_3">
         <h3 class="success_h3_lightgreen">Dépense Fruitière <strong class="succes_strong_lightergreen">III</strong></h3>
-        <div class="success_advencement"><?php if ($tableau[21] == "oui") {
+        <div class="success_advencement_lightgreen"><?php if ($tableau[21] == "oui") {
             echo "100%";
         } else if (isset($tableau[21])) {
             $calcul = intval($tableau[21]);
