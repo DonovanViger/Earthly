@@ -120,17 +120,17 @@ try {
             }
         }
 
-    $stmt_select_defis = $db->prepare("SELECT defis_journaliers.date, defiquotidien.nom, defiquotidien.desc FROM defis_journaliers INNER JOIN defiquotidien ON defis_journaliers.ID_Defi = defiquotidien.ID_Defi WHERE defis_journaliers.date = :date");
-    $stmt_select_defis->bindParam(':date', $date_actuelle);
-    $stmt_select_defis->execute();
-    $defis_journaliers = $stmt_select_defis->fetchAll(PDO::FETCH_ASSOC);
+    $select_defis = $db->prepare("SELECT defis_journaliers.date, defiquotidien.nom, defiquotidien.desc FROM defis_journaliers INNER JOIN defiquotidien ON defis_journaliers.ID_Defi = defiquotidien.ID_Defi WHERE defis_journaliers.date = :date");
+    $select_defis->bindParam(':date', $date_actuelle);
+    $select_defis->execute();
+    $defis_journaliers = $select_defis->fetchAll(PDO::FETCH_ASSOC);
     if (!empty ($defis_journaliers)) {
     } else {
         echo "<a href='defi.php'>Rafraîchir la page pour voir les defis</a>";
         $requete_defis = $db->query("SELECT * FROM defiquotidien ORDER BY RAND() LIMIT 3");
         $defis_selectionnes = $requete_defis->fetchAll(PDO::FETCH_ASSOC);
 
-        $stmt_insert_defis = $db->prepare("INSERT INTO defis_journaliers (ID_Defi, date) VALUES (:id_defi, :date)");
+        $insert_defis = $db->prepare("INSERT INTO defis_journaliers (ID_Defi, date) VALUES (:id_defi, :date)");
         foreach ($defis_selectionnes as $defi) {
             $insert_defis->bindParam(':id_defi', $defi['ID_Defi']);
             $insert_defis->bindParam(':date', $date_actuelle);

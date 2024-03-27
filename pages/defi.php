@@ -23,10 +23,10 @@ try {
     $defi_utilisateur_suppression->execute();
     $defis_journaliers = $select_defis->fetchAll(PDO::FETCH_ASSOC);
 
-    $stmt_select_id = $db->prepare("SELECT ID_Utilisateur FROM utilisateurs WHERE ID_Utilisateur = :id_utilisateur");
-    $stmt_select_id->bindParam(':id_utilisateur', $_SESSION['user_id']);
-    $stmt_select_id->execute();
-    $id_utilisateur = $stmt_select_id->fetchColumn();
+    $select_id = $db->prepare("SELECT ID_Utilisateur FROM utilisateurs WHERE ID_Utilisateur = :id_utilisateur");
+    $select_id->bindParam(':id_utilisateur', $_SESSION['user_id']);
+    $select_id->execute();
+    $id_utilisateur = $select_id->fetchColumn();
 
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['valider_defi'])) {
         $id_defi = $_POST['id_defi'];
@@ -265,7 +265,7 @@ try {
         $requete_defis = $db->query("SELECT * FROM defiquotidien ORDER BY RAND() LIMIT 3");
         $defis_selectionnes = $requete_defis->fetchAll(PDO::FETCH_ASSOC);
 
-        $stmt_insert_defis = $db->prepare("INSERT INTO defis_journaliers (ID_Defi, date) VALUES (:id_defi, :date)");
+        $insert_defis = $db->prepare("INSERT INTO defis_journaliers (ID_Defi, date) VALUES (:id_defi, :date)");
         foreach ($defis_selectionnes as $defi) {
             $insert_defis->bindParam(':id_defi', $defi['ID_Defi']);
             $insert_defis->bindParam(':date', $date_actuelle);
