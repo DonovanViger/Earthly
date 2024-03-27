@@ -212,7 +212,7 @@
 
     if (isset($_SESSION['pseudo']) && isset($_GET['titre'])) {
 
-        $select_titres_user = $db->prepare("SELECT nom FROM succes INNER JOIN utilisateursucces ON utilisateursucces.ID_Succes = succes.ID_Succes WHERE utilisateursucces.ID_Utilisateur = :iduser AND utilisateursucces.dateObtention != '0000-00-00'");
+        $select_titres_user = $db->prepare("SELECT nom FROM succes INNER JOIN utilisateursucces ON utilisateursucces.ID_Succes = succes.ID_Succes WHERE utilisateursucces.ID_Utilisateur = :iduser AND utilisateursucces.dateObtention != '1999-01-01'");
         $select_titres_user->bindParam(':iduser', $user_id);
         $select_titres_user->execute();
         $titres = $select_titres_user->fetchAll(PDO::FETCH_ASSOC);
@@ -617,7 +617,7 @@
         <div class="popup-content">
             <h2>Changer de titre</h2>
                 <?php 
-                            $select_titres_user = $db->prepare("SELECT nom FROM succes INNER JOIN utilisateursucces ON utilisateursucces.ID_Succes = succes.ID_Succes WHERE utilisateursucces.ID_Utilisateur = :iduser AND utilisateursucces.dateObtention != '0000-00-00'");
+                            $select_titres_user = $db->prepare("SELECT nom FROM succes INNER JOIN utilisateursucces ON utilisateursucces.ID_Succes = succes.ID_Succes WHERE utilisateursucces.ID_Utilisateur = :iduser AND utilisateursucces.dateObtention != '1999-01-01'");
                             $select_titres_user->bindParam(':iduser', $user_id);
                             $select_titres_user->execute();
                             $titres = $select_titres_user->fetchAll(PDO::FETCH_ASSOC);
@@ -781,7 +781,7 @@
     });
     </script>
     <?php
-    $select_titres_user = $db->prepare("SELECT nom FROM succes INNER JOIN utilisateursucces ON utilisateursucces.ID_Succes = succes.ID_Succes WHERE utilisateursucces.ID_Utilisateur = :iduser AND utilisateursucces.dateObtention != '0000-00-00'");
+    $select_titres_user = $db->prepare("SELECT nom FROM succes INNER JOIN utilisateursucces ON utilisateursucces.ID_Succes = succes.ID_Succes WHERE utilisateursucces.ID_Utilisateur = :iduser AND utilisateursucces.dateObtention != '1999-01-01'");
     $select_titres_user->bindParam(':iduser', $user_id);
     $select_titres_user->execute();
     $titres = $select_titres_user->fetchAll(PDO::FETCH_ASSOC);

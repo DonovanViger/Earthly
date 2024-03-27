@@ -29,7 +29,7 @@ if (!isset($_SESSION['pseudo'])) {
     $tableau = [1 => "", 2 => "", 3 => "", 4 => "", 5 => "", 6 => "", 7 => "", 8 => "", 9 => "", 10 => "", 14 => "", 15 => "", 16 => "", 17 => "", 18 => "", 19 => "", 20 => "", 21 => "", ];
 
     foreach ($succesuser as $succesnumber) {
-        if ($succesnumber[1] != "0000-00-00"){
+        if ($succesnumber[1] != "1999-01-01"){
             $tableau[$succesnumber[0]]="oui";
         }
     }

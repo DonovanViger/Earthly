@@ -88,19 +88,19 @@ try {
                 $stmt_update_defi3->bindParam(':id_utilisateur', $_SESSION['user_id']);
                 $stmt_update_defi3->bindParam(':id_succes', $id_succes3);
                 $stmt_update_defi3->execute();
-            } else if ($succesuser[4] != "0000-00-00") {
+            } else if ($succesuser[4] != "1999-01-01") {
                 $stmt_select_succes2 = $db->prepare("SELECT dateObtention FROM utilisateursucces WHERE ID_Succes = :id_succes2 AND ID_Utilisateur = :id_utilisateur");
                 $stmt_select_succes2->bindParam(':id_succes2', $id_succes2);
                 $stmt_select_succes2->bindParam(':id_utilisateur', $_SESSION['user_id']);
                 $stmt_select_succes2->execute(); 
                 $dateObtention2 = $stmt_select_succes2->fetch();
-                if ($dateObtention2[0] != "0000-00-00") {
+                if ($dateObtention2[0] != "1999-01-01") {
                     $stmt_select_succes2 = $db->prepare("SELECT dateObtention FROM utilisateursucces WHERE ID_Succes = :id_succes2 AND ID_Utilisateur = :id_utilisateur");
                     $stmt_select_succes2->bindParam(':id_succes2', $id_succes3);
                     $stmt_select_succes2->bindParam(':id_utilisateur', $_SESSION['user_id']);
                     $stmt_select_succes2->execute(); 
                     $dateObtention2 = $stmt_select_succes2->fetch();
-                    if ($dateObtention2[0] != "0000-00-00") {
+                    if ($dateObtention2[0] != "1999-01-01") {
                     } else {
                         $stmt_update_succes = $db->prepare("UPDATE utilisateursucces SET progression = progression + 1 WHERE ID_Utilisateur = :id_utilisateur AND ID_Succes = :id_succes3");
                         $stmt_update_succes->bindParam(':id_utilisateur', $_SESSION['user_id']);
