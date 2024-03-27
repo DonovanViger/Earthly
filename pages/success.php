@@ -63,7 +63,7 @@ if (!isset($_SESSION['pseudo'])) {
     </div>
 
     <div class="success_descript_box">
-    <p class="success_paragraph_descrip_darkgreen">rgsrhhherhg</p>
+    <p class="success_paragraph_descrip_darkgreen">Avoir créer son compte | Être membre depuis 1 mois | Être membre depuis 1 an</p>
     </div>
 
     <div class="success_box_1">
