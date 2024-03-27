@@ -55,7 +55,7 @@
     <div id="connection_div_patern">
         <h1 id="h1_connexion"><a href="../index.html">BON RETOUR SUR </a></h1>
         <div id="connexion_logo_contour">
-        <img  id="connexion_logo" src="../uploads/Logo-earthly-text+baseline.svg">
+        <a href="../index.html"><img  id="connexion_logo" src="../uploads/Logo-earthly-text+baseline.svg"></a>
     </div>
 
 

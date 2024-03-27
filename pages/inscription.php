@@ -105,7 +105,7 @@
 
     <h1 id="h1_inscription"><a href="../index.html">BIENVENUE SUR</a></h1>
     <div id="inscription_logo_contour">
-        <img id="connexion_logo" src="../uploads/Logo-earthly-text+baseline.svg">
+    <a href="../index.html"><img id="connexion_logo" src="../uploads/Logo-earthly-text+baseline.svg"></a>
     </div>
 
     <div id="inscription_cadre">
