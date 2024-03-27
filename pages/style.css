@@ -706,7 +706,7 @@ body {
     grid-row: 2; /* Deuxième ligne */
 }
 
-#compte_button_titre{
+.compte_button_titre{
     border: none;
     margin: 1.5vh 0 0 0;
     border-radius: 15px;
@@ -961,6 +961,7 @@ height: 10vh;
     color: #A9FFA4;
     width: 60%;
     margin: 0 auto 2vh auto;
+    padding-left: 1vh;
     float: left;
 }
 
@@ -968,6 +969,7 @@ height: 10vh;
     color: #1C3326;
     width: 60%;
     margin: 0 auto 2vh auto;
+    padding-left: 1vh;
     float: left;
 }
 
@@ -975,6 +977,7 @@ height: 10vh;
     color: white;
     width: 60%;
     margin: 0 auto 2vh auto;
+    padding-left: 1vh;
     float: left;
 }
 

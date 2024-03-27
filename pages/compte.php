@@ -166,7 +166,8 @@
         font-weight: 200px;
     }
 
-    #newPseudo, .barreinput {
+    #newPseudo,
+    .barreinput {
         width: 100%;
         padding: 5px 15px;
     }
@@ -176,7 +177,8 @@
         color: #A9FFA4;
     }
 
-    #confirmChangePseudo, #confirmChangePassword {
+    #confirmChangePseudo,
+    #confirmChangePassword {
         border: #A9FFA4 0.8px solid;
         background-color: transparent;
         color: #A9FFA4;
@@ -310,9 +312,9 @@
                 <div class="col-6 offset-3 badges mb-2">
                     <div class="row">
                         <?php for ($i = 1; $i <= 6; $i++): ?>
-                                <div class="col-4">
-                                    <div class="badgeSlot" id="badgeSlot<?php echo $i; ?>">
-                                        <?php
+                        <div class="col-4">
+                            <div class="badgeSlot" id="badgeSlot<?php echo $i; ?>">
+                                <?php
 
                                         switch ($i) {
                                             case 1:
@@ -354,8 +356,8 @@
                                         </div>";
                                         }
                                         ?>
-                                    </div>
-                                </div>
+                            </div>
+                        </div>
                         <?php endfor; ?>
                     </div>
                 </div>
@@ -445,7 +447,7 @@
 
     <div class="container parametres mt-4">
         <div class="list-group">
-            
+
             <a class="list-group-item list-group-item-action main-category rounded">
                 <div class="row">
                     <div class="col-2">
@@ -459,16 +461,16 @@
                     </div>
                 </div>
             </a>
-            
+
             <div class="sub-menu">
                 <a href="#" class="list-group-item list-group-item-action rounded">Gestion des préférences de
                     notification</a>
                 <a href="#" class="list-group-item list-group-item-action rounded">Notifications par e-mail</a>
                 <a href="#" class="list-group-item list-group-item-action rounded">Notifications push</a>
             </div>
-            
+
             <div class="separator my-3"></div>
-            
+
             <a class="list-group-item list-group-item-action main-category rounded">
                 <div class="row">
                     <div class="col-2">
@@ -482,15 +484,15 @@
                     </div>
                 </div>
             </a>
-            
+
             <div class="sub-menu">
                 <a href="#" class="list-group-item list-group-item-action rounded">Paramètres de confidentialité du
                     profil</a>
                 <a href="#" class="list-group-item list-group-item-action rounded">Gestion des contacts</a>
             </div>
-            
+
             <div class="separator my-3"></div>
-            
+
             <a class="list-group-item list-group-item-action main-category rounded">
                 <div class="row">
                     <div class="col-2">
@@ -561,7 +563,8 @@
             <div class="row text-center mt-4">
                 <a href="../form/deconnexion.php" style="text-decoration: underline; color: white;">Déconnexion</a>
                 <a id="delete-account" class="mt-3 delete-account-link" data-popup-id="popup1"
-                    style="text-decoration: none; color: #F21010; cursor: pointer; margin-bottom: 10vh;">Supprimer le compte</a>
+                    style="text-decoration: none; color: #F21010; cursor: pointer; margin-bottom: 10vh;">Supprimer le
+                    compte</a>
             </div>
         </div>
     </div>
@@ -578,7 +581,9 @@
                     <button id="cancel" class="px-3 close-popup">Retour</button>
                 </div>
                 <div class="col-5">
-                    <button id="confirm" class="px-3">Valider</button>
+                    <form action="../form/supprimer.php" method="post">
+                        <button id="confirm" class="px-3">Valider</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -588,23 +593,32 @@
     <div id="popup2" class="popup">
         <div class="popup-content">
             <h2>Changer de titre</h2>
-                <?php 
-                            $select_titres_user = $db->prepare("SELECT nom FROM succes INNER JOIN utilisateursucces ON utilisateursucces.ID_Succes = succes.ID_Succes WHERE utilisateursucces.ID_Utilisateur = :iduser AND utilisateursucces.dateObtention != '1999-01-01'");
-                            $select_titres_user->bindParam(':iduser', $user_id);
-                            $select_titres_user->execute();
-                            $titres = $select_titres_user->fetchAll(PDO::FETCH_ASSOC);
-                            echo "<script>var titres=".json_encode($titres)."</script>"
-                ?>
-                <script>
-                    console.log(titres);
-                    for (var i=0; i<titres.length; i++){
-                        document.write("<button id='compte_button_titre' class='px-3' value='"+i+"' onclick='titrechoose2(this.value)'>"+titres[i].nom+"</button>")
-                        
-                    }
-                </script>
+            <?php 
+        $select_titres_user = $db->prepare("SELECT nom FROM succes INNER JOIN utilisateursucces ON utilisateursucces.ID_Succes = succes.ID_Succes WHERE utilisateursucces.ID_Utilisateur = :iduser AND utilisateursucces.dateObtention != '1999-01-01'");
+        $select_titres_user->bindParam(':iduser', $user_id);
+        $select_titres_user->execute();
+        $titres = $select_titres_user->fetchAll(PDO::FETCH_ASSOC);
+        echo "<script>var titres=".json_encode($titres)."</script>"
+        ?>
+            <div id="button-container"></div>
+            <script>
+            var titres = <?php echo json_encode($titres); ?>;
+            var buttonContainer = document.getElementById('button-container');
+            titres.forEach(function(titre, index) {
+                var button = document.createElement('button');
+                button.setAttribute('class', 'px-3 compte_button_titre');
+                button.setAttribute('value', index);
+                button.textContent = titre.nom;
+                button.addEventListener('click', function() {
+                    titrechoose2(this.value);
+                });
+                buttonContainer.appendChild(button);
+            });
+            </script>
             <button class="px-3 mt-3" id="cancel2" class="close-popup">Retour</button>
         </div>
     </div>
+
 
     <!-- Popup 3 -->
     <div id="popup3" class="popup">
@@ -631,25 +645,25 @@
 
     <!-- Popup 4 -->
     <div id="popup4" class="popup">
-    <div class="popup-content">
-        <h3>Changer de mot de passe</h3>
-        <p class="mt-4">Saisissez ci-dessous votre nouveau mot de passe</p>
-        <form id="changePasswordForm" action="compte.php" method="post">
-            <div class="form-group">
-                <label for="newPassword">Nouveau mot de passe</label>
-                <input type="password" id="newPassword" name="newPassword" class="rounded barreinput" required>
-            </div>
-            <div class="row mt-4">
-                <div class="col-5">
-                    <button class="px-3 close-popup" id="cancel4">Retour</button>
+        <div class="popup-content">
+            <h3>Changer de mot de passe</h3>
+            <p class="mt-4">Saisissez ci-dessous votre nouveau mot de passe</p>
+            <form id="changePasswordForm" action="compte.php" method="post">
+                <div class="form-group">
+                    <label for="newPassword">Nouveau mot de passe</label>
+                    <input type="password" id="newPassword" name="newPassword" class="rounded barreinput" required>
                 </div>
-                <div class="col-5">
-                    <button class="px-3" type="submit" id="confirmChangePassword">Confirmer</button>
+                <div class="row mt-4">
+                    <div class="col-5">
+                        <button class="px-3 close-popup" id="cancel4">Retour</button>
+                    </div>
+                    <div class="col-5">
+                        <button class="px-3" type="submit" id="confirmChangePassword">Confirmer</button>
+                    </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
-</div>
 
 
 
@@ -658,29 +672,31 @@
     <script src="https://code.jquery.com/jquery-3.7.1.js"
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-    var changePasswordLink = document.querySelector('#mdpListe'); // Sélectionnez le bon élément de lien
-    var changePasswordForm = document.getElementById('changePasswordForm');
+    document.addEventListener("DOMContentLoaded", function() {
+        var changePasswordLink = document.querySelector('#mdpListe'); // Sélectionnez le bon élément de lien
+        var changePasswordForm = document.getElementById('changePasswordForm');
 
-    changePasswordLink.addEventListener('click', function (event) {
-        event.preventDefault();
-        changePasswordForm.style.display = 'block'; // Affichez le formulaire lorsque le lien est cliqué
+        changePasswordLink.addEventListener('click', function(event) {
+            event.preventDefault();
+            changePasswordForm.style.display =
+                'block'; // Affichez le formulaire lorsque le lien est cliqué
+        });
     });
-});
+
     function titrechoose2(value) {
         window.location.assign("compte.php?titre=" + value);
     }
 
     $('.main-category').click(function() {
-    var subMenu = $(this).next('.sub-menu');
-    if (subMenu.hasClass('show')) {
-        subMenu.slideUp("fast");
-        subMenu.removeClass('show');
-    } else {
-        subMenu.slideDown("fast");
-        subMenu.addClass('show');
-    }
-});
+        var subMenu = $(this).next('.sub-menu');
+        if (subMenu.hasClass('show')) {
+            subMenu.slideUp("fast");
+            subMenu.removeClass('show');
+        } else {
+            subMenu.slideDown("fast");
+            subMenu.addClass('show');
+        }
+    });
 
     const deleteAccountLinks = document.querySelectorAll('.delete-account-link');
 
@@ -697,11 +713,10 @@
     });
 
     const closeButtons = document.querySelectorAll('.close-popup');
-    const cancelButton = document.getElementById('cancel'); // Sélectionne le bouton Annuler
-    const cancelButton2 = document.getElementById('cancel2'); // Sélectionne le bouton Retour
-    const cancelButton3 = document.getElementById('cancel3'); // Sélectionne le bouton Retour
-    const cancelButton4 = document.getElementById('cancel4'); // Sélectionne le bouton Retour
-    const confirmButton = document.getElementById('confirm');
+    const cancelButton = document.getElementById('cancel');
+    const cancelButton2 = document.getElementById('cancel2');
+    const cancelButton3 = document.getElementById('cancel3');
+    const cancelButton4 = document.getElementById('cancel4');
 
     closeButtons.forEach(button => {
         button.addEventListener('click', function() {
@@ -723,14 +738,6 @@
     cancelButton.addEventListener('click', function() {
         const popup = this.closest('.popup');
         popup.style.display = 'none';
-    });
-
-    confirmButton.addEventListener('click', function() {
-        // Insérer ici le code pour supprimer le compte ou effectuer toute autre action souhaitée
-        alert('Compte supprimé avec succès.');
-        // Récupère le conteneur de la pop-up parent du bouton
-        const popup = this.closest('.popup');
-        popup.style.display = 'none'; // Masque la pop-up
     });
 
     function partager() {
