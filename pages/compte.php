@@ -187,7 +187,7 @@
 
 <body>
     <?php
-    session_start(); // Démarre la session
+    session_start();
     setlocale(LC_TIME, "fr_FR");
 
     if (isset($_SESSION['pseudo'])) {
@@ -195,9 +195,7 @@
         $user_id = $_SESSION['user_id'];
     }
 
-    // Vérifie si l'utilisateur est connecté
     if (!isset($_SESSION['pseudo'])) {
-        // Redirige l'utilisateur vers la page de connexion s'il n'est pas connecté
         header("Location: connexion.php");
         exit();
     }
@@ -227,19 +225,16 @@
     }
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Récupérer le nouveau mot de passe depuis le formulaire
         $newPassword = $_POST['newPassword'];
     
-        // Hasher le nouveau mot de passe
         $hashedPassword = hash('sha256', $newPassword);
     
-        // Préparer la requête SQL d'update
         $update_mdp = $db->prepare("UPDATE utilisateurs SET mdp = :mdp WHERE ID_Utilisateur = :id");
         $update_mdp->bindParam(':mdp', $hashedPassword); // Utiliser le mot de passe haché
         $update_mdp->bindParam(':id', $_SESSION['user_id']);
     
         // Exécution de la requête
-        $update_mdp->execute();
+        $stmt_update_mdp->execute();
     }
 
     setlocale(LC_TIME, "fr_FR");
@@ -247,34 +242,27 @@
     $dateConnexion = date("Y-m-d");
 
     $query = $db->prepare("UPDATE utilisateurs SET dateConnexion = :dateConnexion WHERE ID_Utilisateur = :id_utilisateur");
-    // Liez les paramètres et exécutez la requête
     $query->bindParam(':dateConnexion', $dateConnexion, PDO::PARAM_STR);
     $query->bindParam(':id_utilisateur', $user_id);
     $query->execute();
 
-    // Vérifier d'abord si l'utilisateur a déjà obtenu le succès avec l'ID 1
     $requete_verif_succes_1 = $db->prepare("SELECT COUNT(*) FROM utilisateursucces WHERE ID_Utilisateur = :id_utilisateur AND ID_Succes = 1");
     $requete_verif_succes_1->bindParam(':id_utilisateur', $user_id);
     $requete_verif_succes_1->execute();
     $count_succes_1 = $requete_verif_succes_1->fetchColumn();
 
-    // Si l'utilisateur n'a pas déjà obtenu le succès avec l'ID 1
     if ($count_succes_1 == 0) {
-        // Insérer une nouvelle entrée dans la table "utilisateursucces"
         $requete_insert_succes_1 = $db->prepare("INSERT INTO utilisateursucces (ID_Utilisateur, ID_Succes, progression, dateObtention) VALUES (:id_utilisateur, 1, 1, NOW())");
         $requete_insert_succes_1->bindParam(':id_utilisateur', $user_id);
         $requete_insert_succes_1->execute();
     }
 
-    // Requête SQL pour récupérer les informations de l'utilisateur
     $requete = $db->prepare("SELECT * FROM utilisateurs WHERE ID_Utilisateur = :id_utilisateur");
     $requete->bindParam(':id_utilisateur', $user_id);
     $requete->execute();
 
-    // Récupération des résultats de la requête
     $utilisateur = $requete->fetch(PDO::FETCH_ASSOC);
 
-    // Vérifier si l'utilisateur a une image de profil
     $profileImage = $utilisateur['pdp'] ? $utilisateur['pdp'] : '../uploads/default.jpg';
     $titreUtilisateur = $utilisateur['titreUtilisateur'] ? $utilisateur['titreUtilisateur'] : 'Jeune branche';
     ?>
@@ -288,8 +276,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Popup de sélection de badge -->
 
     <div class="container mt-4">
         <div class="p-4 profil_page">
@@ -327,7 +313,7 @@
                                 <div class="col-4">
                                     <div class="badgeSlot" id="badgeSlot<?php echo $i; ?>">
                                         <?php
-                                        // Déterminer le groupe en fonction de la valeur de $i
+
                                         switch ($i) {
                                             case 1:
                                                 $group = 'A%';
@@ -352,7 +338,6 @@
                                                 break;
                                         }
 
-                                        // Exemple de requête SQL pour récupérer le succès pour chaque slot
                                         $requete_succes = $db->prepare("SELECT s.ID_Succes, s.pds, s.nom FROM succes s 
                                         INNER JOIN utilisateursucces us ON s.ID_Succes = us.ID_Succes 
                                         WHERE us.ID_Utilisateur = :id_utilisateur AND s.triageSucces LIKE :group AND us.dateObtention != '1999-01-01' ORDER BY CAST(SUBSTRING(s.triageSucces, 2) AS UNSIGNED) DESC
@@ -361,10 +346,8 @@
                                         $requete_succes->bindParam(':group', $group);
                                         $requete_succes->execute();
 
-                                        // Récupérer le résultat de la requête
                                         $succes_utilisateur = $requete_succes->fetch(PDO::FETCH_ASSOC);
 
-                                        // Afficher le succès de l'utilisateur
                                         if ($succes_utilisateur) {
                                             echo "<img src='" . $succes_utilisateur['pds'] . "' alt='" . $succes_utilisateur['nom'] . " class='popup-trigger''><div class='popup'>
                                             <span class='popup-content'></span>
@@ -378,14 +361,11 @@
                 </div>
 
                 <?php
-                // Les points de l'utilisateur (remplacez cela par vos données)
                 $pointsUtilisateur = $utilisateur['point_Planete'];
 
-                // Initialisation des variables de niveau
                 $niveauActuel = 1;
                 $pointsNiveauSuivant = 1000;
 
-                // Calcul du niveau en fonction des points
                 if ($pointsUtilisateur >= 1000 && $pointsUtilisateur < 3000) {
                     $niveauActuel = 2;
                     $pointsNiveauSuivant = 2000;
@@ -400,14 +380,12 @@
                     $pointsUtilisateur = $pointsUtilisateur - 7000;
                 } elseif ($pointsUtilisateur >= 15000) {
                     $niveauActuel = 5;
-                    $pointsNiveauSuivant = null; // Pas de niveau suivant car c'est le dernier niveau
+                    $pointsNiveauSuivant = null; 
                 }
 
-                // Calcul de la progression
                 if ($pointsNiveauSuivant !== null) {
                     $progression = ($pointsUtilisateur / $pointsNiveauSuivant) * 100;
                 } else {
-                    // Si $pointsNiveauSuivant est null, la progression est de 100%
                     $progression = 100;
                 }
                 ?>
@@ -417,7 +395,6 @@
             <div class="row">
                 <div class="mt-2">
                     <div class="rounded p-1 profil_page">
-                        <!-- Barre de progression avec l'XP actuel à gauche, le niveau au milieu, et l'XP nécessaire à droite -->
                         <div class="row align-items-center">
                             <div class="col-4">
                                 <p class="mb-0 xp gauche">
@@ -435,7 +412,6 @@
                                 </p>
                             </div>
                         </div>
-                        <!-- Barre de progression -->
                         <div class="row">
                             <div class="col">
                                 <div class="progress mt-3">
@@ -452,7 +428,6 @@
                         <p>Membre depuis le
                             <?php
                             $dateCreationCompte = $utilisateur['dateCreationCompte'];
-                            // Convertir la date en format DD-MM-YYYY
                             $dateFormatee = date("d-m-Y", strtotime($dateCreationCompte));
                             echo $dateFormatee;
                             ?>
@@ -470,7 +445,7 @@
 
     <div class="container parametres mt-4">
         <div class="list-group">
-            <!-- Notification -->
+            
             <a class="list-group-item list-group-item-action main-category rounded">
                 <div class="row">
                     <div class="col-2">
@@ -484,16 +459,16 @@
                     </div>
                 </div>
             </a>
-            <!-- Sous-catégories pour Notification -->
+            
             <div class="sub-menu">
                 <a href="#" class="list-group-item list-group-item-action rounded">Gestion des préférences de
                     notification</a>
                 <a href="#" class="list-group-item list-group-item-action rounded">Notifications par e-mail</a>
                 <a href="#" class="list-group-item list-group-item-action rounded">Notifications push</a>
             </div>
-            <!-- Séparateur -->
+            
             <div class="separator my-3"></div>
-            <!-- Confidentialité -->
+            
             <a class="list-group-item list-group-item-action main-category rounded">
                 <div class="row">
                     <div class="col-2">
@@ -507,15 +482,15 @@
                     </div>
                 </div>
             </a>
-            <!-- Sous-catégories pour Confidentialité -->
+            
             <div class="sub-menu">
                 <a href="#" class="list-group-item list-group-item-action rounded">Paramètres de confidentialité du
                     profil</a>
                 <a href="#" class="list-group-item list-group-item-action rounded">Gestion des contacts</a>
             </div>
-            <!-- Séparateur -->
+            
             <div class="separator my-3"></div>
-            <!-- Mot de passe -->
+            
             <a class="list-group-item list-group-item-action main-category rounded">
                 <div class="row">
                     <div class="col-2">
@@ -533,9 +508,9 @@
                 <a href="#" class="list-group-item list-group-item-action rounded delete-account-link"
                     data-popup-id="popup4">Changer de mot de passe</a>
             </div>
-            <!-- Séparateur -->
+
             <div class="separator my-3"></div>
-            <!-- Pseudo -->
+
             <a class="list-group-item list-group-item-action main-category rounded">
                 <div class="row">
                     <div class="col-2">
@@ -555,9 +530,9 @@
                 <a href="#titrechoose" class="list-group-item list-group-item-action delete-account-link rounded"
                     id="titrechoose" data-popup-id="popup2">Changer de titre</a>
             </div>
-            <!-- Séparateur -->
+
             <div class="separator my-3"></div>
-            <!-- Modifier la photo -->
+
             <a class="list-group-item list-group-item-action main-category rounded">
                 <div class="row">
                     <div class="col-2">
@@ -571,7 +546,7 @@
                     </div>
                 </div>
             </a>
-            <!-- Sous-catégories pour Modifier la photo -->
+
             <div class="sub-menu">
                 <form id="imageForm" action="../form/changer_image.php" method="post" enctype="multipart/form-data"
                     class="list-group-item list-group-item-action rounded">
@@ -594,7 +569,6 @@
 
     </div>
 
-    <!-- La pop-up -->
     <!-- Popup 1 -->
     <div id="popup1" class="popup">
         <div class="popup-content">
@@ -708,7 +682,6 @@
     }
 });
 
-
     const deleteAccountLinks = document.querySelectorAll('.delete-account-link');
 
     deleteAccountLinks.forEach(link => {
@@ -723,7 +696,6 @@
         });
     });
 
-    // Sélectionne tous les boutons de fermeture de pop-up
     const closeButtons = document.querySelectorAll('.close-popup');
     const cancelButton = document.getElementById('cancel'); // Sélectionne le bouton Annuler
     const cancelButton2 = document.getElementById('cancel2'); // Sélectionne le bouton Retour
@@ -731,37 +703,25 @@
     const cancelButton4 = document.getElementById('cancel4'); // Sélectionne le bouton Retour
     const confirmButton = document.getElementById('confirm');
 
-    // Ajoute un écouteur d'événement pour chaque bouton de fermeture de pop-up
     closeButtons.forEach(button => {
         button.addEventListener('click', function() {
-            // Récupère le conteneur de la pop-up parent du bouton
             const popup = this.closest('.popup');
-
-            // Masque la pop-up
             popup.style.display = 'none';
         });
     });
 
-    // Ajoute un écouteur d'événement pour le clic sur le bouton Annuler
     cancelButton.addEventListener('click', hidePopup);
     cancelButton2.addEventListener('click', hidePopup);
     cancelButton3.addEventListener('click', hidePopup);
     cancelButton4.addEventListener('click', hidePopup);
 
     function hidePopup() {
-        // Récupère le conteneur de la pop-up parent du bouton
         const popup = this.closest('.popup');
-
-        // Masque la pop-up
         popup.style.display = 'none';
     }
 
-    // Ajoute un écouteur d'événement pour le clic sur le bouton Annuler
     cancelButton.addEventListener('click', function() {
-        // Récupère le conteneur de la pop-up parent du bouton
         const popup = this.closest('.popup');
-
-        // Masque la pop-up
         popup.style.display = 'none';
     });
 

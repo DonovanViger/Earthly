@@ -48,7 +48,7 @@
 
 
     <?php
-    session_start(); // Démarre la session (à placer au début de chaque fichier PHP où vous utilisez des sessions)
+    session_start();
     ?>
 
 

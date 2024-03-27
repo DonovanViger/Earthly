@@ -1,9 +1,7 @@
 <?php
-session_start(); // Démarre la session
+session_start();
 
-// Vérifie si l'utilisateur est connecté
 if (!isset($_SESSION['pseudo'])) {
-    // Redirige l'utilisateur vers la page de connexion s'il n'est pas connecté
     header("Location: connexion.php");
     exit();
 }
@@ -145,7 +143,7 @@ if (!isset($_SESSION['pseudo'])) {
                                         <div class="col-4 partage_click">
                                             <div class="badgeSlot partage_click" id="badgeSlot<?php echo $i; ?>">
                                                 <?php
-                                                // Déterminer le groupe en fonction de la valeur de $i
+                                                // Détermine le groupe
                                                 switch ($i) {
                                                     case 1:
                                                         $group = 'A%';
@@ -166,11 +164,10 @@ if (!isset($_SESSION['pseudo'])) {
                                                         $group = 'F%';
                                                         break;
                                                     default:
-                                                        $group = ''; // Gérer les valeurs par défaut si nécessaire
+                                                        $group = '';
                                                         break;
                                                 }
 
-                                                // Exemple de requête SQL pour récupérer le succès pour chaque slot
                                                 $requete_succes = $db->prepare("SELECT s.ID_Succes, s.pds, s.nom FROM succes s 
                         INNER JOIN utilisateursucces us ON s.ID_Succes = us.ID_Succes 
                         WHERE us.ID_Utilisateur = :id_utilisateur AND s.triageSucces LIKE :group AND us.dateObtention != 01-01-1999
@@ -180,10 +177,8 @@ if (!isset($_SESSION['pseudo'])) {
                                                 $requete_succes->bindParam(':group', $group);
                                                 $requete_succes->execute();
 
-                                                // Récupérer le résultat de la requête
                                                 $succes_utilisateur = $requete_succes->fetch(PDO::FETCH_ASSOC);
 
-                                                // Afficher le succès de l'utilisateur
                                                 if ($succes_utilisateur) {
                                                     echo "<img src='" . $succes_utilisateur['pds'] . "' alt='" . $succes_utilisateur['nom'] . "'>";
                                                 }
@@ -195,14 +190,11 @@ if (!isset($_SESSION['pseudo'])) {
                             </div>
 
                             <?php
-                            // Les points de l'utilisateur (remplacez cela par vos données)
                             $pointsUtilisateur = $partage['point_Planete'];
 
-                            // Initialisation des variables de niveau
                             $niveauActuel = 1;
                             $pointsNiveauSuivant = 1000;
 
-                            // Calcul du niveau en fonction des points
                             if ($pointsUtilisateur >= 1000 && $pointsUtilisateur < 3000) {
                                 $niveauActuel = 2;
                                 $pointsNiveauSuivant = 2000;
@@ -224,7 +216,6 @@ if (!isset($_SESSION['pseudo'])) {
                             if ($pointsNiveauSuivant !== null) {
                                 $progression = ($pointsUtilisateur / $pointsNiveauSuivant) * 100;
                             } else {
-                                // Si $pointsNiveauSuivant est null, la progression est de 100%
                                 $progression = 100;
                             }
                             ?>
@@ -234,7 +225,6 @@ if (!isset($_SESSION['pseudo'])) {
                         <div class="row partage_click partagefin">
                             <div class="mt-2 partage_click">
                                 <div class="rounded p-1 profil_page partage_click">
-                                    <!-- Barre de progression avec l'XP actuel à gauche, le niveau au milieu, et l'XP nécessaire à droite -->
                                     <div class="row align-items-center partage_click">
                                         <div class="col-4 partage_click">
                                             <p class="mb-0 xp gauche partage_click">
@@ -252,7 +242,6 @@ if (!isset($_SESSION['pseudo'])) {
                                             </p>
                                         </div>
                                     </div>
-                                    <!-- Barre de progression -->
                                     <div class="row partage_click">
                                         <div class="col partage_click">
                                             <div class="progress mt-3 partage_click">
@@ -361,7 +350,7 @@ if (!isset($_SESSION['pseudo'])) {
     </div>
         </div>
     </div>
-</div> <!-- Fermeture de la balise div avec la classe "popup" -->
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">

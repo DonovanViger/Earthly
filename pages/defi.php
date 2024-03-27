@@ -1,24 +1,20 @@
 <?php
-session_start(); // Démarre la session
+session_start();
 
-// Vérifie si l'utilisateur est connecté
 if (!isset($_SESSION['pseudo'])) {
-    // Redirige l'utilisateur vers la page de connexion s'il n'est pas connecté
     header("Location: connexion.php");
     exit();
 }
 
 try {
-    // Connexion à la base de données
     $db = new PDO('mysql:host=localhost;dbname=sae401-2', 'root', '');
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     $date_actuelle = date('Y-m-d');
 
-    // Vérification si des défis sont sélectionnés pour la journée actuelle
-    $select_defis = $db->prepare("SELECT defiquotidien.ID_Defi, defis_journaliers.date, defiquotidien.nom, defiquotidien.pdd, defiquotidien.desc, defiquotidien.point FROM defis_journaliers INNER JOIN defiquotidien ON defis_journaliers.ID_Defi = defiquotidien.ID_Defi WHERE defis_journaliers.date = :date");
-    $select_defis->bindParam(':date', $date_actuelle);
-    $select_defis->execute();
+    $stmt_select_defis = $db->prepare("SELECT defiquotidien.ID_Defi, defis_journaliers.date, defiquotidien.nom, defiquotidien.pdd, defiquotidien.desc, defiquotidien.point FROM defis_journaliers INNER JOIN defiquotidien ON defis_journaliers.ID_Defi = defiquotidien.ID_Defi WHERE defis_journaliers.date = :date");
+    $stmt_select_defis->bindParam(':date', $date_actuelle);
+    $stmt_select_defis->execute();
     $defi_suppression = $db->prepare("DELETE FROM defis_journaliers WHERE date != :date");
     $defi_suppression->bindParam(':date', $date_actuelle);
     $defi_suppression->execute();
@@ -27,13 +23,11 @@ try {
     $defi_utilisateur_suppression->execute();
     $defis_journaliers = $select_defis->fetchAll(PDO::FETCH_ASSOC);
 
-    // Récupération de l'ID de l'utilisateur associé à son pseudo
-    $select_id = $db->prepare("SELECT ID_Utilisateur FROM utilisateurs WHERE ID_Utilisateur = :id_utilisateur");
-    $select_id->bindParam(':id_utilisateur', $_SESSION['user_id']);
-    $select_id->execute();
-    $id_utilisateur = $select_id->fetchColumn();
+    $stmt_select_id = $db->prepare("SELECT ID_Utilisateur FROM utilisateurs WHERE ID_Utilisateur = :id_utilisateur");
+    $stmt_select_id->bindParam(':id_utilisateur', $_SESSION['user_id']);
+    $stmt_select_id->execute();
+    $id_utilisateur = $stmt_select_id->fetchColumn();
 
-    // Si le formulaire de validation du défi a été soumis
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['valider_defi'])) {
         $id_defi = $_POST['id_defi'];
         $sql = "SELECT * FROM `utilisateursdefiquotidien` WHERE `ID_Utilisateur` = $id_utilisateur AND `ID_Defi` = $id_defi AND `dateObtention` = '$date_actuelle'";
@@ -243,14 +237,11 @@ try {
 
 </div>
     <?php
-    // Si des défis sont sélectionnés pour la journée actuelle
     if (!empty($defis_journaliers)) {
-        // Afficher les défis sélectionnés pour la journée
         echo "<ul id='defis_ul'>";
         foreach ($defis_journaliers as $defi) {
             echo "<div class='defi'>";
             echo "<img src = '",$defi['pdd'],"' alt='",$defi['nom'],"'><strong>", $defi['nom'], "</strong> </br> ", $defi['desc'];
-            // Afficher le bouton pour valider le défi dans un formulaire
             echo "<form method='POST' action='defi.php' id='defi_form'>";
             echo "<input type='hidden' name='id_defi' value='" . $defi['ID_Defi'] . "'>";
             $id_defi = $defi['ID_Defi'];
@@ -274,8 +265,7 @@ try {
         $requete_defis = $db->query("SELECT * FROM defiquotidien ORDER BY RAND() LIMIT 3");
         $defis_selectionnes = $requete_defis->fetchAll(PDO::FETCH_ASSOC);
 
-        // Insérer les défis sélectionnés dans la table des défis journaliers
-        $insert_defis = $db->prepare("INSERT INTO defis_journaliers (ID_Defi, date) VALUES (:id_defi, :date)");
+        $stmt_insert_defis = $db->prepare("INSERT INTO defis_journaliers (ID_Defi, date) VALUES (:id_defi, :date)");
         foreach ($defis_selectionnes as $defi) {
             $insert_defis->bindParam(':id_defi', $defi['ID_Defi']);
             $insert_defis->bindParam(':date', $date_actuelle);
@@ -288,13 +278,11 @@ $requete = $db->prepare("SELECT * FROM utilisateurs WHERE pseudo = :pseudo");
 $requete->bindParam(':pseudo', $_SESSION['pseudo']);
 $requete->execute();
 
-// Récupération des résultats de la requête
 $utilisateur = $requete->fetch(PDO::FETCH_ASSOC);
     
     $pointsUtilisateur = $utilisateur['point_Planete'];
     $pointsNiveauSuivant = 1000;
 
-                        // Calcul du niveau en fonction des points
                 if ($pointsUtilisateur >= 1000 && $pointsUtilisateur < 3000) {
                     $niveauActuel = 2;
                     $pointsNiveauSuivant = 2000;
@@ -309,7 +297,7 @@ $utilisateur = $requete->fetch(PDO::FETCH_ASSOC);
                     $pointsUtilisateur = $pointsUtilisateur - 7000;
                 } elseif ($pointsUtilisateur >= 15000) {
                     $niveauActuel = 5;
-                    $pointsNiveauSuivant = null; // Pas de niveau suivant car c'est le dernier niveau
+                    $pointsNiveauSuivant = null;
                 }
 
                         $progression = ($pointsUtilisateur / $pointsNiveauSuivant) * 100;
