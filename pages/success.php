@@ -49,7 +49,7 @@ if (!isset($_SESSION['pseudo'])) {
 
     <div id="succes_box1">
     <img src="../img/trophy.svg" alt="trophy" id="success_svg_trophy">
-    <h2 id="success_h2_1">Petite branche</h2>
+    <h2 id="success_h2_1">Jeune branche</h2>
 
     <div id="success_number_lightgreen">
         <?php 
@@ -70,7 +70,7 @@ if (!isset($_SESSION['pseudo'])) {
     </div>
 
     <div class="success_box_1">
-        <h3 class="success_h3_darkgreen">Petite branche <strong class="succes_strong_green">I</strong></h3>
+        <h3 class="success_h3_darkgreen">Jeune branche <strong class="succes_strong_green">I</strong></h3>
         <div class="succes_checkbox">
             <input type="checkbox" disabled <?php 
             if ($tableau[1] == "oui") {
@@ -80,7 +80,7 @@ if (!isset($_SESSION['pseudo'])) {
         </div>
     </div>
     <div class="success_box_1">
-        <h3 class="success_h3_darkgreen">Petite branche <strong class="succes_strong_green">II</strong></h3>
+        <h3 class="success_h3_darkgreen">Jeune branche <strong class="succes_strong_green">II</strong></h3>
         <div class="succes_checkbox">
             <input type="checkbox" disabled <?php 
             if ($tableau[14] == "oui") {
@@ -90,7 +90,7 @@ if (!isset($_SESSION['pseudo'])) {
         </div>
     </div>
     <div class="success_box_1">
-        <h3 class="success_h3_darkgreen">Petite branche <strong class="succes_strong_green">III</strong></h3>
+        <h3 class="success_h3_darkgreen">Jeune branche <strong class="succes_strong_green">III</strong></h3>
         <div class="succes_checkbox">
             <input type="checkbox" disabled <?php 
             if ($tableau[15] == "oui") {
@@ -489,7 +489,7 @@ if (!isset($_SESSION['pseudo'])) {
         <div class="success_advencement"><?php if ($tableau[21] == "oui") {
             echo "100%";
         } else if (isset($tableau[21])) {
-            $calcul = intval($tableau[11]);
+            $calcul = intval($tableau[21]);
             echo $calcul."%";
         } else {
             echo "0%";
