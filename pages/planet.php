@@ -32,6 +32,52 @@ $utilisateur = $requete->fetch(PDO::FETCH_ASSOC);
     <link rel="stylesheet" type="text/css" href="style.css" />
     <title>Earthly | Planète</title>
     <style>
+    /* Styles pour le conteneur du bouton */
+    #message-container {
+        position: fixed;
+        /* Position fixe pour que le message reste en place même en faisant défiler la page */
+        top: 50%;
+        /* Centrer verticalement */
+        right: 10%;
+        /* 10% de marge à partir de la droite */
+        transform: translateY(-50%);
+        /* Ajuster pour centrer verticalement */
+        width: 30%;
+        /* Largeur du conteneur */
+        background-color: rgba(0, 0, 0, 0.5);
+        /* Fond semi-transparent */
+        padding: 10px;
+        /* Espacement intérieur */
+        text-align: center;
+        /* Centrer le texte */
+    }
+
+    /* Styles pour le bouton */
+    #play-button {
+        display: inline-block;
+        /* Afficher en tant que bloc */
+        background-color: #007bff;
+        /* Couleur de fond */
+        color: #fff;
+        /* Couleur du texte */
+        padding: 10px 20px;
+        /* Espacement intérieur */
+        border: none;
+        /* Pas de bordure */
+        border-radius: 5px;
+        /* Coins arrondis */
+        cursor: pointer;
+        /* Curseur de la souris */
+        font-size: 16px;
+        /* Taille de la police */
+    }
+
+    /* Style au survol du bouton */
+    #play-button:hover {
+        background-color: #0056b3;
+        /* Couleur de fond au survol */
+    }
+
     .loader {
         background-color: #000000;
         width: 100%;
@@ -147,15 +193,40 @@ if ($utilisateur['point_Planete'] < 1000) {
             <?php } ?>
             <br>
             <div class="progress">
-    <div class="progress-bar" role="progressbar" style="width: <?= $progression ?>%;" aria-valuenow="<?= $progression ?>" aria-valuemin="0" aria-valuemax="100"></div>
-  </div>
-</div>
+                <div class="progress-bar" role="progressbar" style="width: <?= $progression ?>%;"
+                    aria-valuenow="<?= $progression ?>" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
         </div>
+    </div>
     </div>
 
     <?php
 include ("../form/templates/footer.php")
 ?>
+
+    <script>
+    // Détecter si l'utilisateur utilise un navigateur iOS
+    var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
+    if (isIOS) {
+        // Afficher un message avec un bouton de lecture manuelle
+        var message = document.createElement('div');
+        message.textContent = "Cliquez ici pour démarrer la lecture";
+        message.id = "message-container";
+
+        var playButton = document.createElement('button');
+        playButton.textContent = "Lire";
+        playButton.id = "play-button";
+        playButton.addEventListener('click', function() {
+            // Code pour démarrer la lecture
+            // Par exemple, document.getElementById('video').play();
+        });
+
+        message.appendChild(playButton);
+        document.body.appendChild(message);
+    }
+    </script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
