@@ -1163,6 +1163,7 @@ footer {
     padding: 0.5rem 0.4rem;
     font-weight: bold;
     color: #1C3326;
+    text-decoration: auto;
 }
 
 /* Style des liens du menu de navigation au survol */

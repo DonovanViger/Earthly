@@ -346,6 +346,8 @@ if (!isset($_SESSION['pseudo'])) {
 </div>
 </div>
 
-
+<?php
+    include ("../form/templates/footer.php")
+        ?>
 </body>
 </html>
