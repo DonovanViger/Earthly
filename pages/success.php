@@ -20,15 +20,17 @@ if (!isset($_SESSION['pseudo'])) {
     $db = new PDO('mysql:host=localhost;dbname=sae401-2', 'root', '');
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $select_succes_user = $db->prepare("SELECT ID_Succes, dateObtention FROM utilisateursucces where ID_Utilisateur=:id_utilisateur");
+    $select_succes_user = $db->prepare("SELECT ID_Succes, progression, dateObtention FROM utilisateursucces where ID_Utilisateur=:id_utilisateur");
     $select_succes_user->bindParam(':id_utilisateur', $_SESSION['user_id']);
     $select_succes_user->execute();
     $succesuser = $select_succes_user->fetchAll();
     $tableau = [1 => "", 2 => "", 3 => "", 4 => "", 5 => "", 6 => "", 7 => "", 8 => "", 9 => "", 10 => "", 14 => "", 15 => "", 16 => "", 17 => "", 18 => "", 19 => "", 20 => "", 21 => "", ];
 
     foreach ($succesuser as $succesnumber) {
-        if ($succesnumber[1] != "1999-01-01"){
+        if ($succesnumber[2] != "1999-01-01"){
             $tableau[$succesnumber[0]]="oui";
+        } else if (isset($succesnumber[2])){
+            $tableau[$succesnumber[0]]=$succesnumber[1];
         }
     }
 
@@ -68,7 +70,6 @@ if (!isset($_SESSION['pseudo'])) {
 
     <div class="success_box_1">
         <h3 class="success_h3_darkgreen">Petite branche <strong class="succes_strong_green">I</strong></h3>
-        <div class="success_advencement"></div>
         <div class="succes_checkbox">
             <input type="checkbox" disabled <?php 
             if ($tableau[1] == "oui") {
@@ -79,7 +80,6 @@ if (!isset($_SESSION['pseudo'])) {
     </div>
     <div class="success_box_1">
         <h3 class="success_h3_darkgreen">Petite branche <strong class="succes_strong_green">II</strong></h3>
-        <div class="success_advencement"></div>
         <div class="succes_checkbox">
             <input type="checkbox" disabled <?php 
             if ($tableau[14] == "oui") {
@@ -90,7 +90,6 @@ if (!isset($_SESSION['pseudo'])) {
     </div>
     <div class="success_box_1">
         <h3 class="success_h3_darkgreen">Petite branche <strong class="succes_strong_green">III</strong></h3>
-        <div class="success_advencement"></div>
         <div class="succes_checkbox">
             <input type="checkbox" disabled <?php 
             if ($tableau[15] == "oui") {
@@ -124,12 +123,20 @@ if (!isset($_SESSION['pseudo'])) {
 
     <div class="success_box_2">
         <h3 class="success_h3_lightgreen">De feuille à feuille <strong class="succes_strong_green">I</strong></h3>
-        <div class="success_advencement"></div>
+        <div class="success_advencement"><?php if ($tableau[2] == "oui") {
+            echo "100%";
+        } else if (isset($tableau[2])) {
+            echo $tableau[2]*20;
+            echo "%";
+        } else {
+            echo "0%";
+        }
+         ?></div>
         <div class="succes_checkbox">
             <input type="checkbox" disabled <?php 
             if ($tableau[2] == "oui") {
                 echo "checked";
-            }
+            } 
             ?>>
         </div>
     </div>
