@@ -961,6 +961,7 @@ height: 10vh;
     color: #A9FFA4;
     width: 60%;
     margin: 0 auto 2vh auto;
+    font-size: 2vh;
     padding-left: 1vh;
     float: left;
 }
@@ -970,6 +971,7 @@ height: 10vh;
     width: 60%;
     margin: 0 auto 2vh auto;
     padding-left: 1vh;
+    font-size: 2vh;
     float: left;
 }
 
@@ -978,6 +980,7 @@ height: 10vh;
     width: 60%;
     margin: 0 auto 2vh auto;
     padding-left: 1vh;
+    font-size: 2vh;
     float: left;
 }
 
