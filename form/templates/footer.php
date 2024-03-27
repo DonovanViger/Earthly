@@ -1,6 +1,4 @@
 <?php
-        // Affiche les liens "Se connecter" et "Créer un compte" seulement si l'utilisateur n'est pas connecté
-
         if (isset($_SESSION['pseudo'])) {
         ?>
 <footer>
