@@ -127,12 +127,11 @@
                     <label for="photo" class="custom-file-input"><img src="../img/dossier.svg" id="inscription_dossier_svg"><p id="inscription_paragraph_dossier">Choisir un fichier</p></label>
                     <input type="file" id="photo" name="photo" accept="image/*" onchange="previewImage(event)" style="display: none;">
                         
-                    <!-- Prévisualisation de l'image -->
                     <div id="inscription_div_img">
                     <img id="imagePreview" src="#" alt="Aperçu de votre image"
                         style="display: none; width: 25vh; height: 25vh;"><br><br>
                     </div>
-                    <!-- Bouton pour ouvrir la boîte de dialogue de recadrage -->
+
                     <div id="inscription_box_button">
                         <input type="submit" value="Créer un compte" id="inscription_input_submit">
                     </div>
@@ -160,7 +159,7 @@
             reader.onload = function() {
                 var img = document.getElementById('imagePreview');
                 img.src = reader.result;
-                img.style.display = 'block'; // Afficher l'aperçu de l'image
+                img.style.display = 'block';
             };
             reader.readAsDataURL(event.target.files[0]);
         }
