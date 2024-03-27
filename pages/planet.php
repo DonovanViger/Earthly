@@ -1,9 +1,7 @@
 <?php
-session_start(); // Démarre la session
+session_start(); 
 
-// Vérifie si l'utilisateur est connecté
 if (!isset($_SESSION['pseudo'])) {
-    // Redirige l'utilisateur vers la page de connexion s'il n'est pas connecté
     header("Location: connexion.php");
     exit();
 }
@@ -15,12 +13,10 @@ try {
     die("Erreur de connexion à la base de données : " . $erreur->getMessage());
 }
 
-// Requête SQL pour récupérer les informations de l'utilisateur
 $requete = $db->prepare("SELECT * FROM utilisateurs WHERE pseudo = :pseudo");
 $requete->bindParam(':pseudo', $_SESSION['pseudo']);
 $requete->execute();
 
-// Récupération des résultats de la requête
 $utilisateur = $requete->fetch(PDO::FETCH_ASSOC);
 ?>
 
@@ -75,13 +71,11 @@ $utilisateur = $requete->fetch(PDO::FETCH_ASSOC);
     <div class="loader">
         <video autoplay loop muted>
             <source src="../pack-icon/chargement/chargement.mp4" type="video/mp4">
-            <!-- Fallback si le navigateur ne prend pas en charge le format MP4 -->
             Votre navigateur ne prend pas en charge la lecture de vidéos au format MP4.
         </video>
     </div>
 
     <?php
-// Définition du niveau de la planète
 $niv = 0;
 if ($utilisateur['point_Planete'] < 1000) {
     $niv = 1;
@@ -110,10 +104,8 @@ if ($utilisateur['point_Planete'] < 1000) {
 
     <div id="planet_overall">
         <?php
-    // Les points de l'utilisateur
     $pointsUtilisateur = $utilisateur['point_Planete'];
 
-    // Définition du niveau actuel et des points nécessaires pour le prochain niveau
     $niveauActuel = $niv;
     $pointsNiveauSuivant = match($niv) {
         1 => 1000,
@@ -133,7 +125,6 @@ if ($utilisateur['point_Planete'] < 1000) {
         };
     }
 
-    // Calcul de la progression en pourcentage
     $progression = ($pointsUtilisateur / $pointsNiveauSuivant) * 100;
     ?>
         <div id="planet_box_logo">
