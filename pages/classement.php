@@ -295,7 +295,7 @@ if (!isset($_SESSION['pseudo'])) {
 
         <script>
             function partager() {
-                var lien = "localhost/earthly/pages/partage.php?idpartage=<?php echo $id_partage ?>";
+                var lien = "https://poulatan.tpweb.univ-rouen.fr/earthly/pages/classement.php?partage=<?php echo $id_partage ?>";
                 alert("Partagez le lien à vos amis : " + lien);
             }
 

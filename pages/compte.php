@@ -752,7 +752,7 @@
     });
 
     function partager() {
-        var lien = "localhost/earthly/pages/partage.php?idpartage=<?php echo $user_id ?>";
+        var lien = "https://poulatan.tpweb.univ-rouen.fr/earthly/pages/classement.php?partage=<?php echo $user_id ?>";
         console.log(lien);
         alert("Partagez le lien à vos amis : " + lien);
     }
