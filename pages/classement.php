@@ -182,7 +182,7 @@ if (!isset($_SESSION['pseudo'])) {
 
                                                 $requete_succes = $db->prepare("SELECT s.ID_Succes, s.pds, s.nom FROM succes s 
                         INNER JOIN utilisateursucces us ON s.ID_Succes = us.ID_Succes 
-                        WHERE us.ID_Utilisateur = :id_utilisateur AND s.triageSucces LIKE :group AND us.dateObtention != 01-01-1999
+                        WHERE us.ID_Utilisateur = :id_utilisateur AND s.triageSucces LIKE :group AND us.dateObtention != '1999-01-01'
                         ORDER BY CAST(SUBSTRING(s.triageSucces, 2) AS UNSIGNED) DESC
                         LIMIT 1");
                                                 $requete_succes->bindParam(':id_utilisateur', $id_partage);

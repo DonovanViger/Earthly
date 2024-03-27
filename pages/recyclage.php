@@ -43,6 +43,7 @@
     } else {
         echo "<script> var poubelle_user = 'non'</script>";
     }
+    echo "<script> var idutilisateur = ".$iduser."</script>";
     ?>
 
 <div id="overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 998;"></div>
@@ -150,26 +151,24 @@ const captureAndDecode = () => {
                 let message;
                 if (qrData.includes("poubelle=1")) {
                     message = "Vous recyclez vos déchets cartons, plastiques, papiers et métalliques\n+200 Points";
-                    <?php
-                    $insert_into_poubelle = $db->prepare("INSERT INTO scanpoubelle (ID_Utilisateur, ID_Poubelle, dateScan) VALUES (:iduser, 1, :dateActuel)");
-                    $insert_into_poubelle->bindParam(':iduser', $iduser);
-                    $insert_into_poubelle->bindParam(':dateActuel', $date_actuelle);
-                    $insert_into_poubelle->execute();
-                    $update_score = $db->prepare("UPDATE utilisateurs SET point_Planete = point_Planete + 200, exp_Utilisateur = exp_Utilisateur + 200 WHERE ID_Utilisateur = :id_utilisateur");
-                    $update_score->bindParam(':id_utilisateur', $iduser);
-                    $update_score->execute();
-                    ?>
+                    $.ajax({
+                        url: 'traitement.php',
+                        method: 'POST',
+                        data: { iduser: idutilisateur }, 
+                        success: function(response) {
+                            alert('Opération effectuée avec succès !');
+                        }
+                    });
                 } else if (qrData.includes("poubelle=2")) {
                     message = "Vous recyclez vos déchets en verre\n+200 Points";
-                    <?php
-                    $insert_into_poubelle = $db->prepare("INSERT INTO scanpoubelle (ID_Utilisateur, ID_Poubelle, dateScan) VALUES (:iduser, 1, :dateActuel)");
-                    $insert_into_poubelle->bindParam(':iduser', $iduser);
-                    $insert_into_poubelle->bindParam(':dateActuel', $date_actuelle);
-                    $insert_into_poubelle->execute();
-                    $update_score = $db->prepare("UPDATE utilisateurs SET point_Planete = point_Planete + 200, exp_Utilisateur = exp_Utilisateur + 200 WHERE ID_Utilisateur = :id_utilisateur");
-                    $update_score->bindParam(':id_utilisateur', $iduser);
-                    $update_score->execute();
-                    ?>
+                    $.ajax({
+                        url: 'traitement.php',
+                        method: 'POST',
+                        data: { iduser: idutilisateur }, 
+                        success: function(response) {
+                            alert('Opération effectuée avec succès !');
+                        }
+                    });
                 } else if (qrData.includes("poubelle=3")) {
                     message = "Vous jetez vos déchets ordinaires qui ne se recyclent pas";
                 } else {
@@ -187,11 +186,11 @@ const captureAndDecode = () => {
                 if (qrData.includes("poubelle=3")) {
                     message = "Vous jetez vos déchets ordinaires qui ne se recyclent pas";
                 } else {
-                    message = "Vous avez déjà scanner un QR code aujourd'hui";
+                    message = "Vous avez déjà scanné un QR code aujourd'hui";
                 }
                 showPopupWithOverlay(message);
             } else {
-                message = "Vous avez déjà scanner un QR code aujourd'hui";
+                message = "Vous avez déjà scanné un QR code aujourd'hui";
                 showPopupWithOverlay(message);
             }
         }
