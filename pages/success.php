@@ -63,7 +63,7 @@ if (!isset($_SESSION['pseudo'])) {
     </div>
 
     <div class="success_descript_box">
-    <p class="success_paragraph_descrip_darkgreen">rgsrhhherhg</p>
+    <p class="success_paragraph_descrip_lightgreen">Avoir créer son compte <br>Être membre depuis 1 mois <br>Être membre depuis 1 an</p>
     </div>
 
     <div class="success_box_1">
@@ -100,7 +100,7 @@ if (!isset($_SESSION['pseudo'])) {
 
 <div id="succes_box2">
     <img src="../img/trophy-dark.svg" alt="trophy" id="success_svg_trophy">
-    <h2 id="success_h2_2">De feuille en feuille</h2>
+    <h2 id="success_h2_2">De feuille à feuille</h2>
     <div id="success_number_green">
         <?php 
         if ($tableau[5] == "oui") {
@@ -116,11 +116,11 @@ if (!isset($_SESSION['pseudo'])) {
     </div>
     
     <div class="success_descript_box">
-    <p class="success_paragraph_descrip_darkgreen">rgsrhhherhg</p>
+    <p class="success_paragraph_descrip_darkgreen">Réaliser le défi "De feuille à feuille"<br>5 fois | 20 fois | 100 fois</p>
     </div>
 
     <div class="success_box_2">
-        <h3 class="success_h3_lightgreen">De feuille en feuille <strong class="succes_strong_green">I</strong></h3>
+        <h3 class="success_h3_lightgreen">De feuille à feuille <strong class="succes_strong_green">I</strong></h3>
         <div class="succes_checkbox">
             <input type="checkbox" disabled <?php 
             if ($tableau[2] == "oui") {
@@ -130,7 +130,7 @@ if (!isset($_SESSION['pseudo'])) {
         </div>
     </div>
     <div class="success_box_2">
-        <h3 class="success_h3_lightgreen">De feuille en feuille <strong class="succes_strong_green">II</strong></h3>
+        <h3 class="success_h3_lightgreen">De feuille à feuille <strong class="succes_strong_green">II</strong></h3>
         <div class="succes_checkbox">
             <input type="checkbox" disabled <?php 
             if ($tableau[4] == "oui") {
@@ -140,7 +140,7 @@ if (!isset($_SESSION['pseudo'])) {
         </div>
     </div>
     <div class="success_box_2">
-        <h3 class="success_h3_lightgreen">De feuille en feuille <strong class="succes_strong_green">III</strong></h3>
+        <h3 class="success_h3_lightgreen">De feuille à feuille <strong class="succes_strong_green">III</strong></h3>
         <div class="succes_checkbox">
             <input type="checkbox" disabled <?php 
             if ($tableau[5] == "oui") {
@@ -170,7 +170,7 @@ if (!isset($_SESSION['pseudo'])) {
     </div>
 
     <div class="success_descript_box">
-    <p class="success_paragraph_descrip_white">rgsrhhherhg</p>
+    <p class="success_paragraph_descrip_white">Réaliser le défi "Eco-safari urbain"<br>5 fois | 20 fois | 100 fois</p>
     </div>
 
     <div class="success_box_1">
@@ -224,7 +224,7 @@ if (!isset($_SESSION['pseudo'])) {
     </div>
 
     <div class="success_descript_box">
-    <p class="success_paragraph_descrip_darkgreen">rgsrhhherhg</p>
+    <p class="success_paragraph_descrip_darkgreen">Réaliser le défi "Douche éclair"<br>5 fois | 20 fois | 100 fois</p>
     </div>
 
     <div class="success_box_3">
@@ -278,7 +278,7 @@ if (!isset($_SESSION['pseudo'])) {
     </div>
 
     <div class="success_descript_box">
-    <p class="success_paragraph_descrip_lightgreen">rgsrhhherhg</p>
+    <p class="success_paragraph_descrip_lightgreen">Réaliser le défi "Seconde vie"<br>5 fois | 20 fois | 100 fois</p>
     </div>
 
     <div class="success_box_1">
@@ -332,7 +332,7 @@ if (!isset($_SESSION['pseudo'])) {
     </div>
 
     <div class="success_descript_box">
-    <p class="success_paragraph_descrip_darkgreen">rgsrhhherhg</p>
+    <p class="success_paragraph_descrip_darkgreen">Réaliser le défi "Dépense Fruitière"<br>5 fois | 20 fois | 100 fois</p>
     </div>
 
     <div class="success_box_3">
