@@ -79,8 +79,8 @@
 <a href="http://localhost/Earthly/Earthly/pages/connexion.php" id="connexion_button_mdp">Mot de passe oublié ?</a>
 </div>
 <div id="inscription">
-    <p id="pasdecompte">Pas de Compte ?</p>
-    <a href="inscription.php" id="lieninscrit"> Creer un Compte</a>
+    <p id="pasdecompte">Pas de compte ?</p>
+    <a href="inscription.php" id="lieninscrit"> Créer un Compte</a>
 </div>
 </div>
 

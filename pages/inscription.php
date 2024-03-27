@@ -139,8 +139,8 @@
                     
                 </div>
                     <div id="inscription">
-                        <p id="pasdecompte">Vous avez déja un compte ?</p>
-                        <a href="connexion.php" id="lieninscrit">Connecter Vous</a>
+                        <p id="pasdecompte">Avez-vous déjà un compte ?</p>
+                        <a href="connexion.php" id="lieninscrit">Connectez-Vous</a>
                     </div>
             </form>
 
