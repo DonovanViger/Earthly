@@ -31,6 +31,7 @@ if (!isset($_SESSION['pseudo'])) {
             $tableau[$succesnumber[0]]="oui";
         } else if (isset($succesnumber[2])){
             $tableau[$succesnumber[0]]=$succesnumber[1];
+            intval($tableau[$succesnumber[0]]);
         }
     }
 
