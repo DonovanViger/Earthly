@@ -166,7 +166,7 @@
         font-weight: 200px;
     }
 
-    #newPseudo {
+    #newPseudo, .barreinput {
         width: 100%;
         padding: 5px 15px;
     }
@@ -663,7 +663,7 @@
         <form id="changePasswordForm" action="compte.php" method="post">
             <div class="form-group">
                 <label for="newPassword">Nouveau mot de passe</label>
-                <input type="password" id="newPassword" name="newPassword" class="rounded" required>
+                <input type="password" id="newPassword" name="newPassword" class="rounded barreinput" required>
             </div>
             <div class="row mt-4">
                 <div class="col-5">
