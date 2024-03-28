@@ -76,14 +76,15 @@
 
     #lieninscrit {
         display: flex;
-        background-color: #A9FFA4;
+        background-color: #1C3326;
         padding: 1.5vh;
         width: 60vw;
         border: none;
         border-radius: 50px;
         font-size: 1.75vh;
         font-weight: bold;
-        color: #1C3326;
+        border: #A9FFA4 0.25vh solid;
+        color: #A9FFA4;
         text-decoration: none;
         flex-direction: row-reverse;
         align-content: center;
