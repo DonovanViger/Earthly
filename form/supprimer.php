@@ -40,7 +40,7 @@ try {
             
                 if (file_exists($chemin_photo_profil)) {
                     if (unlink($chemin_photo_profil)) {
-                        echo "La photo de profil a été supprimée avec succès.";
+                        echo "";
                     } else {
                         echo "Erreur lors de la suppression de la photo de profil.";
                     }
