@@ -13,7 +13,7 @@ session_start();
 </head>
 
 <body>
-<?php
+    <?php
 try {
     $db = new PDO('mysql:host=localhost;dbname=sae401-2', 'root', '');
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -29,6 +29,27 @@ try {
             $requeteSuppressionDefiQuotidien = $db->prepare("DELETE FROM utilisateursdefiquotidien WHERE ID_Utilisateur = :id_user");
             $requeteSuppressionDefiQuotidien->bindParam(':id_user', $user_id);
             $requeteSuppressionDefiQuotidien->execute();
+
+            $requete = $db->prepare("SELECT pdp FROM utilisateurs WHERE ID_Utilisateur = :id");
+            $requete->bindParam(':id', $user_id);
+            $requete->execute();
+            $resultat = $requete->fetch(PDO::FETCH_ASSOC);
+
+            if ($resultat) {
+                $chemin_photo_profil = "../uploads/" . $resultat['pdp'];
+            
+                if (file_exists($chemin_photo_profil)) {
+                    if (unlink($chemin_photo_profil)) {
+                        echo "La photo de profil a été supprimée avec succès.";
+                    } else {
+                        echo "Erreur lors de la suppression de la photo de profil.";
+                    }
+                } else {
+                    echo "La photo de profil n'existe pas.";
+                }
+            } else {
+                echo "Échec de la récupération de la photo de profil depuis la base de données.";
+            }
 
             $requeteSuppression = $db->prepare("DELETE FROM utilisateurs WHERE ID_Utilisateur = :user_id");
             $requeteSuppression->bindParam(':user_id', $user_id);
