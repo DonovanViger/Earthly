@@ -27,7 +27,7 @@ body {
 
 #connection_div_patern {
     background-image: url("../uploads/patern_light_green.svg");
-    background-size: cover; /* Ajuste la taille de l'image pour remplir complètement le conteneur */ /* Change la couleur de fond */
+    background-size: cover; 
     padding-top: 10vh;
     height: 100vh;
 }
@@ -274,18 +274,17 @@ body {
     display: none;
 }
 
-/* Style du bouton personnalisé */
 .custom-file-input {
     display: inline-block;
     margin-top: 2vh;
     margin-bottom: 5vh;
-    background-color: #1C3326; /* Couleur de fond pour le bouton */
-    color: #A9FFA4; /* Couleur du texte */
-    padding: 1vh 1vh; /* Espacement du bouton */
+    background-color: #1C3326;
+    color: #A9FFA4; 
+    padding: 1vh 1vh; 
     border: none;
     border-radius: 15px;
     cursor: pointer;
-    font-size: 2.25vh; /* Taille du texte */
+    font-size: 2.25vh; 
     width: 90%;
 }
 
@@ -331,7 +330,7 @@ body {
 
 #classement_div_patern{
     background-image: url("../uploads/pattern.svg");
-    background-size: cover; /* Ajuste la taille de l'image pour remplir complètement le conteneur */ /* Change la couleur de fond */
+    background-size: cover;
     height: 100%;
     padding-bottom: 15vh;
     padding-top: 5vh;
@@ -656,11 +655,11 @@ body {
     color: #1C3326;
     background-color: #fff;
     border-radius: 10px;
-    transition: transform 0.3s ease; /* Ajout de la transition pour l'effet hover */
+    transition: transform 0.3s ease; 
 }
 
 .succes_numero:hover {
-    transform: scale(1.05); /* Légèrement agrandir sur hover */
+    transform: scale(1.05); 
 }
 
 .succes h2 {
@@ -670,39 +669,37 @@ body {
 
 #badgeContainer {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Deux colonnes */
-    grid-gap: 20px; /* Espacement entre les colonnes */
-    justify-content: center; /* Centre les éléments horizontalement */
+    grid-template-columns: repeat(2, 1fr); 
+    grid-gap: 20px; 
+    justify-content: center; 
 }
 
 .badgeSlot {
-    width: 40px; /* Largeur des éléments */
-    height: 40px; /* Hauteur des éléments */
+    width: 40px; 
+    height: 40px; 
     background-color: transparent;
-    border: 1px solid #000; /* Bordure pour former un cercle */
-    border-radius: 50%; /* Rend les éléments circulaires */
+    border: 1px solid #000; 
+    border-radius: 50%; 
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 5px; /* Espacement en bas de chaque élément */
+    margin-bottom: 5px; 
 }
 .badgeSlot img{
     height: 45px;
     margin-top: 2px;
 }
 
-/* Style pour les trois premiers éléments */
 #badgeSlot1,
 #badgeSlot2,
 #badgeSlot3 {
-    grid-row: 1; /* Première ligne */
+    grid-row: 1;
 }
 
-/* Style pour les trois derniers éléments */
 #badgeSlot4,
 #badgeSlot5,
 #badgeSlot6 {
-    grid-row: 2; /* Deuxième ligne */
+    grid-row: 2;
 }
 
 .compte_button_titre{
@@ -716,14 +713,14 @@ body {
 
 @media screen and (max-Width:700px){
     .succes {
-        margin: 0px; /* Réduit la marge pour les petits écrans */
-        padding: 0; /* Supprime le rembourrage pour éviter le débordement sur les petits écrans */
+        margin: 0px;
+        padding: 0; 
         background-color: #1C3326;
     }
     
     .succes_numero {
         margin: 15px;
-        padding: 20px; /* Réduit le rembourrage pour les petits écrans */
+        padding: 20px; 
         color: #1C3326;
         background-color: #fff;
         overflow: hidden;
@@ -735,7 +732,7 @@ body {
 
 #defi_patern_box{
     background-image: url("../uploads/pattern.svg");
-    background-size: cover; /* Ajuste la taille de l'image pour remplir complètement le conteneur */ /* Change la couleur de fond */
+    background-size: cover;
     height: 100%;
     padding-bottom: 15vh;
     padding-top: 5vh;
@@ -870,7 +867,7 @@ height: 10vh;
 
 #success_overall{
     background-image: url("../uploads/pattern.svg");
-    background-size: cover; /* Ajuste la taille de l'image pour remplir complètement le conteneur */ /* Change la couleur de fond */
+    background-size: cover; 
     height: 100%;
     padding-bottom: 15vh;
     padding-top: 5vh;
@@ -1179,30 +1176,25 @@ footer {
     z-index: 2;
 }
 
-/* Style des icônes de navigation */
 .nav img {
     width: 24px;
     height: 24px;
 }
 
-/* Style des icônes actives */
 .nav .nav-link.active i {
     color: #2BBA7C;
 }
 
-/* Centrage du menu de navigation */
 .nav {
     display: flex;
     justify-content: center;
 }
 
-/* Style des slots du menu de navigation */
 .nav-slot {
     flex: 1;
     text-align: center;
 }
 
-/* Style des liens du menu de navigation */
 .nav-link {
     padding: 0.5rem 0.4rem;
     font-weight: bold;
@@ -1210,24 +1202,20 @@ footer {
     text-decoration: auto;
 }
 
-/* Style des liens du menu de navigation au survol */
 .nav-link:hover {
     color: #1C3326;
 }
 
-/* Style des liens du menu de navigation désactivés */
 .nav-link:disabled {
     color: #2BBA7C;
 }
 
-/* Style du texte accompagnant les images */
 .image-text {
     display: block;
     margin-top: 5px;
     font-size: 0.8rem;
 }
 
-/* Style spécifique des icônes de planète dans le footer */
 footer .planet-icon {
     height: 55px;
     width: 55px;
