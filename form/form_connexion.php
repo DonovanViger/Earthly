@@ -142,9 +142,9 @@ try {
         header("Location: ../pages/compte.php");
         exit();
     } else {
-        echo "<div id='erreur_connexion_box'>";
-        echo "<p id='erreur_connexion_para'>Identifiant ou mot de passe incorrect</p>";
-        echo "<button id='erreur_button_form'><a href='../pages/connexion.php'>Retour à la page de connexion</a>";
+        echo "<div class='erreur_connexion_box'>";
+        echo "<p class='erreur_connexion_para'>Identifiant ou mot de passe incorrect</p>";
+        echo "<button class='erreur_button_form'><a href='../pages/connexion.php'>Retour à la page de connexion</a>";
         echo "</div>";
     }
     
