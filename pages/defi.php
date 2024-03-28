@@ -208,6 +208,7 @@ try {
         #defis_button{
             width:80%;
             margin:2vh 0 0 0;
+            padding:1vh;
             background-color:#1C3326;
             color:#FFEFE1;
             border-radius:15px;
