@@ -372,6 +372,12 @@ html {
     grid-area: 1 / 1 / 2 / 2;
     display: table;
   }
+
+  .qr{
+    width: 5vw;
+    height: 5vw;
+    margin-bottom:2vh ;
+  }
   
   .w-embed:after {
     clear: both;
